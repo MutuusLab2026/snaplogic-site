@@ -4,7 +4,7 @@
 
 | 항목 | 정보 |
 |------|------|
-| **사이트 도메인** | `roiscompany.com` (DNS 전파 진행 중) |
+| **사이트 도메인** | `roiscompany.com` (DNS 전파 완료, 2026-10-20 확인) |
 | **임시 URL** | https://mutuuslab.github.io/snaplogic-site/ |
 | **기술 스택** | 단일 `index.html` + Tailwind CSS CDN (빌드 도구 없음) |
 | **호스팅** | GitHub Pages |
@@ -31,6 +31,18 @@
   - Private Key: `xmVBn0R-bwsI0Tq0AQEpZ`
 - **FormSubmit.co**: 가입 불필요, 이메일 활성화 링크만 클릭하면 됨
 
+### 2-1. 권한 부여 현황 (2026-10-20 기준)
+
+| 항목 | 상태 | 내용 |
+|------|------|------|
+| **GitHub 저장소 권한** | ✅ 초대 발송 (수락 대기) | `ditmergus`를 **Write** 협업자로 초대 — 수락 시 push 권한 |
+| **DNS (Cloudflare)** | ⏳ 계정 권한 미이관 | 레코드 설정·전파는 정상. 계정 멤버 초대로 넘겨야 함 |
+| **도메인 등록업체 (whoisdomain.kr)** | ⏳ 미완료 | 네임서버 변경 권한 이관 필요 |
+
+> ⚠️ `mutuuslab`은 **조직(Organization)이 아니라 개인 계정**입니다. 그래서 "조직 collaborator 초대"는 존재하지 않고, **저장소 단위 협업자 초대**가 요청하신 푸시 권한과 동일한 효과를 냅니다.
+> 초대 수락 위치: 초대 메일 → 또는 https://github.com/mutuuslab/snaplogic-site/invitations → 또는 저장소 **Settings > Collaborators**
+> 부여 범위는 **Write(푸시·배포)** 이며, 저장소 설정 변경 권한(Admin)과 소유권은 넘기지 않았습니다. 완전 이관이 필요하면 아래 옵션 B를 사용하세요.
+
 ---
 
 ## 3. 인계 방법 (3가지 옵션)
@@ -40,6 +52,8 @@
 2. **Add people** 클릭 → 후임자 GitHub ID 입력
 3. **Write** 권한 부여
 4. 후임자가 `git clone https://github.com/mutuuslab/snaplogic-site.git`로 시작
+
+> ✅ 2026-10-20 기준 `ditmergus` 초대 **발송 완료** — 후임자 수락만 남았습니다. (수락 후 `Settings > Collaborators`에 표시됨)
 
 ### 옵션 B: 저장소 소유권 이전
 - Settings > General > Danger Zone > **Transfer ownership**
@@ -131,6 +145,31 @@ snaplogic-site/
 | 네임서버 | `evelyn.ns.cloudflare.com`, `julian.ns.cloudflare.com` |
 | Proxy 상태 | **DNS only** (회색 구름) — Proxied로 하면 HTTPS 인증서 발급 실패 |
 
+### 7-1. DNS 전파 확인 결과 (2026-10-20)
+
+```
+NS          evelyn.ns.cloudflare.com / julian.ns.cloudflare.com   ✅
+A 레코드     185.199.108~111.153 (GitHub Pages) 4개 정상 응답      ✅
+CNAME       roiscompany.com (저장소 CNAME 파일과 일치)             ✅
+```
+
+### 7-2. Cloudflare 계정 권한 이관 절차 (수동)
+
+1. https://dash.cloudflare.com 로그인 (`tobiaskim@mutuus-lab.com`)
+2. 도메인 선택 → **Manage Account > Members > Invite**
+3. 후임자 이메일 입력, 역할은 **Administrator** 또는 **DNS** 최소 권한
+4. 초대 메일 수락 후, 해당 도메인만 보이도록 Zone 권한 제한 (Account > Members > member > Zone access)
+5. 비밀번호는 절대 공유하지 말 것 — 멤버 초대 방식이 감사 로그도 남아 안전함
+
+### 7-3. 도메인 등록업체 (whoisdomain.kr) 이관 절차
+
+1. https://whoisdomain.kr 로그인 (도메인 소유 계정)
+2. **네임서버 변경** 권한이 필요하므로, 계정 자체를 인계하거나 공동 관리자 추가
+3. 네임서버는 아래 값 유지 (Cloudflare):
+   - `evelyn.ns.cloudflare.com`
+   - `julian.ns.cloudflare.com`
+4. 등록업체 계정 이관 시 **2차 인증(OTP) 기기 이전**까지 함께 처리해야 잠기지 않음
+
 ---
 
 ## 8. 디자인 시스템
@@ -169,7 +208,10 @@ snaplogic-site/
 - [x] 비즈니스 이메일만 허용 (Gmail/Naver 등 차단)
 - [ ] FormSubmit.co 활성화 — `tobiaskim@mutuus-lab.com`이 첫 신청 메일에서 Confirm 클릭 필요
 - [ ] "독일 개발" 강조 문구 — KO/EN만 적용됨, ZH/JA 추가 필요
-- [ ] DNS 전파 완료 확인 (`roiscompany.com` 접속 가능 여부)
+- [x] DNS 전파 완료 확인 — 2026-10-20 기준 NS·A 레코드 정상 응답
+- [x] GitHub `ditmergus` Write 초대 발송
+- [ ] GitHub `ditmergus` 초대 **수락** 확인
+- [ ] Cloudflare 계정 멤버 초대 / whoisdomain.kr 계정 이관
 
 ---
 
