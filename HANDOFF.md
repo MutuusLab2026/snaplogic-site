@@ -5,10 +5,10 @@
 | 항목 | 정보 |
 |------|------|
 | **사이트 도메인** | `roiscompany.com` (DNS 전파 완료, 2026-10-20 확인) |
-| **임시 URL** | https://mutuuslab.github.io/snaplogic-site/ |
+| **임시 URL** | https://MutuusLab2026.github.io/snaplogic-site/ |
 | **기술 스택** | 단일 `index.html` + Tailwind CSS CDN (빌드 도구 없음) |
 | **호스팅** | GitHub Pages |
-| **저장소** | https://github.com/mutuuslab/snaplogic-site |
+| **저장소** | https://github.com/MutuusLab2026/snaplogic-site (**2026-10-20 조직으로 이관 완료**) |
 | **파일 수** | 1개 HTML, 17개 이미지 (`images/`) |
 
 ---
@@ -19,8 +19,8 @@
 
 | 항목 | 위치 | 용도 |
 |------|------|------|
-| **GitHub 저장소** | https://github.com/mutuuslab/snaplogic-site | 코드 수정 및 배포 |
-| **GitHub 계정** | `mutuuslab` 조직에 collaborator로 초대 | 푸시 권한 |
+| **GitHub 저장소** | https://github.com/MutuusLab2026/snaplogic-site | 코드 수정 및 배포 |
+| **GitHub 계정** | `MutuusLab2026` **조직** 저장소에 collaborator(**admin**)로 초대 | 푸시·배포 + 저장소 설정 |
 | **Cloudflare 계정** | https://dash.cloudflare.com (`tobiaskim@mutuus-lab.com`) | DNS 관리 |
 | **도메인 등록 업체** | whoisdomain.kr | 네임서버 변경 시 |
 
@@ -35,29 +35,39 @@
 
 | 항목 | 상태 | 내용 |
 |------|------|------|
-| **GitHub 저장소 권한** | ✅ 초대 발송 (수락 대기) | `ditmergus`를 **Write** 협업자로 초대 — 수락 시 push 권한 |
-| **DNS (Cloudflare)** | ⏳ 계정 권한 미이관 | 레코드 설정·전파는 정상. 계정 멤버 초대로 넘겨야 함 |
+| **GitHub 저장소 권한** | ✅ **Admin** 초대 발송 (수락 대기) | `ditmergus` (**= `leesh000404@gmail.com`**) 에 **Admin** 권한 초대 — 2026-10-20 조직 이관 후 write → admin 상향. 수락 전이라 협업자 목록에는 아직 미포함 |
+| **DNS (Cloudflare)** | ⏳ 초대 대상 확정, 발송 대기 | `leesh000404@gmail.com`을 계정 멤버로 초대 — 절차·권한 설계는 §7-2 |
 | **도메인 등록업체 (whoisdomain.kr)** | ⏳ 미완료 | 네임서버 변경 권한 이관 필요 |
 
-> ⚠️ `mutuuslab`은 **조직(Organization)이 아니라 개인 계정**입니다. 그래서 "조직 collaborator 초대"는 존재하지 않고, **저장소 단위 협업자 초대**가 요청하신 푸시 권한과 동일한 효과를 냅니다.
-> 초대 수락 위치: 초대 메일 → 또는 https://github.com/mutuuslab/snaplogic-site/invitations → 또는 저장소 **Settings > Collaborators**
-> 부여 범위는 **Write(푸시·배포)** 이며, 저장소 설정 변경 권한(Admin)과 소유권은 넘기지 않았습니다. 완전 이관이 필요하면 아래 옵션 B를 사용하세요.
+> 📦 **2026-10-20 저장소 이관 완료**: `mutuuslab/snaplogic-site`(개인 계정) → `MutuusLab2026/snaplogic-site`(**조직**)
+> **이유**: 개인 계정 소유 저장소는 협업자 최대 권한이 **Write**라서 Admin 부여가 원천 차단됩니다
+> (`422 Validation Failed: You can only give write access to user-owned repositories`). 조직 소유로 옮겨야 Admin 역할이 생깁니다.
+> **이관 후 검증**: Pages `built` 유지 / 커스텀 도메인 `roiscompany.com` HTTP 200 정상 / 임시 URL만 `MutuusLab2026.github.io/snaplogic-site`로 변경
+> **저장소 이전은 웹 UI 전용**입니다 (GraphQL에 `transferRepository` mutation 없음) — 추후 재이전 시 참고
+
+> ⚠️ `MutuusLab2026`은 **조직(Organization)**, `mutuuslab`은 **개인 계정**입니다. 조직 저장소에서만 `admin`/`maintain` 역할이 존재합니다.
+> 초대 수락 위치: 초대 메일 → 또는 https://github.com/MutuusLab2026/snaplogic-site/invitations
+> 권한 상향 명령: `gh api -X PATCH repos/MutuusLab2026/snaplogic-site/invitations/338547131 -f permissions=admin`
 
 ---
 
 ## 3. 인계 방법 (3가지 옵션)
 
-### 옵션 A: GitHub Collaborator 추가 (권장)
-1. https://github.com/mutuuslab/snaplogic-site/settings/access
-2. **Add people** 클릭 → 후임자 GitHub ID 입력
-3. **Write** 권한 부여
-4. 후임자가 `git clone https://github.com/mutuuslab/snaplogic-site.git`로 시작
+### 옵션 A: GitHub Collaborator 추가 (✅ 완료)
+1. https://github.com/MutuusLab2026/snaplogic-site/settings/access
+2. **Add people** 클릭 → GitHub **ID** 입력 (이메일 아님)
+   - `leesh000404@gmail.com`의 GitHub 계정은 **`ditmergus`**
+   - 확인 명령: `gh api users/ditmergus --jq .email` → `leesh000404@gmail.com`
+3. 권한: **Admin** (조직 저장소라 admin 가능. 개인 계정 저장소였으면 write가 상한)
+4. 후임자: `git clone https://github.com/MutuusLab2026/snaplogic-site.git`
 
-> ✅ 2026-10-20 기준 `ditmergus` 초대 **발송 완료** — 후임자 수락만 남았습니다. (수락 후 `Settings > Collaborators`에 표시됨)
+> ✅ 2026-10-20 기준 `ditmergus`에 **Admin 초대 발송 완료** (invitation id `338547131`, `expired: false`) — **수락만 남았습니다.**
+> 수락 전에는 권한이 실제로 생기지 않습니다. 수락 후 `Settings > Collaborators` 에 표시됩니다.
+> 초대 메일을 못 받았다면: Members/Invitations 화면에서 재발송하거나, 초대를 취소 후 `PUT /collaborators/ditmergus` 로 다시 생성.
 
-### 옵션 B: 저장소 소유권 이전
-- Settings > General > Danger Zone > **Transfer ownership**
-- 다른 GitHub 계정/조직으로 완전 이전
+### 옵션 B: 저장소 소유권 이전 (2026-10-20 실행 완료)
+- Settings > General > Danger Zone > **Transfer ownership** → `MutuusLab2026`
+- API(GraphQL)로는 불가 — 웹 UI 전용. 조직 owner 권한이면 상대 수락 없이 즉시 이전됨
 
 ### 옵션 C: Fork 또는 Mirror
 - 후임자가 직접 fork 후 신규 저장소로 작업 (DNS만 새 저장소로 변경)
@@ -68,7 +78,7 @@
 
 ### 클론
 ```bash
-git clone https://github.com/mutuuslab/snaplogic-site.git
+git clone https://github.com/MutuusLab2026/snaplogic-site.git
 cd snaplogic-site
 ```
 
@@ -155,11 +165,59 @@ CNAME       roiscompany.com (저장소 CNAME 파일과 일치)             ✅
 
 ### 7-2. Cloudflare 계정 권한 이관 절차 (수동)
 
-1. https://dash.cloudflare.com 로그인 (`tobiaskim@mutuus-lab.com`)
-2. 도메인 선택 → **Manage Account > Members > Invite**
-3. 후임자 이메일 입력, 역할은 **Administrator** 또는 **DNS** 최소 권한
-4. 초대 메일 수락 후, 해당 도메인만 보이도록 Zone 권한 제한 (Account > Members > member > Zone access)
-5. 비밀번호는 절대 공유하지 말 것 — 멤버 초대 방식이 감사 로그도 남아 안전함
+> 📌 **등록 요청된 초대 대상: `leesh000404@gmail.com`** (2026-10-20 요청)
+> 저장소에는 Cloudflare API 토큰이 없어 **대시보드에서 직접** 진행해야 합니다.
+
+**사전 조건**
+
+- 초대하려면 초대자 계정이 **Super Administrator** 역할이고, **이메일 인증(verified email)** 이 완료되어 있어야 합니다.
+  (`tobiaskim@mutuus-lab.com` 계정으로 확인)
+- 프로필 아이콘 → **Manage Account** 메뉴가 보이지 않으면 Super Administrator 권한이 없는 것입니다.
+
+**초대 절차**
+
+1. https://dash.cloudflare.com/?to=/:account/members 접속 (`tobiaskim@mutuus-lab.com` 로그인)
+   - 계정이 여러 개면 좌측 상단에서 **roiscompany.com이 속한 계정**을 먼저 선택
+2. **Invite members** 클릭
+3. **Add email addresses** 에 `leesh000404@gmail.com` 입력 (여러 명은 쉼표로 구분)
+4. **Add permission policies** 에서 권한 설계 → 아래 표 참고
+5. **Invite members** 클릭 → Members 목록에 **Pending** 상태로 표시
+6. 초대 대상이 메일의 수락 링크를 클릭하면 **Active** 로 전환 (필요 시 `...` > **Resend invite**)
+
+**권한(정책) 설계 — 최소 권한 원칙**
+
+| 목적 | Scope | Role | 비고 |
+|------|-------|------|------|
+| DNS 레코드만 수정 (권장) | **Specific zone** → `roiscompany.com` | `Domain DNS` | A/CNAME/NS 변경만 가능. 계정 설정·멤버 관리 불가 |
+| 계정 전체 DNS 관리 | Account | `DNS` | 모든 도메인 대상 — 도메인이 1개뿐이면 실익 없음 |
+| 도메인 설정까지 위임 | **Specific zone** → `roiscompany.com` | `Domain Administrator` | SSL/TLS·캐시·Rules까지. DNS 외 설정 변경 필요 시 |
+| 완전 이관(소유권 이양) | Account | `Super Administrator` | 최후 수단. 멤버 관리·결제·토큰 발급까지 가능 |
+
+- 정책은 여러 개 추가 가능합니다. 예: `Domain DNS`(존 범위) + `Analytics`(계정 범위, 조회용)
+- 최소 권한으로 시작하고, 필요해지면 **View & Edit permission policies** 에서 승격하는 편이 안전합니다
+- **비밀번호·API 키는 절대 공유하지 말 것** — 멤버 초대 방식은 감사 로그(Audit Logs)도 남습니다
+
+**초대 후 확인 체크리스트**
+
+- [ ] Members 목록에 `leesh000404@gmail.com` **Pending** 표시 확인
+- [ ] 초대 메일 수락 후 **Active** 전환 확인
+- [ ] 해당 계정으로 로그인해 **roiscompany.com 존이 보이는지** 확인 (안 보이면 정책 Scope 누락)
+- [ ] `Domain DNS`만 부여한 경우, DNS 외 메뉴가 잠겨 있는지 확인
+- [ ] DNS 레코드가 여전히 정상인지 확인 — A 레코드 4개 + **DNS only(회색 구름)** 유지
+
+**API로 초대하려면 (선택)**
+
+```bash
+# 계정 ID·토큰·역할 ID 필요. 토큰에는 "Account Settings: Edit" 권한이 있어야 함
+curl -X POST "https://api.cloudflare.com/client/v4/accounts/{account_id}/members" \
+  -H "Authorization: Bearer {API_TOKEN}" \
+  -H "Content-Type: application/json" \
+  --data '{"email":"leesh000404@gmail.com","roles":[{"id":"{ROLE_ID}"}],"status":"pending"}'
+```
+
+- Account ID는 대시보드 URL의 `dash.cloudflare.com/<32자리>` 값 (Zone ID `0e70e42f353398607218374e53eced87`와 다름)
+- 역할 ID 목록: `GET /accounts/{account_id}/roles`
+- API 호출은 Super Administrator 권한 토큰에서만 동작하며, 초대 메일은 동일하게 발송됩니다
 
 ### 7-3. 도메인 등록업체 (whoisdomain.kr) 이관 절차
 
@@ -209,9 +267,12 @@ CNAME       roiscompany.com (저장소 CNAME 파일과 일치)             ✅
 - [ ] FormSubmit.co 활성화 — `tobiaskim@mutuus-lab.com`이 첫 신청 메일에서 Confirm 클릭 필요
 - [ ] "독일 개발" 강조 문구 — KO/EN만 적용됨, ZH/JA 추가 필요
 - [x] DNS 전파 완료 확인 — 2026-10-20 기준 NS·A 레코드 정상 응답
-- [x] GitHub `ditmergus` Write 초대 발송
-- [ ] GitHub `ditmergus` 초대 **수락** 확인
-- [ ] Cloudflare 계정 멤버 초대 / whoisdomain.kr 계정 이관
+- [x] 저장소를 조직 `MutuusLab2026`으로 이관 — Pages·도메인 정상 유지 확인 (2026-10-20)
+- [x] GitHub `ditmergus` **Admin** 초대 발송 (조직 이관 후 상향, 2026-10-20)
+- [ ] GitHub `ditmergus` 초대 **수락** 확인 — 수락 전에는 권한 없음
+- [ ] Cloudflare 계정 멤버 초대 — `leesh000404@gmail.com` / 권한: `roiscompany.com` 존 **Domain DNS** (§7-2)
+- [ ] Cloudflare 초대 수락 확인 (Members 목록 **Active** 전환)
+- [ ] whoisdomain.kr 계정 이관 (네임서버 변경 권한, §7-3)
 
 ---
 
