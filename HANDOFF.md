@@ -36,7 +36,7 @@
 | 항목 | 상태 | 내용 |
 |------|------|------|
 | **GitHub 저장소 권한** | ✅ **Admin** 초대 발송 (수락 대기) | `ditmergus` (**= `leesh000404@gmail.com`**) 에 **Admin** 권한 초대 — 2026-10-20 조직 이관 후 write → admin 상향. 수락 전이라 협업자 목록에는 아직 미포함 |
-| **DNS (Cloudflare)** | ⏳ 초대 대상 확정, 발송 대기 | `leesh000404@gmail.com`을 계정 멤버로 초대 — 절차·권한 설계는 §7-2 |
+| **DNS (Cloudflare)** | ⏳ 초대 대상 확정, 발송 대기 | `leesh000404@gmail.com` — **`roiscompany.com` 존 한정 `Domain DNS`** 으로만 초대. **계정 전역 역할 부여 금지** (§7-2) |
 | **도메인 등록업체 (whoisdomain.kr)** | ⏳ 미완료 | 네임서버 변경 권한 이관 필요 |
 
 > 📦 **2026-10-20 저장소 이관 완료**: `mutuuslab/snaplogic-site`(개인 계정) → `MutuusLab2026/snaplogic-site`(**조직**)
@@ -168,6 +168,15 @@ CNAME       roiscompany.com (저장소 CNAME 파일과 일치)             ✅
 > 📌 **등록 요청된 초대 대상: `leesh000404@gmail.com`** (2026-10-20 요청)
 > 저장소에는 Cloudflare API 토큰이 없어 **대시보드에서 직접** 진행해야 합니다.
 
+> 🔒 **접근 범위 요구사항 (2026-10-20)**: **`roiscompany.com` 존 하나에만** 접근. 그 외 존·계정 설정·결제·멤버 관리는 **불가**여야 함.
+> 반드시 **Zone-scoped policy**로 부여하세요. **Account 범위 `Administrator` / `DNS` 역할을 주면 이 요구사항 위반**입니다.
+>
+> | 초대 대상이 보게 될 것 | 보지 못하게 될 것 |
+> |---|---|
+> | 계정 이름, `roiscompany.com` 존 1개, DNS 레코드 | 다른 존, 계정 설정, 결제, 멤버 초대, API 토큰 발급 |
+>
+> 이 저장소(roiscompany.com)와 무관한 다른 사이트/도메인은 계정에 없더라도 **원칙적으로 zone 스코프**를 사용합니다.
+
 **사전 조건**
 
 - 초대하려면 초대자 계정이 **Super Administrator** 역할이고, **이메일 인증(verified email)** 이 완료되어 있어야 합니다.
@@ -205,19 +214,35 @@ CNAME       roiscompany.com (저장소 CNAME 파일과 일치)             ✅
 - [ ] `Domain DNS`만 부여한 경우, DNS 외 메뉴가 잠겨 있는지 확인
 - [ ] DNS 레코드가 여전히 정상인지 확인 — A 레코드 4개 + **DNS only(회색 구름)** 유지
 
-**API로 초대하려면 (선택)**
+**API로 초대하려면 (선택 — zone 스코프)**
+
+`roles` 방식은 **계정 전역** 권한이므로 이 요구사항에 쓰면 안 됩니다. 존 한정은 **`policies` + `resource_groups`** 로 지정합니다.
 
 ```bash
-# 계정 ID·토큰·역할 ID 필요. 토큰에는 "Account Settings: Edit" 권한이 있어야 함
-curl -X POST "https://api.cloudflare.com/client/v4/accounts/{account_id}/members" \
-  -H "Authorization: Bearer {API_TOKEN}" \
+curl -X POST "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/members" \
+  -H "Authorization: Bearer $CF_API_TOKEN" \
   -H "Content-Type: application/json" \
-  --data '{"email":"leesh000404@gmail.com","roles":[{"id":"{ROLE_ID}"}],"status":"pending"}'
+  --data '{
+    "email": "leesh000404@gmail.com",
+    "status": "pending",
+    "policies": [{
+      "access": "allow",
+      "permission_groups": [{ "id": "<DNS permission group id>" }],
+      "resource_groups": [{ "id": "<roiscompany.com zone resource group id>" }]
+    }]
+  }'
 ```
 
-- Account ID는 대시보드 URL의 `dash.cloudflare.com/<32자리>` 값 (Zone ID `0e70e42f353398607218374e53eced87`와 다름)
-- 역할 ID 목록: `GET /accounts/{account_id}/roles`
-- API 호출은 Super Administrator 권한 토큰에서만 동작하며, 초대 메일은 동일하게 발송됩니다
+| 준비물 | 얻는 방법 |
+|---|---|
+| `$ACCOUNT_ID` | 대시보드 URL `dash.cloudflare.com/<32자리>` (Zone ID `0e70e42f353398607218374e53eced87`와 다름) |
+| `$CF_API_TOKEN` | My Profile > API Tokens > Create Token — 필요한 권한: **`Account Settings Write`** (문서상 accepted permission: `SCIM Provisioning` 또는 `Account Settings Write`) |
+| DNS permission group id | `GET /accounts/{id}/tokens/permission_groups` → 이름에 `DNS` 포함된 항목 |
+| zone resource group id | 기존 멤버 조회(`GET /accounts/{id}/members`)의 `policies[].resource_groups[].scope.objects[].key` 에서 `com.cloudflare.api.account.zone.<ZONE_ID>` 형태로 확인 |
+
+- API 초대도 동일하게 **메일 발송 → 수락** 절차를 거칩니다 (`status: "pending"`)
+- 토큰을 채팅에 붙여넣지 말고 환경변수(`$env:CF_API_TOKEN`)로만 다루세요
+- 스키마 출처: [Add Member API](https://developers.cloudflare.com/api/resources/accounts/subresources/members/methods/create/) · [Member roles](https://developers.cloudflare.com/fundamentals/manage-members/roles/)
 
 ### 7-3. 도메인 등록업체 (whoisdomain.kr) 이관 절차
 
@@ -270,7 +295,7 @@ curl -X POST "https://api.cloudflare.com/client/v4/accounts/{account_id}/members
 - [x] 저장소를 조직 `MutuusLab2026`으로 이관 — Pages·도메인 정상 유지 확인 (2026-10-20)
 - [x] GitHub `ditmergus` **Admin** 초대 발송 (조직 이관 후 상향, 2026-10-20)
 - [ ] GitHub `ditmergus` 초대 **수락** 확인 — 수락 전에는 권한 없음
-- [ ] Cloudflare 계정 멤버 초대 — `leesh000404@gmail.com` / 권한: `roiscompany.com` 존 **Domain DNS** (§7-2)
+- [ ] Cloudflare 멤버 초대 — `leesh000404@gmail.com` / **`roiscompany.com` 존 한정 `Domain DNS`** (계정 전역 금지, §7-2)
 - [ ] Cloudflare 초대 수락 확인 (Members 목록 **Active** 전환)
 - [ ] whoisdomain.kr 계정 이관 (네임서버 변경 권한, §7-3)
 
