@@ -88,11 +88,37 @@ cd snaplogic-site
 
 ### 배포
 ```bash
-git add index.html
+git add index.html assets/engineering.css assets/engineering.js
 git commit -m "메시지"
 git push origin main
 # → GitHub Pages 자동 배포 (1~2분 소요)
 ```
+
+### 이전 버전 보관 및 롤백
+배포 전 라이브 버전은 **git 태그**(롤백 기준점)와 **보관 폴더**(브라우저로 확인용) 두 가지로 남깁니다.
+
+| 태그 | 커밋 | 내용 | 보관 폴더 |
+|------|------|------|-----------|
+| `backup/2026-11-04-before-motion` | `487ac8a` | 엔지니어링 모션 적용 직전 라이브 | `/backup-2026-11-04/` |
+| `release/2026-11-04-engineering-motion` | (배포 커밋) | 히어로 모션 + 워크플로우 시퀀스 + 기능 도면 스트립 | — |
+
+```bash
+# 태그 목록 확인
+git fetch --tags && git tag -l "backup/*" "release/*"
+
+# 롤백: 보관 태그의 사이트 파일로 되돌린 뒤 새 커밋으로 배포 (히스토리 보존, force push 불필요)
+git checkout main && git pull
+git checkout backup/2026-11-04-before-motion -- index.html
+git rm -r --cached assets && rm -rf assets   # 해당 버전에 assets/가 없을 때만
+git commit -m "rollback: backup/2026-11-04-before-motion 로 복원"
+git push origin main
+
+# 다시 최신 릴리스로 복귀
+git checkout release/2026-11-04-engineering-motion -- index.html assets
+git commit -m "restore: release/2026-11-04-engineering-motion" && git push origin main
+```
+- 보관 폴더는 단독 실행 파일(이미지 data URI 내장)이라 `https://roiscompany.com/backup-2026-11-04/`에서 바로 열람 가능
+- 다음 배포 때도 같은 규칙: 배포 직전 `backup/<날짜>-<설명>` 태그 → 배포 후 `release/<날짜>-<설명>` 태그
 
 ---
 
@@ -101,6 +127,8 @@ git push origin main
 ```
 snaplogic-site/
 ├── index.html         # 메인 파일 (~2400줄, HTML+CSS+JS 통합)
+├── assets/            # engineering.css / engineering.js — 엔지니어링 모션 및 스타일
+├── backup-2026-11-04/ # 모션 적용 직전 라이브 사본 (롤백·비교용, 단독 실행)
 ├── images/            # 제품 스크린샷 17개 (슬라이드1~17.JPG)
 ├── CNAME              # roiscompany.com (커스텀 도메인 설정)
 ├── HANDOFF.md         # 이 문서
@@ -257,6 +285,17 @@ curl -X POST "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/members"
 
 ## 8. 디자인 시스템
 
+### 엔지니어링 모션 업데이트 (2026-11-04)
+
+- **첫 화면**: 네이비 도면 그리드, SVG 차량 와이어프레임, 전원·데이터·제어 신호 흐름
+- **스타일**: `assets/engineering.css` — 히어로, 제품 화면, 모듈 커넥터 아이콘, 워크플로우 연결선
+- **동작 및 다국어**: `assets/engineering.js` — 4개 언어 문구, 모션 일시정지, 화면·탭 가시성 처리
+- **워크플로우(#workflow)**: 10초 주기로 데이터 패킷이 레일을 따라 01→04 단계로 이동하고, 도착한 단계의 번호·미니 도면(SVG)·산출물 칩(netlist → topology → wire list → BOM)이 순서대로 점등. 일시정지 시에는 완료 상태 정지 화면 표시
+- **기능 도면 스트립**: Logic·Integrator·Harness 스크린샷 카드 하단에 FIG.01~03 도면(핀 연결·넷↔토폴로지 동기화·번들 치수)이 스크롤 진입 시 1회 그려짐
+- **접근성**: `prefers-reduced-motion`에서 정적 도면 표시 및 제품 슬라이드 자동 재생 중지
+- **배포**: `index.html`과 `assets/`를 함께 배포해야 합니다. `2026-08-10/`은 이전 버전 보관용입니다.
+
+
 ### 컬러 토큰 (Tailwind config)
 - `primary-container`: `#1a73e8` (블루)
 - `secondary`: `#006a61` (틸)
@@ -273,7 +312,7 @@ curl -X POST "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/members"
 
 ## 9. 주의사항 및 팁
 
-- 단일 파일 구조라 CSS/JS 모두 `index.html` 안에 있음
+- 기본 CSS/JS는 `index.html` 안에 있으며, 엔지니어링 모션은 `assets/engineering.css`와 `assets/engineering.js`에서 관리
 - **빌드 도구 없음** — Tailwind CDN 사용 (수정 즉시 반영)
 - 모든 변경은 `git push origin main`으로 자동 배포
 - 이미지 텍스트 수정이 필요한 경우 Python + Pillow 스크립트로 처리한 이력 있음 (`fix_images.py` 패턴)
