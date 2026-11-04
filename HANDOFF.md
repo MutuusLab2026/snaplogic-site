@@ -103,7 +103,7 @@ git push origin main
 | `backup/2026-11-04-before-motion` | `487ac8a` | 엔지니어링 모션 적용 직전 라이브 | `/backup-2026-11-04/` |
 | `release/2026-11-04-engineering-motion` | `b21e51c` | 히어로 모션 + 워크플로우 시퀀스 + 기능 도면 스트립 | — |
 | `backup/2026-11-04-before-perf-a11y` | `d56e655` | 성능·접근성 개선 직전 라이브 (모션 1차) | `/backup-2026-11-04-motion/` |
-| `release/2026-11-04-perf-a11y` | (배포 커밋) | 이미지·아이콘 폰트 분리(12.46 MB → 206 KB), 접근성 보정, Bridge·FIG.04, 한글 메뉴 | — |
+| `release/2026-11-04-perf-a11y` | `fe9d1cd` | 이미지·아이콘 폰트 분리(12.46 MB → 206 KB), 접근성 보정, Bridge·FIG.04, 한글 메뉴 | — |
 
 ```bash
 # 태그 목록 확인
