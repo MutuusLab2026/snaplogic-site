@@ -52,10 +52,10 @@
       motion_interface_desc: '回路設計、トポロジー統合、ハーネス図面、検証まで。実際の製品画面でつながるワークフローをご覧ください。'
     }
   };
-  Object.assign(copy.ko, { fig_logic: '핀 단위 연결 의도와 신호 타입', fig_int: '회로 넷과 토폴로지 세그먼트의 동기화', fig_harness: '번들 길이·직경 자동 산출' });
-  Object.assign(copy.en, { fig_logic: 'Pin-level intent and signal types', fig_int: 'Circuit nets and topology segments, in sync', fig_harness: 'Bundle lengths and diameters, calculated' });
-  Object.assign(copy.zh, { fig_logic: '引脚级连接意图与信号类型', fig_int: '电路网络与拓扑段同步', fig_harness: '自动计算线束长度与直径' });
-  Object.assign(copy.ja, { fig_logic: 'ピン単位の接続意図と信号タイプ', fig_int: '回路ネットとトポロジーセグメントの同期', fig_harness: 'バンドル長・径を自動算出' });
+  Object.assign(copy.ko, { fig_logic: '핀 단위 연결 의도와 신호 타입', fig_int: '회로 넷과 토폴로지 세그먼트의 동기화', fig_harness: '번들 길이·직경 자동 산출', fig_drc: '24개 DRC 규칙 일괄 검증' });
+  Object.assign(copy.en, { fig_logic: 'Pin-level intent and signal types', fig_int: 'Circuit nets and topology segments, in sync', fig_harness: 'Bundle lengths and diameters, calculated', fig_drc: '24 DRC rules, checked in one pass' });
+  Object.assign(copy.zh, { fig_logic: '引脚级连接意图与信号类型', fig_int: '电路网络与拓扑段同步', fig_harness: '自动计算线束长度与直径', fig_drc: '24 条 DRC 规则一次性校验' });
+  Object.assign(copy.ja, { fig_logic: 'ピン単位の接続意図と信号タイプ', fig_int: '回路ネットとトポロジーセグメントの同期', fig_harness: 'バンドル長・径を自動算出', fig_drc: '24のDRCルールを一括検証' });
   Object.entries(copy).forEach(([lang, values]) => Object.assign(i18n[lang], values));
 
   // Drawing strips under the feature screenshots. .fd paths draw, .fp parts appear; --d sequences them.
@@ -83,6 +83,29 @@
       '<g class="fp" style="--d:1.6s"><text class="fig-dim-text" x="74" y="16">230 mm</text><text class="fig-dim-text" x="191" y="16">350 mm</text><text class="fig-dim-text" x="317" y="16">270 mm</text></g>' +
       '<g class="fp" style="--d:1.85s"><path class="fig-dim" d="M232 64L246 92H276"/><text class="fig-dim-text" x="300" y="95">Ø 11.6</text></g>' }
   };
+  const drcGroups = [['CONNECTIVITY', 6], ['CONSISTENCY', 13], ['NAMING', 5]];
+  let cell = 0;
+  figures.variant = { no: '04', key: 'fig_drc', card: 1, svg: drcGroups.map(([name, count], g) => {
+    const x0 = 10 + cell * 16 + g * 6, width = count * 16 - 3;
+    const cells = Array.from({ length: count }, (_, i) => {
+      const x = x0 + i * 16, delay = (.15 + (cell + i) * .055).toFixed(3);
+      return '<rect class="fig-cell" x="' + x + '" y="40" width="13" height="22" rx="2"/><rect class="fp fig-cell-pass" style="--d:' + delay + 's" x="' + x + '" y="40" width="13" height="22" rx="2"/>';
+    }).join('');
+    cell += count;
+    return '<text class="fig-label fig-group" x="' + (x0 + width / 2) + '" y="30">' + name + '</text>' + cells +
+      '<path class="fig-dim" d="M' + x0 + ' 70V75H' + (x0 + width) + 'V70"/><text class="fig-count" x="' + (x0 + width / 2) + '" y="90">' + count + '</text>';
+  }).join(''), status: '24/24 PASS' };
+
+  // Bridge: CAD ⇄ VegaFencer exchange, replacing the static CATIA ⇄ NX tiles. Packets loop while visible.
+  const bridgeSvg = '<svg class="eng-bridge" viewBox="0 0 400 150" role="img" aria-label="CATIA V5 / Siemens NX ⇄ VegaFencer: Bundle · Length → , ← Wire list">' +
+    '<rect class="bridge-cad" x="8" y="14" width="112" height="46" rx="6"/><text class="bridge-name" x="64" y="33">CATIA V5</text><text class="bridge-vendor" x="64" y="51">Dassault Systèmes</text>' +
+    '<rect class="bridge-cad" x="8" y="90" width="112" height="46" rx="6"/><text class="bridge-name" x="64" y="109">Siemens NX</text><text class="bridge-vendor" x="64" y="127">Siemens</text>' +
+    '<path class="bridge-lane" d="M120 37H150V84M120 113H150V66M150 66H272M150 84H272"/>' +
+    '<path class="bridge-arrow bridge-in" d="M262 62L268 66L262 70"/><path class="bridge-arrow bridge-out" d="M160 80L154 84L160 88"/>' +
+    '<text class="bridge-lane-text bridge-in" x="211" y="58">BUNDLE · LENGTH</text><text class="bridge-lane-text bridge-out" x="211" y="101">WIRE LIST</text>' +
+    '<circle class="bp bp-in" cx="150" cy="66" r="3.5"/><circle class="bp bp-in" style="animation-delay:-1.2s" cx="150" cy="66" r="3.5"/>' +
+    '<circle class="bp bp-out" style="animation-delay:-.6s" cx="272" cy="84" r="3.5"/><circle class="bp bp-out" style="animation-delay:-1.8s" cx="272" cy="84" r="3.5"/>' +
+    '<rect class="bridge-core" x="272" y="38" width="120" height="74" rx="8"/><text class="bridge-core-name" x="332" y="72">VegaFencer</text><text class="bridge-core-sub" x="332" y="89">BRIDGE</text></svg>';
 
   document.addEventListener('DOMContentLoaded', () => {
     const hero = document.getElementById('about');
@@ -150,13 +173,72 @@
       figureObserver.unobserve(entry.target);
     }), { threshold: .5 });
     Object.entries(figures).forEach(([id, figure]) => {
-      const card = document.querySelector('#' + id + ' .rounded-2xl');
+      const card = document.querySelectorAll('#' + id + ' .rounded-2xl')[figure.card || 0];
       if (!card) return;
       card.insertAdjacentHTML('beforeend', '<figure class="eng-fig eng-fig-' + id + '"><figcaption><span translate="no">FIG. ' + figure.no + '</span>' +
-        '<span data-i18n="' + figure.key + '">' + lang[figure.key] + '</span></figcaption>' +
+        '<span data-i18n="' + figure.key + '">' + lang[figure.key] + '</span>' +
+        (figure.status ? '<em class="fig-status fp" style="--d:1.65s" translate="no">' + figure.status + '</em>' : '') + '</figcaption>' +
         '<svg viewBox="0 0 400 112" aria-hidden="true">' + figure.svg + '</svg></figure>');
       figureObserver.observe(card.lastElementChild);
     });
+    const bridgeCard = document.querySelector('#bridge .rounded-2xl');
+    if (bridgeCard && bridgeCard.firstElementChild) {
+      bridgeCard.firstElementChild.outerHTML = bridgeSvg;
+      new IntersectionObserver(([entry]) => bridgeCard.classList.toggle('is-offscreen', !entry.isIntersecting)).observe(bridgeCard);
+    }
+
+    // Placeholder-only fields get an accessible name that follows language switches.
+    const nameFields = () => document.querySelectorAll('form input[placeholder], form textarea[placeholder]').forEach(field => {
+      if (!(field.labels && field.labels.length)) field.setAttribute('aria-label', field.placeholder);
+    });
+    nameFields();
+    document.querySelectorAll('form').forEach(form => new MutationObserver(nameFields).observe(form, { subtree: true, attributeFilter: ['placeholder'] }));
+
+    // Escape closes the mobile menu and returns focus to its toggle.
+    const navToggle = document.getElementById('navToggle');
+    document.addEventListener('keydown', event => {
+      if (event.key !== 'Escape' || navToggle.getAttribute('aria-expanded') !== 'true') return;
+      navToggle.click();
+      navToggle.focus();
+    });
+
+    // Expose the section in view as the current navigation location.
+    const sectionLinks = [...document.querySelectorAll('#navLinks a[href^="#"]')];
+    const linkFor = new Map(sectionLinks.map(link => [document.querySelector(link.getAttribute('href')), link]).filter(([section]) => section));
+    const spy = new IntersectionObserver(entries => entries.forEach(entry => {
+      const link = linkFor.get(entry.target);
+      if (entry.isIntersecting) {
+        sectionLinks.forEach(other => other.removeAttribute('aria-current'));
+        link.setAttribute('aria-current', 'location');
+      } else if (link.hasAttribute('aria-current')) {
+        link.removeAttribute('aria-current');
+      }
+    }), { rootMargin: '-45% 0px -50% 0px' });
+    linkFor.forEach((_, section) => spy.observe(section));
+
+    const enterpriseIcons = [
+      ['#1557b0', '<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.2c2.8.4 5 2.8 5 5.8"/>'],
+      ['#0b6b62', '<rect x="3" y="3" width="13" height="13" rx="2"/><path d="M7 8h5M7 11.5h3M12 21v-2.5l7-7 2.5 2.5-7 7z"/>'],
+      ['#a34a06', '<ellipse cx="10" cy="5" rx="7" ry="2.5"/><path d="M3 5v10c0 1.4 3.1 2.5 7 2.5M17 5v5M3 10c0 1.4 3.1 2.5 7 2.5M14 18h8m-3-3 3 3-3 3"/>']
+    ];
+    document.querySelectorAll('#enterprise span.w-10.h-10').forEach((badge, index) => {
+      const [color, paths] = enterpriseIcons[index] || [];
+      if (!paths) return;
+      badge.classList.add('engineering-ent-icon');
+      badge.style.color = color;
+      badge.setAttribute('aria-hidden', 'true');
+      badge.innerHTML = '<svg viewBox="0 0 24 24">' + paths + '</svg>';
+    });
+
+    const scrollTop = document.getElementById('scrollTopBtn');
+    const narrow = window.matchMedia('(max-width: 767px)');
+    let lastY = scrollY;
+    window.addEventListener('scroll', () => {
+      const y = scrollY;
+      if (Math.abs(y - lastY) < 8) return;
+      scrollTop.classList.toggle('scroll-top-resting', narrow.matches && y > lastY);
+      lastY = y;
+    }, { passive: true });
 
     const updateVisibility = () => document.body.classList.toggle('engineering-page-hidden', document.hidden);
     document.addEventListener('visibilitychange', updateVisibility);

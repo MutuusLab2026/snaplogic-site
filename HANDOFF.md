@@ -31,11 +31,11 @@
   - Private Key: `xmVBn0R-bwsI0Tq0AQEpZ`
 - **FormSubmit.co**: 가입 불필요, 이메일 활성화 링크만 클릭하면 됨
 
-### 2-1. 권한 부여 현황 (2026-10-20 기준)
+### 2-1. 권한 부여 현황 (2026-11-04 기준)
 
 | 항목 | 상태 | 내용 |
 |------|------|------|
-| **GitHub 저장소 권한** | ✅ **Admin** 초대 발송 (수락 대기) | `ditmergus` (**= `leesh000404@gmail.com`**) 에 **Admin** 권한 초대 — 2026-10-20 조직 이관 후 write → admin 상향. 수락 전이라 협업자 목록에는 아직 미포함 |
+| **GitHub 저장소 권한** | 🔄 **Admin** 초대 재발송 (2026-11-04, 수락 대기 — 2026-11-11 만료) | 2026-10-20 첫 초대(`338547131`)는 수락 없이 만료되어 재발송(`341515120`).  `ditmergus` (**= `leesh000404@gmail.com`**) 에 **Admin** 권한 초대 — 2026-10-20 조직 이관 후 write → admin 상향. 수락 전이라 협업자 목록에는 아직 미포함 |
 | **DNS (Cloudflare)** | ⏳ 초대 대상 확정, 발송 대기 | `leesh000404@gmail.com` — **`roiscompany.com` 존 한정 `Domain DNS`** 으로만 초대. **계정 전역 역할 부여 금지** (§7-2) |
 | **도메인 등록업체 (whoisdomain.kr)** | ⏳ 미완료 | 네임서버 변경 권한 이관 필요 |
 
@@ -61,7 +61,8 @@
 3. 권한: **Admin** (조직 저장소라 admin 가능. 개인 계정 저장소였으면 write가 상한)
 4. 후임자: `git clone https://github.com/MutuusLab2026/snaplogic-site.git`
 
-> ✅ 2026-10-20 기준 `ditmergus`에 **Admin 초대 발송 완료** (invitation id `338547131`, `expired: false`) — **수락만 남았습니다.**
+> 🔄 2026-11-04 `ditmergus`에 **Admin 초대 재발송** (invitation id `341515120`) — 첫 초대 `338547131`(2026-10-20)은 7일 내 미수락으로 만료됨. **2026-11-11까지 수락 필요.**
+> 확인: `gh api repos/MutuusLab2026/snaplogic-site/invitations` (대기 중 초대) / `gh api repos/MutuusLab2026/snaplogic-site/collaborators/ditmergus/permission` (수락 후 `admin`)
 > 수락 전에는 권한이 실제로 생기지 않습니다. 수락 후 `Settings > Collaborators` 에 표시됩니다.
 > 초대 메일을 못 받았다면: Members/Invitations 화면에서 재발송하거나, 초대를 취소 후 `PUT /collaborators/ditmergus` 로 다시 생성.
 
@@ -88,7 +89,7 @@ cd snaplogic-site
 
 ### 배포
 ```bash
-git add index.html assets/engineering.css assets/engineering.js
+git add index.html assets/
 git commit -m "메시지"
 git push origin main
 # → GitHub Pages 자동 배포 (1~2분 소요)
@@ -101,6 +102,8 @@ git push origin main
 |------|------|------|-----------|
 | `backup/2026-11-04-before-motion` | `487ac8a` | 엔지니어링 모션 적용 직전 라이브 | `/backup-2026-11-04/` |
 | `release/2026-11-04-engineering-motion` | `b21e51c` | 히어로 모션 + 워크플로우 시퀀스 + 기능 도면 스트립 | — |
+| `backup/2026-11-04-before-perf-a11y` | `d56e655` | 성능·접근성 개선 직전 라이브 (모션 1차) | `/backup-2026-11-04-motion/` |
+| `release/2026-11-04-perf-a11y` | (배포 커밋) | 이미지·아이콘 폰트 분리(12.46 MB → 206 KB), 접근성 보정, Bridge·FIG.04, 한글 메뉴 | — |
 
 ```bash
 # 태그 목록 확인
@@ -108,14 +111,16 @@ git fetch --tags && git tag -l "backup/*" "release/*"
 
 # 롤백: 보관 태그의 사이트 파일로 되돌린 뒤 새 커밋으로 배포 (히스토리 보존, force push 불필요)
 git checkout main && git pull
-git checkout backup/2026-11-04-before-motion -- index.html
-git rm -r --cached assets && rm -rf assets   # 해당 버전에 assets/가 없을 때만
-git commit -m "rollback: backup/2026-11-04-before-motion 로 복원"
+# 직전 버전으로: 성능·접근성 개선 이전(모션 1차)
+git checkout backup/2026-11-04-before-perf-a11y -- index.html assets/engineering.css assets/engineering.js
+git commit -m "rollback: backup/2026-11-04-before-perf-a11y 로 복원"
+# 더 이전(모션 적용 전)으로: index.html만 되돌리면 됨 (assets/는 참조되지 않아 무해)
+# git checkout backup/2026-11-04-before-motion -- index.html
 git push origin main
 
 # 다시 최신 릴리스로 복귀
-git checkout release/2026-11-04-engineering-motion -- index.html assets
-git commit -m "restore: release/2026-11-04-engineering-motion" && git push origin main
+git checkout release/2026-11-04-perf-a11y -- index.html assets
+git commit -m "restore: release/2026-11-04-perf-a11y" && git push origin main
 ```
 - 보관 폴더는 단독 실행 파일(이미지 data URI 내장)이라 `https://roiscompany.com/backup-2026-11-04/`에서 바로 열람 가능
 - 다음 배포 때도 같은 규칙: 배포 직전 `backup/<날짜>-<설명>` 태그 → 배포 후 `release/<날짜>-<설명>` 태그
@@ -127,8 +132,11 @@ git commit -m "restore: release/2026-11-04-engineering-motion" && git push origi
 ```
 snaplogic-site/
 ├── index.html         # 메인 파일 (~2400줄, HTML+CSS+JS 통합)
-├── assets/            # engineering.css / engineering.js — 엔지니어링 모션 및 스타일
+├── assets/            # engineering.css / engineering.js — 엔지니어링 모션·접근성 보정
+│   ├── img/           # 페이지 이미지 7개 (중복 제거, 이전엔 index.html에 base64로 24회 내장)
+│   └── fonts/         # Material Symbols 서브셋 (사용 아이콘 21개만, 24 KB)
 ├── backup-2026-11-04/ # 모션 적용 직전 라이브 사본 (롤백·비교용, 단독 실행)
+├── backup-2026-11-04-motion/ # 성능·접근성 개선 직전 라이브 사본 (모션 1차, 자체 assets 포함)
 ├── images/            # 제품 스크린샷 17개 (슬라이드1~17.JPG)
 ├── CNAME              # roiscompany.com (커스텀 도메인 설정)
 ├── HANDOFF.md         # 이 문서
@@ -291,7 +299,10 @@ curl -X POST "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/members"
 - **스타일**: `assets/engineering.css` — 히어로, 제품 화면, 모듈 커넥터 아이콘, 워크플로우 연결선
 - **동작 및 다국어**: `assets/engineering.js` — 4개 언어 문구, 모션 일시정지, 화면·탭 가시성 처리
 - **워크플로우(#workflow)**: 10초 주기로 데이터 패킷이 레일을 따라 01→04 단계로 이동하고, 도착한 단계의 번호·미니 도면(SVG)·산출물 칩(netlist → topology → wire list → BOM)이 순서대로 점등. 일시정지 시에는 완료 상태 정지 화면 표시
-- **기능 도면 스트립**: Logic·Integrator·Harness 스크린샷 카드 하단에 FIG.01~03 도면(핀 연결·넷↔토폴로지 동기화·번들 치수)이 스크롤 진입 시 1회 그려짐
+- **Bridge 다이어그램**: CATIA V5 / Siemens NX ⇄ VegaFencer 양방향(Bundle·Length 유입, Wire list 송출) 패킷 애니메이션 — 기존 'CATIA ⇄ NX' 타일 대체
+- **기능 도면 스트립**: FIG.04 Variant/DRC(24개 규칙 셀 순차 검증) 추가. Logic·Integrator·Harness 스크린샷 카드 하단에 FIG.01~03 도면(핀 연결·넷↔토폴로지 동기화·번들 치수)이 스크롤 진입 시 1회 그려짐
+- **상단 정리**: 한글 페이지 메뉴·상단 버튼 한글화(제품·워크플로우·AI·갤러리·연동·데모 신청), 상단 버튼을 히어로 버튼과 같은 하늘색으로 통일, 모바일 '맨 위로' 버튼은 아래로 읽는 중엔 숨고 위로 스크롤하면 표시
+- **UI/UX 감사 반영 (2026-11-04)**: 폼 필드 접근 가능한 이름, 대비 4.5:1 보정(모듈 태그·주황 라벨·AI 채팅 코드칩), 내비 현재 섹션 `aria-current` 표시, 모바일 메뉴 Esc 닫기, 터치 영역 24px, 제목 레벨(h2→h3) 정리
 - **접근성**: `prefers-reduced-motion`에서 정적 도면 표시 및 제품 슬라이드 자동 재생 중지
 - **배포**: `index.html`과 `assets/`를 함께 배포해야 합니다. `2026-08-10/`은 이전 버전 보관용입니다.
 
@@ -313,6 +324,11 @@ curl -X POST "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/members"
 ## 9. 주의사항 및 팁
 
 - 기본 CSS/JS는 `index.html` 안에 있으며, 엔지니어링 모션은 `assets/engineering.css`와 `assets/engineering.js`에서 관리
+- **이미지·아이콘 폰트는 파일로 분리** (2026-11-04): `index.html` 12.46 MB → 206 KB, 모바일 Slow 4G 첫 화면 22.5초 → 1.5초
+  - 이미지 교체: `assets/img/`의 파일을 같은 이름으로 덮어쓰기. **base64로 다시 내장하지 말 것**
+  - 새 Material 아이콘을 쓰려면 서브셋 폰트를 다시 받아야 함 (아이콘 목록에 이름 추가 후 `fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=<쉼표 목록, 알파벳순>` 의 woff2를 `assets/fonts/material-symbols-outlined-subset.woff2`로 저장). 목록에 없는 아이콘은 글자로 표시됨
+  - 현재 아이콘: auto_awesome, autorenew, check, check_circle, description, explore, fact_check, grid_view, group, hexagon, hub, pending, play_circle, polyline, schema, shortcut, square, star, swap_horiz, verified, view_in_ar
+  - `og:image`는 절대 URL(`https://roiscompany.com/assets/img/logic-editor.jpg`) — 링크 미리보기 이미지가 표시됨
 - **빌드 도구 없음** — Tailwind CDN 사용 (수정 즉시 반영)
 - 모든 변경은 `git push origin main`으로 자동 배포
 - 이미지 텍스트 수정이 필요한 경우 Python + Pillow 스크립트로 처리한 이력 있음 (`fix_images.py` 패턴)
