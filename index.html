@@ -13,6 +13,25 @@
 <meta name="twitter:description" content="차량 E/E 설계의 전 과정을 하나의 플랫폼으로 통합합니다.">
 <title>VegaFencer — From Architecture Design to Series Production</title>
 
+<!-- Web fonts: Google Fonts은 한국어·영어에서만, 화면 표시를 막지 않게 불러옴 (중국어·일본어는 기기 기본 폰트) -->
+<script>
+window.loadWebFonts = function (lang) {
+  if (window.__webFontsLoaded || (lang !== 'ko' && lang !== 'en')) return;
+  window.__webFontsLoaded = true;
+  var pc = document.createElement('link'); pc.rel = 'preconnect'; pc.href = 'https://fonts.googleapis.com';
+  var pg = document.createElement('link'); pg.rel = 'preconnect'; pg.href = 'https://fonts.gstatic.com'; pg.crossOrigin = '';
+  var css = document.createElement('link'); css.rel = 'stylesheet';
+  css.href = 'https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&family=Inter:wght@400..800&family=Space+Grotesk:wght@400..700&family=Noto+Sans+KR:wght@400..700&display=swap';
+  document.head.appendChild(pc); document.head.appendChild(pg); document.head.appendChild(css);
+};
+(function () {
+  var saved = null, nav = (navigator.language || '').toLowerCase();
+  try { saved = localStorage.getItem('lang'); } catch (_) {}
+  var lang = saved || (nav.indexOf('zh') === 0 ? 'zh' : 'ko');
+  window.addEventListener('load', function () { window.loadWebFonts(lang); });
+})();
+</script>
+
 <!-- Inline SVG Favicon -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%231A73E8'/><stop offset='100%25' stop-color='%23006a61'/></linearGradient></defs><rect width='36' height='36' rx='8' fill='url(%23g)'/><text x='18' y='25' font-family='sans-serif' font-size='20' font-weight='800' fill='white' text-anchor='middle'>S</text></svg>">
 
@@ -2374,6 +2393,7 @@ function switchLanguage(lang) {
 
   // Save preference
   localStorage.setItem('lang', lang);
+  if (window.loadWebFonts) window.loadWebFonts(lang);
 }
 
 /* =============================================================
