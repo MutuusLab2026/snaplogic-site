@@ -56,8 +56,6 @@ section[id] { scroll-margin-top: 100px; }
 .engineering-button-secondary { color: #dfebf3; background: #18394d; }
 .engineering-button-secondary:hover { background: #244b61; }
 .engineering-button svg { width: 16px; height: 16px; }
-.engineering-origin { display: flex; align-items: center; gap: 9px; color: #86a4b9; font-size: 11px; margin-top: 30px; }
-.engineering-origin span:first-child { width: 16px; height: 11px; background: linear-gradient(#253343 0 33.33%, #a55e58 33.33% 66.66%, #c8af6c 66.66%); border-radius: 1px; }
 
 .engineering-stage { position: relative; min-width: 0; align-self: stretch; display: flex; flex-direction: column; justify-content: center; }
 .engineering-stage-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 0 20px; font: 11px 'Space Grotesk', sans-serif; color: #87a8bf; }
@@ -335,7 +333,6 @@ html[lang="ko"] body { word-break: keep-all; overflow-wrap: break-word; }
   .engineering-kicker { font-size: 10px; margin-bottom: 22px; }
   .engineering-copy h1 { font-size: 38px; line-height: 1.3; }
   .engineering-description { font-size: 13px; line-height: 1.9; margin-bottom: 25px; }
-  .engineering-origin { margin-top: 22px; }
   .engineering-stage-head { font-size: 9px; }
   .motion-control { font-size: 10px; padding-inline: 8px; }
   .engineering-caption { font-size: 8px; margin-top: -10px; margin-bottom: 20px; }
