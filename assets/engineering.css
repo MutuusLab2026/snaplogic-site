@@ -214,7 +214,7 @@ section[id] { scroll-margin-top: 100px; }
 
 /* Accessibility (UI/UX audit 2026-11-04): contrast at the token level, current location, target sizes. */
 body .text-primary-container { color: #1765cc; }
-#heroWindowTitle, #ai [data-i18n="chat_status"] { color: #5b6e7f; }
+#heroWindowTitle, #ai [data-i18n="chat_status"], #ai [data-i18n="agent_status"] { color: #5b6e7f; }
 #ai code.text-primary-container, #ai button.text-primary-container { color: #1557b0; }
 .engineering-interface-copy p { color: #55697b; }
 #navLinks a[aria-current] { color: #1765cc; text-decoration: underline 2px; text-underline-offset: 8px; }
