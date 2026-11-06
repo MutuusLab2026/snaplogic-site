@@ -353,12 +353,6 @@ html[lang="ko"] body { word-break: keep-all; overflow-wrap: break-word; }
   .engineering-stage { --draw-w: min(100%, 600px); align-self: center; width: 100%; padding-top: 0; }
   .engineering-drawing .dimension-text { display: block; }
 }
-/* Soft snap: after a small scroll the page settles back on the hero; a deliberate scroll carries on to the next section.
-   'proximity' only snaps near these two points, so the rest of the page scrolls freely. */
-html { scroll-snap-type: y proximity; }
-.engineering-hero { scroll-snap-align: start; }
-.engineering-interface { scroll-snap-align: start; scroll-margin-top: 72px; }
-@media (prefers-reduced-motion: reduce) { html { scroll-snap-type: none; } }
 /* Short desktop screens (e.g. 1366x768, 1536x864 laptops): tighten vertical spacing so the hero still fits. */
 @media (min-width: 801px) and (max-height: 800px) {
   .engineering-hero-main { padding-block: 8px; }
@@ -402,3 +396,30 @@ html { scroll-snap-type: y proximity; }
 /* Fonts: 중국어·일본어는 Google Fonts를 쓰지 않고 기기 기본 폰트 사용 */
 html[lang="zh"] body, html[lang="zh"] :is(.font-body, .font-headline, .font-label) { font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif; }
 html[lang="ja"] body, html[lang="ja"] :is(.font-body, .font-headline, .font-label) { font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", "Noto Sans JP", sans-serif; }
+
+/* ---- First two screens: the hero, then one full screen of the product window. ----
+   The page rests on one or the other (never half-way), and from the second screen on it scrolls freely:
+   everything from that screen to the footer is one tall snap target, which a snap container lets you scroll through. */
+html { scroll-snap-type: y mandatory; }
+.engineering-hero { scroll-snap-align: start; }
+.engineering-after {
+  --fade: 120px; --nav-h: 73px;
+  scroll-snap-align: start;
+  scroll-margin-top: calc(-1 * var(--fade));   /* land where the fade has ended, so no navy is left at the top */
+}
+@media (max-width: 800px) { .engineering-after { --fade: 84px; } }
+@media (max-width: 767px) { .engineering-after { --nav-h: 105px; } }
+
+/* The hero's navy fades into the paper colour at the top of the second screen (the connector); the screen itself
+   starts where the fade ends, fills the viewport, and centres its content in the space below the header. */
+.engineering-interface {
+  box-sizing: border-box;
+  min-height: calc(100vh + var(--fade));
+  min-height: calc(100svh + var(--fade));
+  padding: calc(var(--fade) + var(--nav-h) + 16px) 0 16px;   /* 16px = minimum gap; any extra height is shared equally above and below */
+  display: flex; flex-direction: column; justify-content: center;
+  background:
+    linear-gradient(#081e30 0, #14324a 22%, #55728a 52%, #b3c5d3 80%, var(--eng-paper) 100%) top / 100% var(--fade) no-repeat,
+    var(--eng-paper);
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-snap-type: none; } }

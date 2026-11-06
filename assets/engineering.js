@@ -133,10 +133,23 @@
     preference.addEventListener('change', updateMotion);
     updateMotion();
 
-    new IntersectionObserver(([entry]) => {
-      document.body.classList.toggle('engineering-motion-offscreen', !entry.isIntersecting);
-      nav.classList.toggle('engineering-nav-dark', entry.isIntersecting);
-    }, { rootMargin: '-90px 0px 0px 0px' }).observe(hero);
+    // The header stays dark through the hero and the fade below it, and turns light once the fade is nearly over.
+    const fadeEl = document.querySelector('.engineering-interface');
+    let heroWatch = null;
+    const watchHero = () => {
+      if (heroWatch) heroWatch.disconnect();
+      const fade = fadeEl ? parseFloat(getComputedStyle(fadeEl).getPropertyValue('--fade')) || 0 : 0;
+      // root edge sits where the hero's bottom must be for the fade to end 40px under the header
+      const top = fade - (nav.offsetHeight + 40);
+      heroWatch = new IntersectionObserver(([entry]) => {
+        document.body.classList.toggle('engineering-motion-offscreen', !entry.isIntersecting);
+        nav.classList.toggle('engineering-nav-dark', entry.isIntersecting);
+      }, { rootMargin: top + 'px 0px 0px 0px' });
+      heroWatch.observe(hero);
+    };
+    watchHero();
+    window.matchMedia('(max-width: 800px)').addEventListener('change', watchHero);
+    window.matchMedia('(max-width: 767px)').addEventListener('change', watchHero);
     const workflow = document.getElementById('workflow');
     new IntersectionObserver(([entry]) => {
       workflow.classList.toggle('workflow-motion-offscreen', !entry.isIntersecting);
