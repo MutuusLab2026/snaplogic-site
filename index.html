@@ -477,7 +477,7 @@ window.loadWebFonts = function (lang) {
     box-shadow: 0 4px 12px rgba(26, 115, 232, 0.25);
   }
 </style>
-<link rel="stylesheet" href="assets/engineering.css">
+<link rel="stylesheet" href="assets/engineering.css?v=d1b29a84">
 </head>
 <body class="bg-surface antialiased">
 
@@ -669,8 +669,7 @@ window.loadWebFonts = function (lang) {
   </div>
   </div>
 </section>
-<!-- First screen after the hero through the footer: one scroll-snap target, so the page rests on either the hero or this screen, and scrolls freely after it. -->
-<div class="engineering-after">
+<!-- First screen after the hero through the footer: its own scroll-snap target; the rest of the page after it is one tall block that scrolls freely. -->
 <section class="engineering-interface" aria-labelledby="engineeringInterfaceTitle">
   <div class="engineering-container engineering-interface-inner">
     <div class="engineering-interface-copy"><span data-i18n="motion_interface_label">VegaFencer 작업 환경</span><h2 id="engineeringInterfaceTitle" data-i18n-html="motion_interface_title">복잡한 설계도,<br>명확한 하나의 화면으로.</h2><p data-i18n="motion_interface_desc">회로 설계, 토폴로지 통합, 하네스 도면과 검증까지. 실제 제품 화면에서 연결된 워크플로우를 확인하세요.</p></div>
@@ -706,6 +705,7 @@ window.loadWebFonts = function (lang) {
 
   </div>
 </section>
+<div class="engineering-rest">
 
 <!-- ============================================================
      CORE MODULES
@@ -1484,7 +1484,7 @@ window.loadWebFonts = function (lang) {
     </div>
   </div>
 </footer>
-</div><!-- /.engineering-after -->
+</div><!-- /.engineering-rest -->
 
 <!-- ============================================================
      SCROLL TO TOP
@@ -2885,6 +2885,6 @@ function navigateLightbox(dir) {
 document.addEventListener('DOMContentLoaded', () => Controller.init());
 </script>
 
-<script src="assets/engineering.js"></script>
+<script src="assets/engineering.js?v=8b671131"></script>
 </body>
 </html>

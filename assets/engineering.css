@@ -397,19 +397,20 @@ html[lang="ko"] body { word-break: keep-all; overflow-wrap: break-word; }
 html[lang="zh"] body, html[lang="zh"] :is(.font-body, .font-headline, .font-label) { font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif; }
 html[lang="ja"] body, html[lang="ja"] :is(.font-body, .font-headline, .font-label) { font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", "Noto Sans JP", sans-serif; }
 
-/* ---- First two screens: the hero, then one full screen of the product window. ----
-   The page rests on one or the other (never half-way), and from the second screen on it scrolls freely:
-   everything from that screen to the footer is one tall snap target, which a snap container lets you scroll through. */
+/* ---- Scroll stops: the hero, the second screen, then the start of everything below. ----
+   Each of the first two is exactly one screen tall, so the page always rests on one of them and a hard or fast scroll
+   cannot skip the second one (stop: always). Everything after that is one tall block, which scrolls freely. */
 html { scroll-snap-type: y mandatory; }
 .engineering-hero { scroll-snap-align: start; }
-.engineering-after {
+.engineering-interface {
   --fade: 120px; --nav-h: 73px;
   scroll-snap-align: start;
-  scroll-snap-stop: always;                    /* a hard or fast scroll from the hero still stops here instead of flying past */
+  scroll-snap-stop: always;
   scroll-margin-top: calc(-1 * var(--fade));   /* land where the fade has ended, so no navy is left at the top */
 }
-@media (max-width: 800px) { .engineering-after { --fade: 84px; } }
-@media (max-width: 767px) { .engineering-after { --nav-h: 105px; } }
+.engineering-rest { scroll-snap-align: start; scroll-margin-top: 48px; }   /* third stop: the boundary under the second screen sits 48px below the top edge (behind the 73px header); matched against a reference screenshot */
+@media (max-width: 800px) { .engineering-interface { --fade: 84px; } }
+@media (max-width: 767px) { .engineering-interface { --nav-h: 105px; } }
 
 /* The hero's navy fades into the paper colour at the top of the second screen (the connector); the screen itself
    starts where the fade ends, fills the viewport, and centres its content in the space below the header. */
