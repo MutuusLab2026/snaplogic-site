@@ -39,7 +39,7 @@ section[id] { scroll-margin-top: 100px; }
   padding: var(--hero-nav) 0 0;
 }
 @supports (height: 100svh) { .engineering-hero { --hero-vh: 100svh; min-height: 100svh; } }
-.engineering-hero > .engineering-container { flex: 1; display: flex; flex-direction: column; }
+.engineering-hero .engineering-container { flex: 1; display: flex; flex-direction: column; }
 .engineering-hero::before {
   content: '';
   position: absolute;
@@ -405,6 +405,7 @@ html { scroll-snap-type: y mandatory; }
 .engineering-after {
   --fade: 120px; --nav-h: 73px;
   scroll-snap-align: start;
+  scroll-snap-stop: always;                    /* a hard or fast scroll from the hero still stops here instead of flying past */
   scroll-margin-top: calc(-1 * var(--fade));   /* land where the fade has ended, so no navy is left at the top */
 }
 @media (max-width: 800px) { .engineering-after { --fade: 84px; } }
@@ -423,3 +424,54 @@ html { scroll-snap-type: y mandatory; }
     var(--eng-paper);
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-snap-type: none; } }
+
+/* ---- Wide desktop: the whole hero is one block that scales with the screen. ----
+   Designed at 1440 x 790 (a 13" MacBook Air in Chrome) = 1x. The script sets --hero-s (clamped to .8 - 1.25)
+   from the window size; the block is laid out at (screen / scale) and then scaled by transform, so every
+   size, gap and position inside keeps its proportion. Below 1101px the block is transparent (stacked layout). */
+.engineering-scale { display: contents; }
+@media (min-width: 1101px) {
+  .engineering-hero {
+    --s: var(--hero-s, 1);
+    --hero-vh: calc(100vh / var(--s));
+    --hero-nav: calc(73px / var(--s));
+    padding-top: 73px;                                  /* the real, unscaled header */
+    min-height: max(100vh, var(--hero-need, 0px));      /* grows if the content ever needs more than one screen */
+  }
+  @supports (height: 100svh) {
+    .engineering-hero { --hero-vh: calc(100svh / var(--s)); min-height: max(100svh, var(--hero-need, 0px)); }
+  }
+  .engineering-scale {
+    /* Out of flow: a transform keeps the unscaled size in the layout, so the hero's own height comes from min-height
+       (and --hero-need below), never from this block. */
+    position: absolute; top: 73px; left: 0;
+    display: flex; flex-direction: column;
+    width: calc(100% / var(--s));
+    min-height: calc((100vh - 73px) / var(--s));
+    transform: scale(var(--s)); transform-origin: 0 0;
+  }
+  @supports (height: 100svh) { .engineering-scale { min-height: calc((100svh - 73px) / var(--s)); } }
+  /* Fixed design sizes (the block does the scaling), with the tighter spacing of the 1440 x 790 design. */
+  .engineering-copy h1 { font-size: 58.5px; }
+  .engineering-hero-main { padding-block: 8px; }
+  .engineering-kicker { margin-bottom: 18px; }
+  .engineering-copy-body { padding-top: 20px; }
+  .engineering-description { line-height: 1.8; margin-bottom: 24px; }
+  .engineering-rail { padding: 14px 0 16px; }
+
+  /* Header: size, type and buttons stay fixed, but its content width scales with the hero (1216px = the original
+     design at 1440px), so the gutters left of the logo and right of the demo button keep their proportion to the
+     hero at every screen size. The gaps between logo, menu, language and button share the free space
+     (justify-between), and the menu's own gap flexes too. */
+  #nav nav { max-width: none; padding-inline: 0; width: calc(1216px * var(--hero-s, 1)); }
+  #navLinks { gap: clamp(28px, 2.2vw, 44px); }
+}
+
+/* Hero fine-tuning (set by eye in DevTools, wide desktop layout only: copy left, drawing right). */
+@media (min-width: 1101px) {
+  .engineering-copy { position: relative; left: 10px; transform: translate(0, -25px); }
+  .engineering-stage { left: 30px; transform: scale(.93); }
+  .engineering-stage-head { position: relative; top: 45px; }
+  .engineering-caption { position: relative; top: 15px; }
+  .engineering-legend { position: relative; top: 15px; }
+}

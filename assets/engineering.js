@@ -110,6 +110,23 @@
   document.addEventListener('DOMContentLoaded', () => {
     const hero = document.getElementById('about');
     const nav = document.getElementById('nav');
+    // Wide desktop: scale the whole hero as one block (1440 x 790 = 1x, limited to .8 - 1.25).
+    const scaleBox = hero.querySelector('.engineering-scale');
+    const wide = window.matchMedia('(min-width: 1101px)');
+    const fitHero = () => {
+      const w = document.documentElement.clientWidth, h = window.innerHeight;
+      const s = wide.matches ? Math.min(1.25, Math.max(.8, Math.min(w / 1440, h / 790))) : 1;
+      // On the root so the header can use the same scale as the hero.
+      document.documentElement.style.setProperty('--hero-s', s.toFixed(4));
+      // If the content is taller than the screen allows (very low windows), the hero grows instead of clipping.
+      hero.style.setProperty('--hero-need', wide.matches ? Math.floor(nav.offsetHeight + scaleBox.offsetHeight * s) + 'px' : '0px');
+    };
+    if (scaleBox) {
+      addEventListener('resize', fitHero);
+      wide.addEventListener('change', fitHero);
+      if (window.ResizeObserver) new ResizeObserver(fitHero).observe(scaleBox);
+      fitHero();
+    }
     const toggle = document.getElementById('engineeringMotionToggle');
     const label = toggle.querySelector('[data-i18n]');
     const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
