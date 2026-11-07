@@ -402,14 +402,16 @@ html[lang="ja"] body, html[lang="ja"] :is(.font-body, .font-headline, .font-labe
    cannot skip the second one (stop: always). Everything after that is one tall block, which scrolls freely. */
 html { scroll-snap-type: y mandatory; }
 .engineering-hero { scroll-snap-align: start; }
-.engineering-interface {
-  --fade: 120px; --nav-h: 73px;
+/* Second screen through the footer = one snap area taller than the screen: the snap stops only at its top (where the
+   fade has ended, so no navy is left at the top), and inside it the browser lets the page scroll freely. */
+.engineering-after {
+  --fade: 120px;
   scroll-snap-align: start;
   scroll-snap-stop: always;
-  scroll-margin-top: calc(-1 * var(--fade));   /* land where the fade has ended, so no navy is left at the top */
+  scroll-margin-top: calc(-1 * var(--fade));
 }
-.engineering-rest { scroll-snap-align: start; scroll-margin-top: 48px; }   /* third stop: the boundary under the second screen sits 48px below the top edge (behind the 73px header); matched against a reference screenshot */
-@media (max-width: 800px) { .engineering-interface { --fade: 84px; } }
+.engineering-interface { --nav-h: 73px; }
+@media (max-width: 800px) { .engineering-after { --fade: 84px; } }
 @media (max-width: 767px) { .engineering-interface { --nav-h: 105px; } }
 
 /* The hero's navy fades into the paper colour at the top of the second screen (the connector); the screen itself

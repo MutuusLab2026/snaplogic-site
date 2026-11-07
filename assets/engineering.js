@@ -167,6 +167,50 @@
     watchHero();
     window.matchMedia('(max-width: 800px)').addEventListener('change', watchHero);
     window.matchMedia('(max-width: 767px)').addEventListener('change', watchHero);
+
+    // Mouse wheel between the hero and the second screen. With a wheel, Chrome first scrolls the wheel's own distance,
+    // waits for the wheel to stop and only then snaps the rest of the way, so the motion stalls once in the middle.
+    // In this stretch the snap already allows only two resting places, so a mouse-wheel turn goes straight to the
+    // one the snap would pick anyway. Trackpads, keyboard, touch, the scrollbar and everything below the second
+    // screen are left to the browser. Set WHEEL_PAGING to false to switch this off.
+    const WHEEL_PAGING = true;
+    const second = document.querySelector('.engineering-after');   // carries the snap (and its scroll-margin)
+    if (WHEEL_PAGING && second) {
+      const calm = window.matchMedia('(prefers-reduced-motion: reduce)');
+      let busyUntil = 0, lastWheel = 0;
+      // where the snap rests on the second screen (its top edge plus its scroll-margin, which is negative)
+      const secondStop = () => second.getBoundingClientRect().top + scrollY - (parseFloat(getComputedStyle(second).scrollMarginTop) || 0);
+      // A mouse wheel turns in whole notches (multiples of 120 in wheelDelta, or line steps in Firefox);
+      // a trackpad sends many small, uneven steps.
+      const isMouseWheel = e => e.deltaMode === 1 ||
+        (Math.abs(e.wheelDeltaY) >= 120 && e.wheelDeltaY % 120 === 0);
+      // leave the wheel alone over anything that scrolls by itself (a list or panel inside the page)
+      const innerScroller = (el, dy) => {
+        for (; el && el !== document.body && el !== document.documentElement; el = el.parentElement) {
+          const oy = getComputedStyle(el).overflowY;
+          if ((oy === 'auto' || oy === 'scroll') && el.scrollHeight > el.clientHeight &&
+              (dy > 0 ? el.scrollTop + el.clientHeight < el.scrollHeight - 1 : el.scrollTop > 0)) return true;
+        }
+        return false;
+      };
+      addEventListener('wheel', e => {
+        const now = performance.now(), gap = now - lastWheel;
+        lastWheel = now;
+        // While we move, and as long as the same turn keeps going, swallow it, so one turn stops on one screen.
+        if (now < busyUntil) { e.preventDefault(); busyUntil = Math.max(busyUntil, now + 200); return; }
+        if (calm.matches || e.ctrlKey || e.defaultPrevented || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+        if (gap < 120 || !isMouseWheel(e) || innerScroller(e.target, e.deltaY)) return;   // only the first notch of a fresh turn
+        const stop = Math.round(secondStop()), y = scrollY;
+        let target = null;
+        if (e.deltaY > 0 && y < stop - 1) target = stop;          // hero (or in between) -> second screen
+        else if (e.deltaY < 0 && y > 0 && y <= stop + 1) target = 0; // second screen -> hero
+        if (target === null) return;
+        e.preventDefault();
+        busyUntil = now + 900;
+        scrollTo({ top: target, behavior: 'smooth' });
+      }, { passive: false });
+    }
+
     const workflow = document.getElementById('workflow');
     new IntersectionObserver(([entry]) => {
       workflow.classList.toggle('workflow-motion-offscreen', !entry.isIntersecting);
