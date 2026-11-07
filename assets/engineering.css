@@ -243,8 +243,8 @@ footer a { min-height: 24px; }
 /* Korean wraps at word boundaries; zh/ja keep their per-character breaking. */
 html[lang="ko"] body { word-break: keep-all; overflow-wrap: break-word; }
 /* One primary button style at the top: the header CTA matches the hero CTA while the nav is dark. */
-#nav.engineering-nav-dark nav > button.kinetic-gradient { background: #7be4ee; color: #082332; }
-#nav.engineering-nav-dark nav > button.kinetic-gradient:hover { background: #a0f0f5; opacity: 1; }
+#nav.engineering-nav-dark #navDemo { background: #7be4ee; color: #082332; }
+#nav.engineering-nav-dark #navDemo:hover { background: #a0f0f5; opacity: 1; }
 /* Mobile: the back-to-top button steps aside while reading downward and returns when scrolling up. */
 #scrollTopBtn.scroll-top-resting { opacity: 0 !important; transform: translateY(20px) !important; pointer-events: none; }
 #cta .kinetic-text-gradient { background-image: linear-gradient(135deg, #7cb4ff 0%, #5fe0d2 50%, #7cb4ff 100%); }
@@ -342,7 +342,9 @@ html[lang="ko"] body { word-break: keep-all; overflow-wrap: break-word; }
   #product > div > .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   #product > div > .grid > a:last-child { grid-column: span 2; }
   #nav.engineering-nav-dark #navLinks.nav-open { background: #0c263a; }
-  #navLinks.nav-open { top: 95px; }
+  /* The header's blur makes it the containing box of this fixed panel, so bottom:0 would end it at the header's
+     edge (a thin empty strip); give the panel the rest of the screen explicitly. */
+  #navLinks.nav-open { top: 95px; bottom: auto; height: calc(100vh - 95px); height: calc(100dvh - 95px); }
 }
 @media (max-width: 767px) { .engineering-hero { --hero-nav: 105px; } }
 /* Portrait tablets: stack copy over the drawing so both share one screen. */
@@ -401,6 +403,7 @@ html[lang="ja"] body, html[lang="ja"] :is(.font-body, .font-headline, .font-labe
    Each of the first two is exactly one screen tall, so the page always rests on one of them and a hard or fast scroll
    cannot skip the second one (stop: always). Everything after that is one tall block, which scrolls freely. */
 html { scroll-snap-type: y mandatory; }
+html.engineering-free-scroll { scroll-snap-type: none; }   /* set by engineering.js once well below the second screen */
 .engineering-hero { scroll-snap-align: start; }
 /* Second screen through the footer = one snap area taller than the screen: the snap stops only at its top (where the
    fade has ended, so no navy is left at the top), and inside it the browser lets the page scroll freely. */
@@ -466,10 +469,12 @@ html { scroll-snap-type: y mandatory; }
 
   /* Header: size, type and buttons stay fixed, but its content width scales with the hero (1216px = the original
      design at 1440px), so the gutters left of the logo and right of the demo button keep their proportion to the
-     hero at every screen size. The gaps between logo, menu, language and button share the free space
-     (justify-between), and the menu's own gap flexes too. */
-  #nav nav { max-width: none; padding-inline: 0; width: calc(1216px * var(--hero-s, 1)); }
-  #navLinks { gap: clamp(28px, 2.2vw, 44px); }
+     hero at every screen size. Layout: logo with the menu right after it on the left; language switch and demo
+     button grouped on the right. The gaps flex with the screen width. */
+  /* min(): never wider than the window, even before the script has set --hero-s */
+  #nav nav { max-width: none; padding-inline: 0; width: min(calc(1216px * var(--hero-s, 1)), calc(100% - 64px)); }
+  #navLinks { gap: clamp(36px, 3.1vw, 56px); margin-left: clamp(56px, 5vw, 96px); margin-right: auto; }
+  #langSwitcherDesktop { margin-right: 28px; }
 }
 
 /* Hero fine-tuning (set by eye in DevTools, wide desktop layout only: copy left, drawing right). */

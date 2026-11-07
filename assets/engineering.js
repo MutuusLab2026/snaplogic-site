@@ -110,135 +110,166 @@
   document.addEventListener('DOMContentLoaded', () => {
     const hero = document.getElementById('about');
     const nav = document.getElementById('nav');
-    // Wide desktop: scale the whole hero as one block (1440 x 790 = 1x, limited to .8 - 1.25).
-    const scaleBox = hero.querySelector('.engineering-scale');
-    const wide = window.matchMedia('(min-width: 1101px)');
-    const fitHero = () => {
-      const w = document.documentElement.clientWidth, h = window.innerHeight;
-      const s = wide.matches ? Math.min(1.25, Math.max(.8, Math.min(w / 1440, h / 790))) : 1;
-      // On the root so the header can use the same scale as the hero.
-      document.documentElement.style.setProperty('--hero-s', s.toFixed(4));
-      // If the content is taller than the screen allows (very low windows), the hero grows instead of clipping.
-      hero.style.setProperty('--hero-need', wide.matches ? Math.floor(nav.offsetHeight + scaleBox.offsetHeight * s) + 'px' : '0px');
-    };
-    if (scaleBox) {
-      addEventListener('resize', fitHero);
-      wide.addEventListener('change', fitHero);
-      if (window.ResizeObserver) new ResizeObserver(fitHero).observe(scaleBox);
-      fitHero();
-    }
-    const toggle = document.getElementById('engineeringMotionToggle');
-    const label = toggle.querySelector('[data-i18n]');
-    const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
-    let paused = false;
-    try { paused = localStorage.getItem('engineering-motion-paused') === 'true'; } catch (_) { /* Optional preference storage. */ }
-
-    const updateMotion = () => {
-      const stopped = paused || preference.matches;
-      document.body.classList.toggle('engineering-motion-paused', stopped);
-      toggle.setAttribute('aria-pressed', String(stopped));
-      toggle.disabled = preference.matches;
-      label.dataset.i18n = preference.matches ? 'motion_static' : stopped ? 'motion_resume' : 'motion_pause';
-      label.textContent = (i18n[document.documentElement.lang] || i18n.ko)[label.dataset.i18n];
-      document.dispatchEvent(new Event('engineering-motion-change'));
-    };
-    toggle.addEventListener('click', () => {
-      paused = !paused;
-      try { localStorage.setItem('engineering-motion-paused', String(paused)); } catch (_) { /* Optional preference storage. */ }
-      updateMotion();
-    });
-    preference.addEventListener('change', updateMotion);
-    updateMotion();
-
-    // The header stays dark through the hero and the fade below it, and turns light once the fade is nearly over.
-    const fadeEl = document.querySelector('.engineering-interface');
-    let heroWatch = null;
-    const watchHero = () => {
-      if (heroWatch) heroWatch.disconnect();
-      const fade = fadeEl ? parseFloat(getComputedStyle(fadeEl).getPropertyValue('--fade')) || 0 : 0;
-      // root edge sits where the hero's bottom must be for the fade to end 40px under the header
-      const top = fade - (nav.offsetHeight + 40);
-      heroWatch = new IntersectionObserver(([entry]) => {
-        document.body.classList.toggle('engineering-motion-offscreen', !entry.isIntersecting);
-        nav.classList.toggle('engineering-nav-dark', entry.isIntersecting);
-      }, { rootMargin: top + 'px 0px 0px 0px' });
-      heroWatch.observe(hero);
-    };
-    watchHero();
-    window.matchMedia('(max-width: 800px)').addEventListener('change', watchHero);
-    window.matchMedia('(max-width: 767px)').addEventListener('change', watchHero);
-
-    // Mouse wheel between the hero and the second screen. With a wheel, Chrome first scrolls the wheel's own distance,
-    // waits for the wheel to stop and only then snaps the rest of the way, so the motion stalls once in the middle.
-    // In this stretch the snap already allows only two resting places, so a mouse-wheel turn goes straight to the
-    // one the snap would pick anyway. Trackpads, keyboard, touch, the scrollbar and everything below the second
-    // screen are left to the browser. Set WHEEL_PAGING to false to switch this off.
-    const WHEEL_PAGING = true;
-    const second = document.querySelector('.engineering-after');   // carries the snap (and its scroll-margin)
-    if (WHEEL_PAGING && second) {
-      const calm = window.matchMedia('(prefers-reduced-motion: reduce)');
-      let busyUntil = 0, lastWheel = 0;
-      // where the snap rests on the second screen (its top edge plus its scroll-margin, which is negative)
-      const secondStop = () => second.getBoundingClientRect().top + scrollY - (parseFloat(getComputedStyle(second).scrollMarginTop) || 0);
-      // A mouse wheel turns in whole notches (multiples of 120 in wheelDelta, or line steps in Firefox);
-      // a trackpad sends many small, uneven steps.
-      const isMouseWheel = e => e.deltaMode === 1 ||
-        (Math.abs(e.wheelDeltaY) >= 120 && e.wheelDeltaY % 120 === 0);
-      // leave the wheel alone over anything that scrolls by itself (a list or panel inside the page)
-      const innerScroller = (el, dy) => {
-        for (; el && el !== document.body && el !== document.documentElement; el = el.parentElement) {
-          const oy = getComputedStyle(el).overflowY;
-          if ((oy === 'auto' || oy === 'scroll') && el.scrollHeight > el.clientHeight &&
-              (dy > 0 ? el.scrollTop + el.clientHeight < el.scrollHeight - 1 : el.scrollTop > 0)) return true;
-        }
-        return false;
+    // Pages without the hero still size the header like the home page does (same scale from the window size).
+    if (!hero) {
+      const wideOnly = window.matchMedia('(min-width: 1101px)');
+      const setScale = () => {
+        const w = document.documentElement.clientWidth, h = window.innerHeight;
+        const s = wideOnly.matches ? Math.min(1.25, Math.max(.8, Math.min(w / 1440, h / 790))) : 1;
+        document.documentElement.style.setProperty('--hero-s', s.toFixed(4));
       };
-      addEventListener('wheel', e => {
-        const now = performance.now(), gap = now - lastWheel;
-        lastWheel = now;
-        // While we move, and as long as the same turn keeps going, swallow it, so one turn stops on one screen.
-        if (now < busyUntil) { e.preventDefault(); busyUntil = Math.max(busyUntil, now + 200); return; }
-        if (calm.matches || e.ctrlKey || e.defaultPrevented || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
-        if (gap < 120 || !isMouseWheel(e) || innerScroller(e.target, e.deltaY)) return;   // only the first notch of a fresh turn
-        const stop = Math.round(secondStop()), y = scrollY;
-        let target = null;
-        if (e.deltaY > 0 && y < stop - 1) target = stop;          // hero (or in between) -> second screen
-        else if (e.deltaY < 0 && y > 0 && y <= stop + 1) target = 0; // second screen -> hero
-        if (target === null) return;
-        e.preventDefault();
-        busyUntil = now + 900;
-        scrollTo({ top: target, behavior: 'smooth' });
-      }, { passive: false });
+      addEventListener('resize', setScale);
+      setScale();
+    }
+    if (hero) {   // home page only
+      // Wide desktop: scale the whole hero as one block (1440 x 790 = 1x, limited to .8 - 1.25).
+      const scaleBox = hero.querySelector('.engineering-scale');
+      const wide = window.matchMedia('(min-width: 1101px)');
+      const fitHero = () => {
+        const w = document.documentElement.clientWidth, h = window.innerHeight;
+        const s = wide.matches ? Math.min(1.25, Math.max(.8, Math.min(w / 1440, h / 790))) : 1;
+        // On the root so the header can use the same scale as the hero.
+        document.documentElement.style.setProperty('--hero-s', s.toFixed(4));
+        // If the content is taller than the screen allows (very low windows), the hero grows instead of clipping.
+        hero.style.setProperty('--hero-need', wide.matches ? Math.floor(nav.offsetHeight + scaleBox.offsetHeight * s) + 'px' : '0px');
+      };
+      if (scaleBox) {
+        addEventListener('resize', fitHero);
+        wide.addEventListener('change', fitHero);
+        if (window.ResizeObserver) new ResizeObserver(fitHero).observe(scaleBox);
+        fitHero();
+      }
+      const toggle = document.getElementById('engineeringMotionToggle');
+      const label = toggle.querySelector('[data-i18n]');
+      const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+      let paused = false;
+      try { paused = localStorage.getItem('engineering-motion-paused') === 'true'; } catch (_) { /* Optional preference storage. */ }
+
+      const updateMotion = () => {
+        const stopped = paused || preference.matches;
+        document.body.classList.toggle('engineering-motion-paused', stopped);
+        toggle.setAttribute('aria-pressed', String(stopped));
+        toggle.disabled = preference.matches;
+        label.dataset.i18n = preference.matches ? 'motion_static' : stopped ? 'motion_resume' : 'motion_pause';
+        label.textContent = (i18n[document.documentElement.lang] || i18n.ko)[label.dataset.i18n];
+        document.dispatchEvent(new Event('engineering-motion-change'));
+      };
+      toggle.addEventListener('click', () => {
+        paused = !paused;
+        try { localStorage.setItem('engineering-motion-paused', String(paused)); } catch (_) { /* Optional preference storage. */ }
+        updateMotion();
+      });
+      preference.addEventListener('change', updateMotion);
+      updateMotion();
+
+      // The header stays dark through the hero and the fade below it, and turns light once the fade is nearly over.
+      const fadeEl = document.querySelector('.engineering-interface');
+      let heroWatch = null;
+      const watchHero = () => {
+        if (heroWatch) heroWatch.disconnect();
+        const fade = fadeEl ? parseFloat(getComputedStyle(fadeEl).getPropertyValue('--fade')) || 0 : 0;
+        // root edge sits where the hero's bottom must be for the fade to end 40px under the header
+        const top = fade - (nav.offsetHeight + 40);
+        heroWatch = new IntersectionObserver(([entry]) => {
+          document.body.classList.toggle('engineering-motion-offscreen', !entry.isIntersecting);
+          nav.classList.toggle('engineering-nav-dark', entry.isIntersecting);
+        }, { rootMargin: top + 'px 0px 0px 0px' });
+        heroWatch.observe(hero);
+      };
+      watchHero();
+      window.matchMedia('(max-width: 800px)').addEventListener('change', watchHero);
+      window.matchMedia('(max-width: 767px)').addEventListener('change', watchHero);
+
+      // Mouse wheel between the hero and the second screen. With a wheel, Chrome first scrolls the wheel's own distance,
+      // waits for the wheel to stop and only then snaps the rest of the way, so the motion stalls once in the middle.
+      // In this stretch the snap already allows only two resting places, so a mouse-wheel turn goes straight to the
+      // one the snap would pick anyway. Trackpads, keyboard, touch, the scrollbar and everything below the second
+      // screen are left to the browser. Set WHEEL_PAGING to false to switch this off.
+      const WHEEL_PAGING = true;
+      const second = document.querySelector('.engineering-after');   // carries the snap (and its scroll-margin)
+
+      // Further down the page the snap has nothing left to do, but a browser can still pull the page back up to the
+      // second screen (e.g. the elastic bounce at the very bottom on a Mac). So once the reader is more than one
+      // screen below the second screen, snapping is switched off; it comes back on before they return to it.
+      if (second) {
+        const root = document.documentElement;
+        const freeFrom = () => second.getBoundingClientRect().top + scrollY + innerHeight * 2;
+        let free = false, limit = freeFrom();
+        const check = () => {
+          const now = scrollY > limit;
+          if (now !== free) { free = now; root.classList.toggle('engineering-free-scroll', free); }
+        };
+        addEventListener('scroll', check, { passive: true });
+        addEventListener('resize', () => { limit = freeFrom(); check(); });
+        check();
+      }
+      if (WHEEL_PAGING && second) {
+        const calm = window.matchMedia('(prefers-reduced-motion: reduce)');
+        let busyUntil = 0, lastWheel = 0;
+        // where the snap rests on the second screen (its top edge plus its scroll-margin, which is negative)
+        const secondStop = () => second.getBoundingClientRect().top + scrollY - (parseFloat(getComputedStyle(second).scrollMarginTop) || 0);
+        // A mouse wheel turns in whole notches (multiples of 120 in wheelDelta, or line steps in Firefox);
+        // a trackpad sends many small, uneven steps.
+        const isMouseWheel = e => e.deltaMode === 1 ||
+          (Math.abs(e.wheelDeltaY) >= 120 && e.wheelDeltaY % 120 === 0);
+        // leave the wheel alone over anything that scrolls by itself (a list or panel inside the page)
+        const innerScroller = (el, dy) => {
+          for (; el && el !== document.body && el !== document.documentElement; el = el.parentElement) {
+            const oy = getComputedStyle(el).overflowY;
+            if ((oy === 'auto' || oy === 'scroll') && el.scrollHeight > el.clientHeight &&
+                (dy > 0 ? el.scrollTop + el.clientHeight < el.scrollHeight - 1 : el.scrollTop > 0)) return true;
+          }
+          return false;
+        };
+        addEventListener('wheel', e => {
+          const now = performance.now(), gap = now - lastWheel;
+          lastWheel = now;
+          // While we move, and as long as the same turn keeps going, swallow it, so one turn stops on one screen.
+          if (now < busyUntil) { e.preventDefault(); busyUntil = Math.max(busyUntil, now + 200); return; }
+          if (calm.matches || e.ctrlKey || e.defaultPrevented || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+          if (gap < 120 || !isMouseWheel(e) || innerScroller(e.target, e.deltaY)) return;   // only the first notch of a fresh turn
+          const stop = Math.round(secondStop()), y = scrollY;
+          let target = null;
+          if (e.deltaY > 0 && y < stop - 1) target = stop;          // hero (or in between) -> second screen
+          else if (e.deltaY < 0 && y > 0 && y <= stop + 1) target = 0; // second screen -> hero
+          if (target === null) return;
+          e.preventDefault();
+          busyUntil = now + 900;
+          scrollTo({ top: target, behavior: 'smooth' });
+        }, { passive: false });
+      }
     }
 
     const workflow = document.getElementById('workflow');
-    new IntersectionObserver(([entry]) => {
-      workflow.classList.toggle('workflow-motion-offscreen', !entry.isIntersecting);
-    }).observe(workflow);
-    // Each stage: a schematic that redraws itself when the data packet arrives, plus the artifact it hands on.
-    const draw = (d, n) => '<path class="wf-draw" pathLength="1" style="--n:' + n + '" d="' + d + '"/>';
-    const stages = [
-      { artifact: 'Logic netlist', paths: ['M20 14H52', 'M20 22H32V30H52', 'M20 30H26V40H60V37'],
-        extra: '<rect class="wf-base" x="4" y="7" width="16" height="30" rx="2"/><rect class="wf-base" x="52" y="7" width="16" height="30" rx="2"/>' },
-      { artifact: 'Topology model', paths: ['M36 22L11 8', 'M36 22L61 8', 'M36 22L11 36', 'M36 22L61 36'],
-        extra: '<circle class="wf-base" cx="36" cy="22" r="5"/><circle class="wf-base" cx="9" cy="7" r="2.5"/><circle class="wf-base" cx="63" cy="7" r="2.5"/><circle class="wf-base" cx="9" cy="37" r="2.5"/><circle class="wf-base" cx="63" cy="37" r="2.5"/>' },
-      { artifact: 'Wire list · Drawing', paths: ['M6 22H66', 'M22 22L30 8H38', 'M42 22L50 36H58'],
-        extra: '<rect class="wf-base" x="1" y="18" width="5" height="8" rx="1"/><rect class="wf-base" x="66" y="18" width="5" height="8" rx="1"/><rect class="wf-base" x="38" y="5" width="5" height="6" rx="1"/><rect class="wf-base" x="58" y="33" width="5" height="6" rx="1"/>' },
-      { artifact: 'DRC · BOM report', paths: ['M15 9.5L17 11.5L21 7.5', 'M15 21.5L17 23.5L21 19.5', 'M15 33.5L17 35.5L21 31.5'],
-        extra: '<rect class="wf-base" x="13" y="5" width="10" height="9" rx="2"/><rect class="wf-base" x="13" y="17" width="10" height="9" rx="2"/><rect class="wf-base" x="13" y="29" width="10" height="9" rx="2"/><path class="wf-base" d="M29 9.5H59M29 21.5H53M29 33.5H57"/>' }
-    ];
-    workflow.querySelectorAll('.workflow-step').forEach((step, index) => {
-      const stage = stages[index];
-      const circle = step.firstElementChild;
-      const icon = step.querySelector('.material-symbols-outlined');
-      if (!stage || !icon) return;
-      step.style.setProperty('--wf-delay', (index * 2.5) + 's');
-      circle.removeAttribute('style'); // inline colours would outrank the keyframes
-      icon.outerHTML = '<svg class="wf-glyph" viewBox="0 0 72 44" aria-hidden="true">' + stage.extra +
-        stage.paths.map(d => '<path class="wf-base" d="' + d + '"/>').join('') +
-        stage.paths.map(draw).join('') + '</svg>';
-      step.insertAdjacentHTML('beforeend', '<span class="wf-artifact" translate="no">' + stage.artifact + '</span>');
-    });
+    if (workflow) {
+      new IntersectionObserver(([entry]) => {
+        workflow.classList.toggle('workflow-motion-offscreen', !entry.isIntersecting);
+      }).observe(workflow);
+      // Each stage: a schematic that redraws itself when the data packet arrives, plus the artifact it hands on.
+      const draw = (d, n) => '<path class="wf-draw" pathLength="1" style="--n:' + n + '" d="' + d + '"/>';
+      const stages = [
+        { artifact: 'Logic netlist', paths: ['M20 14H52', 'M20 22H32V30H52', 'M20 30H26V40H60V37'],
+          extra: '<rect class="wf-base" x="4" y="7" width="16" height="30" rx="2"/><rect class="wf-base" x="52" y="7" width="16" height="30" rx="2"/>' },
+        { artifact: 'Topology model', paths: ['M36 22L11 8', 'M36 22L61 8', 'M36 22L11 36', 'M36 22L61 36'],
+          extra: '<circle class="wf-base" cx="36" cy="22" r="5"/><circle class="wf-base" cx="9" cy="7" r="2.5"/><circle class="wf-base" cx="63" cy="7" r="2.5"/><circle class="wf-base" cx="9" cy="37" r="2.5"/><circle class="wf-base" cx="63" cy="37" r="2.5"/>' },
+        { artifact: 'Wire list · Drawing', paths: ['M6 22H66', 'M22 22L30 8H38', 'M42 22L50 36H58'],
+          extra: '<rect class="wf-base" x="1" y="18" width="5" height="8" rx="1"/><rect class="wf-base" x="66" y="18" width="5" height="8" rx="1"/><rect class="wf-base" x="38" y="5" width="5" height="6" rx="1"/><rect class="wf-base" x="58" y="33" width="5" height="6" rx="1"/>' },
+        { artifact: 'DRC · BOM report', paths: ['M15 9.5L17 11.5L21 7.5', 'M15 21.5L17 23.5L21 19.5', 'M15 33.5L17 35.5L21 31.5'],
+          extra: '<rect class="wf-base" x="13" y="5" width="10" height="9" rx="2"/><rect class="wf-base" x="13" y="17" width="10" height="9" rx="2"/><rect class="wf-base" x="13" y="29" width="10" height="9" rx="2"/><path class="wf-base" d="M29 9.5H59M29 21.5H53M29 33.5H57"/>' }
+      ];
+      workflow.querySelectorAll('.workflow-step').forEach((step, index) => {
+        const stage = stages[index];
+        const circle = step.firstElementChild;
+        const icon = step.querySelector('.material-symbols-outlined');
+        if (!stage || !icon) return;
+        step.style.setProperty('--wf-delay', (index * 2.5) + 's');
+        circle.removeAttribute('style'); // inline colours would outrank the keyframes
+        icon.outerHTML = '<svg class="wf-glyph" viewBox="0 0 72 44" aria-hidden="true">' + stage.extra +
+          stage.paths.map(d => '<path class="wf-base" d="' + d + '"/>').join('') +
+          stage.paths.map(draw).join('') + '</svg>';
+        step.insertAdjacentHTML('beforeend', '<span class="wf-artifact" translate="no">' + stage.artifact + '</span>');
+      });
+    }
 
     const lang = i18n[document.documentElement.lang] || i18n.ko;
     const figureObserver = new IntersectionObserver(entries => entries.forEach(entry => {

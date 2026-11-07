@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="VegaFencer 구매·기술 지원·협력 문의와 연락처.">
+<meta property="og:title" content="VegaFencer — 문의">
+<meta property="og:description" content="VegaFencer 구매·기술 지원·협력 문의와 연락처.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://roiscompany.com/assets/img/logic-editor.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="VegaFencer — 문의">
+<meta name="twitter:description" content="VegaFencer 구매·기술 지원·협력 문의와 연락처.">
+<title>VegaFencer — 문의</title>
+
+<!-- Web fonts (Google Fonts for ko/en only) -->
+<script src="assets/head.js?v=7854df28"></script>
+
+<!-- Inline SVG Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%231A73E8'/><stop offset='100%25' stop-color='%23006a61'/></linearGradient></defs><rect width='36' height='36' rx='8' fill='url(%23g)'/><text x='18' y='25' font-family='sans-serif' font-size='20' font-weight='800' fill='white' text-anchor='middle'>S</text></svg>">
+
+<link rel="stylesheet" href="assets/site.css?v=21ad8c17">
+<link rel="stylesheet" href="assets/engineering.css?v=474209ca">
+</head>
+<body class="bg-surface antialiased" data-page="contact">
+
+<script src="assets/header.js?v=2b893b0c"></script>
+
+<main id="main" class="page-top">
+<header class="page-intro">
+  <p class="font-label text-xs font-bold tracking-[0.2em] uppercase text-primary-container mb-3">CONTACT</p>
+  <h1 class="font-headline font-black text-3xl md:text-5xl tracking-tight text-on-surface mb-4" data-i18n="ct_title">문의하기</h1>
+  <p class="font-body text-on-surface-variant text-lg" data-i18n="ct_desc">구매, 기술 지원, 협력 등 무엇이든 문의해 주세요.</p>
+</header>
+
+<!-- ============================================================
+     CONTACT (form, contact details, company information — details to be filled in)
+     ============================================================ -->
+<section class="pb-16 md:pb-24" id="contact">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+    <div class="contact-grid">
+      <div class="contact-card">
+        <form class="contact-form" id="contactPageForm" novalidate>
+          <label><span data-i18n="ct_type">문의 종류</span>
+            <select name="type" required>
+              <option value="purchase" data-i18n="ct_type_purchase">구매 상담</option>
+              <option value="support" data-i18n="ct_type_support">기술 지원</option>
+              <option value="partnership" data-i18n="ct_type_partner">협력 제안</option>
+              <option value="other" data-i18n="ct_type_other">기타</option>
+            </select>
+          </label>
+          <div class="two">
+            <label><span data-i18n="contact_name">이름</span><input type="text" name="name" autocomplete="name" required></label>
+            <label><span data-i18n="contact_company">회사명</span><input type="text" name="company" autocomplete="organization"></label>
+          </div>
+          <div class="two">
+            <label><span data-i18n="contact_email">이메일</span><input type="email" name="email" autocomplete="email" required></label>
+            <label><span data-i18n="ct_phone">전화번호 (선택)</span><input type="tel" name="phone" autocomplete="tel"></label>
+          </div>
+          <label><span data-i18n="contact_message">문의 내용</span><textarea name="message" rows="6" required></textarea></label>
+          <p class="hidden text-sm text-red-500 font-body" id="contactPageError" role="alert"></p>
+          <button class="kinetic-gradient hover:opacity-90 transition-opacity" type="submit" data-i18n="ct_send">보내기</button>
+        </form>
+        <p class="hidden font-body text-secondary" id="contactPageSuccess" role="status" data-i18n="contact_success">감사합니다! 곧 답변드리겠습니다.</p>
+      </div>
+      <div class="contact-side">
+        <div class="contact-card">
+          <h2 data-i18n="ct_info">연락처</h2>
+          <dl class="info-list">
+            <div><dt data-i18n="ct_email">이메일</dt><dd><a class="hover:text-primary-container" href="mailto:vegafencer.admin@gmail.com">vegafencer.admin@gmail.com</a></dd></div>
+            <div><dt data-i18n="ct_tel">전화</dt><dd class="tbd" data-i18n="ct_tbd">준비 중</dd></div>
+            <div><dt data-i18n="ct_address">주소</dt><dd class="tbd" data-i18n="ct_tbd">준비 중</dd></div>
+          </dl>
+        </div>
+        <div class="contact-card">
+          <h2 data-i18n="ct_company">회사 정보</h2>
+          <dl class="info-list">
+            <div><dt data-i18n="ct_name">상호</dt><dd class="tbd" data-i18n="ct_tbd">준비 중</dd></div>
+            <div><dt data-i18n="ct_ceo">대표자</dt><dd class="tbd" data-i18n="ct_tbd">준비 중</dd></div>
+            <div><dt data-i18n="ct_bizno">사업자등록번호</dt><dd class="tbd" data-i18n="ct_tbd">준비 중</dd></div>
+            <div><dt data-i18n="ct_ecom">통신판매업 신고번호</dt><dd class="tbd" data-i18n="ct_tbd">준비 중</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<script src="assets/footer.js?v=f17c3adf"></script>
+
+<script src="assets/i18n.js?v=027fc4ef"></script>
+<script src="assets/site.js?v=405e6a4f"></script>
+<script src="assets/engineering.js?v=117b277a"></script>
+</body>
+</html>
