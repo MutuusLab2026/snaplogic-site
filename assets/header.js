@@ -20,6 +20,35 @@ window.pageUrl = function (name, hash) {
     return '<a class="font-headline font-semibold tracking-tight text-slate-600 hover:text-blue-600 transition-colors" href="' +
       href + '" data-i18n="' + key + '"' + current + '>' + label + '</a>';
   };
+  // Drop-down cards under the menu tabs (desktop with a mouse). Each item jumps to a section of that page.
+  // A column is [heading key or '', [[i18n key or '', label, '#section'], ...]]; items without a key are names that
+  // stay the same in every language.
+  var menus = {
+    product: [
+      ['menu_modules', [['', 'Logic', '#logic'], ['', 'Integrator', '#integrator'], ['', 'Harness Drawing', '#harness'],
+                        ['', 'Variant · DRC · BOM', '#variant'], ['', 'Bridge', '#bridge']]],
+      ['menu_platform', [['sub_modules', '핵심 모듈', '#product'], ['sub_workflow', '워크플로우', '#workflow'], ['sub_ai', 'AI 어시스턴트', '#ai'],
+                         ['sub_integrations', 'CAD 연동', '#integrations'], ['sub_team', '팀 협업', '#enterprise']]]
+    ],
+    resources: [['', [['sub_screens', '제품 화면', '#gallery'], ['sub_videos', '구동 영상', '#videos'], ['sub_docs', '문서', '#docs']]]],
+    pricing: [['', [['pricing_title', '요금제', '#pricing'], ['nav_demo', '데모 신청', '#cta']]]]
+  };
+  var menu = function (name) {
+    var cols = menus[name];
+    if (!cols) return '';
+    return '<div class="nav-menu" data-cols="' + cols.length + '"><div class="nav-menu-card">' + cols.map(function (col) {
+      return '<div class="nav-menu-col">' + (col[0] ? '<p class="nav-menu-head" data-i18n="' + col[0] + '"></p>' : '') +
+        col[1].map(function (item) {
+          return '<a class="nav-menu-link" href="' + pageUrl(name, item[2]) + '"' +
+            (item[0] ? ' data-i18n="' + item[0] + '"' : ' translate="no"') + '>' + item[1] + '</a>';
+        }).join('') + '</div>';
+    }).join('') + '</div></div>';
+  };
+  var tab = function (name, key, label) {
+    // The chevron sits next to the link, not inside it: switching language rewrites the link's text.
+    var chevron = menus[name] ? '<svg class="nav-chevron" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.75 5 6.75 8 3.75"/></svg>' : '';
+    return '<div class="nav-item' + (menus[name] ? ' has-menu' : '') + '">' + link(pageUrl(name), key, label, name) + chevron + menu(name) + '</div>';
+  };
   document.currentScript.insertAdjacentHTML('beforebegin', `
 <!-- Skip Link -->
 <a href="#${skip}" class="skip-link" data-i18n="skip_link">Skip to main content</a>
@@ -37,10 +66,10 @@ window.pageUrl = function (name, hash) {
       <span class="block w-6 h-0.5 bg-on-surface transition-all origin-center" id="bar3"></span>
     </button>
     <div class="hidden md:flex gap-8" id="navLinks">
-      ${link(pageUrl('product'), 'nav_product', 'Product', 'product')}
-      ${link(pageUrl('resources'), 'nav_resources', 'Resources', 'resources')}
-      ${link(pageUrl('pricing'), 'nav_pricing', 'Pricing', 'pricing')}
-      ${link(pageUrl('contact'), 'nav_contact', 'Contact', 'contact')}
+      ${tab('product', 'nav_product', 'Product')}
+      ${tab('resources', 'nav_resources', 'Resources')}
+      ${tab('pricing', 'nav_pricing', 'Pricing')}
+      ${tab('contact', 'nav_contact', 'Contact')}
     </div>
     <!-- Language Switcher (Desktop) -->
     <div class="hidden md:flex items-center gap-1 font-label text-xs mr-4" id="langSwitcherDesktop">
@@ -64,6 +93,21 @@ window.pageUrl = function (name, hash) {
 <!-- Scroll Progress Bar -->
 <div class="fixed top-0 left-0 h-[3px] z-[60] kinetic-gradient" id="scrollProgress" style="width:0"></div>
 `);
+  document.querySelectorAll('#navLinks .nav-item.has-menu').forEach(function (item) {
+    item.addEventListener('click', function (e) {
+      if (!e.target.closest('.nav-menu-link')) return;
+      item.classList.add('nav-menu-closed');
+      e.target.blur();
+    });
+    item.addEventListener('mouseleave', function () { item.classList.remove('nav-menu-closed'); });
+  });
+  document.addEventListener('keydown', function (e) {   // Escape closes a card opened from the keyboard
+    var item = e.key === 'Escape' && document.activeElement && document.activeElement.closest('#navLinks .nav-item.has-menu');
+    if (!item) return;
+    item.classList.add('nav-menu-closed');
+    item.querySelector('a').focus();
+    item.addEventListener('focusout', function () { item.classList.remove('nav-menu-closed'); }, { once: true });
+  });
   document.getElementById('navDemo').addEventListener('click', function (e) {
     var cta = document.getElementById('cta');
     if (!cta) return;

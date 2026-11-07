@@ -639,6 +639,7 @@ const i18n = {
     ent_sub_migration_desc: "直接迁移现有设计数据。支持Excel/CSV、Harness Code、DB等多种方式。",
   },
 
+/* Japanese: \u2060 (word joiner, invisible) keeps a particle such as は or の on the same line as the English word or number before it. */
   ja: {
     // Nav
     nav_product: "製品",
@@ -679,7 +680,7 @@ const i18n = {
     // Feature: Logic
     feat_logic_label: "VEGAFENCER LOGIC",
     feat_logic_title: "電気設計意図のSource of Truth",
-    feat_logic_desc: "Logicの役割はシステムの電気的意図（設計意図）を明確に定義することにあります。",
+    feat_logic_desc: "Logic\u2060の役割はシステムの電気的意図（設計意図）\u2060を明確に定義することにあります。",
     feat_logic_c1: "電気的接続定義 — 信号がどのデバイスピンからどこへ伝達されるか",
     feat_logic_c2: "機能設計表現 — 回路図を通じてシステム動作を表現",
     feat_logic_c3: "設計ルールと電気的制約定義 — 電圧、電流、信号タイプ",
@@ -697,7 +698,7 @@ const i18n = {
     // Feature: Harness
     feat_harness_label: "VEGAFENCER HARNESS DRAWING",
     feat_harness_title: "詳細ハーネス図面の自動生成",
-    feat_harness_desc: "論理的接続情報、Integratorのトポロジー、ハーネス設計データに基づいて詳細図面を生成・管理します。",
+    feat_harness_desc: "論理的接続情報、Integrator\u2060のトポロジー、ハーネス設計データに基づいて詳細図面を生成・管理します。",
     feat_harness_c1: "ハーネス図面の生成と可視化",
     feat_harness_c2: "プラグシンボル、バンドル長、ワイヤーリストテーブル",
     feat_harness_c3: "バンドル径計算とワイヤー経路追跡",
@@ -706,7 +707,7 @@ const i18n = {
     // Feature: Variant
     feat_variant_label: "VARIANT / DRC / BOM",
     feat_variant_title: "構成管理と品質検証",
-    feat_variant_desc: "Variant、Option、Vehicle Configurationごとのダイアグラムフィルタリングと24のDRCルールで設計品質を保証します。",
+    feat_variant_desc: "Variant、Option、Vehicle Configurationごとのダイアグラムフィルタリングと24\u2060のDRCルールで設計品質を保証します。",
     feat_variant_c1: "Harness LevelごとのVariant/Option構成",
     feat_variant_c2: "Vehicle Configuration — ハーネス組み合わせ管理",
     feat_variant_c3: "DRC — Connectivity(6), Consistency(13), Naming(5)",
@@ -717,19 +718,19 @@ const i18n = {
     wf_title: "設計から量産まで、一つの流れ",
     wf_desc: "各段階のデータが自動的に次の段階に伝達され、手作業の変換なしで一貫した設計を保証します。",
     wf_step1_title: "回路設計",
-    wf_step1_desc: "Logicで電気的接続意図を定義し、機能構造を設計します。",
+    wf_step1_desc: "Logic\u2060で電気的接続意図を定義し、機能構造を設計します。",
     wf_step2_title: "トポロジー統合",
-    wf_step2_desc: "Integratorが論理設計を車両トポロジーにマッピングします。",
+    wf_step2_desc: "Integrator\u2060が論理設計を車両トポロジーにマッピングします。",
     wf_step3_title: "ハーネス図面",
     wf_step3_desc: "詳細図面とワイヤーリストを自動生成します。",
     wf_step4_title: "検証と出力",
-    wf_step4_desc: "24のDRCルール検証後、BOMレポートを出力します。",
+    wf_step4_desc: "24\u2060のDRCルール検証後、BOMレポートを出力します。",
     wf_card1_title: "リアルタイム協業",
     wf_card1_desc: "Gitベースのバージョン管理でチーム全体が同じ設計データで作業します。",
     wf_card2_title: "インテリジェントDRC",
-    wf_card2_desc: "24の検証ルールが設計エラーをリアルタイムで検出し、修正を提案します。",
+    wf_card2_desc: "24\u2060の検証ルールが設計エラーをリアルタイムで検出し、修正を提案します。",
     wf_card3_title: "ワンクリックレポート",
-    wf_card3_desc: "BOM、Wire list、Connector listをワンクリックで生成します。",
+    wf_card3_desc: "BOM、Wire list、Connector list\u2060をワンクリックで生成します。",
 
     // AI
     ai_label: "AIアシスタント",
@@ -738,14 +739,14 @@ const i18n = {
     ai_c1: "ワイヤー情報の即時照会 — 太さ、色、材質、接続経路",
     ai_c2: "コネクタ別の接続/未接続ワイヤー自動分析",
     ai_c3: "設計エラーの事前検出と修正提案",
-    ai_c4: "OpenAI API連携 — 社内LLMへの置換可能",
+    ai_c4: "OpenAI API連携 — 社内LLM\u2060への置換可能",
     chat_title: "VegaFencer AI",
     chat_status: "MCP接続済み",
     chat_user1: "BA91ワイヤーの情報をお願い。",
     chat_ai1: 'BA91ワイヤーは <code class="bg-primary-container/10 px-1.5 py-0.5 rounded text-primary-container font-label text-xs">0.5mm\u00b2</code> の太さで、色は <code class="bg-primary-container/10 px-1.5 py-0.5 rounded text-primary-container font-label text-xs">緑(G)</code>、<code class="bg-primary-container/10 px-1.5 py-0.5 rounded text-primary-container font-label text-xs">AVSS</code> 材質です。',
     chat_ai1_from: "出発",
     chat_ai1_to: "到着",
-    chat_user2: 'UH_BOXに接続されたワイヤーを表示して、<br>接続されていないワイヤーを教えて。',
+    chat_user2: 'UH_BOX\u2060に接続されたワイヤーを表示して、<br>接続されていないワイヤーを教えて。',
     chat_ai2: 'UH_BOX接続ワイヤー <code class="bg-primary-container/10 px-1.5 py-0.5 rounded text-primary-container font-label text-xs">12本</code> 確認。<br>未接続ワイヤー <code class="bg-error/10 px-1.5 py-0.5 rounded text-error font-label text-xs">3本</code> 検出 — BA95、BA97、BC01。',
     chat_btn_drc: "DRCレポートに反映",
     chat_btn_detail: "詳細を見る",
@@ -817,33 +818,33 @@ const i18n = {
     ai_tab_agent: "AI Agent — 設計自動化",
     agent_title: "VegaFencer Agent",
     agent_status: "設計自動化 実行中",
-    agent_task: "コネクタC29の2番ピンにワイヤを接続してDRCを実行してください。",
+    agent_task: "コネクタC29\u2060の2番ピンにワイヤを接続してDRC\u2060を実行してください。",
     agent_step1: "ワイヤ接続候補を検索 — 3件発見",
     agent_step2: "最適ルートを決定 (AVSS 0.5mm²)",
     agent_step3: "ピン接続を実行 — UH_BOX 88番ピン",
     agent_step4: "DRC 24ルール検証完了 — 問題なし",
     mod_bridge_title: "Bridge",
-    mod_bridge_desc: "CATIA V5・NX 3D CADとの双方向相互運用性。ワイヤリスト・バンドル長データをリアルタイムに交換。",
+    mod_bridge_desc: "CATIA V5・NX 3D CAD\u2060との双方向相互運用性。ワイヤリスト・バンドル長データをリアルタイムに交換。",
     mod_bridge_tag: "相互運用",
     feat_bridge_label: "VEGAFENCER BRIDGE",
-    feat_bridge_title: "3D CADとの双方向相互運用性",
-    feat_bridge_desc: "Dassault Systèmes CATIA V5およびSiemens NXとの相互運用性をサポートし、異なる設計環境間でも一貫したデータフローを維持。",
+    feat_bridge_title: "3D CAD\u2060との双方向相互運用性",
+    feat_bridge_desc: "Dassault Systèmes CATIA V5およびSiemens NX\u2060との相互運用性をサポートし、異なる設計環境間でも一貫したデータフローを維持。",
     feat_bridge_c1: "ワイヤリスト・バンドル情報・バンドル長データの双方向交換",
     feat_bridge_c2: "設計変更の正確な反映でエラーを最小化",
     feat_bridge_c3: "物理ルーティングと論理配線情報の連携強化",
     feat_bridge_c4: "製造・組立段階のエラー削減、ライフサイクルデータの一貫性",
     story_label: "ブランドストーリー",
     story_title: "北極星ベガ、そして正確な方向",
-    story_body1: "VegaFencerは夜空の北極星ベガにちなんで名付けられました。航海者にとっての北極星のように、設計者に揺るぎない基準と方向を示します。",
-    story_body2: "コンパスが指す方向こそ、設計意図と物理実装の一致です。VegaFencer Editorはベクトル方向とエンティティ頂点を精密にスナップし、論理的な設計意図と物理レイアウトのずれを防ぎます。",
-    story_body3: "コンセプト設計から量産実装まで — VegaFencerは設計を正しい道から逸らさない信頼のコンパスです。",
+    story_body1: "VegaFencer\u2060は夜空の北極星ベガにちなんで名付けられました。航海者にとっての北極星のように、設計者に揺るぎない基準と方向を示します。",
+    story_body2: "コンパスが指す方向こそ、設計意図と物理実装の一致です。VegaFencer Editor\u2060はベクトル方向とエンティティ頂点を精密にスナップし、論理的な設計意図と物理レイアウトのずれを防ぎます。",
+    story_body3: "コンセプト設計から量産実装まで — VegaFencer\u2060は設計を正しい道から逸らさない信頼のコンパスです。",
     ent_label: "エンタープライズ対応",
     ent_title: "チーム全体が一緒に設計する環境",
     ent_desc: "Server/Clientマルチユーザーアーキテクチャ上でリアルタイムコラボレーション、標準ライブラリ共有、既存データ移行をサポート。",
     ent_sub_collab: "Server/Clientマルチユーザーコラボレーション",
     ent_c1: "ロール＆設定 — プロジェクト単位の権限付与と強制",
     ent_c2: "リアルタイムなDiagramロック/アンロック、Offpage Wire、連携作業時間の共有",
-    ent_c3: "Shared ConnectorのPinレベルロック — 重複使用を根本的に防止",
+    ent_c3: "Shared Connector\u2060のPinレベルロック — 重複使用を根本的に防止",
     ent_c4: "エンタープライズ級PostgreSQL + ASP.NET Core (Kestrel) — Windows/Linux、Dockerデプロイ",
     ent_sub_library: "Library Symbol Editor",
     ent_sub_library_desc: "標準化されたライブラリをユーザーごとにカスタマイズし、フィールド別属性を指定。アドバンスドモジュールにも対応。",
@@ -854,6 +855,7 @@ const i18n = {
 
 /* Keys for the separate pages (product / gallery / pricing) and the new menu. */
 Object.assign(i18n.ko, {
+  menu_modules: "모듈", menu_platform: "플랫폼",
   form_fallback: "아래 주소로 직접 메일을 보내주셔도 됩니다:",
   nav_resources: "자료실", nav_contact: "문의",
   res_title: "자료실", res_desc: "VegaFencer의 실제 제품 화면과 구동 영상, 문서를 모아 두었습니다.",
@@ -871,6 +873,7 @@ Object.assign(i18n.ko, {
   plan_tbd: "준비 중", plan_price_ask: "가격 문의", plan_contact: "구매 문의"
 });
 Object.assign(i18n.en, {
+  menu_modules: "Modules", menu_platform: "Platform",
   form_fallback: "You can also email us directly:",
   nav_resources: "Resources", nav_contact: "Contact",
   res_title: "Resources", res_desc: "Product screens, videos and documents for VegaFencer, in one place.",
@@ -888,6 +891,7 @@ Object.assign(i18n.en, {
   plan_tbd: "Coming soon", plan_price_ask: "Contact for pricing", plan_contact: "Contact sales"
 });
 Object.assign(i18n.zh, {
+  menu_modules: "模块", menu_platform: "平台",
   form_fallback: "您也可以直接发送邮件至：",
   nav_resources: "资源中心", nav_contact: "联系我们",
   res_title: "资源中心", res_desc: "汇集 VegaFencer 的产品界面、演示视频和文档。",
@@ -905,9 +909,10 @@ Object.assign(i18n.zh, {
   plan_tbd: "即将推出", plan_price_ask: "价格咨询", plan_contact: "购买咨询"
 });
 Object.assign(i18n.ja, {
+  menu_modules: "モジュール", menu_platform: "プラットフォーム",
   form_fallback: "下記アドレスへ直接メールでもお問い合わせいただけます：",
   nav_resources: "リソース", nav_contact: "お問い合わせ",
-  res_title: "リソース", res_desc: "VegaFencerの実際の製品画面、動画、ドキュメントをまとめています。",
+  res_title: "リソース", res_desc: "VegaFencer\u2060の実際の製品画面、動画、ドキュメントをまとめています。",
   sub_screens: "製品画面", sub_videos: "動画", sub_docs: "ドキュメント",
   docs_title: "ドキュメント", docs_soon: "ユーザーガイドと技術ドキュメントを準備中です。",
   ct_title: "お問い合わせ", ct_desc: "購入、技術サポート、協業など、お気軽にお問い合わせください。",

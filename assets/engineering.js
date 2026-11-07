@@ -41,13 +41,13 @@
     },
     ja: {
       hero_title: 'すべての接続に、<br>確かな設計意図を。',
-      hero_subtitle: '電気的な設計意図から実際のワイヤーハーネスまで。VegaFencerは、一貫したデータモデルで車両E/Eアーキテクチャのすべてをつなぎます。',
+      hero_subtitle: '電気的な設計意図から実際のワイヤーハーネスまで。VegaFencer\u2060は、一貫したデータモデルで車両E/Eアーキテクチャのすべてをつなぎます。',
       hero_cta_demo: 'デモを申し込む', motion_kicker: 'VegaFencer / 車両E/Eエンジニアリング',
       motion_explore: '設計フローを見る',
       motion_drawing: 'E/Eアーキテクチャ · 概念図', motion_pause: 'モーションを停止', motion_resume: 'モーションを再生',
       motion_static: '動きを抑える設定', motion_model: '論理的な接続から物理的な配線へ', motion_concept: '概念ビジュアライゼーション',
       motion_power: '電源分配', motion_data: 'データ接続', motion_control: '制御信号',
-      motion_scroll: 'プラットフォームを見る', motion_interface_label: 'VegaFencerの作業環境',
+      motion_scroll: 'プラットフォームを見る', motion_interface_label: 'VegaFencer\u2060の作業環境',
       motion_interface_title: '複雑な設計を、<br>明確なワークスペースに。',
       motion_interface_desc: '回路設計、トポロジー統合、ハーネス図面、検証まで。実際の製品画面でつながるワークフローをご覧ください。'
     }
@@ -55,7 +55,7 @@
   Object.assign(copy.ko, { fig_logic: '핀 단위 연결 의도와 신호 타입', fig_int: '회로 넷과 토폴로지 세그먼트의 동기화', fig_harness: '번들 길이·직경 자동 산출', fig_drc: '24개 DRC 규칙 일괄 검증' });
   Object.assign(copy.en, { fig_logic: 'Pin-level intent and signal types', fig_int: 'Circuit nets and topology segments, in sync', fig_harness: 'Bundle lengths and diameters, calculated', fig_drc: '24 DRC rules, checked in one pass' });
   Object.assign(copy.zh, { fig_logic: '引脚级连接意图与信号类型', fig_int: '电路网络与拓扑段同步', fig_harness: '自动计算线束长度与直径', fig_drc: '24 条 DRC 规则一次性校验' });
-  Object.assign(copy.ja, { fig_logic: 'ピン単位の接続意図と信号タイプ', fig_int: '回路ネットとトポロジーセグメントの同期', fig_harness: 'バンドル長・径を自動算出', fig_drc: '24のDRCルールを一括検証' });
+  Object.assign(copy.ja, { fig_logic: 'ピン単位の接続意図と信号タイプ', fig_int: '回路ネットとトポロジーセグメントの同期', fig_harness: 'バンドル長・径を自動算出', fig_drc: '24\u2060のDRCルールを一括検証' });
   Object.entries(copy).forEach(([lang, values]) => Object.assign(i18n[lang], values));
 
   // Drawing strips under the feature screenshots. .fd paths draw, .fp parts appear; --d sequences them.

@@ -81,8 +81,11 @@ const Controller = {
     }, { once: true });
     if (!('onscrollend' in window)) return;
     document.addEventListener('click', (e) => {
-      const a = e.target.closest('a[href^="#"]');
-      const id = a && a.getAttribute('href').slice(1);
+      const a = e.target.closest('a[href*="#"]');
+      if (!a) return;
+      const url = new URL(a.href, location.href);
+      if (url.pathname !== location.pathname) return;   // another page: handled there on arrival
+      const id = decodeURIComponent(url.hash.slice(1));
       const el = id && document.getElementById(id);
       if (!el) return;
       let tries = 0;

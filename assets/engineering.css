@@ -485,3 +485,11 @@ html.engineering-free-scroll { scroll-snap-type: none; }   /* set by engineering
   .engineering-caption { position: relative; top: 15px; }
   .engineering-legend { position: relative; top: 15px; }
 }
+
+/* Japanese and Chinese have no spaces between words, so "keep-all" (used above for Korean) would treat a whole
+   sentence as one word and never wrap it. In these languages, break anywhere the language allows, with the
+   standard rules for punctuation at line starts and ends. */
+html[lang="ja"] *, html[lang="zh"] * { word-break: normal; line-break: strict; }
+/* Japanese in Chrome/Edge: break between phrases (bunsetsu), so a particle such as の or は stays with its word.
+   Browsers without it (Safari, Firefox) ignore this line and keep "normal". */
+html[lang="ja"] * { word-break: auto-phrase; }

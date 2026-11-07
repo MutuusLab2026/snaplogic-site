@@ -492,3 +492,63 @@ body[data-page="contact"] .footer-contact { display: none; }
 .info-list dd { margin: 0; color: #151b2b; overflow-wrap: anywhere; }
 .info-list .tbd { color: #9ca3af; }
 @media (max-width: 639px) { .info-list div { grid-template-columns: 1fr; gap: 2px; } }
+
+/* ---- Header drop-down cards (desktop with a mouse) ----
+   Hovering a tab (or tabbing into it) fades a card in just below the header. The invisible padding above the card
+   bridges the gap, so the pointer can travel from the tab into the card without it closing; leaving it closes the
+   card after a short pause. Touch screens and the mobile menu have no cards: a tap opens the page. */
+.nav-item { position: relative; display: flex; align-items: center; }
+.nav-menu { display: none; }
+@media (min-width: 768px) and (hover: hover) {
+  .nav-menu {
+    display: block; position: absolute; top: 100%; left: -22px; padding-top: 30px; z-index: 10;
+    opacity: 0; visibility: hidden; transform: translateY(8px);
+    transition: opacity .18s ease, transform .18s ease, visibility 0s linear .18s;
+    transition-delay: .12s, .12s, .3s;
+  }
+  .nav-item.has-menu:hover > .nav-menu,
+  .nav-item.has-menu:focus-within > .nav-menu {
+    opacity: 1; visibility: visible; transform: none;
+    transition: opacity .2s ease, transform .2s cubic-bezier(.2, .8, .2, 1), visibility 0s;
+  }
+  .nav-item.has-menu.nav-menu-closed > .nav-menu { opacity: 0; visibility: hidden; transform: translateY(8px); transition: none; }
+}
+@media (prefers-reduced-motion: reduce) { .nav-menu, .nav-item.has-menu:hover > .nav-menu { transform: none !important; } }
+.nav-menu-card {
+  display: grid; grid-auto-flow: column; gap: 8px 28px; min-width: 220px; padding: 14px;
+  background: #fff; border: 1px solid rgba(193, 198, 214, .45); border-radius: 14px;
+  box-shadow: 0 20px 44px -18px rgba(15, 30, 60, .35), 0 2px 6px rgba(15, 30, 60, .06);
+}
+.nav-menu[data-cols="2"] .nav-menu-card { min-width: 440px; }
+.nav-menu-col { display: flex; flex-direction: column; min-width: 190px; }
+.nav-menu-head { padding: 6px 12px 8px; font: 700 11px 'Space Grotesk', 'Noto Sans KR', sans-serif; letter-spacing: .14em; text-transform: uppercase; color: #8a93a3; }
+/* (2 ids + 2 classes: beats the dark-header link colours from engineering.css) */
+#nav #navLinks .nav-menu a.nav-menu-link {
+  display: block; padding: 9px 12px; border-radius: 9px; white-space: nowrap;
+  font: 600 14.5px/1.35 'Inter', 'Noto Sans KR', sans-serif; letter-spacing: -.01em; color: #151b2b; text-decoration: none;
+  transition: background-color .15s, color .15s;
+}
+#nav #navLinks .nav-menu a.nav-menu-link:hover,
+#nav #navLinks .nav-menu a.nav-menu-link:focus-visible { background: rgba(26, 115, 232, .08); color: #1a73e8; outline: none; }
+/* mobile menu: the tab links stay full-width rows inside their wrappers */
+@media (max-width: 767px) { #navLinks.nav-open .nav-item > a { display: block; width: 100%; } }
+
+/* Chevron on tabs that have a card: points down, turns to point up while the card is open (desktop with a mouse). */
+.nav-chevron { display: none; }
+@media (min-width: 768px) and (hover: hover) {
+  .nav-chevron {
+    display: block; width: 10px; height: 10px; margin-left: 5px; flex: none;
+    fill: none; stroke: #475569; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round;
+    transition: transform .2s ease, stroke .15s;
+  }
+  #nav.engineering-nav-dark .nav-chevron { stroke: #d5e5ef; }
+  .nav-item.has-menu:hover > .nav-chevron,
+  .nav-item.has-menu:focus-within > .nav-chevron { transform: rotate(180deg); stroke: #2563eb; }
+  #nav.engineering-nav-dark .nav-item.has-menu:hover > .nav-chevron,
+  #nav.engineering-nav-dark .nav-item.has-menu:focus-within > .nav-chevron { stroke: var(--eng-signal, #7be4ee); }
+  .nav-item.has-menu.nav-menu-closed > .nav-chevron { transform: none; }
+  /* the tab stays highlighted while the pointer is in its card */
+  #nav #navLinks .nav-item.has-menu:hover > a:first-child { color: #2563eb; }
+  #nav.engineering-nav-dark #navLinks .nav-item.has-menu:hover > a:first-child { color: var(--eng-signal, #7be4ee); }
+}
+@media (prefers-reduced-motion: reduce) { .nav-chevron { transition: none !important; } }
