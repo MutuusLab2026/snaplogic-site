@@ -69,6 +69,16 @@ const Controller = {
   /* In-page links: images further down load while the page scrolls and push the target lower, so once the
      scroll ends, check where the section really is and finish the trip (at most three corrections). */
   initAnchorSettle() {
+    // Arriving from another page with #section: once everything has loaded (and pushed things down), go there again.
+    const target = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    // Jump (no smooth animation: the page is still growing, which would end a slow trip short), then re-check twice.
+    if (target) addEventListener('load', () => {
+      const go = () => {
+        const want = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
+        if (Math.abs(target.getBoundingClientRect().top - want) > 2) target.scrollIntoView({ behavior: 'instant' });
+      };
+      [50, 400, 1200].forEach((ms) => setTimeout(go, ms));
+    }, { once: true });
     if (!('onscrollend' in window)) return;
     document.addEventListener('click', (e) => {
       const a = e.target.closest('a[href^="#"]');

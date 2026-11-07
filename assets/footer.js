@@ -16,19 +16,19 @@ document.currentScript.insertAdjacentHTML('beforebegin', `
       <div>
         <h2 class="font-headline font-bold text-on-surface text-sm mb-4" data-i18n="footer_platform">Platform</h2>
         <div class="flex flex-col gap-2.5">
-          <a href="product.html#logic" class="font-body text-on-surface-variant text-sm hover:text-primary-container transition-colors">Logic</a>
-          <a href="product.html#integrator" class="font-body text-on-surface-variant text-sm hover:text-primary-container transition-colors">Integrator</a>
-          <a href="product.html#harness" class="font-body text-on-surface-variant text-sm hover:text-primary-container transition-colors">Harness Drawing</a>
-          <a href="product.html#ai" class="font-body text-on-surface-variant text-sm hover:text-primary-container transition-colors">AI Assistant</a>
+          <a href="${pageUrl('product', '#logic')}" class="font-body text-on-surface-variant text-sm hover:text-primary-container transition-colors">Logic</a>
+          <a href="${pageUrl('product', '#integrator')}" class="font-body text-on-surface-variant text-sm hover:text-primary-container transition-colors">Integrator</a>
+          <a href="${pageUrl('product', '#harness')}" class="font-body text-on-surface-variant text-sm hover:text-primary-container transition-colors">Harness Drawing</a>
+          <a href="${pageUrl('product', '#ai')}" class="font-body text-on-surface-variant text-sm hover:text-primary-container transition-colors">AI Assistant</a>
         </div>
       </div>
       <!-- Resources -->
       <div>
         <h2 class="font-headline font-bold text-on-surface text-sm mb-4" data-i18n="footer_resources">Resources</h2>
         <div class="flex flex-col gap-2.5">
-          <a href="resources.html#gallery" class="font-body text-on-surface-variant text-sm hover:text-primary-container transition-colors" data-i18n="footer_gallery">Gallery</a>
-          <a href="product.html#workflow" class="font-body text-on-surface-variant text-sm hover:text-primary-container transition-colors" data-i18n="footer_workflow">Workflow</a>
-          <a href="product.html#integrations" class="font-body text-on-surface-variant text-sm hover:text-primary-container transition-colors" data-i18n="footer_integrations">Integrations</a>
+          <a href="${pageUrl('resources', '#gallery')}" class="font-body text-on-surface-variant text-sm hover:text-primary-container transition-colors" data-i18n="footer_gallery">Gallery</a>
+          <a href="${pageUrl('product', '#workflow')}" class="font-body text-on-surface-variant text-sm hover:text-primary-container transition-colors" data-i18n="footer_workflow">Workflow</a>
+          <a href="${pageUrl('product', '#integrations')}" class="font-body text-on-surface-variant text-sm hover:text-primary-container transition-colors" data-i18n="footer_integrations">Integrations</a>
         </div>
       </div>
       <!-- Contact Form (hidden on the contact page, which has its own form) -->
