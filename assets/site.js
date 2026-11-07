@@ -16,11 +16,24 @@ const Model = {
 /* =============================================================
    CONTROLLER — Application Logic
    ============================================================= */
-/* Where every form on the site is sent (FormSubmit.co: the first message to a new address triggers an activation
-   e-mail to that address; until its link is clicked, nothing is delivered). FORM_CC gets a copy of each message. */
+/* Where every form on the site is sent: Formspree form "VegaFencer Website" (account vegafencer.admin@gmail.com,
+   dashboard at formspree.io). Messages go to that address; copies to others are set up as Gmail forwarding. */
 const FORM_TO = 'vegafencer.admin@gmail.com';
-const FORM_ENDPOINT = 'https://formsubmit.co/ajax/' + FORM_TO;
-const FORM_CC = 'srlee711@mutuus-lab.com, srlee711@gmail.com, tobiaskim2017@gmail.com';
+const FORM_ENDPOINT = 'https://formspree.io/f/xbggekne';
+
+/* A failed send also offers the address, so a message is never lost when the form service is down. */
+function showFormFailure(el, text) {
+  const lang = document.documentElement.lang;
+  const tail = (i18n[lang] && i18n[lang].form_fallback) || i18n.ko.form_fallback;
+  el.textContent = text + ' ' + tail + ' ';
+  const a = document.createElement('a');
+  a.href = 'mailto:' + FORM_TO;
+  a.textContent = FORM_TO;
+  a.style.textDecoration = 'underline';
+  el.appendChild(a);
+  el.classList.remove('hidden');
+  el.style.display = 'block';
+}
 
 const FREE_EMAIL_DOMAINS = ['gmail.com','yahoo.com','yahoo.co.kr','hotmail.com','outlook.com','live.com','aol.com','icloud.com','me.com','mac.com','mail.com','protonmail.com','zoho.com','yandex.com','gmx.com','naver.com','daum.net','hanmail.net','nate.com','kakao.com','qq.com','163.com','126.com','sina.com','yeah.net'];
 
@@ -238,11 +251,9 @@ const Controller = {
         body: JSON.stringify({
           email: email.value,
           _subject: 'VegaFencer Demo Request from ' + email.value,
-          _cc: FORM_CC,
-          _template: 'table',
           message: 'New demo request from: ' + email.value,
         }),
-      }).then(r => r.json()).then(data => {
+      }).then(r => r.json().then(body => ({ success: r.ok && body.ok !== false }))).then(data => {
         if (data.success) {
           form.style.display = 'none';
           successEl.classList.remove('hidden');
@@ -251,9 +262,7 @@ const Controller = {
       }).catch(() => {
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalBtnHTML;
-        errorEl.textContent = (i18n[lang] && i18n[lang].cta_error) || 'Failed to send.';
-        errorEl.classList.remove('hidden');
-        errorEl.style.display = 'block';
+        showFormFailure(errorEl, (i18n[lang] && i18n[lang].cta_error) || 'Failed to send.');
       });
     });
   },
@@ -451,17 +460,15 @@ const Controller = {
           phone: field('phone').value || '-',
           message: field('message').value,
           _subject: 'VegaFencer Contact [' + type + '] from ' + field('name').value,
-          _cc: FORM_CC,
-          _template: 'table',
         }),
-      }).then(r => r.json()).then(data => {
+      }).then(r => r.json().then(body => ({ success: r.ok && body.ok !== false }))).then(data => {
         if (!data.success) throw new Error();
         form.style.display = 'none';
         successEl.classList.remove('hidden');
       }).catch(() => {
         submitBtn.disabled = false;
         submitBtn.textContent = original;
-        showError(t.contact_error || 'Failed to send.');
+        showFormFailure(errorEl, t.contact_error || 'Failed to send.');
       });
     });
   },
@@ -503,21 +510,18 @@ const Controller = {
           email: email.value,
           message: message.value,
           _subject: 'VegaFencer Contact from ' + name.value,
-          _cc: FORM_CC,
-          _template: 'table',
         }),
-      }).then(r => r.json()).then(data => {
+      }).then(r => r.json().then(body => ({ success: r.ok && body.ok !== false }))).then(data => {
         if (data.success) {
-          form.style.display = 'none';
+          // the thank-you line sits inside this form, so hide the fields rather than the whole form
+          Array.from(form.children).forEach((el) => { if (el !== successEl) el.style.display = 'none'; });
           successEl.classList.remove('hidden');
           successEl.style.display = 'block';
         } else { throw new Error(); }
       }).catch(() => {
         submitBtn.disabled = false;
         submitBtn.textContent = originalText;
-        errorEl.textContent = (i18n[lang] && i18n[lang].contact_error) || 'Failed to send.';
-        errorEl.classList.remove('hidden');
-        errorEl.style.display = 'block';
+        showFormFailure(errorEl, (i18n[lang] && i18n[lang].contact_error) || 'Failed to send.');
       });
     });
   },

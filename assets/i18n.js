@@ -854,6 +854,7 @@ const i18n = {
 
 /* Keys for the separate pages (product / gallery / pricing) and the new menu. */
 Object.assign(i18n.ko, {
+  form_fallback: "아래 주소로 직접 메일을 보내주셔도 됩니다:",
   nav_resources: "자료실", nav_contact: "문의",
   res_title: "자료실", res_desc: "VegaFencer의 실제 제품 화면과 구동 영상, 문서를 모아 두었습니다.",
   sub_screens: "제품 화면", sub_videos: "구동 영상", sub_docs: "문서",
@@ -870,6 +871,7 @@ Object.assign(i18n.ko, {
   plan_tbd: "준비 중", plan_price_ask: "가격 문의", plan_contact: "구매 문의"
 });
 Object.assign(i18n.en, {
+  form_fallback: "You can also email us directly:",
   nav_resources: "Resources", nav_contact: "Contact",
   res_title: "Resources", res_desc: "Product screens, videos and documents for VegaFencer, in one place.",
   sub_screens: "Product screens", sub_videos: "Videos", sub_docs: "Documents",
@@ -886,6 +888,7 @@ Object.assign(i18n.en, {
   plan_tbd: "Coming soon", plan_price_ask: "Contact for pricing", plan_contact: "Contact sales"
 });
 Object.assign(i18n.zh, {
+  form_fallback: "您也可以直接发送邮件至：",
   nav_resources: "资源中心", nav_contact: "联系我们",
   res_title: "资源中心", res_desc: "汇集 VegaFencer 的产品界面、演示视频和文档。",
   sub_screens: "产品界面", sub_videos: "演示视频", sub_docs: "文档",
@@ -902,6 +905,7 @@ Object.assign(i18n.zh, {
   plan_tbd: "即将推出", plan_price_ask: "价格咨询", plan_contact: "购买咨询"
 });
 Object.assign(i18n.ja, {
+  form_fallback: "下記アドレスへ直接メールでもお問い合わせいただけます：",
   nav_resources: "リソース", nav_contact: "お問い合わせ",
   res_title: "リソース", res_desc: "VegaFencerの実際の製品画面、動画、ドキュメントをまとめています。",
   sub_screens: "製品画面", sub_videos: "動画", sub_docs: "ドキュメント",
