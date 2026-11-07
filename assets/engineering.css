@@ -454,7 +454,9 @@ html { scroll-snap-type: y mandatory; }
   @supports (height: 100svh) { .engineering-scale { min-height: calc((100svh - 73px) / var(--s)); } }
   /* Fixed design sizes (the block does the scaling), with the tighter spacing of the 1440 x 790 design. */
   .engineering-copy h1 { font-size: 58.5px; }
-  .engineering-hero-main { padding-block: 8px; }
+  /* Safari sized the auto row far taller than the block (pushing everything down). A definite row fixes it, and
+     min-content still lets the row grow in very low windows. */
+  .engineering-hero-main { padding-block: 8px; grid-template-rows: minmax(min-content, 1fr); }
   .engineering-kicker { margin-bottom: 18px; }
   .engineering-copy-body { padding-top: 20px; }
   .engineering-description { line-height: 1.8; margin-bottom: 24px; }
