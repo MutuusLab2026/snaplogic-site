@@ -21,27 +21,31 @@ window.pageUrl = function (name, hash) {
       href + '" data-i18n="' + key + '"' + current + '>' + label + '</a>';
   };
   // Drop-down cards under the menu tabs (desktop with a mouse). Each item jumps to a section of that page.
-  // A column is [heading key or '', [[i18n key or '', label, '#section'], ...]]; items without a key are names that
-  // stay the same in every language.
+  // An item is [i18n key or '', label, '#section', optional sub-items]; items without a key are names that stay the
+  // same in every language. Sub-items hang below their item on a thin line and unfold one by one when the card opens.
   var menus = {
     product: [
-      ['menu_modules', [['', 'Logic', '#logic'], ['', 'Integrator', '#integrator'], ['', 'Harness Drawing', '#harness'],
-                        ['', 'Variant · DRC · BOM', '#variant'], ['', 'Bridge', '#bridge']]],
-      ['menu_platform', [['sub_modules', '핵심 모듈', '#product'], ['sub_workflow', '워크플로우', '#workflow'], ['sub_ai', 'AI 어시스턴트', '#ai'],
-                         ['sub_integrations', 'CAD 연동', '#integrations'], ['sub_team', '팀 협업', '#enterprise']]]
+      ['sub_modules', '핵심 모듈', '#product', [['', 'Logic', '#logic'], ['', 'Integrator', '#integrator'],
+        ['', 'Harness Drawing', '#harness'], ['', 'Variant · DRC · BOM', '#variant'], ['', 'Bridge', '#bridge']]],
+      ['sub_workflow', '워크플로우', '#workflow'], ['sub_ai', 'AI 어시스턴트', '#ai'],
+      ['sub_integrations', 'CAD 연동', '#integrations'], ['sub_team', '팀 협업', '#enterprise']
     ],
-    resources: [['', [['sub_screens', '제품 화면', '#gallery'], ['sub_videos', '구동 영상', '#videos'], ['sub_docs', '문서', '#docs']]]],
-    pricing: [['', [['pricing_title', '요금제', '#pricing'], ['nav_demo', '데모 신청', '#cta']]]]
+    resources: [['sub_screens', '제품 화면', '#gallery'], ['sub_videos', '구동 영상', '#videos'], ['sub_docs', '문서', '#docs']],
+    pricing: [['pricing_title', '요금제', '#pricing'], ['nav_demo', '데모 신청', '#cta']]
+  };
+  var menuLink = function (name, item, cls, i) {
+    return '<a class="' + cls + '" href="' + pageUrl(name, item[2]) + '"' + (i == null ? '' : ' style="--i:' + i + '"') +
+      (item[0] ? ' data-i18n="' + item[0] + '"' : ' translate="no"') + '>' + item[1] + '</a>';
   };
   var menu = function (name) {
-    var cols = menus[name];
-    if (!cols) return '';
-    return '<div class="nav-menu" data-cols="' + cols.length + '"><div class="nav-menu-card">' + cols.map(function (col) {
-      return '<div class="nav-menu-col">' + (col[0] ? '<p class="nav-menu-head" data-i18n="' + col[0] + '"></p>' : '') +
-        col[1].map(function (item) {
-          return '<a class="nav-menu-link" href="' + pageUrl(name, item[2]) + '"' +
-            (item[0] ? ' data-i18n="' + item[0] + '"' : ' translate="no"') + '>' + item[1] + '</a>';
-        }).join('') + '</div>';
+    var items = menus[name];
+    if (!items) return '';
+    return '<div class="nav-menu"><div class="nav-menu-card">' + items.map(function (item) {
+      var link = menuLink(name, item, 'nav-menu-link');
+      if (!item[3]) return link;
+      return link + '<div class="nav-menu-sub" style="--n:' + item[3].length + '">' + item[3].map(function (sub, i) {
+        return menuLink(name, sub, 'nav-menu-link nav-menu-sublink', i);
+      }).join('') + '</div>';
     }).join('') + '</div></div>';
   };
   var tab = function (name, key, label) {

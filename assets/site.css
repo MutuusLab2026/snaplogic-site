@@ -501,7 +501,7 @@ body[data-page="contact"] .footer-contact { display: none; }
 .nav-menu { display: none; }
 @media (min-width: 768px) and (hover: hover) {
   .nav-menu {
-    display: block; position: absolute; top: 100%; left: -22px; padding-top: 30px; z-index: 10;
+    display: block; position: absolute; top: 100%; left: -18px; padding-top: 30px; z-index: 10;
     opacity: 0; visibility: hidden; transform: translateY(8px);
     transition: opacity .18s ease, transform .18s ease, visibility 0s linear .18s;
     transition-delay: .12s, .12s, .3s;
@@ -514,22 +514,58 @@ body[data-page="contact"] .footer-contact { display: none; }
   .nav-item.has-menu.nav-menu-closed > .nav-menu { opacity: 0; visibility: hidden; transform: translateY(8px); transition: none; }
 }
 @media (prefers-reduced-motion: reduce) { .nav-menu, .nav-item.has-menu:hover > .nav-menu { transform: none !important; } }
+/* The card follows its longest line, but never narrower than min-width so short menus keep some room on the right. */
 .nav-menu-card {
-  display: grid; grid-auto-flow: column; gap: 8px 28px; min-width: 220px; padding: 14px;
-  background: #fff; border: 1px solid rgba(193, 198, 214, .45); border-radius: 14px;
+  display: flex; flex-direction: column; width: max-content; min-width: 145px; padding: 6px;
+  background: #fff; border: 1px solid rgba(193, 198, 214, .45); border-radius: 8px;
   box-shadow: 0 20px 44px -18px rgba(15, 30, 60, .35), 0 2px 6px rgba(15, 30, 60, .06);
 }
-.nav-menu[data-cols="2"] .nav-menu-card { min-width: 440px; }
-.nav-menu-col { display: flex; flex-direction: column; min-width: 190px; }
-.nav-menu-head { padding: 6px 12px 8px; font: 700 11px 'Space Grotesk', 'Noto Sans KR', sans-serif; letter-spacing: .14em; text-transform: uppercase; color: #8a93a3; }
 /* (2 ids + 2 classes: beats the dark-header link colours from engineering.css) */
 #nav #navLinks .nav-menu a.nav-menu-link {
-  display: block; padding: 9px 12px; border-radius: 9px; white-space: nowrap;
+  display: block; padding: 8px 12px; border-radius: 5px; white-space: nowrap;
   font: 600 14.5px/1.35 'Inter', 'Noto Sans KR', sans-serif; letter-spacing: -.01em; color: #151b2b; text-decoration: none;
   transition: background-color .15s, color .15s;
 }
 #nav #navLinks .nav-menu a.nav-menu-link:hover,
 #nav #navLinks .nav-menu a.nav-menu-link:focus-visible { background: rgba(26, 115, 232, .08); color: #1a73e8; outline: none; }
+/* Sub-items (핵심 모듈 → Logic, Integrator, …): indented under a thin line. When the card opens the line draws
+   downward and the items unroll one after another like a blind (each revealed from its top edge). */
+.nav-menu-sub { position: relative; margin: 0 0 4px 16px; padding-left: 6px; }
+.nav-menu-sub::before {
+  content: ''; position: absolute; left: 0; top: 4px; bottom: 4px; width: 1.5px; border-radius: 1px;
+  background: #cfd7e3; transform-origin: top;
+}
+#nav #navLinks .nav-menu a.nav-menu-sublink { padding: 6px 12px; font-size: 13.5px; font-weight: 500; color: #3d4659; }
+@media (min-width: 768px) and (hover: hover) {
+  .nav-menu-sub::before { transform: scaleY(0); transition: transform 0s .3s; }
+  #nav #navLinks .nav-menu a.nav-menu-sublink {
+    overflow: hidden; max-height: 0; padding-top: 0; padding-bottom: 0;
+    clip-path: inset(0 0 100% 0); opacity: 0; transform: translateY(-4px);
+    transition: background-color .15s, color .15s, max-height 0s .3s, padding 0s .3s, clip-path 0s .3s, opacity 0s .3s, transform 0s .3s;
+  }
+  .nav-item.has-menu:hover .nav-menu-sub::before,
+  .nav-item.has-menu:focus-within .nav-menu-sub::before {
+    transform: none; transition: transform calc(.12s + var(--n) * .06s) cubic-bezier(.3, .7, .3, 1) .08s;
+  }
+  #nav #navLinks .nav-item.has-menu:hover a.nav-menu-sublink,
+  #nav #navLinks .nav-item.has-menu:focus-within a.nav-menu-sublink {
+    max-height: 40px; padding-top: 6px; padding-bottom: 6px;
+    clip-path: inset(0 0 0 0); opacity: 1; transform: none;
+    transition-property: background-color, color, max-height, padding, clip-path, opacity, transform;
+    transition-duration: .15s, .15s, .22s, .22s, .26s, .2s, .26s;
+    transition-timing-function: ease, ease, cubic-bezier(.3, .7, .3, 1), cubic-bezier(.3, .7, .3, 1), cubic-bezier(.3, .7, .3, 1), ease, cubic-bezier(.3, .7, .3, 1);
+    transition-delay: 0s, 0s, calc(.08s + var(--i) * .06s), calc(.08s + var(--i) * .06s), calc(.1s + var(--i) * .06s),
+                      calc(.1s + var(--i) * .06s), calc(.1s + var(--i) * .06s);
+  }
+  .nav-item.has-menu.nav-menu-closed .nav-menu-sub::before { transform: scaleY(0); transition: none; }
+  #nav #navLinks .nav-item.has-menu.nav-menu-closed a.nav-menu-sublink {
+    max-height: 0; padding-top: 0; padding-bottom: 0; clip-path: inset(0 0 100% 0); opacity: 0; transition: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-menu-sub::before { transform: none !important; }
+  #nav #navLinks .nav-menu a.nav-menu-sublink { clip-path: none !important; opacity: 1 !important; transform: none !important; }
+}
 /* mobile menu: the tab links stay full-width rows inside their wrappers */
 @media (max-width: 767px) { #navLinks.nav-open .nav-item > a { display: block; width: 100%; } }
 
