@@ -64,6 +64,48 @@ const Controller = {
     this.initAiTabs();
     this.initAnchorSettle();
     this.initContactPage();
+    this.initLogoPicker();
+  },
+
+  /* Brand story: the four logos take turns every 2 s (see .logo-show in site.css). The dots pick one. It pauses
+     while the pointer or keyboard focus is on it, while it is off screen or the tab is hidden, and never runs on
+     its own for visitors who ask for reduced motion (the dots still work). */
+  initLogoPicker() {
+    const box = document.getElementById('logoShow');
+    if (!box) return;
+    const imgs = box.querySelectorAll('.logo-stack img');
+    const names = box.querySelectorAll('.logo-name');
+    const dots = box.querySelectorAll('.logo-dot');
+    let index = 0, hovered = false, visible = false;
+    const show = (i) => {
+      index = i;
+      imgs.forEach((el, k) => { el.classList.toggle('on', k === i); el.setAttribute('aria-hidden', k === i ? 'false' : 'true'); });
+      names.forEach((el, k) => el.classList.toggle('on', k === i));
+      dots.forEach((el, k) => { el.classList.toggle('on', k === i); if (k === i) el.setAttribute('aria-current', 'true'); else el.removeAttribute('aria-current'); });
+    };
+    const INTERVAL = 2000;   // ms between logos
+    let timer = null;
+    const restart = () => {
+      if (timer === null) return;
+      clearInterval(timer);
+      timer = setInterval(tick, INTERVAL);
+    };
+    // A picked logo stays for a full 2 s before the turns go on.
+    dots.forEach((dot, k) => dot.addEventListener('click', () => { show(k); restart(); }));
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    box.addEventListener('mouseenter', () => { hovered = true; });
+    box.addEventListener('mouseleave', () => { hovered = false; });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => { visible = entries[0].isIntersecting; }).observe(box);
+    } else {
+      visible = true;
+    }
+    // Pause for keyboard focus only (:focus-visible): a dot clicked with the mouse keeps focus but should not stop it.
+    function tick() {
+      if (hovered || !visible || document.hidden || box.querySelector(':focus-visible')) return;
+      show((index + 1) % imgs.length);
+    }
+    timer = setInterval(tick, INTERVAL);
   },
 
   /* In-page links: images further down load while the page scrolls and push the target lower, so once the
