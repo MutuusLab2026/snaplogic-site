@@ -589,27 +589,65 @@ body[data-page="contact"] .footer-contact { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { .nav-chevron { transition: none !important; } }
 
-/* ---- Brand story: the four logos (Install, Logic, Library, Symbol) take turns ----
-   They are stacked on top of each other and cross-fade every 2 s. Only the star colour differs between them, so it
-   looks like the star changing colour. The name below rises into place, and the dots show (and pick) the logo. */
-.logo-show { display: flex; flex-direction: column; align-items: center; }
-.logo-stack { position: relative; width: 13rem; aspect-ratio: 256 / 246; }
-@media (min-width: 768px) { .logo-stack { width: 16rem; } }
-.logo-stack img { position: absolute; inset: 0; width: 100%; height: auto; opacity: 0; transition: opacity .6s ease; }
-.logo-stack img.on { opacity: 1; }
-.logo-name-box { position: relative; width: 120px; height: 26px; margin-top: 24px; overflow: hidden; }
-.logo-name {
-  position: absolute; inset: 0; text-align: center; white-space: nowrap; color: #414754;   /* same as the body text */
-  font: 500 15px/26px 'Manrope', 'Noto Sans KR', sans-serif;
-  opacity: 0; transform: translateY(8px); transition: opacity .4s, transform .4s;
+/* ---- Home brand story: text on the left, the photo-to-logo animation (assets/story.js) on the right ----
+   On wide screens the card's top edge lines up with the top of the "Brand Story" letters and its bottom edge with
+   the last line of the Korean text, so the card ratio (1.8 : 1) and the 25px drop below are fixed numbers.
+   The body text is as wide as the longest line of the Logic text on the product page (544px). Each sentence starts
+   on a new line on wide screens only (.story-br); on narrow screens the text flows. */
+.story-grid { display: grid; gap: 32px; }
+@media (min-width: 1024px) { .story-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 64px; align-items: start; } }
+.story-body { display: flex; flex-direction: column; gap: 14px; margin-top: 10px; max-width: 544px; }
+.story-body p { margin: 0; }
+.story-card { aspect-ratio: 1.8; }
+.story-card svg { display: block; width: 100%; height: 100%; }
+@media (min-width: 1024px) { .story-media { margin-top: 25px; } }
+@media (max-width: 1023px) { .story-br { display: none; } }
+
+/* ---- Product page: User Interface (shared screen layout) and the Logic, Integrator and Harness modules ----
+   Built from the 2026-11 product deck. In the interface tour, hovering an area of the screenshot or an item in the
+   list lights that area up and dims the rest (initLogicTour in site.js). */
+
+/* Module header: small "MODULE 0N" line, the module name, a tagline (User Interface uses the same) */
+.lg-head { max-width: 640px; }
+/* User Interface intro: wide enough that its first sentence stays on one line on desktop */
+#interface .lg-head { max-width: 900px; }
+.lg-kicker { margin: 0 0 12px; font: 700 12px/1 'Space Grotesk', sans-serif; letter-spacing: .2em; color: #1a73e8; }
+.lg-name { margin: 0; font: 900 40px/1.05 Inter, sans-serif; letter-spacing: -.04em; color: #151b2b; }
+@media (min-width: 768px) { .lg-name { font-size: 56px; } }
+.lg-tagline { margin: 12px 0 0; font: 700 19px/1.35 Inter, 'Noto Sans KR', sans-serif; letter-spacing: -.02em; color: #151b2b; }
+@media (min-width: 768px) { .lg-tagline { font-size: 22px; } }
+.lg-lead { margin-top: 14px; }
+/* Module screen cards (Logic, Integrator, Harness) on the product page: 12px corners instead of .rounded-2xl's 16px */
+body[data-page="product"] :is(#logic, #integrator, #harness) .rounded-2xl { border-radius: 12px; }
+
+/* Interface tour */
+.lg-tour {
+  position: relative; margin: 40px 0 0; overflow: hidden; border-radius: 14px; background: #eef1f6;
+  border: 1px solid rgba(193, 198, 214, .45); box-shadow: 0 24px 48px -28px rgba(21, 27, 43, .35);
 }
-.logo-name.on { opacity: 1; transform: none; }
-.logo-dots { display: flex; align-items: center; gap: 10px; margin-top: 12px; }
-.logo-dot {
-  width: 7px; height: 7px; padding: 0; border: 0; border-radius: 4px; background: rgba(65, 71, 84, .25); cursor: pointer;
-  transition: background-color .25s, width .25s;
+.lg-tour img { display: block; width: 100%; height: auto; }
+.lg-area { position: absolute; border-radius: 6px; cursor: pointer; transition: box-shadow .25s ease; }
+.lg-tour[data-active="1"] .lg-area[data-area="1"], .lg-tour[data-active="2"] .lg-area[data-area="2"],
+.lg-tour[data-active="3"] .lg-area[data-area="3"], .lg-tour[data-active="4"] .lg-area[data-area="4"],
+.lg-tour[data-active="5"] .lg-area[data-area="5"], .lg-tour[data-active="6"] .lg-area[data-area="6"] {
+  z-index: 1; box-shadow: 0 0 0 2px #1a73e8, 0 0 0 9999px rgba(15, 23, 42, .5);
 }
-.logo-dot:hover { background: rgba(65, 71, 84, .5); }
-.logo-dot.on { width: 20px; background: #414754; }
-.logo-dot:focus-visible { outline: 2px solid #1a73e8; outline-offset: 3px; }
-@media (prefers-reduced-motion: reduce) { .logo-stack img, .logo-name, .logo-dot { transition: none; } }
+.lg-legend { display: grid; gap: 4px 20px; margin: 20px 0 0; padding: 0; list-style: none; }
+@media (min-width: 640px) { .lg-legend { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .lg-legend { grid-template-columns: repeat(3, 1fr); } }
+.lg-legend button {
+  display: flex; align-items: flex-start; gap: 12px; width: 100%; padding: 12px; border: 0; border-radius: 10px;
+  background: none; text-align: left; cursor: pointer; transition: background-color .2s;
+}
+.lg-legend button:hover, .lg-legend button.on { background: rgba(26, 115, 232, .07); }
+.lg-legend button:focus-visible { outline: 2px solid #1a73e8; outline-offset: 2px; }
+.lg-dot {
+  flex: none; display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; margin-top: 1px;
+  border-radius: 50%; background: #e2e7fd; color: #1a73e8; font: 700 12px/1 'Space Grotesk', sans-serif;
+  transition: background-color .2s, color .2s;
+}
+.lg-legend button.on .lg-dot { background: #1a73e8; color: #fff; }
+.lg-legend b { display: block; font: 700 15px/1.4 Inter, 'Noto Sans KR', sans-serif; color: #151b2b; }
+.lg-legend b + span { display: block; margin-top: 2px; font: 400 13.5px/1.55 Manrope, 'Noto Sans KR', sans-serif; color: #414754; }
+
+@media (prefers-reduced-motion: reduce) { .lg-area, .lg-legend button, .lg-dot { transition: none; } }

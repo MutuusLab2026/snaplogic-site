@@ -413,13 +413,14 @@ html.engineering-free-scroll { scroll-snap-type: none; }   /* set by engineering
   scroll-snap-stop: always;
   scroll-margin-top: calc(-1 * var(--fade));
 }
-.engineering-interface { --nav-h: 73px; }
+.engineering-glance { --nav-h: 73px; }
 @media (max-width: 800px) { .engineering-after { --fade: 84px; } }
-@media (max-width: 767px) { .engineering-interface { --nav-h: 105px; } }
+@media (max-width: 767px) { .engineering-glance { --nav-h: 105px; } }
 
 /* The hero's navy fades into the paper colour at the top of the second screen (the connector); the screen itself
-   starts where the fade ends, fills the viewport, and centres its content in the space below the header. */
-.engineering-interface {
+   starts where the fade ends, fills the viewport, and centres its content in the space below the header.
+   The second screen is "VegaFencer at a Glance" (the five-step animation). */
+.engineering-glance {
   box-sizing: border-box;
   min-height: calc(100vh + var(--fade));
   min-height: calc(100svh + var(--fade));
@@ -493,3 +494,97 @@ html[lang="ja"] *, html[lang="zh"] * { word-break: normal; line-break: strict; }
 /* Japanese in Chrome/Edge: break between phrases (bunsetsu), so a particle such as の or は stays with its word.
    Browsers without it (Safari, Firefox) ignore this line and keep "normal". */
 html[lang="ja"] * { word-break: auto-phrase; }
+
+/* ---- Home: "VegaFencer at a Glance" (second screen). Header uses the product page's module template
+   (.lg-kicker / .lg-name / .lg-lead in site.css); the animation itself is driven by glance.js. ---- */
+.glance {
+  --ink: #1d2330; --mute: #6b7280; --faint: #9aa0aa; --line: #d9dde3; --sel: #1a5fd0; --red: #c8372d; --green: #2f8f4e;
+  color: var(--ink);
+}
+.glance-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px 32px; flex-wrap: wrap; margin-bottom: 8px; }
+.glance .lg-head { max-width: 900px; min-width: 0; }
+.glance .lg-lead { margin: 10px 0 0; }
+/* Same width as the product page's module sections (Tailwind max-w-7xl with px-4 / sm:px-6 / md:px-8). */
+.glance-in { width: 100%; max-width: 80rem; margin-inline: auto; padding-inline: 1rem; box-sizing: border-box; }
+@media (min-width: 640px) { .glance-in { padding-inline: 1.5rem; } }
+@media (min-width: 768px) { .glance-in { padding-inline: 2rem; } }
+/* "▶ 구동 영상" inside the description: a link to the videos on the resources page; on hover it turns navy and is underlined. */
+.glance-link { color: #151b2b; font-weight: 600; white-space: nowrap; text-underline-offset: 4px; transition: color .15s; }
+.glance-link:hover, .glance-link:focus-visible { color: #1e3a8a; }
+.glance-link svg { display: inline-block; width: 15px; height: 15px; margin-right: 4px; vertical-align: -2px; }
+.glance-link:hover span, .glance-link:focus-visible span { text-decoration: underline; }
+/* Under the animation: steps and caption on the left, the video button on the right (below them on phones). */
+.glance-foot { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px 32px; flex-wrap: wrap; margin-top: 12px; }
+.glance-foot-text { flex: 1 1 520px; min-width: 0; }
+.glance-btn { display: inline-flex; align-items: center; gap: 8px; flex: none; min-height: 48px; padding: 12px 20px 12px 22px; border-radius: 6px;
+  background: #151b2b; color: #fff; font: 600 15px/1.2 Inter, 'Noto Sans KR', sans-serif; white-space: nowrap; transition: background .2s; }
+.glance-btn:hover { background: #2e3647; }
+.glance-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.glance-btn-sub { background: #fff; color: #151b2b; box-shadow: inset 0 0 0 1px #c9ced6; }
+.glance-btn-sub:hover { background: #eef1f4; }
+/* "Logic 자세히 보기 →" after each step caption (added by glance.js): links to that module on the product page. */
+.glance-more { margin-left: 4px; color: #151b2b; font-weight: 500; white-space: nowrap; text-underline-offset: 4px; transition: color .15s; }
+.glance-more:hover, .glance-more:focus-visible { color: #1e3a8a; text-decoration: underline; }
+.glance-more svg { display: inline-block; width: 14px; height: 14px; margin-left: 4px; vertical-align: -1px; }
+.glance-btn svg { width: 18px; height: 18px; flex: none; }
+.glance-stage { display: grid; grid-template-columns: minmax(0, 1fr) 270px; margin-top: 16px; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #fff; }
+.glance-canvas { min-width: 0; background-color: #fbfbfc; background-image: radial-gradient(#dfe2e7 1px, transparent 1px); background-size: 20px 20px; }
+.glance-canvas svg { display: block; width: 100%; height: auto; }
+.glance svg text { font-family: Inter, 'Noto Sans KR', sans-serif; }
+.glance .h { opacity: 0; }
+.glance .box { fill: #fff; stroke: var(--ink); stroke-width: 1.5; }
+.glance .pin { fill: #fff; stroke: var(--ink); stroke-width: 1.2; }
+.glance .pnum { font-size: 12px; font-weight: 500; fill: var(--mute); }
+.glance .ref { font-size: 15px; font-weight: 600; fill: var(--ink); }
+.glance .sub { font-size: 12px; fill: var(--mute); }
+.glance .wire { fill: none; stroke: var(--ink); stroke-width: 1.6; }
+.glance .wlabel { font-size: 12px; font-weight: 500; fill: var(--ink); }
+.glance .halo { fill: none; stroke: var(--sel); stroke-width: 7; stroke-opacity: .18; }
+.glance .small { font-size: 11.5px; fill: var(--mute); }
+.glance-panel { display: flex; flex-direction: column; min-width: 0; border-left: 1px solid var(--line); background: #fff; padding: 18px; font: 13px/1.5 Inter, 'Noto Sans KR', sans-serif; }
+.glance-panel h4 { font-size: 13px; font-weight: 600; color: var(--mute); padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+.glance-panel .empty { margin-top: 14px; color: var(--faint); }
+.glance-panel dl div { display: grid; grid-template-columns: 70px 1fr; gap: 8px; padding: 8px 0; border-bottom: 1px solid #eef0f3; }
+.glance-panel dt { color: var(--mute); }
+.glance-panel dd { margin: 0; font-weight: 500; font-variant-numeric: tabular-nums; }
+.glance-panel .ptl { margin: 14px 0 6px; font-weight: 600; }
+.glance-panel table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.glance-panel th { text-align: left; font-weight: 500; color: var(--mute); padding: 5px 0; border-bottom: 1px solid var(--line); }
+.glance-panel td { padding: 6px 0; border-bottom: 1px solid #eef0f3; }
+.glance-panel .r { text-align: right; }
+.glance .sw { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.glance .ok { color: var(--green); font-weight: 600; }
+.glance #pBody { flex: 1; display: flex; flex-direction: column; }
+.glance .mcp { float: right; font-weight: 500; font-size: 11px; color: var(--green); }
+.glance .mcp::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--green); margin-right: 5px; vertical-align: 1px; }
+.glance .chat { flex: 1; display: flex; flex-direction: column; min-height: 230px; }
+.glance .msgs { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 10px; padding: 12px 0; }
+.glance .msg { font-size: 13px; line-height: 1.55; max-width: 92%; }
+.glance .msg.me { align-self: flex-end; background: #eef2f8; padding: 8px 11px; border-radius: 10px 10px 2px 10px; }
+.glance .msg.ai { align-self: flex-start; }
+.glance .msg .who { display: block; font-size: 11px; color: var(--mute); font-weight: 600; margin-bottom: 2px; }
+.glance .msg .code { font-family: ui-monospace, Menlo, monospace; font-size: 12px; background: #f3f4f6; padding: 0 4px; border-radius: 3px; margin-right: 4px; }
+.glance .dots { display: flex; gap: 4px; padding: 6px 0; }
+.glance .dots i { width: 6px; height: 6px; border-radius: 50%; background: #b8bec8; animation: glance-blink 1s infinite; }
+.glance .dots i:nth-child(2) { animation-delay: .15s; } .glance .dots i:nth-child(3) { animation-delay: .3s; }
+@keyframes glance-blink { 0%, 80%, 100% { opacity: .3 } 40% { opacity: 1 } }
+.glance .input { border: 1px solid var(--line); border-radius: 8px; padding: 9px 11px; font-size: 13px; min-height: 38px; }
+.glance .caret { display: inline-block; width: 1px; height: 14px; background: var(--ink); vertical-align: -2px; margin-left: 1px; animation: glance-caret 1s steps(1) infinite; }
+@keyframes glance-caret { 50% { opacity: 0 } }
+.glance-steps { display: flex; gap: 6px; margin-top: 0; flex-wrap: wrap; }
+.glance-steps button { all: unset; cursor: pointer; display: flex; align-items: center; gap: 8px; padding: 6px 10px 6px 6px; border-radius: 6px; font: 14px Inter, 'Noto Sans KR', sans-serif; color: var(--faint); }
+.glance-steps button:hover { background: #eef1f4; }
+.glance-steps button:focus-visible { outline: 2px solid var(--sel); }
+.glance-steps i { font-style: normal; font-size: 12px; font-weight: 600; width: 22px; height: 22px; border-radius: 50%; border: 1px solid currentColor; display: grid; place-items: center; }
+.glance-steps .on { color: var(--ink); }
+.glance-steps .on i { background: var(--ink); color: #fff; border-color: var(--ink); }
+.glance-cap { margin-top: 6px; font-size: 15px; color: #4a5160; min-height: 1.6em; }
+@media (max-width: 720px) {
+  .glance-stage { grid-template-columns: 1fr; }
+  .glance-panel { border-left: 0; border-top: 1px solid var(--line); min-height: 250px; }
+  .glance-steps button { font-size: 13px; }
+}
+
+/* ---- Home: Core Modules header uses the same template as "VegaFencer at a Glance" (left-aligned, cards right below). ---- */
+.modules-head { max-width: 900px; margin-bottom: 24px; }
+.modules-head .lg-lead { margin: 10px 0 0; }

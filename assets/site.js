@@ -64,48 +64,33 @@ const Controller = {
     this.initAiTabs();
     this.initAnchorSettle();
     this.initContactPage();
-    this.initLogoPicker();
+    this.initLogicTour();
   },
 
-  /* Brand story: the four logos take turns every 2 s (see .logo-show in site.css). The dots pick one. It pauses
-     while the pointer or keyboard focus is on it, while it is off screen or the tab is hidden, and never runs on
-     its own for visitors who ask for reduced motion (the dots still work). */
-  initLogoPicker() {
-    const box = document.getElementById('logoShow');
-    if (!box) return;
-    const imgs = box.querySelectorAll('.logo-stack img');
-    const names = box.querySelectorAll('.logo-name');
-    const dots = box.querySelectorAll('.logo-dot');
-    let index = 0, hovered = false, visible = false;
-    const show = (i) => {
-      index = i;
-      imgs.forEach((el, k) => { el.classList.toggle('on', k === i); el.setAttribute('aria-hidden', k === i ? 'false' : 'true'); });
-      names.forEach((el, k) => el.classList.toggle('on', k === i));
-      dots.forEach((el, k) => { el.classList.toggle('on', k === i); if (k === i) el.setAttribute('aria-current', 'true'); else el.removeAttribute('aria-current'); });
+  /* Product page. Interface tour: hovering an area of the screenshot, or hovering/focusing its item in the list,
+     lights that area up (the rest dims); a tap keeps it lit until tapped again. */
+  initLogicTour() {
+    const tour = document.getElementById('logicTour');
+    if (!tour) return;
+    const items = document.querySelectorAll('.lg-legend button');
+    let pinned = null;
+    const light = (id) => {
+      if (id) tour.dataset.active = id; else delete tour.dataset.active;
+      items.forEach((b) => b.classList.toggle('on', b.dataset.area === id));
     };
-    const INTERVAL = 2000;   // ms between logos
-    let timer = null;
-    const restart = () => {
-      if (timer === null) return;
-      clearInterval(timer);
-      timer = setInterval(tick, INTERVAL);
-    };
-    // A picked logo stays for a full 2 s before the turns go on.
-    dots.forEach((dot, k) => dot.addEventListener('click', () => { show(k); restart(); }));
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    box.addEventListener('mouseenter', () => { hovered = true; });
-    box.addEventListener('mouseleave', () => { hovered = false; });
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver((entries) => { visible = entries[0].isIntersecting; }).observe(box);
-    } else {
-      visible = true;
-    }
-    // Pause for keyboard focus only (:focus-visible): a dot clicked with the mouse keeps focus but should not stop it.
-    function tick() {
-      if (hovered || !visible || document.hidden || box.querySelector(':focus-visible')) return;
-      show((index + 1) % imgs.length);
-    }
-    timer = setInterval(tick, INTERVAL);
+    items.forEach((b) => {
+      b.addEventListener('mouseenter', () => light(b.dataset.area));
+      b.addEventListener('mouseleave', () => light(pinned));
+      b.addEventListener('focus', () => light(b.dataset.area));
+      b.addEventListener('blur', () => light(pinned));
+      b.addEventListener('click', () => { pinned = pinned === b.dataset.area ? null : b.dataset.area; light(pinned); });
+    });
+    // The screenshot itself: the area under the pointer lights up; a tap pins it like the list does.
+    tour.querySelectorAll('.lg-area').forEach((area) => {
+      area.addEventListener('mouseenter', () => light(area.dataset.area));
+      area.addEventListener('click', () => { pinned = pinned === area.dataset.area ? null : area.dataset.area; light(pinned); });
+    });
+    tour.addEventListener('mouseleave', () => light(pinned));
   },
 
   /* In-page links: images further down load while the page scrolls and push the target lower, so once the

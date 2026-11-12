@@ -19,8 +19,8 @@
 <!-- Inline SVG Favicon -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%231A73E8'/><stop offset='100%25' stop-color='%23006a61'/></linearGradient></defs><rect width='36' height='36' rx='8' fill='url(%23g)'/><text x='18' y='25' font-family='sans-serif' font-size='20' font-weight='800' fill='white' text-anchor='middle'>S</text></svg>">
 
-<link rel="stylesheet" href="assets/site.css?v=a125e852">
-<link rel="stylesheet" href="assets/engineering.css?v=7ea58661">
+<link rel="stylesheet" href="assets/site.css?v=d35875a1">
+<link rel="stylesheet" href="assets/engineering.css?v=6f6a7f8f">
 </head>
 <body class="bg-surface antialiased" data-page="home" data-skip="about">
 
@@ -174,39 +174,44 @@
 <!-- Second screen through the footer: one tall scroll-snap area. Snapping happens only at its top (between the hero and
      the second screen); inside it, the page scrolls freely. -->
 <div class="engineering-after">
-<section class="engineering-interface" aria-labelledby="engineeringInterfaceTitle">
-  <div class="engineering-container engineering-interface-inner">
-    <div class="engineering-interface-copy"><span data-i18n="motion_interface_label">VegaFencer 작업 환경</span><h2 id="engineeringInterfaceTitle" data-i18n-html="motion_interface_title">복잡한 설계도,<br>명확한 하나의 화면으로.</h2><p data-i18n="motion_interface_desc">회로 설계, 토폴로지 통합, 하네스 도면과 검증까지. 실제 제품 화면에서 연결된 워크플로우를 확인하세요.</p></div>
-    <!-- MacOS Window Mockup -->
-    <div class="engineering-product-window">
-      <div class="bg-white rounded-2xl shadow-2xl shadow-on-surface/10 overflow-hidden border border-outline-variant/20">
-        <!-- Window Chrome -->
-        <div class="flex items-center gap-2 px-4 py-3 bg-surface-container-high/40 border-b border-outline-variant/15">
-          <span class="w-3 h-3 rounded-full bg-red-400"></span>
-          <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
-          <span class="w-3 h-3 rounded-full bg-green-400"></span>
-          <span class="ml-4 text-xs font-label text-on-surface-variant/50" id="heroWindowTitle">VegaFencer — Logic Editor</span>
-        </div>
-        <div style="overflow:hidden;width:100%">
-          <div id="heroSlideshow" style="display:flex;width:500%;transition:transform 0.7s cubic-bezier(0.4,0,0.2,1)">
-            <img src="assets/img/logic-editor.jpg" alt="Logic Editor" style="width:20%;flex-shrink:0" class="block">
-            <img src="assets/img/integrator.jpg" alt="Integrator" style="width:20%;flex-shrink:0" class="block">
-            <img src="assets/img/harness-drawing.jpg" alt="Harness Drawing" style="width:20%;flex-shrink:0" class="block">
-            <img src="assets/img/variant-config.jpg" alt="Variant Config" style="width:20%;flex-shrink:0" class="block">
-            <img src="assets/img/ai-assistant.jpg" alt="AI Assistant" style="width:20%;flex-shrink:0" class="block">
-          </div>
-        </div>
-        <!-- Slide indicators -->
-        <div class="flex justify-center gap-2 py-2 bg-surface-container-high/20" id="heroIndicators">
-          <button type="button" class="w-2 h-2 rounded-full bg-primary-container transition-all hero-dot hero-dot-active" data-slide="0" aria-label="Logic Editor" aria-pressed="true"></button>
-          <button type="button" class="w-2 h-2 rounded-full bg-outline-variant/40 transition-all hero-dot" data-slide="1" aria-label="Integrator" aria-pressed="false"></button>
-          <button type="button" class="w-2 h-2 rounded-full bg-outline-variant/40 transition-all hero-dot" data-slide="2" aria-label="Harness Drawing" aria-pressed="false"></button>
-          <button type="button" class="w-2 h-2 rounded-full bg-outline-variant/40 transition-all hero-dot" data-slide="3" aria-label="Variant Config" aria-pressed="false"></button>
-          <button type="button" class="w-2 h-2 rounded-full bg-outline-variant/40 transition-all hero-dot" data-slide="4" aria-label="AI Assistant" aria-pressed="false"></button>
-        </div>
+<!-- ============================================================
+     VEGAFENCER AT A GLANCE: simplified animation of the five design steps (assets/glance.js)
+     ============================================================ -->
+<section class="engineering-glance glance" id="glance" aria-labelledby="glanceTitle">
+  <div class="glance-in">
+    <div class="glance-head">
+      <header class="lg-head">
+        <p class="lg-kicker">OVERVIEW</p>
+        <h2 class="lg-name" id="glanceTitle" translate="no">VegaFencer at a Glance</h2>
+        <p class="lg-tagline" data-i18n="glance_tagline">회로도부터 하네스 도면까지, 통합 E/E 엔지니어링 플랫폼</p>
+        <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead mb-6" data-i18n-html="glance_lead">VegaFencer의 각 모듈을 단순화한 도식 애니메이션으로 핵심 기능을 확인하세요.<br>실제 제품 화면은 <a href="resources#videos" class="glance-link"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="currentColor"/><path d="M8 6.5v7l5.5-3.5z" fill="#fff"/></svg><span>구동 영상</span></a>에서 볼 수 있습니다.</p>
+      </header>
+    </div>
+    <div class="glance-stage" id="stage">
+      <div class="glance-canvas">
+        <svg viewBox="40 60 820 360" role="img" aria-label="VegaFencer design flow animation">
+          <g id="scene"></g>
+          <g id="fx"></g>
+          <g id="cursor" class="h" transform="translate(470 400)">
+            <path d="M0 0 L0 17 L4.5 13 L7.5 20 L10.5 18.7 L7.6 12 L13 12 Z" fill="#fff" stroke="#1d2330" stroke-width="1.3" stroke-linejoin="round"/>
+          </g>
+        </svg>
+      </div>
+      <aside class="glance-panel" aria-live="polite">
+        <h4 id="pTitle">Properties</h4>
+        <div id="pBody"></div>
+      </aside>
+    </div>
+    <div class="glance-foot">
+      <div class="glance-foot-text">
+        <nav class="glance-steps" id="steps" aria-label="Steps"></nav>
+        <p class="glance-cap" id="cap"></p>
+      </div>
+      <div class="glance-actions">
+        <a href="product" class="glance-btn glance-btn-sub"><span data-i18n="glance_product">제품 살펴보기</span></a>
+        <a href="resources#videos" class="glance-btn"><span data-i18n="glance_video">구동 영상</span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.5"/></svg></a>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -215,18 +220,19 @@
      ============================================================ -->
 <section class="py-12 md:py-24" id="product">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-    <div class="text-center mb-16 reveal">
-      <p class="font-label text-xs font-bold tracking-[0.2em] uppercase text-primary-container mb-3" data-i18n="modules_label">CORE MODULES</p>
-      <h2 class="font-headline font-black text-2xl sm:text-3xl md:text-5xl tracking-tight text-on-surface mb-4" data-i18n="modules_title">하나의 플랫폼, 완전한 E/E 설계</h2>
-      <p class="font-body text-on-surface-variant text-lg max-w-2xl mx-auto" data-i18n="modules_desc">회로도의 전기적 의도부터 물리적 하네스 도면까지 — 다섯 개의 핵심 모듈이 끊김 없이 연결됩니다.</p>
-    </div>
+    <header class="lg-head modules-head reveal">
+      <p class="lg-kicker">PLATFORM</p>
+      <h2 class="lg-name" translate="no">Core Modules</h2>
+      <p class="lg-tagline" data-i18n="modules_title">하나의 플랫폼, 완전한 E/E 설계</p>
+      <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead" data-i18n="modules_desc">회로도의 전기적 의도부터 물리적 하네스 도면까지 — 다섯 개의 핵심 모듈이 끊김 없이 연결됩니다.</p>
+    </header>
 
     <div class="grid sm:grid-cols-2 gap-4 md:gap-6">
       <!-- Logic -->
       <a href="#logic" class="reveal reveal-delay-1 group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-primary-container/10">
         <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5" style="background:#E8F0FE">&#9889;</div>
         <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-primary-container transition-colors" data-i18n="mod_logic_title">Logic</h3>
-        <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n="mod_logic_desc">전기적 설계 의도를 정의하는 핵심 모듈. 디바이스 핀 연결부터 전기적 오류 검증까지, 모든 설계의 Source of Truth.</p>
+        <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n-html="mod_logic_desc">전기적 설계 의도를 정의하는 핵심 모듈.<br>디바이스 핀 연결부터 전기적 오류 검증까지.</p>
         <span class="inline-block px-3 py-1 rounded-full text-xs font-label font-semibold" style="background:#E8F0FE;color:#1A73E8" data-i18n="mod_logic_tag">Design intent</span>
       </a>
 
@@ -269,37 +275,21 @@
      ============================================================ -->
 <section class="py-12 md:py-24 bg-surface-container-low" id="story">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-    <div class="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
+    <div class="story-grid">
       <div class="reveal">
-        <p class="font-label text-xs font-bold tracking-[0.2em] uppercase text-primary-container mb-3" data-i18n="story_label">BRAND STORY</p>
-        <h2 class="font-headline font-black text-2xl sm:text-3xl md:text-4xl tracking-tight text-on-surface mb-5" data-i18n="story_title">북극성 Vega, 그리고 정확한 방향</h2>
-        <div class="font-body text-on-surface-variant text-base leading-relaxed space-y-4">
-          <p data-i18n="story_body1">VegaFencer는 밤하늘의 북극성(Vega)에서 이름을 따왔습니다. 항해자에게 북극성이 정확한 기준점이 되듯, 설계자에게 흔들리지 않는 기준과 방향을 제시합니다.</p>
-          <p data-i18n="story_body2">나침반이 가리키는 방향은 곧 설계 의도와 물리적 구현의 일치입니다. VegaFencer Editor는 벡터 방향과 엔티티 정점을 정밀하게 스냅하여, 논리적 설계 의도와 물리적 레이아웃이 어긋나지 않도록 보장합니다.</p>
-          <p data-i18n="story_body3">개념 설계부터 양산 구현까지 &mdash; VegaFencer는 당신의 설계가 올바른 길을 벗어나지 않도록 돕는 믿음직한 나침반입니다.</p>
+        <header class="lg-head">
+          <p class="lg-kicker" translate="no">ORIGIN</p>
+          <h2 class="lg-name" translate="no">Brand Story</h2>
+          <p class="lg-tagline" data-i18n="story_tagline">Vega; 별의 밝기에 대한 기준.</p>
+        </header>
+        <div class="story-body font-body text-on-surface-variant text-base leading-relaxed">
+          <p data-i18n-html="story_body1">VegaFencer는 거문고자리의 Vega(직녀성)에서 이름을 따왔습니다. <br class="story-br">천문학에서는 Vega의 밝기를 기준으로 삼아 다른 별들의 밝기를 재 왔습니다.</p>
+          <p data-i18n-html="story_body2">VegaFencer는 E/E 설계에서 그 기준점이 되고자 합니다. <br class="story-br">회로도의 전기적 의도부터 하네스 도면의 물리적 형상까지, <br class="story-br">모든 설계 데이터가 하나의 기준 아래에서 연결되고 검증됩니다.</p>
+          <p data-i18n-html="story_body3">흔들리지 않는 기준이 있을 때 방향도 분명해집니다. <br class="story-br">VegaFencer는 당신의 설계가 그 기준에서 벗어나지 않도록 돕는 나침반입니다.</p>
         </div>
       </div>
-      <div class="reveal reveal-delay-2 flex items-center justify-center">
-        <div class="logo-show" id="logoShow">
-          <div class="logo-stack">
-            <img src="assets/img/vegafencer-logo-install.png" width="256" height="246" loading="lazy" decoding="async" alt="VegaFencer Install 로고" class="on">
-            <img src="assets/img/vegafencer-logo-logic.png" width="256" height="246" loading="lazy" decoding="async" alt="VegaFencer Logic 로고" aria-hidden="true">
-            <img src="assets/img/vegafencer-logo-library.png" width="256" height="246" loading="lazy" decoding="async" alt="VegaFencer Library 로고" aria-hidden="true">
-            <img src="assets/img/vegafencer-logo-symbol.png" width="256" height="246" loading="lazy" decoding="async" alt="VegaFencer Symbol 로고" aria-hidden="true">
-          </div>
-          <div class="logo-name-box" translate="no" aria-hidden="true">
-            <span class="logo-name on">Install</span>
-            <span class="logo-name">Logic</span>
-            <span class="logo-name">Library</span>
-            <span class="logo-name">Symbol</span>
-          </div>
-          <div class="logo-dots">
-            <button type="button" class="logo-dot on" aria-label="Install" aria-current="true"></button>
-            <button type="button" class="logo-dot" aria-label="Logic"></button>
-            <button type="button" class="logo-dot" aria-label="Library"></button>
-            <button type="button" class="logo-dot" aria-label="Symbol"></button>
-          </div>
-        </div>
+      <div class="story-media reveal reveal-delay-2">
+        <div class="story-card bg-white rounded-2xl shadow-lg shadow-on-surface/5 overflow-hidden border border-outline-variant/15" id="storyAnim"></div>
       </div>
     </div>
   </div>
@@ -949,9 +939,11 @@
 <script src="assets/footer.js?v=cf45d74a"></script>
 </div><!-- /.engineering-after -->
 
-<script src="assets/i18n.js?v=0e7299f5"></script>
-<script src="assets/site.js?v=8653bb9d"></script>
+<script src="assets/i18n.js?v=522125b2"></script>
+<script src="assets/site.js?v=8ad3f2ee"></script>
 
-<script src="assets/engineering.js?v=c2d9a39e"></script>
+<script src="assets/engineering.js?v=22c23893"></script>
+<script src="assets/glance.js?v=1bad44a4"></script>
+<script src="assets/story.js?v=816dbeb6"></script>
 </body>
 </html>

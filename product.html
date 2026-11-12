@@ -19,8 +19,8 @@
 <!-- Inline SVG Favicon -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%231A73E8'/><stop offset='100%25' stop-color='%23006a61'/></linearGradient></defs><rect width='36' height='36' rx='8' fill='url(%23g)'/><text x='18' y='25' font-family='sans-serif' font-size='20' font-weight='800' fill='white' text-anchor='middle'>S</text></svg>">
 
-<link rel="stylesheet" href="assets/site.css?v=a125e852">
-<link rel="stylesheet" href="assets/engineering.css?v=7ea58661">
+<link rel="stylesheet" href="assets/site.css?v=d35875a1">
+<link rel="stylesheet" href="assets/engineering.css?v=6f6a7f8f">
 </head>
 <body class="bg-surface antialiased" data-page="product">
 
@@ -54,7 +54,7 @@
       <a href="#logic" class="reveal reveal-delay-1 group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-primary-container/10">
         <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5" style="background:#E8F0FE">&#9889;</div>
         <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-primary-container transition-colors" data-i18n="mod_logic_title">Logic</h3>
-        <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n="mod_logic_desc">전기적 설계 의도를 정의하는 핵심 모듈. 디바이스 핀 연결부터 전기적 오류 검증까지, 모든 설계의 Source of Truth.</p>
+        <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n-html="mod_logic_desc">전기적 설계 의도를 정의하는 핵심 모듈.<br>디바이스 핀 연결부터 전기적 오류 검증까지.</p>
         <span class="inline-block px-3 py-1 rounded-full text-xs font-label font-semibold" style="background:#E8F0FE;color:#1A73E8" data-i18n="mod_logic_tag">Design intent</span>
       </a>
 
@@ -93,40 +93,80 @@
 </section>
 
 <!-- ============================================================
+     USER INTERFACE (the screen layout every module shares)
+     ============================================================ -->
+<section class="py-12 md:py-24 bg-surface-container-low" id="interface">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+    <header class="reveal lg-head">
+      <p class="lg-kicker">OVERVIEW</p>
+      <h2 class="lg-name" translate="no">User Interface</h2>
+      <p class="lg-tagline" data-i18n="ui_title">세 가지의 모듈, 한 가지의 화면 구성</p>
+      <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead" data-i18n-html="ui_desc">VegaFencer의 Logic, Integrator, Harness 모듈은 E/E 엔지니어에게 최적화된 화면구성을 제공합니다.<br>화면에 마우스를 올려 각 영역을 직접 살펴보세요.</p>
+    </header>
+    <div class="reveal reveal-delay-1">
+      <figure class="lg-tour" id="logicTour">
+        <img src="assets/img/logic-editor-ui.jpg" width="1894" height="1020" loading="lazy" decoding="async" alt="VegaFencer Logic editor">
+        <span class="lg-area" data-area="1" style="left:0;top:6.6%;width:100%;height:10.4%"></span>
+        <span class="lg-area" data-area="2" style="left:0;top:17.6%;width:15.3%;height:37.1%"></span>
+        <span class="lg-area" data-area="3" style="left:0;top:55.2%;width:15.3%;height:42.5%"></span>
+        <span class="lg-area" data-area="4" style="left:15.6%;top:17.5%;width:67.8%;height:61.4%"></span>
+        <span class="lg-area" data-area="5" style="left:15.6%;top:79.6%;width:68.1%;height:18%"></span>
+        <span class="lg-area" data-area="6" style="left:83.7%;top:17.5%;width:16.3%;height:80%"></span>
+      </figure>
+      <ol class="lg-legend">
+        <li><button type="button" data-area="1"><span class="lg-dot">1</span><span><b data-i18n="lg_a1_t">리본 메뉴</b><span data-i18n="lg_a1_d">오브젝트 생성·편집·검사·설정 명령을 탭별로 모아 둡니다</span></span></button></li>
+        <li><button type="button" data-area="2"><span class="lg-dot">2</span><span><b data-i18n="lg_a2_t">프로젝트 / 심볼 트리</b><span data-i18n="lg_a2_d">다이어그램과 라이브러리 심볼을 관리합니다</span></span></button></li>
+        <li><button type="button" data-area="3"><span class="lg-dot">3</span><span><b data-i18n="lg_a3_t">오브젝트 / 공유 트리</b><span data-i18n="lg_a3_d">프로젝트에 쓰인 오브젝트를 종류별로 찾고, 여러 다이어그램에서 함께 쓰는 공유 오브젝트를 관리합니다</span></span></button></li>
+        <li><button type="button" data-area="4"><span class="lg-dot">4</span><span><b data-i18n="lg_a4_t">에디터</b><span data-i18n="lg_a4_d">다이어그램을 그리고 연결을 편집하는 작업 영역</span></span></button></li>
+        <li><button type="button" data-area="5"><span class="lg-dot">5</span><span><b data-i18n="lg_a5_t">메시지</b><span data-i18n="lg_a5_d">DRC 결과, 찾기 결과, AI 대화를 보여 줍니다</span></span></button></li>
+        <li><button type="button" data-area="6"><span class="lg-dot">6</span><span><b data-i18n="lg_a6_t">속성 창</b><span data-i18n="lg_a6_d">선택한 오브젝트의 파트 번호, 공급사, 하네스 등 속성을 편집합니다</span></span></button></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
      FEATURE: LOGIC
      ============================================================ -->
 <section class="py-12 md:py-24" id="logic">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+
+    <!-- Module header and checklist (left), the module's screen (right): same layout as Integrator and Harness -->
     <div class="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
       <div class="reveal">
-        <p class="font-label text-xs font-bold tracking-[0.2em] uppercase text-primary-container mb-3" data-i18n="feat_logic_label">VEGAFENCER LOGIC</p>
-        <h2 class="font-headline font-black text-2xl sm:text-3xl md:text-4xl tracking-tight text-on-surface mb-5" data-i18n="feat_logic_title">전기적 설계 의도의 Source of Truth</h2>
-        <p class="font-body text-on-surface-variant text-base leading-relaxed mb-6" data-i18n="feat_logic_desc">Logic의 역할은 시스템의 전기적 의도(설계 의도)를 명확하게 정의하는 데 있습니다.</p>
+        <header class="lg-head" id="logicHead">
+          <p class="lg-kicker">MODULE 01</p>
+          <h2 class="lg-name" translate="no">Logic</h2>
+          <p class="lg-tagline" data-i18n="lg_title">전기적 설계 의도의 Source of Truth</p>
+          <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead mb-6" data-i18n-html="lg_lead">Logic은 시스템의 구성 요소들이 서로 어떤 관계로 연결되어야 하는지를 정의합니다.<br>하네스 설계의 기준이 되는 전기적 의도를 한곳에서 관리합니다.</p>
+        </header>
         <ul class="space-y-3">
           <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
             <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="feat_logic_c1">전기적 연결 정의 — 신호가 어떤 디바이스 핀에서 어디로 전달되는지</span>
+            <span data-i18n="lg_r1_t">전기적 연결 정의</span>
           </li>
           <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
             <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="feat_logic_c2">기능 설계 표현 — 회로도를 통해 시스템 동작을 표현</span>
+            <span data-i18n="lg_r2_t">기능 설계 표현</span>
           </li>
           <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
             <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="feat_logic_c3">설계 규칙 및 전기적 제약 정의 — 전압, 전류, 신호 타입</span>
+            <span data-i18n="lg_r3_t">설계 규칙과 전기적 제약</span>
           </li>
           <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
             <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="feat_logic_c4">단일 기준 데이터 역할 — 하네스 설계의 신뢰 가능한 소스</span>
+            <span data-i18n="lg_r4_t">단일 기준 데이터</span>
           </li>
         </ul>
       </div>
       <div class="reveal reveal-delay-2">
+        <!-- engineering.js adds FIG. 01 under the first .rounded-2xl card in #logic -->
         <div class="bg-white rounded-2xl shadow-lg shadow-on-surface/5 overflow-hidden border border-outline-variant/15">
-          <img src="assets/img/logic-objects-and-features.jpg" alt="VegaFencer Logic - Objects and Features" loading="lazy" class="w-full block">
+          <img src="assets/img/logic-editor-ui.jpg" width="1894" height="1020" alt="VegaFencer Logic screen" loading="lazy" class="w-full block">
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -135,34 +175,40 @@
      ============================================================ -->
 <section class="py-12 md:py-24 bg-surface-container-low" id="integrator">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+
+    <!-- Module header and checklist (left), the module's screen (right): same layout as Logic -->
     <div class="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
-      <div class="reveal reveal-delay-2 order-2 lg:order-1">
-        <div class="bg-white rounded-2xl shadow-lg shadow-on-surface/5 overflow-hidden border border-outline-variant/15">
-          <img src="assets/img/integrator.jpg" alt="VegaFencer Integrator UI" loading="lazy" class="w-full block">
-        </div>
-      </div>
-      <div class="reveal order-1 lg:order-2">
-        <p class="font-label text-xs font-bold tracking-[0.2em] uppercase text-secondary mb-3" data-i18n="feat_int_label">VEGAFENCER INTEGRATOR</p>
-        <h2 class="font-headline font-black text-2xl sm:text-3xl md:text-4xl tracking-tight text-on-surface mb-5" data-i18n="feat_int_title">논리 설계와 3D 번들의 동기화</h2>
-        <p class="font-body text-on-surface-variant text-base leading-relaxed mb-6" data-i18n="feat_int_desc">회로도와 실제 3D 기하학적 번들 설계를 연결하여, 두 도메인 간의 데이터 일관성을 유지합니다.</p>
+      <div class="reveal">
+        <header class="lg-head" id="integratorHead">
+          <p class="lg-kicker">MODULE 02</p>
+          <h2 class="lg-name" translate="no">Integrator</h2>
+          <p class="lg-tagline" data-i18n="in_title">논리 설계와 3D 번들의 동기화</p>
+          <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead mb-6" data-i18n-html="in_lead">Integrator는 회로도의 논리적 연결을 실제 차량의 번들 경로와 연결합니다.<br>두 설계 사이의 데이터 일관성을 유지하고, 변경 사항을 서로 반영합니다.</p>
+        </header>
         <ul class="space-y-3">
           <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
             <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="feat_int_c1">논리 설계 데이터 통합 — 회로도, 넷 정의, 디바이스/핀 정보</span>
+            <span data-i18n="in_r1_t">논리 설계 데이터 통합</span>
           </li>
           <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
             <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="feat_int_c2">하네스 생성 기초 데이터 — 와이어 라우팅, 번들 구성, 스플라이스</span>
+            <span data-i18n="in_r2_t">와이어 라우팅과 번들 구성</span>
           </li>
           <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
             <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="feat_int_c3">설계 변경 &amp; 데이터 일관성 — 회로도와 하네스 간 검증</span>
+            <span data-i18n="in_r3_t">번들 직경과 길이 산출</span>
           </li>
           <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
             <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="feat_int_c4">Configuration-based 토폴로지 필터링</span>
+            <span data-i18n="in_r4_t">회로도와 하네스 간 일관성 검증</span>
           </li>
         </ul>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <!-- engineering.js adds FIG. 02 under the first .rounded-2xl card in #integrator -->
+        <div class="bg-white rounded-2xl shadow-lg shadow-on-surface/5 overflow-hidden border border-outline-variant/15">
+          <img src="assets/img/integrator-ui.jpg" width="1916" height="1022" alt="VegaFencer Integrator screen" loading="lazy" class="w-full block">
+        </div>
       </div>
     </div>
   </div>
@@ -173,33 +219,39 @@
      ============================================================ -->
 <section class="py-12 md:py-24" id="harness">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+
+    <!-- Module header and checklist (left), the module's screen (right): same layout as Logic -->
     <div class="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
       <div class="reveal">
-        <p class="font-label text-xs font-bold tracking-[0.2em] uppercase text-orange-600 mb-3" data-i18n="feat_harness_label">VEGAFENCER HARNESS DRAWING</p>
-        <h2 class="font-headline font-black text-2xl sm:text-3xl md:text-4xl tracking-tight text-on-surface mb-5" data-i18n="feat_harness_title">상세 하네스 도면 자동 생성</h2>
-        <p class="font-body text-on-surface-variant text-base leading-relaxed mb-6" data-i18n="feat_harness_desc">논리적 연결 정보, Integrator의 토폴로지, 하네스 설계 데이터를 기반으로 상세 도면을 생성하고 관리합니다.</p>
+        <header class="lg-head" id="harnessHead">
+          <p class="lg-kicker">MODULE 03</p>
+          <h2 class="lg-name" translate="no">Harness Drawing</h2>
+          <p class="lg-tagline" data-i18n="hd_title">상세 하네스 도면 자동 생성</p>
+          <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead mb-6" data-i18n-html="hd_lead">Harness Drawing은 Logic과 Integrator의 데이터로 상세 도면을 만듭니다.<br>플러그 심볼, 번들 길이, 와이어 리스트를 한 장의 도면에 정리합니다.</p>
+        </header>
         <ul class="space-y-3">
           <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
             <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="feat_harness_c1">하네스 도면 생성 및 시각화</span>
+            <span data-i18n="hd_r1_t">하네스 도면 생성과 시각화</span>
           </li>
           <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
             <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="feat_harness_c2">플러그 심볼, 번들 길이, 와이어 리스트 테이블</span>
+            <span data-i18n="hd_r2_t">플러그 심볼과 와이어 리스트 테이블</span>
           </li>
           <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
             <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="feat_harness_c3">번들 직경 계산 및 와이어 경로 추적</span>
+            <span data-i18n="hd_r3_t">번들 직경 계산과 와이어 경로 추적</span>
           </li>
           <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
             <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="feat_harness_c4">Variant/Option별 레이아웃 필터링</span>
+            <span data-i18n="hd_r4_t">Variant·Option별 레이아웃 필터링</span>
           </li>
         </ul>
       </div>
       <div class="reveal reveal-delay-2">
+        <!-- engineering.js adds FIG. 03 under the first .rounded-2xl card in #harness -->
         <div class="bg-white rounded-2xl shadow-lg shadow-on-surface/5 overflow-hidden border border-outline-variant/15">
-          <img src="assets/img/harness-drawing.jpg" alt="VegaFencer Harness Drawing UI" loading="lazy" class="w-full block">
+          <img src="assets/img/harness-ui.jpg" width="1908" height="1025" alt="VegaFencer Harness Drawing screen" loading="lazy" class="w-full block">
         </div>
       </div>
     </div>
@@ -649,8 +701,8 @@
 
 <script src="assets/footer.js?v=cf45d74a"></script>
 
-<script src="assets/i18n.js?v=0e7299f5"></script>
-<script src="assets/site.js?v=8653bb9d"></script>
-<script src="assets/engineering.js?v=c2d9a39e"></script>
+<script src="assets/i18n.js?v=522125b2"></script>
+<script src="assets/site.js?v=8ad3f2ee"></script>
+<script src="assets/engineering.js?v=22c23893"></script>
 </body>
 </html>
