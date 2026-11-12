@@ -10,10 +10,10 @@
 
   /* ---------- the Vega label, in the page's language ---------- */
   var TEXT = {
-    ko: { sub: '직녀성 · α Lyrae', line: '별 밝기의 기준이 된 별', aria: '항해사의 나침반이 가리키는 별 Vega가 VegaFencer 로고로 바뀌고, Install · Logic · Library · Symbol 네 로고로 펼쳐지는 애니메이션' },
-    en: { sub: 'α Lyrae', line: 'The reference star for brightness', aria: 'Animation: Vega, the star a navigator’s compass points to, becomes the VegaFencer logo and opens into the four logos Install, Logic, Library and Symbol' },
-    zh: { sub: '织女星 · α Lyrae', line: '星等亮度的基准星', aria: '动画：航海者罗盘所指的织女星（Vega）变成VegaFencer标志，并展开为Install、Logic、Library、Symbol四个标志' },
-    ja: { sub: 'ベガ（織女星）· α Lyrae', line: '明るさの基準となった星', aria: 'アニメーション：航海士のコンパスが指す星ベガがVegaFencerのロゴに変わり、Install・Logic・Library・Symbolの4つのロゴに広がります' }
+    ko: { sub: '직녀성 · α Lyrae', line: '별의 밝기에 대한 기준', aria: '항해사의 나침반이 가리키는 별 Vega가 VegaFencer 로고로 바뀌고, Install · Logic · Library · Symbol 네 로고로 펼쳐지는 애니메이션' },
+    en: { sub: 'α Lyrae', line: 'The reference for the brightness of stars', aria: 'Animation: Vega, the star a navigator’s compass points to, becomes the VegaFencer logo and opens into the four logos Install, Logic, Library and Symbol' },
+    zh: { sub: '织女星 · α Lyrae', line: '星星亮度的基准', aria: '动画：航海者罗盘所指的织女星（Vega）变成VegaFencer标志，并展开为Install、Logic、Library、Symbol四个标志' },
+    ja: { sub: 'ベガ（織女星）· α Lyrae', line: '星の明るさの基準', aria: 'アニメーション：航海士のコンパスが指す星ベガがVegaFencerのロゴに変わり、Install・Logic・Library・Symbolの4つのロゴに広がります' }
   };
 
   /* ---------- SVG ---------- */
@@ -88,6 +88,7 @@
   var dr = Array.prototype.slice.call(box.querySelectorAll('.vs-dr'));
 
   /* ---------- the label is drawn once into a bitmap so it moves with the photo without shimmering ---------- */
+  var LABEL = { vega: 36, sub: 21, line: 23 };          // font sizes in photo pixels (the photo is 1672 wide), so they scale with the card
   var LX = 380, LY = 92, LW = 900, LH = 150;   // where the bitmap sits in the photo (Vega is at 387, 210)
   function bakeLabel() {
     var lang = document.documentElement.lang, T = TEXT[lang] || TEXT.ko;
@@ -99,17 +100,18 @@
       g.shadowColor = 'rgba(0,0,0,.7)'; g.shadowBlur = 8; g.shadowOffsetY = 1;
       g.strokeStyle = 'rgba(207,224,255,.85)'; g.lineWidth = 2;
       g.beginPath(); g.moveTo(410, 188); g.lineTo(446, 150); g.lineTo(476, 150); g.stroke();
-      g.fillStyle = '#fff'; g.font = '700 54px ' + FH; g.fillText('Vega', 490, 166);
+      var base = 150 + LABEL.vega * 0.36;   // text centred on the end of the leader line
+      g.fillStyle = '#fff'; g.font = '700 ' + LABEL.vega + 'px ' + FH; g.fillText('Vega', 490, base);
       var vw = g.measureText('Vega').width;
-      g.fillStyle = '#b9c8e6'; g.font = '500 30px ' + FB; g.fillText(T.sub, 490 + vw + 16, 166);
-      g.fillStyle = '#dbe5f7'; g.font = '500 34px ' + FB; g.fillText(T.line, 491, 214);
+      g.fillStyle = '#b9c8e6'; g.font = '500 ' + LABEL.sub + 'px ' + FB; g.fillText(T.sub, 490 + vw + LABEL.sub * 0.5, base);
+      g.fillStyle = '#dbe5f7'; g.font = '500 ' + LABEL.line + 'px ' + FB; g.fillText(T.line, 491, base + LABEL.vega * 0.95);
       var img = $('label');
       img.setAttribute('x', LX); img.setAttribute('y', LY); img.setAttribute('width', LW); img.setAttribute('height', LH);
       img.setAttribute('href', c.toDataURL('image/png'));
     };
     svg.setAttribute('aria-label', T.aria);
     if (document.fonts && document.fonts.load) {
-      Promise.all(['700 54px Inter', '500 30px Manrope', '500 34px Manrope', '500 34px "Noto Sans KR"'].map(function (f) {
+      Promise.all(['700 ' + LABEL.vega + 'px Inter', '500 ' + LABEL.sub + 'px Manrope', '500 ' + LABEL.sub + 'px "Noto Sans KR"', '500 ' + LABEL.line + 'px Manrope', '500 ' + LABEL.line + 'px "Noto Sans KR"'].map(function (f) {
         return document.fonts.load(f, 'Vega ' + T.sub + T.line);
       })).then(draw, draw);
     } else draw();
