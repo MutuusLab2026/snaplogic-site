@@ -137,6 +137,15 @@ section[id] { scroll-margin-top: 100px; }
 .engineering-module-trace .trace-runner { stroke: #368aa4; stroke-dasharray: 8 100; stroke-dashoffset: 108; }
 #product a:hover .trace-runner,
 #product a:focus-visible .trace-runner { animation: engineering-module .9s linear infinite; }
+/* Shorter cards on wide screens (2026-11-12): less padding and spacing, same sizes and alignment.
+   The trace moves up with the icon so it stays level with it. */
+@media (min-width: 768px) {
+  #product > div > .grid > a { padding: 24px 28px; }
+  #product > div > .grid > a > div:first-child { margin-bottom: 14px; }
+  #product > div > .grid > a h3 { margin-bottom: 8px; }
+  #product > div > .grid > a p { margin-bottom: 12px; }
+  .engineering-module-trace { top: 36px; }
+}
 
 #workflow { background: var(--eng-ink) !important; }
 /* Workflow: one 10s handoff cycle. A packet carries data along the rail and each
