@@ -128,7 +128,10 @@ section[id] { scroll-margin-top: 100px; }
 /* Modules use connector symbols instead of decorative emoji. */
 #product { background: #fff; }
 #product > div > .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
-#product > div > .grid > a { position: relative; border-radius: 8px; background: #f3f7fa; box-shadow: none; transition: background .2s; }
+#product > div > .grid > a { position: relative; border-radius: 8px; background: #f3f7fa; box-shadow: none;
+  /* hover colour at once, the scroll fade-in (.reveal) with its stagger */
+  transition: background .2s, opacity .7s cubic-bezier(.16, 1, .3, 1), transform .7s cubic-bezier(.16, 1, .3, 1);
+  transition-delay: 0s, var(--reveal-delay, 0s), var(--reveal-delay, 0s); }
 #product > div > .grid > a:hover { transform: none; background: #eaf2f7; box-shadow: none; }
 #product > div > .grid > a:last-child { grid-column: span 2; }
 .engineering-module-symbol { border-radius: 5px !important; background: #e3edf4 !important; color: #39708f; }
@@ -158,6 +161,25 @@ section[id] { scroll-margin-top: 100px; }
 #workflow .workflow-motion-line::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, #4fb8cb, #7be4ee); transform-origin: left; opacity: .55; animation: wf-fill var(--wf-cycle) infinite; }
 #workflow .workflow-motion-line::after { content: ''; position: absolute; left: -10px; top: -9px; width: 100%; height: 20px; background: radial-gradient(circle at 10px 50%, #f0feff 0 3px, #7be4ee 4px, #60dced55 6.5px, transparent 10px) no-repeat; opacity: 0; animation: wf-packet var(--wf-cycle) infinite; }
 #workflow .glass-card { border-radius: 7px; background: #16364a66; }
+/* Header in the shared template (kicker / name / tagline / lead), coloured for the navy background. */
+#workflow .wf-head { max-width: none; margin-bottom: 64px; }
+#workflow .wf-head .lg-kicker { color: #7be4ee; }
+#workflow .wf-head .lg-name, #workflow .wf-head .lg-tagline { color: #fff; }
+#workflow .wf-head .lg-lead { margin: 12px 0 0; color: #a4bdcd; }
+#workflow .wf-head + .relative { margin-bottom: 64px; }
+#workflow .workflow-step > div:first-child { width: 44px; height: 44px; margin-bottom: 14px; }
+#workflow .workflow-step h3 { margin-bottom: 8px; }
+#workflow .workflow-step > p { line-height: 1.65; margin-bottom: 14px; }
+#workflow .glass-card { padding: 28px; }
+#workflow .wf-head ~ .grid { gap: 20px; }
+/* Wide screens: the four steps span the full content width with equal gaps between their numbers
+   (the first step's text starts at the header's left edge, the last ends at the right edge). engineering.js
+   places them and the connector line; each sentence break (.wf-br) applies only here. */
+@media (min-width: 1024px) {
+  #workflow .wf-head + .relative > .grid { display: flex; gap: 0; }
+  #workflow .workflow-step { flex: none; width: max-content; }
+}
+@media (max-width: 1023px) { #workflow .wf-br { display: none; } }
 #workflow .text-white\/40, #workflow .text-white\/50 { color: #a4bdcd; }
 #workflow .workflow-step > div:first-child { border-color: #537c95; color: #b6e6ef; background: #14374b; animation: wf-step var(--wf-cycle) var(--wf-delay) infinite backwards; }
 .wf-glyph { display: block; width: 88px; height: 54px; margin: 2px auto 14px; fill: none; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; overflow: visible; }
@@ -436,13 +458,34 @@ html.engineering-free-scroll { scroll-snap-type: none; }   /* set by engineering
   padding: calc(var(--fade) + var(--nav-h) + 16px) 0 16px;   /* 16px = minimum gap; any extra height is shared equally above and below */
   display: flex; flex-direction: column; justify-content: center;
   background:
-    linear-gradient(#081e30 0, #14324a 22%, #55728a 52%, #b3c5d3 80%, var(--eng-paper) 100%) top / 100% var(--fade) no-repeat,
-    var(--eng-paper);
+    linear-gradient(#081e30 0, #14324a 22%, #55728a 52%, #b3c5d3 80%, #fff 100%) top / 100% var(--fade) no-repeat,
+    #fff;
+}
+/* Home section colours below the hero: white and paper take turns (the navy workflow and CTA stay as they are). */
+#story, body[data-page="home"] #stats { background: var(--eng-paper); }
+body[data-page="home"] #ai { background: #fff; }
+/* Home, wide desktop: everything below the hero grows with the screen by the same factor as the hero and header
+   (--hero-s, 1x at 1440 x 790), so on a big monitor the sections keep the proportions designed at 1440 instead of
+   sitting small in the middle. zoom (not transform) so the page length grows with it. */
+@media (min-width: 1101px) {
+  body[data-page="home"] .engineering-after { zoom: var(--hero-s, 1); }
+  /* Other pages: the content and footer grow the same way. The space kept for the fixed header (and the stop
+     under it when jumping to a section) is divided back, so it still matches the real header. */
+  body:not([data-page="home"]) main, body:not([data-page="home"]) > footer { zoom: var(--hero-s, 1); }
+  body:not([data-page="home"]) .page-top { padding-top: calc(var(--page-nav-h) / var(--hero-s, 1)); }
+  body:not([data-page="home"]) section[id] { scroll-margin-top: calc(var(--page-nav-h) / var(--hero-s, 1)); }
+  /* Inside the zoom, screen heights and the real header height are divided back by the zoom, so the second
+     screen still fills exactly one screen below the header. */
+  body[data-page="home"] .engineering-glance {
+    --nav-h: calc(73px / var(--hero-s, 1));
+    min-height: calc(100vh / var(--hero-s, 1) + var(--fade));
+    min-height: calc(100svh / var(--hero-s, 1) + var(--fade));
+  }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-snap-type: none; } }
 
 /* ---- Wide desktop: the whole hero is one block that scales with the screen. ----
-   Designed at 1440 x 790 (a 13" MacBook Air in Chrome) = 1x. The script sets --hero-s (clamped to .8 - 1.25)
+   Designed at 1440 x 790 (a 13" MacBook Air in Chrome) = 1x. The script sets --hero-s (heroScale in engineering.js: 1x at 1440, 1.2x at 1920, 1.6x at 2560)
    from the window size; the block is laid out at (screen / scale) and then scaled by transform, so every
    size, gap and position inside keeps its proportion. Below 1101px the block is transparent (stacked layout). */
 .engineering-scale { display: contents; }

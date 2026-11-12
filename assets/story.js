@@ -54,11 +54,12 @@
         '<line x1="387" y1="210" x2="760" y2="747" stroke="#000" stroke-width="34" stroke-linecap="round"/><circle cx="387" cy="210" r="40" fill="#000"/></g></mask>' +
       '<g id="vs-logo">' + LOGO + WORDMARK() + '<path d="M61,2 L78,45 L120,62 L78,79 L61,122 L44,79 L2,62 L44,45 Z" fill="currentColor" stroke="#6b8da6" stroke-width="1.2" stroke-linejoin="round"/></g>' +
     '</defs>' +
+    '<rect x="-40" y="-40" width="1752" height="1020" fill="#0a1324"/>' +   // night-sky blue behind the photo, so the white line art shows once the photo fades
     '<rect id="vs-light" x="-40" y="-40" width="1752" height="1020" fill="#f4f6fb" opacity="0"/>' +
     '<g id="vs-scene">' +
       '<g id="vs-photo"><image href="assets/img/brand-story.webp" width="1672" height="940"/>' +
         '<rect id="vs-dim" width="1672" height="940" fill="#03060d" opacity="0" mask="url(#vs-spot)"/></g>' +
-      '<image id="vs-label" opacity="0"/>' +
+      '<path id="vs-label" d="M410 188L446 150L476 150" fill="none" stroke="rgba(207,224,255,.85)" stroke-width="2" opacity="0"/>' +
       '<g id="vs-cLine" fill="none" stroke="#e6eeff" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" opacity="0">' +
         '<circle class="vs-dr" cx="128" cy="133" r="113" pathLength="1"/>' +
         '<circle class="vs-dr" cx="128" cy="133" r="80" pathLength="1"/>' +
@@ -87,37 +88,29 @@
   var svg = $('st');
   var dr = Array.prototype.slice.call(box.querySelectorAll('.vs-dr'));
 
-  /* ---------- the label is drawn once into a bitmap so it moves with the photo without shimmering ---------- */
-  var LABEL = { vega: 36, sub: 21, line: 23 };          // font sizes in photo pixels (the photo is 1672 wide), so they scale with the card
-  var LX = 380, LY = 92, LW = 900, LH = 150;   // where the bitmap sits in the photo (Vega is at 387, 210)
-  function bakeLabel() {
-    var lang = document.documentElement.lang, T = TEXT[lang] || TEXT.ko;
-    var fonts = lang === 'ja' ? "'Hiragino Sans','Yu Gothic','Meiryo'," : lang === 'zh' ? "'PingFang SC','Microsoft YaHei'," : "";
-    var FH = "Inter,'Noto Sans KR'," + fonts + 'sans-serif', FB = "Manrope,'Noto Sans KR'," + fonts + 'sans-serif';
-    var draw = function () {
-      var K = 2, c = document.createElement('canvas'); c.width = LW * K; c.height = LH * K;
-      var g = c.getContext('2d'); g.scale(K, K); g.translate(-LX, -LY);
-      g.shadowColor = 'rgba(0,0,0,.7)'; g.shadowBlur = 8; g.shadowOffsetY = 1;
-      g.strokeStyle = 'rgba(207,224,255,.85)'; g.lineWidth = 2;
-      g.beginPath(); g.moveTo(410, 188); g.lineTo(446, 150); g.lineTo(476, 150); g.stroke();
-      var base = 150 + LABEL.vega * 0.36;   // text centred on the end of the leader line
-      g.fillStyle = '#fff'; g.font = '700 ' + LABEL.vega + 'px ' + FH; g.fillText('Vega', 490, base);
-      var vw = g.measureText('Vega').width;
-      g.fillStyle = '#b9c8e6'; g.font = '500 ' + LABEL.sub + 'px ' + FB; g.fillText(T.sub, 490 + vw + LABEL.sub * 0.5, base);
-      g.fillStyle = '#dbe5f7'; g.font = '500 ' + LABEL.line + 'px ' + FB; g.fillText(T.line, 491, base + LABEL.vega * 0.95);
-      var img = $('label');
-      img.setAttribute('x', LX); img.setAttribute('y', LY); img.setAttribute('width', LW); img.setAttribute('height', LH);
-      img.setAttribute('href', c.toDataURL('image/png'));
-    };
+  /* ---------- the Vega label ----------
+     The words are ordinary page text laid over the card, sized in card widths (cqw) so they scale with the card,
+     and they do not take part in the slow zoom. Drawn into the zooming picture they shimmered and looked soft on
+     standard-density monitors (27" QHD); still text stays sharp. Only the leader line zooms with the photo, and the
+     zoom is just 3%, so the text stays next to it. */
+  var label = document.createElement('div');
+  label.className = 'story-label';
+  label.setAttribute('aria-hidden', 'true');
+  label.style.opacity = '0';
+  box.appendChild(label);
+  function setLabel() {
+    var T = TEXT[document.documentElement.lang] || TEXT.ko;
+    label.innerHTML = '<span class="story-label-1"><b translate="no">Vega</b><span></span></span><span class="story-label-2"></span>';
+    label.querySelector('.story-label-1 span').textContent = T.sub;
+    label.querySelector('.story-label-2').textContent = T.line;
     svg.setAttribute('aria-label', T.aria);
-    if (document.fonts && document.fonts.load) {
-      Promise.all(['700 ' + LABEL.vega + 'px Inter', '500 ' + LABEL.sub + 'px Manrope', '500 ' + LABEL.sub + 'px "Noto Sans KR"', '500 ' + LABEL.line + 'px Manrope', '500 ' + LABEL.line + 'px "Noto Sans KR"'].map(function (f) {
-        return document.fonts.load(f, 'Vega ' + T.sub + T.line);
-      })).then(draw, draw);
-    } else draw();
   }
-  bakeLabel();
-  new MutationObserver(bakeLabel).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+  setLabel();
+  // 1/100 of the card width (offsetWidth is in CSS pixels, so this also holds when the page is zoomed).
+  var sizeLabel = function () { label.style.fontSize = (box.offsetWidth / 100) + 'px'; };
+  sizeLabel();
+  if ('ResizeObserver' in window) new ResizeObserver(sizeLabel).observe(box); else window.addEventListener('resize', sizeLabel);
+  new MutationObserver(setLabel).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
 
   /* ---------- framing: the card is 1.8 : 1, so the photo keeps its top and loses a little at the bottom ---------- */
   var RATIO = 1.8;
@@ -146,7 +139,7 @@
     var z = L(L(1, 1.03, P(t, 0, 3)), ZEND, pm);
     var F = [L(SC[0], LOGOC[0], pm), L(SC[1], LOGOC[1], pm)];
     set($('scene'), 'transform', 'translate(' + SC[0] + ' ' + SC[1] + ') scale(' + z + ') translate(' + (-F[0]) + ' ' + (-F[1]) + ')');
-    set($('label'), 'opacity', (P(t, 0.5, 1.1) * (1 - P(t, 2.6, 3.0))).toFixed(3));
+    var lo = (P(t, 0.5, 1.1) * (1 - P(t, 2.6, 3.0))).toFixed(3); set($('label'), 'opacity', lo); label.style.opacity = lo;
     set($('dim'), 'opacity', (0.85 * P(t, 2.4, 3.4)).toFixed(3));
     set($('photo'), 'opacity', (1 - P(t, 4.3, 5.3)).toFixed(3));
     var pose = { x: L(PH.x, C1.x, pm), y: L(PH.y, C1.y, pm), sx: L(PH.sx, C1.sx, pm), sy: L(PH.sy, C1.sy, pm), rot: L(PH.rot, 0, pm) };

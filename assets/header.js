@@ -11,6 +11,16 @@ window.pageUrl = function (name, hash) {
   var path = name === 'home' ? (local ? 'index.html' : './') : name + (local ? '.html' : '');
   return path + (hash || '');
 };
+/* Links written straight into the pages ("product#logic", also ones made later by scripts) get ".html" when the
+   site is opened from the disk, so they work there too. */
+if (location.protocol === 'file:') {
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (!a) return;
+    var m = a.getAttribute('href').match(/^(product|resources|pricing|contact)(#.*)?$/);
+    if (m) a.setAttribute('href', m[1] + '.html' + (m[2] || ''));
+  }, true);
+}
 (function () {
   var body = document.body;
   var page = body.getAttribute('data-page') || '';

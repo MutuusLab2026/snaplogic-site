@@ -19,12 +19,12 @@
 <!-- Inline SVG Favicon -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%231A73E8'/><stop offset='100%25' stop-color='%23006a61'/></linearGradient></defs><rect width='36' height='36' rx='8' fill='url(%23g)'/><text x='18' y='25' font-family='sans-serif' font-size='20' font-weight='800' fill='white' text-anchor='middle'>S</text></svg>">
 
-<link rel="stylesheet" href="assets/site.css?v=d35875a1">
-<link rel="stylesheet" href="assets/engineering.css?v=2adb4561">
+<link rel="stylesheet" href="assets/site.css?v=a75581e8">
+<link rel="stylesheet" href="assets/engineering.css?v=2dd0a8df">
 </head>
 <body class="bg-surface antialiased" data-page="home" data-skip="about">
 
-<script src="assets/header.js?v=c94261c9"></script>
+<script src="assets/header.js?v=7aff6cc2"></script>
 
 <!-- ============================================================
      HERO
@@ -165,7 +165,7 @@
       </div>
     </div>
     <div class="engineering-rail">
-      <div class="engineering-pipeline"><a href="#logic">Logic</a><svg viewBox="0 0 24 12" fill="none" aria-hidden="true"><path d="M0 6h22m-5-5 5 5-5 5"/></svg><a href="#integrator">Integrator</a><svg viewBox="0 0 24 12" fill="none" aria-hidden="true"><path d="M0 6h22m-5-5 5 5-5 5"/></svg><a href="#harness">Harness Drawing</a><svg viewBox="0 0 24 12" fill="none" aria-hidden="true"><path d="M0 6h22m-5-5 5 5-5 5"/></svg><a href="#variant">Verification</a></div>
+      <div class="engineering-pipeline"><a href="product#logic">Logic</a><svg viewBox="0 0 24 12" fill="none" aria-hidden="true"><path d="M0 6h22m-5-5 5 5-5 5"/></svg><a href="product#integrator">Integrator</a><svg viewBox="0 0 24 12" fill="none" aria-hidden="true"><path d="M0 6h22m-5-5 5 5-5 5"/></svg><a href="product#harness">Harness Drawing</a><svg viewBox="0 0 24 12" fill="none" aria-hidden="true"><path d="M0 6h22m-5-5 5 5-5 5"/></svg><a href="product#variant">Verification</a></div>
       <a href="#product" class="engineering-scroll"><span data-i18n="motion_scroll">플랫폼 살펴보기</span><svg viewBox="0 0 16 22" fill="none" aria-hidden="true"><path d="M8 1v18m-5-5 5 5 5-5" stroke="currentColor"/></svg></a>
     </div>
   </div>
@@ -179,7 +179,7 @@
      ============================================================ -->
 <section class="engineering-glance glance" id="glance" aria-labelledby="glanceTitle">
   <div class="glance-in">
-    <div class="glance-head">
+    <div class="glance-head reveal">
       <header class="lg-head">
         <p class="lg-kicker">OVERVIEW</p>
         <h2 class="lg-name" id="glanceTitle" translate="no">VegaFencer at a Glance</h2>
@@ -187,7 +187,7 @@
         <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead mb-6" data-i18n-html="glance_lead">VegaFencer의 각 모듈을 단순화한 도식 애니메이션으로 핵심 기능을 확인하세요.<br>실제 제품 화면은 <a href="resources#videos" class="glance-link"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="currentColor"/><path d="M8 6.5v7l5.5-3.5z" fill="#fff"/></svg><span>구동 영상</span></a>에서 볼 수 있습니다.</p>
       </header>
     </div>
-    <div class="glance-stage" id="stage">
+    <div class="glance-stage reveal reveal-delay-2" id="stage">
       <div class="glance-canvas">
         <svg viewBox="40 60 820 360" role="img" aria-label="VegaFencer design flow animation">
           <g id="scene"></g>
@@ -202,7 +202,7 @@
         <div id="pBody"></div>
       </aside>
     </div>
-    <div class="glance-foot">
+    <div class="glance-foot reveal-follow">
       <div class="glance-foot-text">
         <nav class="glance-steps" id="steps" aria-label="Steps"></nav>
         <p class="glance-cap" id="cap"></p>
@@ -216,64 +216,9 @@
 </section>
 
 <!-- ============================================================
-     CORE MODULES
-     ============================================================ -->
-<section class="py-12 md:py-24" id="product">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-    <header class="lg-head modules-head reveal">
-      <p class="lg-kicker">PLATFORM</p>
-      <h2 class="lg-name" translate="no">Core Modules</h2>
-      <p class="lg-tagline" data-i18n="modules_title">하나의 플랫폼, 완전한 E/E 설계</p>
-      <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead" data-i18n="modules_desc">회로도의 전기적 의도부터 물리적 하네스 도면까지 — 다섯 개의 핵심 모듈이 끊김 없이 연결됩니다.</p>
-    </header>
-
-    <div class="grid sm:grid-cols-2 gap-4 md:gap-6">
-      <!-- Logic -->
-      <a href="#logic" class="reveal reveal-delay-1 group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-primary-container/10">
-        <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5" style="background:#E8F0FE">&#9889;</div>
-        <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-primary-container transition-colors" data-i18n="mod_logic_title">Logic</h3>
-        <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n-html="mod_logic_desc">전기적 설계 의도를 정의하는 핵심 모듈.<br>디바이스 핀 연결부터 전기적 오류 검증까지.</p>
-        <span class="inline-block px-3 py-1 rounded-full text-xs font-label font-semibold" style="background:#E8F0FE;color:#1A73E8" data-i18n="mod_logic_tag">Design intent</span>
-      </a>
-
-      <!-- Integrator -->
-      <a href="#integrator" class="reveal reveal-delay-2 group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-secondary/10">
-        <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5" style="background:#CCFBF1">&#128279;</div>
-        <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-secondary transition-colors" data-i18n="mod_integrator_title">Integrator</h3>
-        <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n="mod_integrator_desc">회로도와 3D 번들 설계를 연결&middot;동기화. 와이어 라우팅, 번들 구성, 토폴로지 검증을 하나의 워크플로우로.</p>
-        <span class="inline-block px-3 py-1 rounded-full text-xs font-label font-semibold" style="background:#CCFBF1;color:#0D9488" data-i18n="mod_integrator_tag">Data sync</span>
-      </a>
-
-      <!-- Harness Drawing -->
-      <a href="#harness" class="reveal reveal-delay-3 group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-orange-500/10">
-        <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5" style="background:#FFF3E0">&#128208;</div>
-        <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-orange-600 transition-colors" data-i18n="mod_harness_title">Harness Drawing</h3>
-        <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n="mod_harness_desc">상세 하네스 도면 자동 생성. 플러그 심볼, 와이어 리스트, 번들 직경 계산까지 원스톱.</p>
-        <span class="inline-block px-3 py-1 rounded-full text-xs font-label font-semibold" style="background:#FFF3E0;color:#E8710A" data-i18n="mod_harness_tag">Documentation</span>
-      </a>
-
-      <!-- Variant / Config -->
-      <a href="#variant" class="reveal reveal-delay-4 group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-tertiary/10">
-        <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5" style="background:#EDE9FE">&#127899;&#65039;</div>
-        <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-tertiary transition-colors" data-i18n="mod_variant_title">Variant / Config</h3>
-        <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n="mod_variant_desc">Variant, Option, Configuration별 다이어그램 필터링. Worst-case 설계 내 특정 구성만 시각화.</p>
-        <span class="inline-block px-3 py-1 rounded-full text-xs font-label font-semibold" style="background:#EDE9FE;color:#7C3AED" data-i18n="mod_variant_tag">Flexibility</span>      </a>
-
-      <!-- Bridge -->
-      <a href="#bridge" class="reveal reveal-delay-5 group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-cyan-500/10">
-        <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5" style="background:#CFFAFE">&#128268;</div>
-        <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-cyan-700 transition-colors" data-i18n="mod_bridge_title">Bridge</h3>
-        <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n="mod_bridge_desc">CATIA V5 &amp; NX 3D CAD와의 양방향 상호운용성. 와이어 리스트·번들 길이 데이터를 실시간으로 교환합니다.</p>
-        <span class="inline-block px-3 py-1 rounded-full text-xs font-label font-semibold" style="background:#CFFAFE;color:#0E7490" data-i18n="mod_bridge_tag">Interop</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
      BRAND STORY
      ============================================================ -->
-<section class="py-12 md:py-24 bg-surface-container-low" id="story">
+<section class="py-12 md:py-24" id="story">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
     <div class="story-grid">
       <div class="reveal">
@@ -296,211 +241,56 @@
 </section>
 
 <!-- ============================================================
-     FEATURE: LOGIC
+     CORE MODULES
      ============================================================ -->
-<section class="py-12 md:py-24" id="logic">
+<section class="py-12 md:py-24" id="product">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-    <div class="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
-      <div class="reveal">
-        <p class="font-label text-xs font-bold tracking-[0.2em] uppercase text-primary-container mb-3" data-i18n="feat_logic_label">VEGAFENCER LOGIC</p>
-        <h2 class="font-headline font-black text-2xl sm:text-3xl md:text-4xl tracking-tight text-on-surface mb-5" data-i18n="feat_logic_title">전기적 설계 의도의 Source of Truth</h2>
-        <p class="font-body text-on-surface-variant text-base leading-relaxed mb-6" data-i18n="feat_logic_desc">Logic의 역할은 시스템의 전기적 의도(설계 의도)를 명확하게 정의하는 데 있습니다.</p>
-        <ul class="space-y-3">
-          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
-            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="feat_logic_c1">전기적 연결 정의 — 신호가 어떤 디바이스 핀에서 어디로 전달되는지</span>
-          </li>
-          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
-            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="feat_logic_c2">기능 설계 표현 — 회로도를 통해 시스템 동작을 표현</span>
-          </li>
-          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
-            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="feat_logic_c3">설계 규칙 및 전기적 제약 정의 — 전압, 전류, 신호 타입</span>
-          </li>
-          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
-            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="feat_logic_c4">단일 기준 데이터 역할 — 하네스 설계의 신뢰 가능한 소스</span>
-          </li>
-        </ul>
-      </div>
-      <div class="reveal reveal-delay-2">
-        <div class="bg-white rounded-2xl shadow-lg shadow-on-surface/5 overflow-hidden border border-outline-variant/15">
-          <img src="assets/img/logic-objects-and-features.jpg" alt="VegaFencer Logic - Objects and Features" loading="lazy" class="w-full block">
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    <header class="lg-head modules-head reveal">
+      <p class="lg-kicker">PLATFORM</p>
+      <h2 class="lg-name" translate="no">Core Modules</h2>
+      <p class="lg-tagline" data-i18n="modules_title">하나의 플랫폼, 완전한 E/E 설계</p>
+      <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead" data-i18n="modules_desc">회로도의 전기적 의도부터 물리적 하네스 도면까지 — 다섯 개의 핵심 모듈이 끊김 없이 연결됩니다.</p>
+    </header>
 
-<!-- ============================================================
-     FEATURE: INTEGRATOR
-     ============================================================ -->
-<section class="py-12 md:py-24 bg-surface-container-low" id="integrator">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-    <div class="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
-      <div class="reveal reveal-delay-2 order-2 lg:order-1">
-        <div class="bg-white rounded-2xl shadow-lg shadow-on-surface/5 overflow-hidden border border-outline-variant/15">
-          <img src="assets/img/integrator.jpg" alt="VegaFencer Integrator UI" loading="lazy" class="w-full block">
-        </div>
-      </div>
-      <div class="reveal order-1 lg:order-2">
-        <p class="font-label text-xs font-bold tracking-[0.2em] uppercase text-secondary mb-3" data-i18n="feat_int_label">VEGAFENCER INTEGRATOR</p>
-        <h2 class="font-headline font-black text-2xl sm:text-3xl md:text-4xl tracking-tight text-on-surface mb-5" data-i18n="feat_int_title">논리 설계와 3D 번들의 동기화</h2>
-        <p class="font-body text-on-surface-variant text-base leading-relaxed mb-6" data-i18n="feat_int_desc">회로도와 실제 3D 기하학적 번들 설계를 연결하여, 두 도메인 간의 데이터 일관성을 유지합니다.</p>
-        <ul class="space-y-3">
-          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
-            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="feat_int_c1">논리 설계 데이터 통합 — 회로도, 넷 정의, 디바이스/핀 정보</span>
-          </li>
-          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
-            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="feat_int_c2">하네스 생성 기초 데이터 — 와이어 라우팅, 번들 구성, 스플라이스</span>
-          </li>
-          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
-            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="feat_int_c3">설계 변경 &amp; 데이터 일관성 — 회로도와 하네스 간 검증</span>
-          </li>
-          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
-            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="feat_int_c4">Configuration-based 토폴로지 필터링</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
+    <div class="grid sm:grid-cols-2 gap-4 md:gap-6">
+      <!-- Logic -->
+      <a href="product#logic" class="reveal reveal-delay-1 group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-primary-container/10">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5" style="background:#E8F0FE">&#9889;</div>
+        <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-primary-container transition-colors" data-i18n="mod_logic_title">Logic</h3>
+        <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n-html="mod_logic_desc">전기적 설계 의도를 정의하는 핵심 모듈.<br>디바이스 핀 연결부터 전기적 오류 검증까지.</p>
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-label font-semibold" style="background:#E8F0FE;color:#1A73E8" data-i18n="mod_logic_tag">Design intent</span>
+      </a>
 
-<!-- ============================================================
-     FEATURE: HARNESS DRAWING
-     ============================================================ -->
-<section class="py-12 md:py-24" id="harness">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-    <div class="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
-      <div class="reveal">
-        <p class="font-label text-xs font-bold tracking-[0.2em] uppercase text-orange-600 mb-3" data-i18n="feat_harness_label">VEGAFENCER HARNESS DRAWING</p>
-        <h2 class="font-headline font-black text-2xl sm:text-3xl md:text-4xl tracking-tight text-on-surface mb-5" data-i18n="feat_harness_title">상세 하네스 도면 자동 생성</h2>
-        <p class="font-body text-on-surface-variant text-base leading-relaxed mb-6" data-i18n="feat_harness_desc">논리적 연결 정보, Integrator의 토폴로지, 하네스 설계 데이터를 기반으로 상세 도면을 생성하고 관리합니다.</p>
-        <ul class="space-y-3">
-          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
-            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="feat_harness_c1">하네스 도면 생성 및 시각화</span>
-          </li>
-          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
-            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="feat_harness_c2">플러그 심볼, 번들 길이, 와이어 리스트 테이블</span>
-          </li>
-          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
-            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="feat_harness_c3">번들 직경 계산 및 와이어 경로 추적</span>
-          </li>
-          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
-            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="feat_harness_c4">Variant/Option별 레이아웃 필터링</span>
-          </li>
-        </ul>
-      </div>
-      <div class="reveal reveal-delay-2">
-        <div class="bg-white rounded-2xl shadow-lg shadow-on-surface/5 overflow-hidden border border-outline-variant/15">
-          <img src="assets/img/harness-drawing.jpg" alt="VegaFencer Harness Drawing UI" loading="lazy" class="w-full block">
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+      <!-- Integrator -->
+      <a href="product#integrator" class="reveal reveal-delay-2 group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-secondary/10">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5" style="background:#CCFBF1">&#128279;</div>
+        <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-secondary transition-colors" data-i18n="mod_integrator_title">Integrator</h3>
+        <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n="mod_integrator_desc">회로도와 3D 번들 설계를 연결&middot;동기화. 와이어 라우팅, 번들 구성, 토폴로지 검증을 하나의 워크플로우로.</p>
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-label font-semibold" style="background:#CCFBF1;color:#0D9488" data-i18n="mod_integrator_tag">Data sync</span>
+      </a>
 
-<!-- ============================================================
-     FEATURE: VARIANT / DRC / BOM
-     ============================================================ -->
-<section class="py-12 md:py-24 bg-surface-container-low" id="variant">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-    <div class="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
-      <div class="reveal reveal-delay-2 order-2 lg:order-1 flex flex-col gap-4">
-        <div class="bg-white rounded-2xl shadow-lg shadow-on-surface/5 overflow-hidden border border-outline-variant/15">
-          <img src="assets/img/variant-config.jpg" alt="VegaFencer Variant Configuration" loading="lazy" class="w-full block">
-        </div>
-        <div class="bg-white rounded-2xl shadow-lg shadow-on-surface/5 overflow-hidden border border-outline-variant/15">
-          <img src="assets/img/drc-bom-report.jpg" alt="VegaFencer DRC/BOM Report" loading="lazy" class="w-full block">
-        </div>
-      </div>
-      <div class="reveal order-1 lg:order-2">
-        <p class="font-label text-xs font-bold tracking-[0.2em] uppercase text-tertiary mb-3" data-i18n="feat_variant_label">VARIANT / DRC / BOM</p>
-        <h2 class="font-headline font-black text-2xl sm:text-3xl md:text-4xl tracking-tight text-on-surface mb-5" data-i18n="feat_variant_title">구성 관리와 품질 검증</h2>
-        <p class="font-body text-on-surface-variant text-base leading-relaxed mb-6" data-i18n="feat_variant_desc">Variant, Option, Vehicle Configuration별 다이어그램 필터링과 24개 DRC 규칙으로 설계 품질을 보장합니다.</p>
-        <ul class="space-y-3">
-          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
-            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="feat_variant_c1">Harness Level별 Variant/Option 구성</span>
-          </li>
-          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
-            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="feat_variant_c2">Vehicle Configuration — 하네스 조합 관리</span>
-          </li>
-          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
-            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="feat_variant_c3">DRC — Connectivity(6), Consistency(13), Naming(5)</span>
-          </li>
-          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
-            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="feat_variant_c4">BOM Report — Wire list, Connector list</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
+      <!-- Harness Drawing -->
+      <a href="product#harness" class="reveal reveal-delay-3 group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-orange-500/10">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5" style="background:#FFF3E0">&#128208;</div>
+        <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-orange-600 transition-colors" data-i18n="mod_harness_title">Harness Drawing</h3>
+        <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n="mod_harness_desc">상세 하네스 도면 자동 생성. 플러그 심볼, 와이어 리스트, 번들 직경 계산까지 원스톱.</p>
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-label font-semibold" style="background:#FFF3E0;color:#E8710A" data-i18n="mod_harness_tag">Documentation</span>
+      </a>
 
-<!-- ============================================================
-     FEATURE: BRIDGE
-     ============================================================ -->
-<section class="py-12 md:py-24 bg-surface-container-low" id="bridge">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-    <div class="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
-      <div class="reveal">
-        <p class="font-label text-xs font-bold tracking-[0.2em] uppercase text-primary-container mb-3" data-i18n="feat_bridge_label">VEGAFENCER BRIDGE</p>
-        <h2 class="font-headline font-black text-2xl sm:text-3xl md:text-4xl tracking-tight text-on-surface mb-5" data-i18n="feat_bridge_title">3D CAD와의 양방향 상호운용성</h2>
-        <p class="font-body text-on-surface-variant text-base leading-relaxed mb-6" data-i18n="feat_bridge_desc">Dassault Syst&egrave;mes CATIA V5와 Siemens NX와의 상호운용성을 지원하여, 서로 다른 설계 환경 간에도 일관된 데이터 흐름을 유지합니다.</p>
-        <ul class="space-y-3">
-          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
-            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="feat_bridge_c1">와이어 리스트·번들 정보·번들 길이 데이터 양방향 교환</span>
-          </li>
-          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
-            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="feat_bridge_c2">설계 변경 사항의 정확한 반영으로 오류 최소화</span>
-          </li>
-          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
-            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="feat_bridge_c3">물리적 라우팅과 논리적 배선 정보의 연계 강화</span>
-          </li>
-          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
-            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="feat_bridge_c4">제조·조립 단계 오류 감소, 라이프사이클 데이터 일관성</span>
-          </li>
-        </ul>
-      </div>
-      <div class="reveal reveal-delay-2">
-        <div class="bg-white rounded-2xl shadow-lg shadow-on-surface/5 overflow-hidden border border-outline-variant/15 p-6 md:p-8">
-          <div class="flex items-center justify-center gap-3 md:gap-4">
-            <div class="flex-1 rounded-xl border border-outline-variant/20 p-5 text-center">
-              <p class="font-label font-bold text-on-surface-variant text-xs mb-1">CATIA V5</p>
-              <p class="font-label text-[11px] text-on-surface-variant/60 mb-2">Dassault Syst&egrave;mes</p>
-              <span class="material-symbols-outlined text-primary-container" style="font-size:28px">view_in_ar</span>
-            </div>
-            <div class="flex flex-col items-center gap-1 text-secondary">
-              <span class="material-symbols-outlined" style="font-size:28px">swap_horiz</span>
-            </div>
-            <div class="flex-1 rounded-xl border border-outline-variant/20 p-5 text-center">
-              <p class="font-label font-bold text-on-surface-variant text-xs mb-1">Siemens NX</p>
-              <p class="font-label text-[11px] text-on-surface-variant/60 mb-2">Siemens</p>
-              <span class="material-symbols-outlined text-primary-container" style="font-size:28px">view_in_ar</span>
-            </div>
-          </div>
-          <div class="mt-4 text-center">
-            <span class="inline-block px-3 py-1 rounded-full text-[11px] font-label font-semibold" style="background:#CFFAFE;color:#0E7490">Wire List &middot; Bundle &middot; Length</span>
-          </div>
-        </div>
-      </div>
+      <!-- Variant / Config -->
+      <a href="product#variant" class="reveal reveal-delay-4 group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-tertiary/10">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5" style="background:#EDE9FE">&#127899;&#65039;</div>
+        <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-tertiary transition-colors" data-i18n="mod_variant_title">Variant / Config</h3>
+        <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n="mod_variant_desc">Variant, Option, Configuration별 다이어그램 필터링. Worst-case 설계 내 특정 구성만 시각화.</p>
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-label font-semibold" style="background:#EDE9FE;color:#7C3AED" data-i18n="mod_variant_tag">Flexibility</span>      </a>
+
+      <!-- Bridge -->
+      <a href="product#bridge" class="reveal reveal-delay-5 group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-cyan-500/10">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5" style="background:#CFFAFE">&#128268;</div>
+        <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-cyan-700 transition-colors" data-i18n="mod_bridge_title">Bridge</h3>
+        <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n="mod_bridge_desc">CATIA V5 &amp; NX 3D CAD와의 양방향 상호운용성. 와이어 리스트·번들 길이 데이터를 실시간으로 교환합니다.</p>
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-label font-semibold" style="background:#CFFAFE;color:#0E7490" data-i18n="mod_bridge_tag">Interop</span>
+      </a>
     </div>
   </div>
 </section>
@@ -513,11 +303,12 @@
   <div class="absolute inset-0 dot-grid"></div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
-    <div class="text-center mb-16 reveal">
-      <p class="font-label text-xs font-bold tracking-[0.2em] uppercase text-secondary-container mb-3" data-i18n="wf_label">DESIGN WORKFLOW</p>
-      <h2 class="font-headline font-black text-2xl sm:text-3xl md:text-5xl tracking-tight text-white mb-4" data-i18n="wf_title">설계에서 양산까지, 하나의 흐름</h2>
-      <p class="font-body text-white/50 text-lg max-w-2xl mx-auto" data-i18n="wf_desc">각 단계의 데이터가 자동으로 다음 단계에 전달되어, 수작업 변환 없이 일관된 설계를 보장합니다.</p>
-    </div>
+    <header class="lg-head wf-head reveal">
+      <p class="lg-kicker" translate="no">PROCESS</p>
+      <h2 class="lg-name" translate="no">Design Workflow</h2>
+      <p class="lg-tagline" data-i18n="wf_title">설계에서 양산까지, 하나의 흐름.</p>
+      <p class="font-body text-base leading-relaxed lg-lead" data-i18n="wf_desc">각 단계의 데이터가 자동으로 다음 단계에 전달되어, 수작업 변환 없이 일관된 설계를 보장합니다.</p>
+    </header>
 
     <!-- Steps Row -->
     <div class="relative mb-20">
@@ -530,14 +321,14 @@
           <div class="w-12 h-12 rounded-full border-2 flex items-center justify-center mx-auto mb-4 text-sm font-label font-bold relative z-10" style="border-color:rgba(26,115,232,0.5);background:rgba(26,115,232,0.12);color:#1A73E8">01</div>
           <span class="material-symbols-outlined text-white/30 mb-3 block" style="font-size:32px">schema</span>
           <h3 class="font-headline font-bold text-white text-lg mb-2" data-i18n="wf_step1_title">회로 설계</h3>
-          <p class="font-body text-white/40 text-sm" data-i18n="wf_step1_desc">Logic에서 전기적 연결 의도를 정의하고 기능 구조를 설계합니다.</p>
+          <p class="font-body text-white/40 text-sm" data-i18n-html="wf_step1_desc">Logic에서 전기적 설계 의도를 <br class="wf-br">정의하고 기능 구조를 설계합니다.</p>
         </div>
         <!-- Step 02 -->
         <div class="workflow-step reveal reveal-delay-2 text-center relative">
           <div class="w-12 h-12 rounded-full border-2 flex items-center justify-center mx-auto mb-4 text-sm font-label font-bold relative z-10" style="border-color:rgba(0,106,97,0.5);background:rgba(0,106,97,0.12);color:#006a61">02</div>
           <span class="material-symbols-outlined text-white/30 mb-3 block" style="font-size:32px">hub</span>
           <h3 class="font-headline font-bold text-white text-lg mb-2" data-i18n="wf_step2_title">토폴로지 통합</h3>
-          <p class="font-body text-white/40 text-sm" data-i18n="wf_step2_desc">Integrator가 논리 설계를 차량 토폴로지에 매핑합니다.</p>
+          <p class="font-body text-white/40 text-sm" data-i18n-html="wf_step2_desc">Integrator가 논리 설계를 <br class="wf-br">차량 토폴로지에 매핑합니다.</p>
         </div>
         <!-- Step 03 -->
         <div class="workflow-step reveal reveal-delay-3 text-center relative">
@@ -551,7 +342,7 @@
           <div class="w-12 h-12 rounded-full border-2 flex items-center justify-center mx-auto mb-4 text-sm font-label font-bold relative z-10" style="border-color:rgba(115,45,228,0.5);background:rgba(115,45,228,0.12);color:#732de4">04</div>
           <span class="material-symbols-outlined text-white/30 mb-3 block" style="font-size:32px">fact_check</span>
           <h3 class="font-headline font-bold text-white text-lg mb-2" data-i18n="wf_step4_title">검증 &amp; 출력</h3>
-          <p class="font-body text-white/40 text-sm" data-i18n="wf_step4_desc">DRC 24개 규칙 검증 후 BOM 리포트를 출력합니다.</p>
+          <p class="font-body text-white/40 text-sm" data-i18n-html="wf_step4_desc">DRC 24개 규칙 검증 후 <br class="wf-br">BOM 리포트를 출력합니다.</p>
         </div>
       </div>
     </div>
@@ -710,7 +501,7 @@
 <!-- ============================================================
      STATS
      ============================================================ -->
-<section class="py-12 md:py-24">
+<section class="py-12 md:py-24" id="stats">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 text-center">
     <div class="reveal mb-8 md:mb-16">
       <p class="font-label text-xs font-bold tracking-[0.2em] uppercase text-primary-container mb-3" data-i18n="stats_label">IMPACT</p>
@@ -732,171 +523,6 @@
       <div class="reveal reveal-delay-4 ghost-border rounded-2xl p-4 sm:p-6 md:p-8 bg-white hover:shadow-lg transition-shadow">
         <div class="font-headline font-black text-3xl sm:text-4xl md:text-6xl text-primary-container mb-2 md:mb-3" data-i18n="stat4_value" data-count-to="0" data-count-text="Zero">Zero</div>
         <div class="font-body text-on-surface-variant text-sm" data-i18n="stat4">수동 데이터 변환</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     GALLERY
-     ============================================================ -->
-<section class="py-12 md:py-24 bg-surface-container-low" id="gallery">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-    <div class="text-center mb-16 reveal">
-      <p class="font-label text-xs font-bold tracking-[0.2em] uppercase text-primary-container mb-3" data-i18n="gallery_label">PRODUCT GALLERY</p>
-      <h2 class="font-headline font-black text-2xl sm:text-3xl md:text-5xl tracking-tight text-on-surface mb-4" data-i18n="gallery_title">VegaFencer 제품 화면</h2>
-      <p class="font-body text-on-surface-variant text-lg" data-i18n="gallery_desc">실제 제품의 주요 화면을 살펴보세요. 클릭하면 확대됩니다.</p>
-    </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6" id="galleryGrid">
-      <!-- Gallery Item 0 -->
-      <div class="reveal group cursor-pointer rounded-xl overflow-hidden bg-white shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-300 border border-outline-variant/10" tabindex="0" role="button" data-gallery-index="0" aria-label="Logic Editor — 회로 설계 뷰 — 클릭하여 확대">
-        <div class="overflow-hidden">
-          <img src="assets/img/logic-editor.jpg" alt="Logic Editor — 회로 설계 뷰" loading="lazy" class="w-full block group-hover:scale-105 transition-transform duration-500">
-        </div>
-        <div class="px-4 py-3 font-body text-sm text-on-surface-variant" data-i18n="gallery_cap0">Logic Editor — 회로 설계 뷰</div>
-      </div>
-      <!-- Gallery Item 1 -->
-      <div class="reveal group cursor-pointer rounded-xl overflow-hidden bg-white shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-300 border border-outline-variant/10" tabindex="0" role="button" data-gallery-index="1" aria-label="Integrator — 토폴로지 & 라우팅 — 클릭하여 확대">
-        <div class="overflow-hidden">
-          <img src="assets/img/integrator.jpg" alt="Integrator — 토폴로지 & 라우팅" loading="lazy" class="w-full block group-hover:scale-105 transition-transform duration-500">
-        </div>
-        <div class="px-4 py-3 font-body text-sm text-on-surface-variant" data-i18n="gallery_cap1">Integrator — 토폴로지 &amp; 라우팅</div>
-      </div>
-      <!-- Gallery Item 2 -->
-      <div class="reveal group cursor-pointer rounded-xl overflow-hidden bg-white shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-300 border border-outline-variant/10" tabindex="0" role="button" data-gallery-index="2" aria-label="Variant / Option / Configuration — 클릭하여 확대">
-        <div class="overflow-hidden">
-          <img src="assets/img/variant-config.jpg" alt="Variant / Option / Configuration" loading="lazy" class="w-full block group-hover:scale-105 transition-transform duration-500">
-        </div>
-        <div class="px-4 py-3 font-body text-sm text-on-surface-variant" data-i18n="gallery_cap2">Variant / Option / Configuration</div>
-      </div>
-      <!-- Gallery Item 3 -->
-      <div class="reveal group cursor-pointer rounded-xl overflow-hidden bg-white shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-300 border border-outline-variant/10" tabindex="0" role="button" data-gallery-index="3" aria-label="DRC / BOM Report — 클릭하여 확대">
-        <div class="overflow-hidden">
-          <img src="assets/img/drc-bom-report.jpg" alt="DRC / BOM Report" loading="lazy" class="w-full block group-hover:scale-105 transition-transform duration-500">
-        </div>
-        <div class="px-4 py-3 font-body text-sm text-on-surface-variant" data-i18n="gallery_cap3">DRC / BOM Report</div>
-      </div>
-      <!-- Gallery Item 4 -->
-      <div class="reveal group cursor-pointer rounded-xl overflow-hidden bg-white shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-300 border border-outline-variant/10" tabindex="0" role="button" data-gallery-index="4" aria-label="Harness Drawing — 하네스 도면 — 클릭하여 확대">
-        <div class="overflow-hidden">
-          <img src="assets/img/harness-drawing.jpg" alt="Harness Drawing — 하네스 도면" loading="lazy" class="w-full block group-hover:scale-105 transition-transform duration-500">
-        </div>
-        <div class="px-4 py-3 font-body text-sm text-on-surface-variant" data-i18n="gallery_cap4">Harness Drawing — 하네스 도면</div>
-      </div>
-      <!-- Gallery Item 5 -->
-      <div class="reveal group cursor-pointer rounded-xl overflow-hidden bg-white shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-300 border border-outline-variant/10" tabindex="0" role="button" data-gallery-index="5" aria-label="AI Assistant — MCP 기반 — 클릭하여 확대">
-        <div class="overflow-hidden">
-          <img src="assets/img/ai-assistant.jpg" alt="AI Assistant — MCP 기반" loading="lazy" class="w-full block group-hover:scale-105 transition-transform duration-500">
-        </div>
-        <div class="px-4 py-3 font-body text-sm text-on-surface-variant" data-i18n="gallery_cap5">AI Assistant — MCP 기반</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     INTEGRATIONS
-     ============================================================ -->
-<section class="py-12 md:py-24 bg-surface-container-low" id="integrations">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-    <div class="text-center mb-16 reveal">
-      <p class="font-label text-xs font-bold tracking-[0.2em] uppercase text-primary-container mb-3" data-i18n="int_label">ECOSYSTEM</p>
-      <h2 class="font-headline font-black text-2xl sm:text-3xl md:text-5xl tracking-tight text-on-surface mb-4" data-i18n="int_title">기존 도구와 완벽하게 연결</h2>
-      <p class="font-body text-on-surface-variant text-lg max-w-2xl mx-auto" data-i18n="int_desc">Git 버전 관리부터 CAD 브릿지까지 — 팀의 기존 워크플로우를 유지합니다.</p>
-    </div>
-
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4" id="intGrid">
-      <!-- Git -->
-      <div class="reveal reveal-delay-1 bg-white rounded-2xl p-6 text-center border border-outline-variant/15 hover:shadow-lg hover:-translate-y-1 transition-all">
-        <span class="material-symbols-outlined text-on-surface-variant mb-3 block" style="font-size:32px">shortcut</span>
-        <h3 class="font-headline font-bold text-on-surface text-sm mb-1">Git</h3>
-        <p class="font-body text-on-surface-variant text-xs mb-3" data-i18n="int_git_desc">버전 관리 &amp; 협업</p>
-        <span class="inline-block px-2.5 py-1 rounded-full text-[10px] font-label font-bold bg-secondary-container/30 text-secondary" data-i18n="int_available">Available</span>
-      </div>
-      <!-- DXF/DWG -->
-      <div class="reveal reveal-delay-2 bg-white rounded-2xl p-6 text-center border border-outline-variant/15 hover:shadow-lg hover:-translate-y-1 transition-all">
-        <span class="material-symbols-outlined text-on-surface-variant mb-3 block" style="font-size:32px">square</span>
-        <h3 class="font-headline font-bold text-on-surface text-sm mb-1">DXF / DWG</h3>
-        <p class="font-body text-on-surface-variant text-xs mb-3" data-i18n="int_dxf_desc">CAD 포맷 임포트</p>
-        <span class="inline-block px-2.5 py-1 rounded-full text-[10px] font-label font-bold bg-secondary-container/30 text-secondary" data-i18n="int_available">Available</span>
-      </div>
-      <!-- AI/MCP -->
-      <div class="reveal reveal-delay-3 bg-white rounded-2xl p-6 text-center border border-outline-variant/15 hover:shadow-lg hover:-translate-y-1 transition-all">
-        <span class="material-symbols-outlined text-on-surface-variant mb-3 block" style="font-size:32px">auto_awesome</span>
-        <h3 class="font-headline font-bold text-on-surface text-sm mb-1">AI / MCP</h3>
-        <p class="font-body text-on-surface-variant text-xs mb-3" data-i18n="int_ai_desc">LLM 연동 프로토콜</p>
-        <span class="inline-block px-2.5 py-1 rounded-full text-[10px] font-label font-bold bg-secondary-container/30 text-secondary" data-i18n="int_available">Available</span>
-      </div>
-      <!-- Jira -->
-      <div class="reveal reveal-delay-4 bg-white rounded-2xl p-6 text-center border border-outline-variant/15 hover:shadow-lg hover:-translate-y-1 transition-all">
-        <span class="material-symbols-outlined text-on-surface-variant mb-3 block" style="font-size:32px">grid_view</span>
-        <h3 class="font-headline font-bold text-on-surface text-sm mb-1">Jira</h3>
-        <p class="font-body text-on-surface-variant text-xs mb-3" data-i18n="int_jira_desc">프로젝트 관리</p>
-        <span class="inline-block px-2.5 py-1 rounded-full text-[10px] font-label font-bold bg-error-container/40 text-error" data-i18n="int_coming">Coming soon</span>
-      </div>
-      <!-- Creo/SOLIDWORKS -->
-      <div class="reveal reveal-delay-4 bg-white rounded-2xl p-6 text-center border border-outline-variant/15 hover:shadow-lg hover:-translate-y-1 transition-all col-span-2 md:col-span-1">
-        <span class="material-symbols-outlined text-on-surface-variant mb-3 block" style="font-size:32px">hexagon</span>
-        <h3 class="font-headline font-bold text-on-surface text-sm mb-1">Creo / SOLIDWORKS</h3>
-        <p class="font-body text-on-surface-variant text-xs mb-3" data-i18n="int_cad_desc">3D CAD 브릿지</p>
-        <span class="inline-block px-2.5 py-1 rounded-full text-[10px] font-label font-bold bg-error-container/40 text-error" data-i18n="int_coming">Coming soon</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     ENTERPRISE READY
-     ============================================================ -->
-<section class="py-12 md:py-24" id="enterprise">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-    <div class="text-center mb-16 reveal">
-      <p class="font-label text-xs font-bold tracking-[0.2em] uppercase text-primary-container mb-3" data-i18n="ent_label">ENTERPRISE READY</p>
-      <h2 class="font-headline font-black text-2xl sm:text-3xl md:text-5xl tracking-tight text-on-surface mb-4" data-i18n="ent_title">팀 전체가 함께 설계하는 환경</h2>
-      <p class="font-body text-on-surface-variant text-lg max-w-2xl mx-auto" data-i18n="ent_desc">Server/Client 멀티유저 아키텍처 위에서 실시간 협업, 표준 라이브러리 공유, 기존 데이터 마이그레이션까지 지원합니다.</p>
-    </div>
-
-    <div class="grid lg:grid-cols-2 gap-4 md:gap-6">
-      <div class="reveal bg-white rounded-2xl p-6 md:p-8 ghost-border">
-        <div class="flex items-center gap-3 mb-5">
-          <span class="w-10 h-10 rounded-xl flex items-center justify-center text-xl" style="background:#E8F0FE">&#128101;</span>
-          <h3 class="font-headline font-bold text-lg text-on-surface" data-i18n="ent_sub_collab">Server / Client 멀티유저 협업</h3>
-        </div>
-        <ul class="space-y-3">
-          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
-            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="ent_c1">역할 &amp; 설정 &mdash; Project 단위의 권한 부여 및 강제</span>
-          </li>
-          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
-            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="ent_c2">실시간 Diagram lock/unlock, Offpage Wire, 연계 작업 시간 공유</span>
-          </li>
-          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
-            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="ent_c3">Shared Connector의 Pin Level Lock &mdash; 중복 사용 원천 방지</span>
-          </li>
-          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
-            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="ent_c4">Enterprise급 PostgreSQL + ASP.NET Core (Kestrel) &mdash; Windows/Linux, Docker 배포</span>
-          </li>
-        </ul>
-      </div>
-
-      <div class="grid gap-4 md:gap-6">
-        <div class="reveal reveal-delay-1 bg-white rounded-2xl p-6 md:p-8 ghost-border">
-          <div class="flex items-center gap-3 mb-4">
-            <span class="w-10 h-10 rounded-xl flex items-center justify-center text-xl" style="background:#CCFBF1">&#128221;</span>
-            <h3 class="font-headline font-bold text-lg text-on-surface" data-i18n="ent_sub_library">Library Symbol Editor</h3>
-          </div>
-          <p class="font-body text-on-surface-variant text-[15px] leading-relaxed" data-i18n="ent_sub_library_desc">표준화된 Library를 사용자별로 커스터마이즈하고, 필드별 속성을 지정하여 어드밴스드 모듈까지 지원합니다.</p>
-        </div>
-        <div class="reveal reveal-delay-2 bg-white rounded-2xl p-6 md:p-8 ghost-border">
-          <div class="flex items-center gap-3 mb-4">
-            <span class="w-10 h-10 rounded-xl flex items-center justify-center text-xl" style="background:#FFF3E0">&#128190;</span>
-            <h3 class="font-headline font-bold text-lg text-on-surface" data-i18n="ent_sub_migration">Data Migration</h3>
-          </div>
-          <p class="font-body text-on-surface-variant text-[15px] leading-relaxed" data-i18n="ent_sub_migration_desc">기존 설계 데이터를 그대로 가져옵니다. Excel/CSV, Harness Code, DB 등 다양한 마이그레이션을 지원합니다.</p>
-        </div>
       </div>
     </div>
   </div>
@@ -939,11 +565,11 @@
 <script src="assets/footer.js?v=cf45d74a"></script>
 </div><!-- /.engineering-after -->
 
-<script src="assets/i18n.js?v=522125b2"></script>
-<script src="assets/site.js?v=8ad3f2ee"></script>
+<script src="assets/i18n.js?v=996e842f"></script>
+<script src="assets/site.js?v=e8dbf94b"></script>
 
-<script src="assets/engineering.js?v=22c23893"></script>
+<script src="assets/engineering.js?v=69655b73"></script>
 <script src="assets/glance.js?v=1bad44a4"></script>
-<script src="assets/story.js?v=fde1287f"></script>
+<script src="assets/story.js?v=9df819bd"></script>
 </body>
 </html>

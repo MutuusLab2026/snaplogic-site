@@ -101,7 +101,7 @@ const Controller = {
     // Jump (no smooth animation: the page is still growing, which would end a slow trip short), then re-check twice.
     if (target) addEventListener('load', () => {
       const go = () => {
-        const want = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
+        const want = (parseFloat(getComputedStyle(target).scrollMarginTop) || 0) * (target.currentCSSZoom || 1);   // the home page zooms on wide screens
         if (Math.abs(target.getBoundingClientRect().top - want) > 2) target.scrollIntoView({ behavior: 'instant' });
       };
       [50, 400, 1200].forEach((ms) => setTimeout(go, ms));
@@ -117,7 +117,7 @@ const Controller = {
       if (!el) return;
       let tries = 0;
       const settle = () => {
-        const want = parseFloat(getComputedStyle(el).scrollMarginTop) || 0;
+        const want = (parseFloat(getComputedStyle(el).scrollMarginTop) || 0) * (el.currentCSSZoom || 1);
         const atEnd = window.innerHeight + scrollY >= document.documentElement.scrollHeight - 2;
         if (++tries > 3 || atEnd || Math.abs(el.getBoundingClientRect().top - want) <= 2) return;
         el.scrollIntoView({ behavior: 'smooth' });
@@ -151,7 +151,9 @@ const Controller = {
           entry.target.classList.add('visible');
         }
       });
-    }, { threshold: 0.1 });
+    // Starts once the element is a little way up the screen (not while only its top edge peeks in at the
+    // bottom), so the fade-in happens where the reader is looking.
+    }, { threshold: 0.1, rootMargin: '0px 0px -12% 0px' });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   },
 

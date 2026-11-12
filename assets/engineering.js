@@ -107,6 +107,14 @@
     '<circle class="bp bp-out" style="animation-delay:-.6s" cx="272" cy="84" r="3.5"/><circle class="bp bp-out" style="animation-delay:-1.8s" cx="272" cy="84" r="3.5"/>' +
     '<rect class="bridge-core" x="272" y="38" width="120" height="74" rx="8"/><text class="bridge-core-name" x="332" y="72">VegaFencer</text><text class="bridge-core-sub" x="332" y="89">BRIDGE</text></svg>';
 
+  /* Scale of the hero, header (and on the home page every section below the hero) from the window size.
+     1x at 1440 wide, 1.2x at 1920, 1.6x at 2560 and no more (ultrawide screens keep the content in the middle),
+     straight lines in between. Never more than the height allows (1x = 790 tall, so the hero fits one screen),
+     and never below .8. */
+  const heroScale = (w, h) => {
+    const byWidth = w <= 1440 ? w / 1440 : w <= 1920 ? 1 + (w - 1440) / 480 * .2 : Math.min(1.6, 1.2 + (w - 1920) / 640 * .4);
+    return Math.max(.8, Math.min(byWidth, h / 790));
+  };
   document.addEventListener('DOMContentLoaded', () => {
     const hero = document.getElementById('about');
     const nav = document.getElementById('nav');
@@ -115,19 +123,19 @@
       const wideOnly = window.matchMedia('(min-width: 1101px)');
       const setScale = () => {
         const w = document.documentElement.clientWidth, h = window.innerHeight;
-        const s = wideOnly.matches ? Math.min(1.25, Math.max(.8, Math.min(w / 1440, h / 790))) : 1;
+        const s = wideOnly.matches ? heroScale(w, h) : 1;
         document.documentElement.style.setProperty('--hero-s', s.toFixed(4));
       };
       addEventListener('resize', setScale);
       setScale();
     }
     if (hero) {   // home page only
-      // Wide desktop: scale the whole hero as one block (1440 x 790 = 1x, limited to .8 - 1.25).
+      // Wide desktop: scale the whole hero as one block (heroScale above).
       const scaleBox = hero.querySelector('.engineering-scale');
       const wide = window.matchMedia('(min-width: 1101px)');
       const fitHero = () => {
         const w = document.documentElement.clientWidth, h = window.innerHeight;
-        const s = wide.matches ? Math.min(1.25, Math.max(.8, Math.min(w / 1440, h / 790))) : 1;
+        const s = wide.matches ? heroScale(w, h) : 1;
         // On the root so the header can use the same scale as the hero.
         document.documentElement.style.setProperty('--hero-s', s.toFixed(4));
         // If the content is taller than the screen allows (very low windows), the hero grows instead of clipping.
@@ -167,7 +175,7 @@
       let heroWatch = null;
       const watchHero = () => {
         if (heroWatch) heroWatch.disconnect();
-        const fade = fadeEl ? parseFloat(getComputedStyle(fadeEl).getPropertyValue('--fade')) || 0 : 0;
+        const fade = fadeEl ? (parseFloat(getComputedStyle(fadeEl).getPropertyValue('--fade')) || 0) * (fadeEl.currentCSSZoom || 1) : 0;   // x page zoom (wide screens)
         // root edge sits where the hero's bottom must be for the fade to end 40px under the header
         const top = fade - (nav.offsetHeight + 40);
         heroWatch = new IntersectionObserver(([entry]) => {
@@ -207,7 +215,7 @@
         const calm = window.matchMedia('(prefers-reduced-motion: reduce)');
         let busyUntil = 0, lastWheel = 0;
         // where the snap rests on the second screen (its top edge plus its scroll-margin, which is negative)
-        const secondStop = () => second.getBoundingClientRect().top + scrollY - (parseFloat(getComputedStyle(second).scrollMarginTop) || 0);
+        const secondStop = () => second.getBoundingClientRect().top + scrollY - (parseFloat(getComputedStyle(second).scrollMarginTop) || 0) * (second.currentCSSZoom || 1);
         // A mouse wheel turns in whole notches (multiples of 120 in wheelDelta, or line steps in Firefox);
         // a trackpad sends many small, uneven steps.
         const isMouseWheel = e => e.deltaMode === 1 ||
@@ -269,6 +277,38 @@
           stage.paths.map(draw).join('') + '</svg>';
         step.insertAdjacentHTML('beforeend', '<span class="wf-artifact" translate="no">' + stage.artifact + '</span>');
       });
+      // Wide screens: equal gaps between the step numbers, first and last step flush with the content edges,
+      // and the connector line running from the first number to the last (see #workflow in engineering.css).
+      const wfSteps = [...workflow.querySelectorAll('.workflow-step')];
+      const wfLine = workflow.querySelector('.workflow-motion-line');
+      const wfGrid = wfSteps.length ? wfSteps[0].parentElement : null;
+      const layoutFlow = () => {
+        if (!wfGrid || wfSteps.length < 2) return;
+        wfSteps.forEach(step => { step.style.marginLeft = ''; });
+        if (wfLine) ['left', 'right', 'top'].forEach(p => wfLine.style.removeProperty(p));
+        if (!window.matchMedia('(min-width: 1024px)').matches) return;
+        // Screen sizes divided by the page zoom (the home page grows on wide screens) give CSS pixels for the margins.
+        const z = wfGrid.currentCSSZoom || 1;
+        const width = wfGrid.getBoundingClientRect().width / z;
+        const w = wfSteps.map(step => step.getBoundingClientRect().width / z);
+        const first = w[0] / 2, last = width - w[w.length - 1] / 2, gap = (last - first) / (wfSteps.length - 1);
+        let x = 0;
+        wfSteps.forEach((step, i) => { const left = first + i * gap - w[i] / 2; step.style.marginLeft = (left - x) + 'px'; x = left + w[i]; });
+        if (wfLine) {
+          const dot = wfSteps[0].firstElementChild;   // offsets, not screen positions: the steps slide up while they fade in (.reveal)
+          wfLine.style.left = first + 'px';
+          wfLine.style.right = (width - last) + 'px';
+          wfLine.style.setProperty('top', (wfSteps[0].offsetTop + dot.offsetTop + dot.offsetHeight / 2 - 1) + 'px', 'important');   // the stylesheet's top is !important
+        }
+      };
+      layoutFlow();
+      window.addEventListener('resize', layoutFlow);
+      // Again whenever a step's width changes: web fonts arriving late, or a language switch.
+      if ('ResizeObserver' in window) {
+        let queued = false;
+        const ro = new ResizeObserver(() => { if (!queued) { queued = true; requestAnimationFrame(() => { queued = false; layoutFlow(); }); } });
+        wfSteps.forEach(step => ro.observe(step));
+      }
     }
 
     const lang = i18n[document.documentElement.lang] || i18n.ko;
