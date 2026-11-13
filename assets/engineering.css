@@ -462,8 +462,8 @@ html.engineering-free-scroll { scroll-snap-type: none; }   /* set by engineering
     #fff;
 }
 /* Home section colours below the hero: white and paper take turns (the navy workflow and CTA stay as they are). */
-#story, body[data-page="home"] #stats { background: var(--eng-paper); }
-body[data-page="home"] #ai { background: #fff; }
+#story, body[data-page="home"] #integrations { background: var(--eng-paper); }
+body[data-page="home"] #ai, body[data-page="home"] #stats { background: #fff; }
 /* Home, wide desktop: everything below the hero grows with the screen by the same factor as the hero and header
    (--hero-s, 1x at 1440 x 790), so on a big monitor the sections keep the proportions designed at 1440 instead of
    sitting small in the middle. zoom (not transform) so the page length grows with it. */

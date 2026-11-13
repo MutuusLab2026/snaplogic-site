@@ -62,6 +62,7 @@ const Controller = {
     this.initContactForm();
     this.initHeroSlideshow();
     this.initAiTabs();
+    this.initAgentAnimation();
     this.initAnchorSettle();
     this.initContactPage();
     this.initLogicTour();
@@ -382,26 +383,69 @@ const Controller = {
     const container = document.getElementById('chatMessages');
     if (!container) return;
     const messages = Array.from(container.querySelectorAll(':scope > div'));
-    let animated = false;
+    // Home window: the chat pane scrolls like a messenger. Each new message appears under the last one and the
+    // pane follows it, so the earliest messages slide up out of view (the scrollbar brings them back).
+    // The top edge fades only while something is scrolled above it.
+    const pane = container.closest('.ai-pane-chat');
+    const follow = () => {
+      if (pane) pane.scrollTo({ top: pane.scrollHeight, behavior: 'smooth' });
+    };
+    if (pane) {
+      const edge = () => pane.classList.toggle('ai-scrolled', pane.scrollTop > 2);
+      pane.addEventListener('scroll', edge, { passive: true });
+      edge();
+    }
+    const delays = pane ? [400, 1400, 3200, 4200] : [0, 800, 1800, 2600];   // home: Q1 rises in a moment after the window shows; a little longer to read Q1/A1
+    let timers = [];
+    const play = () => {
+      messages.forEach((msg, i) => {
+        timers.push(setTimeout(() => {
+          if (i === 1 || i === 3) {
+            const dot = document.createElement('div');
+            dot.className = 'flex justify-start chat-visible chat-typing';
+            dot.innerHTML = '<div class="bg-surface-container-high/60 px-4 py-3 rounded-2xl rounded-bl-sm"><div class="typing-indicator"><span></span><span></span><span></span></div></div>';
+            container.insertBefore(dot, msg);
+            follow();
+            timers.push(setTimeout(() => { dot.remove(); msg.classList.add('chat-visible'); follow(); }, 600));
+          } else {
+            msg.classList.add('chat-visible');
+            follow();
+          }
+        }, delays[i]));
+      });
+    };
+    // Home: the conversation starts over each time the window comes back into view (like At a Glance and
+    // Brand Story), on the Chat tab. Elsewhere it plays once.
+    const reset = () => {
+      timers.forEach(clearTimeout);
+      timers = [];
+      container.querySelectorAll('.chat-typing').forEach((d) => d.remove());
+      messages.forEach((m) => m.classList.remove('chat-visible'));
+      pane.scrollTop = 0;
+    };
+    const win = pane && pane.closest('#aiWindow');
+    if (win) {
+      let inView = false;
+      new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !inView) {
+            inView = true;
+            reset();
+            const chatTab = win.querySelector('[data-ai-tab="chat"]');
+            if (chatTab && !chatTab.classList.contains('ai-tab-active')) chatTab.click();
+            play();
+          } else if (!entry.isIntersecting) {
+            inView = false;
+          }
+        });
+      }, { threshold: 0.2 }).observe(win);
+      return;
+    }
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !animated) {
-          animated = true;
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
           observer.unobserve(entry.target);
-          const delays = [0, 800, 1800, 2600];
-          messages.forEach((msg, i) => {
-            setTimeout(() => {
-              if (i === 1 || i === 3) {
-                const dot = document.createElement('div');
-                dot.className = 'flex justify-start chat-visible';
-                dot.innerHTML = '<div class="bg-surface-container-high/60 px-4 py-3 rounded-2xl rounded-bl-sm"><div class="typing-indicator"><span></span><span></span><span></span></div></div>';
-                container.insertBefore(dot, msg);
-                setTimeout(() => { dot.remove(); msg.classList.add('chat-visible'); }, 600);
-              } else {
-                msg.classList.add('chat-visible');
-              }
-            }, delays[i]);
-          });
+          play();
         }
       });
     }, { threshold: 0.2 });
@@ -451,6 +495,40 @@ const Controller = {
   },
 
   /* Contact Form — Footer inquiry form */
+  /* Home AI window, Agent tab: the request is shown, then each step runs ("… 중" with turning arrows and darkening
+     dots) and turns into a checked result. Starts over every time the Agent tab is opened. */
+  initAgentAnimation() {
+    const pane = document.getElementById('aiPanelAgent');
+    const steps = pane && pane.querySelectorAll('.ag-step');
+    if (!steps || !steps.length || !pane.classList.contains('ai-pane-agent')) return;
+    const tab = document.querySelector('#aiWindow [data-ai-tab="agent"]');
+    const runFor = [1600, 1500, 1400, 1700];   // how long each step "works" before it is done
+    const still = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let timers = [];
+    const follow = () => pane.scrollTo({ top: pane.scrollHeight, behavior: still.matches ? 'auto' : 'smooth' });
+    const edge = () => pane.classList.toggle('ai-scrolled', pane.scrollTop > 2);
+    pane.addEventListener('scroll', edge, { passive: true });
+    const play = () => {
+      timers.forEach(clearTimeout);
+      timers = [];
+      const ask = pane.querySelector('.ag-q');
+      steps.forEach((st) => st.classList.remove('run', 'done'));
+      ask.classList.remove('on');
+      pane.scrollTop = 0;
+      edge();
+      if (still.matches) { ask.classList.add('on'); steps.forEach((st) => st.classList.add('done')); return; }
+      timers.push(setTimeout(() => ask.classList.add('on'), 300));   // the request rises in first, like a sent message
+      let t = 1100;
+      steps.forEach((st, i) => {
+        timers.push(setTimeout(() => { st.classList.add('run'); follow(); }, t));
+        t += runFor[i];
+        timers.push(setTimeout(() => { st.classList.remove('run'); st.classList.add('done'); follow(); }, t));
+        t += 200 + st.querySelectorAll('.ag-sub > span').length * 140 + 250;
+      });
+    };
+    if (tab) tab.addEventListener('click', play);
+  },
+
   /* AI Chat / Agent tabs */
   initAiTabs() {
     const tabs = document.querySelectorAll('[data-ai-tab]');
@@ -458,6 +536,15 @@ const Controller = {
     const panels = {
       chat: document.getElementById('aiPanelChat'),
       agent: document.getElementById('aiPanelAgent'),
+      shot: document.getElementById('aiPanelShot'),
+    };
+    const win = document.getElementById('aiWindow');   // home: one window with a sliding switch in its title bar
+    const thumb = win && win.querySelector('.ai-seg-thumb');
+    const moveThumb = () => {
+      const active = thumb && win.querySelector('.ai-seg .ai-tab-active');
+      if (!active) return;
+      thumb.style.left = active.offsetLeft + 'px';
+      thumb.style.width = active.offsetWidth + 'px';
     };
     tabs.forEach((tab) => {
       tab.addEventListener('click', () => {
@@ -465,9 +552,30 @@ const Controller = {
         Object.keys(panels).forEach((key) => {
           if (panels[key]) panels[key].classList.toggle('hidden', key !== name);
         });
-        tabs.forEach((t) => t.classList.toggle('ai-tab-active', t.dataset.aiTab === name));
+        tabs.forEach((t) => {
+          t.classList.toggle('ai-tab-active', t.dataset.aiTab === name);
+          if (t.hasAttribute('aria-selected')) t.setAttribute('aria-selected', String(t.dataset.aiTab === name));
+        });
+        if (win) win.querySelectorAll('.ai-win-title').forEach((t) => { t.hidden = t.dataset.for !== name; });
+        moveThumb();
       });
     });
+    if (!win) return;
+    // Wide screens: the window is 70px taller than the text beside it; narrower, it keeps its CSS height.
+    const text = document.getElementById('aiText');
+    const wide = window.matchMedia('(min-width: 1024px)');
+    const size = () => {
+      win.style.height = wide.matches && text ? (text.offsetHeight + 70) + 'px' : '';
+      moveThumb();
+    };
+    if ('ResizeObserver' in window) {
+      const ro = new ResizeObserver(size);
+      if (text) ro.observe(text);
+      ro.observe(win.querySelector('.ai-seg'));   // labels change width when the language changes
+    }
+    wide.addEventListener('change', size);
+    size();
+    requestAnimationFrame(() => win.querySelector('.ai-seg').classList.add('ready'));   // no slide on first placement
   },
 
   /* Contact page — inquiry form with a type (purchase / support / partnership / other) */

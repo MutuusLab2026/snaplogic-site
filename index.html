@@ -19,8 +19,8 @@
 <!-- Inline SVG Favicon -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%231A73E8'/><stop offset='100%25' stop-color='%23006a61'/></linearGradient></defs><rect width='36' height='36' rx='8' fill='url(%23g)'/><text x='18' y='25' font-family='sans-serif' font-size='20' font-weight='800' fill='white' text-anchor='middle'>S</text></svg>">
 
-<link rel="stylesheet" href="assets/site.css?v=a75581e8">
-<link rel="stylesheet" href="assets/engineering.css?v=2dd0a8df">
+<link rel="stylesheet" href="assets/site.css?v=22884537">
+<link rel="stylesheet" href="assets/engineering.css?v=0e62a87c">
 </head>
 <body class="bg-surface antialiased" data-page="home" data-skip="about">
 
@@ -373,13 +373,17 @@
      ============================================================ -->
 <section class="py-12 md:py-24" id="ai">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-    <div class="grid lg:grid-cols-2 gap-8 md:gap-16 items-start">
-      <!-- Left: Text + Screenshot -->
-      <div class="reveal">
-        <p class="font-label text-xs font-bold tracking-[0.2em] uppercase text-primary-container mb-3" data-i18n="ai_label">AI ASSISTANT</p>
-        <h2 class="font-headline font-black text-2xl sm:text-3xl md:text-4xl tracking-tight text-on-surface mb-5" data-i18n="ai_title">자연어로 설계를 탐색하다</h2>
-        <p class="font-body text-on-surface-variant text-base leading-relaxed mb-6" data-i18n="ai_desc">MCP (Model Context Protocol) 기반 AI 어시스턴트가 설계 데이터에 직접 접근하여, 복잡한 쿼리도 즉시 답변합니다.</p>
-        <ul class="space-y-3 mb-8">
+    <!-- Text (left) and one app window (right). The window is a little taller than the text (aiWindow sizes it);
+         the switch in its title bar slides between the chat demo, the agent demo and a real screenshot. -->
+    <div class="ai-row">
+      <div class="reveal ai-text" id="aiText">
+        <header class="lg-head">
+          <p class="lg-kicker" translate="no">EXTENSIONS</p>
+          <h2 class="lg-name" translate="no">AI Assistant</h2>
+          <p class="lg-tagline" data-i18n="ai_title">자연어로 설계를 탐색하다</p>
+          <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead mb-6" data-i18n="ai_desc">MCP (Model Context Protocol) 기반 AI 어시스턴트가 설계 데이터에 직접 접근하여, 복잡한 쿼리도 즉시 답변합니다.</p>
+        </header>
+        <ul class="space-y-3">
           <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
             <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
             <span data-i18n="ai_c1">와이어 정보 즉시 조회 &mdash; 굵기, 색상, 재질, 연결 경로</span>
@@ -397,27 +401,25 @@
             <span data-i18n="ai_c4">OpenAI API 연동 &mdash; 사내 LLM 교체 가능</span>
           </li>
         </ul>
-        <div class="bg-white rounded-2xl shadow-lg shadow-on-surface/5 overflow-hidden border border-outline-variant/15">
-          <img src="assets/img/ai-assistant.jpg" alt="VegaFencer AI Assistant - MCP" loading="lazy" class="w-full block">
-        </div>
       </div>
 
-      <!-- Right: AI Chat / Agent -->
       <div class="reveal reveal-delay-2">
-        <div class="flex gap-2 mb-5" role="tablist" aria-label="AI modes">
-          <button type="button" class="ai-tab ai-tab-active px-4 py-2 rounded-full text-sm font-label font-bold transition-all" data-ai-tab="chat" data-i18n="ai_tab_chat">AI Chat &mdash; 설계 질의</button>
-          <button type="button" class="ai-tab px-4 py-2 rounded-full text-sm font-label font-bold transition-all" data-ai-tab="agent" data-i18n="ai_tab_agent">AI Agent &mdash; 설계 자동화</button>
-        </div>
-
-        <!-- Chat Panel -->
-        <div id="aiPanelChat" class="ai-panel">
-          <div class="bg-white rounded-2xl shadow-xl shadow-on-surface/8 overflow-hidden border border-outline-variant/20">
-            <div class="flex items-center gap-3 px-6 py-4 border-b border-outline-variant/15 bg-surface-container-lowest">
-              <span class="w-2.5 h-2.5 rounded-full bg-green-500"></span>
-              <span class="font-headline font-bold text-on-surface text-sm" data-i18n="chat_title">VegaFencer AI</span>
-              <span class="text-[11px] font-body text-on-surface-variant/50 ml-auto" data-i18n="chat_status">MCP Connected</span>
+        <div class="ai-win" id="aiWindow">
+          <div class="ai-win-head">
+            <span class="ai-win-dot"></span>
+            <span class="ai-win-title" data-for="chat" data-i18n="chat_title">VegaFencer AI</span>
+            <span class="ai-win-title" data-for="agent" data-i18n="agent_title" hidden>VegaFencer Agent</span>
+            <span class="ai-win-title" data-for="shot" data-i18n="chat_title" hidden>VegaFencer AI</span>
+            <div class="ai-seg" role="tablist" aria-label="AI modes">
+              <span class="ai-seg-thumb" aria-hidden="true"></span>
+              <button type="button" role="tab" class="ai-tab-active" aria-selected="true" data-ai-tab="chat" translate="no">AI Chat</button>
+              <button type="button" role="tab" aria-selected="false" data-ai-tab="agent" translate="no">AI Agent</button>
+              <button type="button" role="tab" aria-selected="false" data-ai-tab="shot" data-i18n="ai_tab_shot">실제 화면</button>
             </div>
-            <div class="p-6 space-y-4 bg-surface/50" id="chatMessages">
+          </div>
+          <div class="ai-win-body">
+            <div id="aiPanelChat" class="ai-panel ai-pane ai-pane-chat">
+              <div class="space-y-4" id="chatMessages">
               <div class="flex justify-end">
                 <div class="bg-primary-container text-white px-4 py-3 rounded-2xl rounded-br-sm max-w-[80%] font-body text-sm" data-i18n="chat_user1">
                   BA91 Wire 정보를 부탁해.
@@ -445,54 +447,97 @@
               </div>
               <div class="flex justify-start">
                 <div class="bg-surface-container-high/60 text-on-surface px-4 py-3 rounded-2xl rounded-bl-sm max-w-[85%]">
-                  <p class="font-body text-sm leading-relaxed mb-3" data-i18n-html="chat_ai2">UH_BOX 연결 와이어 <code class="bg-primary-container/10 px-1.5 py-0.5 rounded text-primary-container font-label text-xs">12개</code> 확인.<br>미연결 와이어 <code class="bg-error/10 px-1.5 py-0.5 rounded text-error font-label text-xs">3개</code> 발견 &mdash; BA95, BA97, BC01.</p>
+                  <p class="font-body text-sm leading-relaxed mb-3" data-i18n-html="chat_ai2">UH_BOX 연결 와이어 <code class="bg-primary-container/10 px-1.5 py-0.5 rounded text-primary-container font-label text-xs">12개</code> 확인.<br>미연결 와이어 <code class="bg-error/10 px-1.5 py-0.5 rounded text-error font-label text-xs">3개</code> 발견<br>&mdash; BA95, BA97, BC01.</p>
                   <div class="flex gap-2 mt-3">
                     <button class="px-3 py-1.5 rounded-lg bg-primary-container/10 text-primary-container text-xs font-label font-semibold hover:bg-primary-container/20 transition-colors" data-i18n="chat_btn_drc">DRC 리포트 반영</button>
                     <button class="px-3 py-1.5 rounded-lg bg-surface-container text-on-surface-variant text-xs font-label font-semibold hover:bg-surface-container-high transition-colors" data-i18n="chat_btn_detail">상세 보기</button>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Agent Panel -->
-        <div id="aiPanelAgent" class="ai-panel hidden">
-          <div class="bg-white rounded-2xl shadow-xl shadow-on-surface/8 overflow-hidden border border-outline-variant/20">
-            <div class="flex items-center gap-3 px-6 py-4 border-b border-outline-variant/15 bg-surface-container-lowest">
-              <span class="w-2.5 h-2.5 rounded-full bg-green-500"></span>
-              <span class="font-headline font-bold text-on-surface text-sm" data-i18n="agent_title">VegaFencer Agent</span>
-              <span class="text-[11px] font-body text-on-surface-variant/50 ml-auto" data-i18n="agent_status">Design Automation</span>
-            </div>
-            <div class="p-6 space-y-4 bg-surface/50">
-              <div class="flex justify-end">
-                <div class="bg-primary-container text-white px-4 py-3 rounded-2xl rounded-br-sm max-w-[85%] font-body text-sm leading-relaxed" data-i18n="agent_task">C29 커넥터 2번 핀에 와이어를 연결하고 DRC를 실행해줘.</div>
               </div>
-              <div class="flex justify-start">
-                <div class="bg-surface-container-high/60 text-on-surface px-4 py-3 rounded-2xl rounded-bl-sm max-w-[85%] w-full">
-                  <div class="space-y-2.5">
-                    <div class="flex items-center gap-2.5 font-body text-sm">
-                      <span class="material-symbols-outlined text-secondary" style="font-size:18px">check_circle</span>
-                      <span data-i18n="agent_step1">와이어 연결 후보 검색 &mdash; 3개 발견</span>
-                    </div>
-                    <div class="flex items-center gap-2.5 font-body text-sm">
-                      <span class="material-symbols-outlined text-secondary" style="font-size:18px">check_circle</span>
-                      <span data-i18n="agent_step2">최적 경로 결정 (AVSS 0.5mm&sup2;)</span>
-                    </div>
-                    <div class="flex items-center gap-2.5 font-body text-sm">
-                      <span class="material-symbols-outlined text-primary-container" style="font-size:18px">autorenew</span>
-                      <span data-i18n="agent_step3">핀 연결 실행 &mdash; UH_BOX 핀 88</span>
-                    </div>
-                    <div class="flex items-center gap-2.5 font-body text-sm text-on-surface-variant">
-                      <span class="material-symbols-outlined text-on-surface-variant/40" style="font-size:18px">pending</span>
-                      <span data-i18n="agent_step4">DRC 24개 규칙 검증</span>
-                    </div>
-                  </div>
+            </div>
+            <div id="aiPanelAgent" class="ai-panel ai-pane ai-pane-agent font-body text-sm hidden">
+              <!-- Steps run one after another each time the Agent tab opens (site.js initAgentAnimation). -->
+              <div class="ag-q"><div class="bg-primary-container text-white px-4 py-3 rounded-2xl rounded-br-sm max-w-[85%] leading-relaxed" data-i18n="agent_task">C29 커넥터 2번 핀에 와이어를 연결하고 DRC를 실행해줘.</div></div>
+              <div class="ag-a bg-surface-container-high/60 text-on-surface px-4 py-3 rounded-2xl rounded-bl-sm" id="agentSteps">
+                <div class="ag-step">
+                  <div class="ag-line ag-run-line"><span class="material-symbols-outlined text-primary-container ag-turn">autorenew</span><span><span data-i18n="ag_run1">와이어 연결 후보 검색 중</span> <span class="ag-dots" aria-hidden="true"><span>.</span><span>.</span><span>.</span></span></span></div>
+                  <div class="ag-line ag-done-line"><span class="material-symbols-outlined text-secondary">check_circle</span><span data-i18n="ag_done1">와이어 연결 후보 검색 &mdash; 3개 발견</span></div>
+                  <div class="ag-sub bar"><span>AVSS</span><span>CIVUS</span><span>AVX</span></div>
+                </div>
+                <div class="ag-step">
+                  <div class="ag-line ag-run-line"><span class="material-symbols-outlined text-primary-container ag-turn">autorenew</span><span><span data-i18n="ag_run2">최적 경로 설정 중</span> <span class="ag-dots" aria-hidden="true"><span>.</span><span>.</span><span>.</span></span></span></div>
+                  <div class="ag-line ag-done-line"><span class="material-symbols-outlined text-secondary">check_circle</span><span data-i18n="ag_done2">최적 경로 설정 완료</span></div>
+                  <div class="ag-sub dash"><span>AVSS 0.5mm&sup2;</span></div>
+                </div>
+                <div class="ag-step">
+                  <div class="ag-line ag-run-line"><span class="material-symbols-outlined text-primary-container ag-turn">autorenew</span><span><span data-i18n="ag_run3">핀 연결 실행 중</span> <span class="ag-dots" aria-hidden="true"><span>.</span><span>.</span><span>.</span></span></span></div>
+                  <div class="ag-line ag-done-line"><span class="material-symbols-outlined text-secondary">check_circle</span><span data-i18n="ag_done3">핀 연결 실행 완료</span></div>
+                  <div class="ag-sub dash"><span data-i18n="ag_res3">UH_BOX 핀 88</span></div>
+                </div>
+                <div class="ag-step">
+                  <div class="ag-line ag-run-line"><span class="material-symbols-outlined text-primary-container ag-turn">autorenew</span><span><span data-i18n="ag_run4">DRC 24개 규칙 검증 중</span> <span class="ag-dots" aria-hidden="true"><span>.</span><span>.</span><span>.</span></span></span></div>
+                  <div class="ag-line ag-done-line"><span class="material-symbols-outlined text-secondary">check_circle</span><span data-i18n="ag_done4">DRC 24개 규칙 검증 완료</span></div>
+                  <div class="ag-sub dash"><span data-i18n="ag_res4">이상 없음</span></div>
                 </div>
               </div>
             </div>
+            <div id="aiPanelShot" class="ai-panel ai-pane ai-pane-shot hidden">
+              <img src="assets/img/ai-assistant-screen.jpg" width="1400" height="794" alt="VegaFencer AI Assistant screen" loading="lazy">
+            </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     INTEGRATIONS
+     ============================================================ -->
+<section class="py-12 md:py-24 bg-surface-container-low" id="integrations">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+    <div class="text-center mb-16 reveal">
+      <p class="font-label text-xs font-bold tracking-[0.2em] uppercase text-primary-container mb-3" data-i18n="int_label">ECOSYSTEM</p>
+      <h2 class="font-headline font-black text-2xl sm:text-3xl md:text-5xl tracking-tight text-on-surface mb-4" data-i18n="int_title">기존 도구와 완벽하게 연결</h2>
+      <p class="font-body text-on-surface-variant text-lg max-w-2xl mx-auto" data-i18n="int_desc">Git 버전 관리부터 CAD 브릿지까지 — 팀의 기존 워크플로우를 유지합니다.</p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4" id="intGrid">
+      <!-- Git -->
+      <div class="reveal reveal-delay-1 bg-white rounded-2xl p-6 text-center border border-outline-variant/15 hover:shadow-lg hover:-translate-y-1 transition-all">
+        <span class="material-symbols-outlined text-on-surface-variant mb-3 block" style="font-size:32px">shortcut</span>
+        <h3 class="font-headline font-bold text-on-surface text-sm mb-1">Git</h3>
+        <p class="font-body text-on-surface-variant text-xs mb-3" data-i18n="int_git_desc">버전 관리 &amp; 협업</p>
+        <span class="inline-block px-2.5 py-1 rounded-full text-[10px] font-label font-bold bg-secondary-container/30 text-secondary" data-i18n="int_available">Available</span>
+      </div>
+      <!-- DXF/DWG -->
+      <div class="reveal reveal-delay-2 bg-white rounded-2xl p-6 text-center border border-outline-variant/15 hover:shadow-lg hover:-translate-y-1 transition-all">
+        <span class="material-symbols-outlined text-on-surface-variant mb-3 block" style="font-size:32px">square</span>
+        <h3 class="font-headline font-bold text-on-surface text-sm mb-1">DXF / DWG</h3>
+        <p class="font-body text-on-surface-variant text-xs mb-3" data-i18n="int_dxf_desc">CAD 포맷 임포트</p>
+        <span class="inline-block px-2.5 py-1 rounded-full text-[10px] font-label font-bold bg-secondary-container/30 text-secondary" data-i18n="int_available">Available</span>
+      </div>
+      <!-- AI/MCP -->
+      <div class="reveal reveal-delay-3 bg-white rounded-2xl p-6 text-center border border-outline-variant/15 hover:shadow-lg hover:-translate-y-1 transition-all">
+        <span class="material-symbols-outlined text-on-surface-variant mb-3 block" style="font-size:32px">auto_awesome</span>
+        <h3 class="font-headline font-bold text-on-surface text-sm mb-1">AI / MCP</h3>
+        <p class="font-body text-on-surface-variant text-xs mb-3" data-i18n="int_ai_desc">LLM 연동 프로토콜</p>
+        <span class="inline-block px-2.5 py-1 rounded-full text-[10px] font-label font-bold bg-secondary-container/30 text-secondary" data-i18n="int_available">Available</span>
+      </div>
+      <!-- Jira -->
+      <div class="reveal reveal-delay-4 bg-white rounded-2xl p-6 text-center border border-outline-variant/15 hover:shadow-lg hover:-translate-y-1 transition-all">
+        <span class="material-symbols-outlined text-on-surface-variant mb-3 block" style="font-size:32px">grid_view</span>
+        <h3 class="font-headline font-bold text-on-surface text-sm mb-1">Jira</h3>
+        <p class="font-body text-on-surface-variant text-xs mb-3" data-i18n="int_jira_desc">프로젝트 관리</p>
+        <span class="inline-block px-2.5 py-1 rounded-full text-[10px] font-label font-bold bg-error-container/40 text-error" data-i18n="int_coming">Coming soon</span>
+      </div>
+      <!-- Creo/SOLIDWORKS -->
+      <div class="reveal reveal-delay-4 bg-white rounded-2xl p-6 text-center border border-outline-variant/15 hover:shadow-lg hover:-translate-y-1 transition-all col-span-2 md:col-span-1">
+        <span class="material-symbols-outlined text-on-surface-variant mb-3 block" style="font-size:32px">hexagon</span>
+        <h3 class="font-headline font-bold text-on-surface text-sm mb-1">Creo / SOLIDWORKS</h3>
+        <p class="font-body text-on-surface-variant text-xs mb-3" data-i18n="int_cad_desc">3D CAD 브릿지</p>
+        <span class="inline-block px-2.5 py-1 rounded-full text-[10px] font-label font-bold bg-error-container/40 text-error" data-i18n="int_coming">Coming soon</span>
       </div>
     </div>
   </div>
@@ -565,8 +610,8 @@
 <script src="assets/footer.js?v=cf45d74a"></script>
 </div><!-- /.engineering-after -->
 
-<script src="assets/i18n.js?v=996e842f"></script>
-<script src="assets/site.js?v=e8dbf94b"></script>
+<script src="assets/i18n.js?v=0e836a9e"></script>
+<script src="assets/site.js?v=96209d11"></script>
 
 <script src="assets/engineering.js?v=69655b73"></script>
 <script src="assets/glance.js?v=1bad44a4"></script>
