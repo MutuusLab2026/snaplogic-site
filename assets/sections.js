@@ -10,7 +10,7 @@
 <section class="py-12 md:py-24" id="product">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
     <header class="lg-head modules-head reveal">
-      <p class="lg-kicker" data-kicker>Platform</p>
+      <p class="lg-kicker" data-kicker>PLATFORM</p>
       <h2 class="lg-name" translate="no">Core Modules</h2>
       <p class="lg-tagline" data-i18n="modules_title">하나의 플랫폼, 완전한 E/E 설계</p>
       <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead" data-i18n="modules_desc">회로도의 전기적 의도부터 물리적 하네스 도면까지 — 다섯 개의 핵심 모듈이 끊김 없이 연결됩니다.</p>
@@ -66,7 +66,7 @@
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
     <header class="lg-head wf-head reveal">
-      <p class="lg-kicker" data-kicker translate="no">Process</p>
+      <p class="lg-kicker" data-kicker translate="no">PROCESS</p>
       <h2 class="lg-name" translate="no">Design Workflow</h2>
       <p class="lg-tagline" data-i18n="wf_title">설계에서 양산까지, 하나의 흐름.</p>
       <p class="font-body text-base leading-relaxed lg-lead" data-i18n="wf_desc">각 단계의 데이터가 자동으로 다음 단계에 전달되어, 수작업 변환 없이 일관된 설계를 보장합니다.</p>
@@ -138,7 +138,7 @@
     <div class="ai-row">
       <div class="reveal ai-text" id="aiText">
         <header class="lg-head">
-          <p class="lg-kicker" data-kicker translate="no">AI</p>
+          <p class="lg-kicker" data-kicker translate="no">EXTENSIONS</p>
           <h2 class="lg-name" translate="no">AI Assistant</h2>
           <p class="lg-tagline" data-i18n="ai_title">자연어로 설계를 탐색하다</p>
           <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead mb-6" data-i18n="ai_desc">MCP (Model Context Protocol) 기반 AI 어시스턴트가 설계 데이터에 직접 접근하여, 복잡한 쿼리도 즉시 답변합니다.</p>
@@ -256,7 +256,7 @@
 <section class="py-12 md:py-24 bg-surface-container-low" id="integrations">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
     <header class="reveal lg-head mb-12">
-      <p class="lg-kicker" data-kicker>Ecosystem</p>
+      <p class="lg-kicker" data-kicker>ECOSYSTEM</p>
       <h2 class="lg-name" translate="no">Integrations</h2>
       <p class="lg-tagline" data-i18n="int_title">기존 도구와 완벽하게 연결</p>
       <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead" data-i18n="int_desc">Git 버전 관리부터 CAD 브릿지까지 — 팀의 기존 워크플로우를 유지합니다.</p>
