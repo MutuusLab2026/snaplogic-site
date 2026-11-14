@@ -665,8 +665,8 @@ html[lang="ja"] .story-label span, html[lang="zh"] .story-label span { font-fami
 .lg-head { max-width: 640px; }
 /* User Interface intro: wide enough that its first sentence stays on one line on desktop */
 #interface .lg-head { max-width: 900px; }
-/* #1765cc: at least 5:1 on every light section background (WCAG AA asks 4.5:1 for 12px text). */
-.lg-kicker { margin: 0 0 12px; font: 700 12px/1 'Space Grotesk', sans-serif; letter-spacing: .2em; color: #1765cc; }
+/* #1765cc: at least 5:1 on every light section background (WCAG AA asks 4.5:1 for text this size). */
+.lg-kicker { margin: 0 0 12px; font: 700 13px/1 'Space Grotesk', sans-serif; letter-spacing: .2em; color: #1765cc; }
 .lg-name { margin: 0; font: 900 40px/1.05 Inter, sans-serif; letter-spacing: -.04em; color: #151b2b; }
 @media (min-width: 768px) { .lg-name { font-size: 56px; } }
 .lg-tagline { margin: 12px 0 0; font: 700 19px/1.35 Inter, 'Noto Sans KR', sans-serif; letter-spacing: -.02em; color: #151b2b; }

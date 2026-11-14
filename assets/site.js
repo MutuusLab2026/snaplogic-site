@@ -63,7 +63,6 @@ const Controller = {
      logged and skipped, and the rest still run, so the forms always get their handlers. */
   init() {
     [
-      'initKickerNumbers',
       'initScrollReveal',
       'initNavScroll',
       'initMobileMenu',
@@ -84,14 +83,6 @@ const Controller = {
       'initLogicTour',
     ].forEach((step) => {
       try { this[step](); } catch (err) { console.error('VegaFencer: ' + step + ' failed', err); }
-    });
-  },
-
-  /* Section labels above the titles read "01 / Overview": numbered in page order, since the shared sections
-     (assets/sections.js) sit in a different order on each page. Labels already numbered (MODULE 01) are left alone. */
-  initKickerNumbers() {
-    document.querySelectorAll('.lg-kicker[data-kicker]').forEach((el, i) => {
-      el.textContent = String(i + 1).padStart(2, '0') + ' / ' + el.textContent.trim();
     });
   },
 
