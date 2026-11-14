@@ -158,7 +158,7 @@ const i18n = {
     cta_business_only: "업무용 이메일을 입력해주세요. (Gmail 등 개인 이메일 불가)",
 
     // Footer
-    footer_tagline: "아키텍처 설계에서 양산까지.<br>빠른 스냅, 정밀함, 벡터 기반 설계.",
+    footer_tagline: "아키텍처 설계에서 양산까지.<br>차량 E/E 아키텍처·와이어링 하네스 설계 소프트웨어.",
     footer_platform: "플랫폼",
     footer_resources: "리소스",
     footer_company: "회사",
@@ -380,7 +380,7 @@ const i18n = {
     cta_business_only: "Please enter a business email. (No personal email like Gmail)",
 
     // Footer
-    footer_tagline: "From architecture design to series production.<br>Fast snap, Precise, Vector-driven design.",
+    footer_tagline: "From architecture design to series production.<br>Vehicle E/E architecture and wiring harness design software.",
     footer_platform: "Platform",
     footer_resources: "Resources",
     footer_company: "Company",
@@ -602,7 +602,7 @@ const i18n = {
     cta_business_only: "请输入企业邮箱（不支持Gmail等个人邮箱）",
 
     // Footer
-    footer_tagline: "从架构设计到量产。<br>快速、精确、矢量驱动的设计。",
+    footer_tagline: "从架构设计到量产。<br>车辆 E/E 架构与线束设计软件。",
     footer_platform: "平台",
     footer_resources: "资源",
     footer_company: "公司",
@@ -825,7 +825,7 @@ const i18n = {
     cta_business_only: "業務用メールアドレスを入力してください（Gmail等の個人メール不可）",
 
     // Footer
-    footer_tagline: "アーキテクチャ設計から量産まで。<br>高速、精密、ベクター駆動の設計。",
+    footer_tagline: "アーキテクチャ設計から量産まで。<br>車両 E/E アーキテクチャ・ワイヤーハーネス設計ソフトウェア。",
     footer_platform: "プラットフォーム",
     footer_resources: "リソース",
     footer_company: "会社情報",

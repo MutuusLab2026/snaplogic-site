@@ -10,7 +10,7 @@ document.currentScript.insertAdjacentHTML('beforebegin', `
       <!-- Brand -->
       <div>
         <div class="font-headline font-black text-xl text-on-surface mb-3">VegaFencer</div>
-        <p class="font-body text-on-surface-variant text-sm leading-relaxed" data-i18n-html="footer_tagline">From architecture design to series production.<br>Fast snap, Precise, Vector-driven design.</p>
+        <p class="font-body text-on-surface-variant text-sm leading-relaxed" data-i18n-html="footer_tagline">아키텍처 설계에서 양산까지.<br>차량 E/E 아키텍처·와이어링 하네스 설계 소프트웨어.</p>
       </div>
       <!-- Platform -->
       <div>
