@@ -15,7 +15,7 @@ const i18n = {
 
     // Hero
     hero_badge: "출시 — VegaFencer Logic v1.0",
-    hero_title: 'From architecture design<br>to <span class="kinetic-text-gradient">series production</span>',
+    hero_title: 'From architecture design<br>to series production',
     hero_subtitle: "요구사항 정의부터 와이어링 하네스 설계까지 — 차량 E/E 개발 전 과정을 하나의 플랫폼으로 통합합니다.",
     hero_cta_demo: 'Request Demo <span class="ml-1">&rarr;</span>',
     hero_cta_video: '<span class="material-symbols-outlined text-base align-middle mr-1" style="font-size:18px">play_circle</span> Watch Video',
@@ -147,8 +147,7 @@ const i18n = {
     int_coming: "Coming soon",
 
     // CTA
-    cta_badge: "Enterprise Ready",
-    cta_title: 'E/E 설계 워크플로우를<br><span class="kinetic-text-gradient">혁신할 준비가 되셨나요?</span>',
+    cta_title: 'E/E 설계 워크플로우를 혁신할 준비가 되셨나요?',
     cta_subtitle: "VegaFencer 데모를 신청하고, 맞춤형 솔루션을 경험하세요. 전문 엔지니어가 귀사의 E/E 설계 프로세스를 분석하여 최적의 워크플로우를 제안합니다.",
     cta_placeholder: "업무 이메일을 입력하세요",
     cta_submit: '데모 신청 &rarr;',
@@ -237,7 +236,7 @@ const i18n = {
 
     // Hero
     hero_badge: "Now Available — VegaFencer Logic v1.0",
-    hero_title: 'From architecture design<br>to <span class="kinetic-text-gradient">series production</span>',
+    hero_title: 'From architecture design<br>to series production',
     hero_subtitle: "From requirement definition to wiring harness design — unifying the entire vehicle E/E development process on a single platform.",
     hero_cta_demo: 'Request Demo <span class="ml-1">&rarr;</span>',
     hero_cta_video: '<span class="material-symbols-outlined text-base align-middle mr-1" style="font-size:18px">play_circle</span> Watch Video',
@@ -369,8 +368,7 @@ const i18n = {
     int_coming: "Coming soon",
 
     // CTA
-    cta_badge: "Enterprise Ready",
-    cta_title: 'Ready to transform your<br><span class="kinetic-text-gradient">E/E design workflow?</span>',
+    cta_title: 'Ready to transform your E/E design workflow?',
     cta_subtitle: "Request a VegaFencer demo and experience a tailored solution. Our expert engineers will analyze your E/E design process and propose the optimal workflow.",
     cta_placeholder: "Enter your work email",
     cta_submit: 'Request Demo &rarr;',
@@ -459,7 +457,7 @@ const i18n = {
 
     // Hero
     hero_badge: "现已推出 — VegaFencer Logic v1.0",
-    hero_title: '从架构设计<br>到<span class="kinetic-text-gradient">量产</span>',
+    hero_title: '从架构设计<br>到量产',
     hero_subtitle: "从需求定义到线束设计 — 将整个车辆E/E开发流程整合到一个平台上。基于数据建模的精密工程解决方案。",
     hero_cta_demo: '申请演示 <span class="ml-1">&rarr;</span>',
     hero_cta_video: '<span class="material-symbols-outlined text-base align-middle mr-1" style="font-size:18px">play_circle</span> 观看视频',
@@ -591,8 +589,7 @@ const i18n = {
     int_coming: "即将推出",
 
     // CTA
-    cta_badge: "企业级就绪",
-    cta_title: '准备好革新您的<br><span class="kinetic-text-gradient">E/E设计工作流程了吗？</span>',
+    cta_title: '准备好革新您的 E/E 设计工作流程了吗？',
     cta_subtitle: "申请VegaFencer演示，体验定制化解决方案。我们的专业工程师将分析您的E/E设计流程，提出最佳工作流方案。",
     cta_placeholder: "请输入工作邮箱",
     cta_submit: '申请演示 &rarr;',
@@ -682,7 +679,7 @@ const i18n = {
 
     // Hero
     hero_badge: "リリース — VegaFencer Logic v1.0",
-    hero_title: 'アーキテクチャ設計から<br><span class="kinetic-text-gradient">量産まで</span>',
+    hero_title: 'アーキテクチャ設計から<br>量産まで',
     hero_subtitle: "要件定義からワイヤーハーネス設計まで — 車両E/E開発の全プロセスを一つのプラットフォームに統合します。データモデリングベースの精密エンジニアリングソリューション。",
     hero_cta_demo: 'デモを申請 <span class="ml-1">&rarr;</span>',
     hero_cta_video: '<span class="material-symbols-outlined text-base align-middle mr-1" style="font-size:18px">play_circle</span> 動画を見る',
@@ -814,8 +811,7 @@ const i18n = {
     int_coming: "近日公開",
 
     // CTA
-    cta_badge: "エンタープライズ対応",
-    cta_title: 'E/E設計ワークフローを<br><span class="kinetic-text-gradient">革新する準備はできていますか？</span>',
+    cta_title: 'E/E設計ワークフローを革新する準備はできていますか？',
     cta_subtitle: "VegaFencerデモを申請して、カスタマイズされたソリューションを体験してください。専門エンジニアが貴社のE/E設計プロセスを分析し、最適なワークフローを提案します。",
     cta_placeholder: "業務メールアドレスを入力してください",
     cta_submit: 'デモ申請 &rarr;',

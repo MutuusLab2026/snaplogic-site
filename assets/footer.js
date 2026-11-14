@@ -40,7 +40,7 @@ document.currentScript.insertAdjacentHTML('beforebegin', `
           <input class="px-3 py-2 rounded-lg border border-outline-variant/30 bg-white text-sm font-body text-on-surface placeholder-on-surface-variant/50 focus:outline-none focus:border-primary-container/50 focus:ring-1 focus:ring-primary-container/20" type="text" name="company" data-i18n-placeholder="contact_company" placeholder="회사명">
           <input class="px-3 py-2 rounded-lg border border-outline-variant/30 bg-white text-sm font-body text-on-surface placeholder-on-surface-variant/50 focus:outline-none focus:border-primary-container/50 focus:ring-1 focus:ring-primary-container/20" type="email" name="email" data-i18n-placeholder="contact_email" placeholder="이메일" required>
           <textarea class="px-3 py-2 rounded-lg border border-outline-variant/30 bg-white text-sm font-body text-on-surface placeholder-on-surface-variant/50 focus:outline-none focus:border-primary-container/50 focus:ring-1 focus:ring-primary-container/20 resize-none" name="message" rows="3" data-i18n-placeholder="contact_message" placeholder="문의 내용" required></textarea>
-          <button class="kinetic-gradient text-white px-4 py-2 rounded-lg font-label font-semibold text-sm hover:opacity-90 transition-opacity" type="submit" data-i18n="contact_submit">문의하기</button>
+          <button class="btn btn-primary" type="submit" data-i18n="contact_submit">문의하기</button>
           <p class="hidden text-xs text-secondary font-body" id="contactSuccess" data-i18n="contact_success">감사합니다! 곧 답변드리겠습니다.</p>
           <p class="hidden text-xs text-red-500 font-body" id="contactError" data-i18n="contact_error">전송에 실패했습니다.</p>
         </form>
@@ -57,7 +57,7 @@ document.currentScript.insertAdjacentHTML('beforebegin', `
 <!-- ============================================================
      SCROLL TO TOP
      ============================================================ -->
-<button class="fixed bottom-4 right-4 md:bottom-8 md:right-8 w-11 h-11 md:w-12 md:h-12 rounded-full flex items-center justify-center text-white text-lg z-[100] opacity-0 translate-y-5 transition-all duration-300 shadow-lg" id="scrollTopBtn" aria-label="Scroll to top" style="background:linear-gradient(135deg,#1A73E8,#006a61);box-shadow:0 4px 16px rgba(26,115,232,0.3)">&uarr;</button>
+<button class="fixed bottom-4 right-4 md:bottom-8 md:right-8 w-11 h-11 md:w-12 md:h-12 rounded-full flex items-center justify-center text-white text-lg z-[100] opacity-0 translate-y-5 transition-all duration-300 shadow-lg" id="scrollTopBtn" aria-label="Scroll to top" style="background:#081e30;border:1px solid rgba(255,255,255,.28);box-shadow:0 4px 14px rgba(8,30,48,.25)">&uarr;</button>
 
 <!-- ============================================================
      LIGHTBOX

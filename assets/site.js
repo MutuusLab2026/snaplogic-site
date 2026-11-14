@@ -71,7 +71,6 @@ const Controller = {
       'initCtaForm',
       'initScrollToTop',
       'initLanguage',
-      'initScrollProgress',
       'initNavActiveState',
       'initCounters',
       'initChatAnimation',
@@ -344,15 +343,6 @@ const Controller = {
     btn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-  },
-
-  /* Scroll Progress Bar */
-  initScrollProgress() {
-    const bar = document.getElementById('scrollProgress');
-    window.addEventListener('scroll', () => {
-      const pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-      bar.style.width = pct + '%';
-    }, { passive: true });
   },
 
   /* Nav Active State — highlight current section link */

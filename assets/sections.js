@@ -1,4 +1,4 @@
-/* Sections that appear on more than one page (home and product): edit them here once.
+/* Sections that appear on more than one page (home, product; the CTA also on pricing and resources): edit them here once.
    A page shows one with  <script>vfSection('ai')</script>  at the spot where it belongs; the tag is replaced by the
    markup synchronously (like header.js / footer.js), so i18n and site.js see it as ordinary page content.
    Needs header.js first (pageUrl). */
@@ -255,11 +255,12 @@
   ecosystem: () => `
 <section class="py-12 md:py-24 bg-surface-container-low" id="integrations">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-    <div class="text-center mb-16 reveal">
-      <p class="font-label text-xs font-bold tracking-[0.2em] uppercase text-primary-container mb-3" data-i18n="int_label">ECOSYSTEM</p>
-      <h2 class="font-headline font-black text-2xl sm:text-3xl md:text-5xl tracking-tight text-on-surface mb-4" data-i18n="int_title">기존 도구와 완벽하게 연결</h2>
-      <p class="font-body text-on-surface-variant text-lg max-w-2xl mx-auto" data-i18n="int_desc">Git 버전 관리부터 CAD 브릿지까지 — 팀의 기존 워크플로우를 유지합니다.</p>
-    </div>
+    <header class="reveal lg-head mb-12">
+      <p class="lg-kicker">ECOSYSTEM</p>
+      <h2 class="lg-name" translate="no">Integrations</h2>
+      <p class="lg-tagline" data-i18n="int_title">기존 도구와 완벽하게 연결</p>
+      <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead" data-i18n="int_desc">Git 버전 관리부터 CAD 브릿지까지 — 팀의 기존 워크플로우를 유지합니다.</p>
+    </header>
 
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4" id="intGrid">
       <!-- Git -->
@@ -302,35 +303,25 @@
 </section>
 `,
   cta: () => `
-<section class="py-16 md:py-32 relative overflow-hidden" id="cta" style="background:#0B1120">
-  <!-- Radial Glow -->
-  <div class="radial-glow" style="top:-200px;left:50%;transform:translateX(-50%)"></div>
-
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 md:px-8 text-center relative z-10">
-    <!-- Badge -->
-    <div class="reveal inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 mb-8">
-      <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-      <span class="font-label text-sm font-medium text-white/70" data-i18n="cta_badge">Enterprise Ready</span>
-    </div>
-
-    <h2 class="reveal font-headline font-black text-2xl sm:text-3xl md:text-5xl tracking-tight text-white leading-tight mb-4 md:mb-6" data-i18n-html="cta_title">
-      E/E 설계 워크플로우를<br><span class="kinetic-text-gradient">혁신할 준비가 되셨나요?</span>
-    </h2>
-    <p class="reveal reveal-delay-1 font-body text-white/50 text-lg mb-10 max-w-xl mx-auto" data-i18n="cta_subtitle">
-      VegaFencer 데모를 신청하고, 맞춤형 솔루션을 경험하세요. 전문 엔지니어가 귀사의 E/E 설계 프로세스를 분석하여 최적의 워크플로우를 제안합니다.
-    </p>
+<section class="py-16 md:py-24" id="cta">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+    <header class="reveal lg-head">
+      <p class="lg-kicker">DEMO</p>
+      <h2 class="lg-name" translate="no">Request a Demo</h2>
+      <p class="lg-tagline" data-i18n="cta_title">E/E 설계 워크플로우를 혁신할 준비가 되셨나요?</p>
+      <p class="font-body text-base leading-relaxed lg-lead" data-i18n="cta_subtitle">VegaFencer 데모를 신청하고, 맞춤형 솔루션을 경험하세요. 전문 엔지니어가 귀사의 E/E 설계 프로세스를 분석하여 최적의 워크플로우를 제안합니다.</p>
+    </header>
 
     <!-- Email Form -->
-    <div class="reveal reveal-delay-2">
-      <form class="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto" id="ctaForm" method="post" onsubmit="return false;">
+    <div class="reveal reveal-delay-1 mt-8">
+      <form class="flex flex-col sm:flex-row gap-3 max-w-lg" id="ctaForm" method="post" onsubmit="return false;">
         <input class="hp-field" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <input class="flex-1 px-6 py-3.5 rounded-full bg-white/10 border border-white/15 text-white placeholder-white/30 font-body text-sm focus:outline-none focus:border-primary-container/50 focus:ring-2 focus:ring-primary-container/20 transition-all" type="email" name="email" data-i18n-placeholder="cta_placeholder" placeholder="업무 이메일을 입력하세요" required>
-        <button class="kinetic-gradient text-white px-8 py-3.5 rounded-full font-label font-bold text-sm whitespace-nowrap hover:opacity-90 transition-opacity shadow-lg shadow-primary-container/20" type="submit" data-i18n-html="cta_submit">데모 신청 &rarr;</button>
+        <input class="flex-1 px-5 py-3.5 rounded-xl bg-white/10 border border-white/15 text-white placeholder-white/40 font-body text-sm focus:outline-none focus:border-primary-container/50 focus:ring-2 focus:ring-primary-container/20 transition-all" type="email" name="email" data-i18n-placeholder="cta_placeholder" placeholder="업무 이메일을 입력하세요" required>
+        <button class="btn btn-primary-dark" type="submit" data-i18n-html="cta_submit">데모 신청 &rarr;</button>
       </form>
       <p class="hidden mt-6 text-secondary-container font-body font-semibold" id="ctaSuccess" data-i18n="cta_success">감사합니다! 곧 연락드리겠습니다.</p>
       <p class="hidden mt-6 text-red-400 font-body font-semibold" id="ctaError" data-i18n="cta_error"></p>
     </div>
-
   </div>
 </section>
 `,

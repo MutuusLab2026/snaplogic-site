@@ -95,7 +95,7 @@ if (location.protocol === 'file:') {
       <button class="lang-btn" data-lang="ja">日</button>
     </div>
     <!-- Demo request: scrolls to the form when the page has one, otherwise opens it on the home page -->
-    <a class="kinetic-gradient text-white px-6 py-2.5 rounded-full font-label font-semibold text-sm hidden md:block hover:opacity-90 transition-opacity" href="${pageUrl('home', '#cta')}" id="navDemo" data-i18n="nav_demo">Request Demo</a>
+    <a class="btn btn-primary" href="${pageUrl('home', '#cta')}" id="navDemo" data-i18n="nav_demo">Request Demo</a>
   </nav>
   <!-- Language Switcher (Mobile) -->
   <div class="flex md:hidden items-center justify-center gap-1 font-label text-xs pb-2" id="langSwitcherMobile">
@@ -106,8 +106,6 @@ if (location.protocol === 'file:') {
   </div>
 </header>
 
-<!-- Scroll Progress Bar -->
-<div class="fixed top-0 left-0 h-[3px] z-[60] kinetic-gradient" id="scrollProgress" style="width:0"></div>
 `);
   document.querySelectorAll('#navLinks .nav-item.has-menu').forEach(function (item) {
     item.addEventListener('click', function (e) {
