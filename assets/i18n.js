@@ -1088,26 +1088,26 @@ Object.assign(i18n.ja, {
 
 /* Home: "VegaFencer at a Glance" (the title itself stays in English in every language). */
 Object.assign(i18n.ko, {
-  glance_lead: "VegaFencer의 각 모듈을 단순화한 도식 애니메이션으로 핵심 기능을 확인하세요.<br>실제 제품 화면은 <a href=\"resources#videos\" class=\"glance-link\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"10\" r=\"9\" fill=\"currentColor\"/><path d=\"M8 6.5v7l5.5-3.5z\" fill=\"#fff\"/></svg><span>구동 영상</span></a>에서 볼 수 있습니다.",
-  glance_video: "구동 영상",
+  glance_lead: "VegaFencer의 각 모듈을 단순화한 도식 애니메이션으로 핵심 기능을 확인하세요.<br>실제 제품 화면은 <a href=\"product#interface\" class=\"glance-link\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"10\" r=\"9\" fill=\"currentColor\"/><rect x=\"5.5\" y=\"6\" width=\"9\" height=\"6.5\" rx=\"1\" fill=\"#fff\"/><path d=\"M8 14.5h4\" stroke=\"#fff\" stroke-width=\"1.4\" stroke-linecap=\"round\"/></svg><span>제품 페이지</span></a>에서 볼 수 있습니다.",
+  glance_video: "제품 화면 보기",
   glance_product: "제품 살펴보기",
   glance_tagline: "회로도부터 하네스 도면까지, 통합 E/E 엔지니어링 플랫폼",
 });
 Object.assign(i18n.en, {
-  glance_lead: "See the core features of each VegaFencer module in a simplified, schematic animation.<br>The real product screens are in our <a href=\"resources#videos\" class=\"glance-link\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"10\" r=\"9\" fill=\"currentColor\"/><path d=\"M8 6.5v7l5.5-3.5z\" fill=\"#fff\"/></svg><span>product videos</span></a>.",
-  glance_video: "Product videos",
+  glance_lead: "See the core features of each VegaFencer module in a simplified, schematic animation.<br>The real product screens are on the <a href=\"product#interface\" class=\"glance-link\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"10\" r=\"9\" fill=\"currentColor\"/><rect x=\"5.5\" y=\"6\" width=\"9\" height=\"6.5\" rx=\"1\" fill=\"#fff\"/><path d=\"M8 14.5h4\" stroke=\"#fff\" stroke-width=\"1.4\" stroke-linecap=\"round\"/></svg><span>product page</span></a>.",
+  glance_video: "See product screens",
   glance_product: "Explore the product",
   glance_tagline: "From schematics to harness drawings, one integrated E/E engineering platform",
 });
 Object.assign(i18n.zh, {
-  glance_lead: "通过简化的示意动画，了解 VegaFencer 各模块的核心功能。<br>实际产品界面请观看<a href=\"resources#videos\" class=\"glance-link\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"10\" r=\"9\" fill=\"currentColor\"/><path d=\"M8 6.5v7l5.5-3.5z\" fill=\"#fff\"/></svg><span>演示视频</span></a>。",
-  glance_video: "演示视频",
+  glance_lead: "通过简化的示意动画，了解 VegaFencer 各模块的核心功能。<br>实际产品界面请查看<a href=\"product#interface\" class=\"glance-link\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"10\" r=\"9\" fill=\"currentColor\"/><rect x=\"5.5\" y=\"6\" width=\"9\" height=\"6.5\" rx=\"1\" fill=\"#fff\"/><path d=\"M8 14.5h4\" stroke=\"#fff\" stroke-width=\"1.4\" stroke-linecap=\"round\"/></svg><span>产品页面</span></a>。",
+  glance_video: "查看产品界面",
   glance_product: "了解产品",
   glance_tagline: "从原理图到线束图纸的一体化 E/E 工程平台",
 });
 Object.assign(i18n.ja, {
-  glance_lead: "VegaFencer\u2060の各モジュールを簡略化した図解アニメーションで、主な機能をご覧ください。<br>実際の製品画面は<a href=\"resources#videos\" class=\"glance-link\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"10\" r=\"9\" fill=\"currentColor\"/><path d=\"M8 6.5v7l5.5-3.5z\" fill=\"#fff\"/></svg><span>製品動画</span></a>でご覧いただけます。",
-  glance_video: "製品動画",
+  glance_lead: "VegaFencer\u2060の各モジュールを簡略化した図解アニメーションで、主な機能をご覧ください。<br>実際の製品画面は<a href=\"product#interface\" class=\"glance-link\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"10\" r=\"9\" fill=\"currentColor\"/><rect x=\"5.5\" y=\"6\" width=\"9\" height=\"6.5\" rx=\"1\" fill=\"#fff\"/><path d=\"M8 14.5h4\" stroke=\"#fff\" stroke-width=\"1.4\" stroke-linecap=\"round\"/></svg><span>製品ページ</span></a>でご覧いただけます。",
+  glance_video: "製品画面を見る",
   glance_product: "製品を見る",
   glance_tagline: "回路図からハーネス図面まで、統合 E/E\u2060エンジニアリングプラットフォーム",
 });
