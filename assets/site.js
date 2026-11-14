@@ -16,10 +16,13 @@ const Model = {
 /* =============================================================
    CONTROLLER — Application Logic
    ============================================================= */
-/* Where every form on the site is sent: Formspree form "VegaFencer Website" (account vegafencer.admin@gmail.com,
-   dashboard at formspree.io). Messages go to that address; copies to others are set up as Gmail forwarding. */
-const FORM_TO = 'vegafencer.admin@gmail.com';
 const FORM_ENDPOINT = 'https://formspree.io/f/xbggekne';
+
+/* Value of the hidden spam-trap field (see .hp-field). Formspree discards a send whose _gotcha is filled. */
+const honeypot = (form) => (form.elements._gotcha && form.elements._gotcha.value) || '';
+
+/* Address shown when a send fails. Same address as contact.html; switch both to a role address (contact@…) once the domain's mail is set up. */
+const FORM_TO = 'tobiaskim@mutuus-lab.com';
 
 /* A failed send also offers the address, so a message is never lost when the form service is down. */
 function showFormFailure(el, text) {
@@ -287,7 +290,6 @@ const Controller = {
       submitBtn.textContent = (i18n[lang] && i18n[lang].cta_sending) || 'Sending...';
       errorEl.classList.add('hidden');
 
-      // Send via FormSubmit.co (no signup required)
       fetch(FORM_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -295,6 +297,7 @@ const Controller = {
           email: email.value,
           _subject: 'VegaFencer Demo Request from ' + email.value,
           message: 'New demo request from: ' + email.value,
+          _gotcha: honeypot(form),
         }),
       }).then(r => r.json().then(body => ({ success: r.ok && body.ok !== false }))).then(data => {
         if (data.success) {
@@ -610,6 +613,7 @@ const Controller = {
           phone: field('phone').value || '-',
           message: field('message').value,
           _subject: 'VegaFencer Contact [' + type + '] from ' + field('name').value,
+          _gotcha: honeypot(form),
         }),
       }).then(r => r.json().then(body => ({ success: r.ok && body.ok !== false }))).then(data => {
         if (!data.success) throw new Error();
@@ -660,6 +664,7 @@ const Controller = {
           email: email.value,
           message: message.value,
           _subject: 'VegaFencer Contact from ' + name.value,
+          _gotcha: honeypot(form),
         }),
       }).then(r => r.json().then(body => ({ success: r.ok && body.ok !== false }))).then(data => {
         if (data.success) {

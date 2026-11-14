@@ -323,6 +323,7 @@
     <!-- Email Form -->
     <div class="reveal reveal-delay-2">
       <form class="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto" id="ctaForm" onsubmit="return false;">
+        <input class="hp-field" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
         <input class="flex-1 px-6 py-3.5 rounded-full bg-white/10 border border-white/15 text-white placeholder-white/30 font-body text-sm focus:outline-none focus:border-primary-container/50 focus:ring-2 focus:ring-primary-container/20 transition-all" type="email" name="email" data-i18n-placeholder="cta_placeholder" placeholder="업무 이메일을 입력하세요" required>
         <button class="kinetic-gradient text-white px-8 py-3.5 rounded-full font-label font-bold text-sm whitespace-nowrap hover:opacity-90 transition-opacity shadow-lg shadow-primary-container/20" type="submit" data-i18n-html="cta_submit">데모 신청 &rarr;</button>
       </form>

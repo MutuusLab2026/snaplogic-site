@@ -712,3 +712,6 @@ body[data-page="product"] :is(#logic, #integrator, #harness) .rounded-2xl { bord
 .lg-legend b + span { display: block; margin-top: 2px; font: 400 13.5px/1.55 Manrope, 'Noto Sans KR', sans-serif; color: #414754; }
 
 @media (prefers-reduced-motion: reduce) { .lg-area, .lg-legend button, .lg-dot { transition: none; } }
+
+/* Spam trap: a field people never see; bots that fill every input fill it, and Formspree drops those sends. */
+input.hp-field, .contact-form input.hp-field { position: absolute !important; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none; }

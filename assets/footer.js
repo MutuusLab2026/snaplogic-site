@@ -35,6 +35,7 @@ document.currentScript.insertAdjacentHTML('beforebegin', `
       <div class="md:col-span-2 lg:col-span-1 footer-contact">
         <h2 class="font-headline font-bold text-on-surface text-sm mb-4" data-i18n="contact_title">Contact Us</h2>
         <form class="flex flex-col gap-2.5" id="contactForm" onsubmit="return false;">
+          <input class="hp-field" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
           <input class="px-3 py-2 rounded-lg border border-outline-variant/30 bg-white text-sm font-body text-on-surface placeholder-on-surface-variant/50 focus:outline-none focus:border-primary-container/50 focus:ring-1 focus:ring-primary-container/20" type="text" name="name" data-i18n-placeholder="contact_name" placeholder="이름" required>
           <input class="px-3 py-2 rounded-lg border border-outline-variant/30 bg-white text-sm font-body text-on-surface placeholder-on-surface-variant/50 focus:outline-none focus:border-primary-container/50 focus:ring-1 focus:ring-primary-container/20" type="text" name="company" data-i18n-placeholder="contact_company" placeholder="회사명">
           <input class="px-3 py-2 rounded-lg border border-outline-variant/30 bg-white text-sm font-body text-on-surface placeholder-on-surface-variant/50 focus:outline-none focus:border-primary-container/50 focus:ring-1 focus:ring-primary-container/20" type="email" name="email" data-i18n-placeholder="contact_email" placeholder="이메일" required>
