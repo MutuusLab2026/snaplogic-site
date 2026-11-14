@@ -1153,6 +1153,6 @@ function switchLanguage(lang) {
   });
 
   // Save preference
-  localStorage.setItem('lang', lang);
+  try { localStorage.setItem('lang', lang); } catch (err) { /* storage blocked: the choice lasts for this page only */ }
   if (window.loadWebFonts) window.loadWebFonts(lang);
 }

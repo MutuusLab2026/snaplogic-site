@@ -715,3 +715,11 @@ body[data-page="product"] :is(#logic, #integrator, #harness) .rounded-2xl { bord
 
 /* Spam trap: a field people never see; bots that fill every input fill it, and Formspree drops those sends. */
 input.hp-field, .contact-form input.hp-field { position: absolute !important; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none; }
+
+/* Phone menu: demo request as the last row, a solid button (blue on the light menu, cyan on the home page's dark one). */
+.nav-demo-mobile { display: none; }
+@media (max-width: 767px) {
+  #navLinks.nav-open a.nav-demo-mobile { display: block; margin: 20px 24px 0; padding: 14px 24px; min-height: 48px; border: 0; border-radius: 8px;
+    background: #1a73e8; color: #fff; font: 700 17px/20px Inter, 'Noto Sans KR', sans-serif; text-align: center; text-decoration: none; }
+  #nav.engineering-nav-dark #navLinks.nav-open a.nav-demo-mobile { background: #7be4ee; color: #081e30; }
+}

@@ -84,6 +84,8 @@ if (location.protocol === 'file:') {
       ${tab('resources', 'nav_resources', 'Resources')}
       ${tab('pricing', 'nav_pricing', 'Pricing')}
       ${tab('contact', 'nav_contact', 'Contact')}
+      <!-- Phones only: the header's demo button is hidden below md, so the open menu ends with it -->
+      <a class="nav-demo-mobile md:hidden" href="${pageUrl('home', '#cta')}" id="navDemoMobile" data-i18n="nav_demo">Request Demo</a>
     </div>
     <!-- Language Switcher (Desktop) -->
     <div class="hidden md:flex items-center gap-1 font-label text-xs mr-4" id="langSwitcherDesktop">
@@ -122,10 +124,12 @@ if (location.protocol === 'file:') {
     item.querySelector('a').focus();
     item.addEventListener('focusout', function () { item.classList.remove('nav-menu-closed'); }, { once: true });
   });
-  document.getElementById('navDemo').addEventListener('click', function (e) {
-    var cta = document.getElementById('cta');
-    if (!cta) return;
-    e.preventDefault();
-    cta.scrollIntoView({ behavior: 'smooth' });
+  ['navDemo', 'navDemoMobile'].forEach(function (id) {
+    document.getElementById(id).addEventListener('click', function (e) {
+      var cta = document.getElementById('cta');
+      if (!cta) return;
+      e.preventDefault();
+      cta.scrollIntoView({ behavior: 'smooth' });
+    });
   });
 })();

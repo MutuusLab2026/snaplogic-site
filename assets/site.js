@@ -18,6 +18,16 @@ const Model = {
    ============================================================= */
 const FORM_ENDPOINT = 'https://formspree.io/f/xbggekne';
 
+/* Section id from an address's #part. A malformed one (e.g. "#%" from a cut-off link) gives '' instead of throwing. */
+function hashId(hash) {
+  try { return decodeURIComponent((hash || '').slice(1)); } catch (err) { return ''; }
+}
+
+/* Saved language; storage can be blocked (private mode, strict settings), which must not stop a form send. */
+function savedLang() {
+  try { return localStorage.getItem('lang') || 'ko'; } catch (err) { return 'ko'; }
+}
+
 /* Value of the hidden spam-trap field (see .hp-field). Formspree discards a send whose _gotcha is filled. */
 const honeypot = (form) => (form.elements._gotcha && form.elements._gotcha.value) || '';
 
@@ -49,26 +59,32 @@ const Controller = {
   currentLightboxIndex: -1,
   previousFocus: null,
 
+  /* Each step runs on its own: one that throws (a missing element, blocked storage, a malformed address) is
+     logged and skipped, and the rest still run, so the forms always get their handlers. */
   init() {
-    this.initScrollReveal();
-    this.initNavScroll();
-    this.initMobileMenu();
-    this.initGalleryEvents();
-    this.initLightbox();
-    this.initCtaForm();
-    this.initScrollToTop();
-    this.initLanguage();
-    this.initScrollProgress();
-    this.initNavActiveState();
-    this.initCounters();
-    this.initChatAnimation();
-    this.initContactForm();
-    this.initHeroSlideshow();
-    this.initAiTabs();
-    this.initAgentAnimation();
-    this.initAnchorSettle();
-    this.initContactPage();
-    this.initLogicTour();
+    [
+      'initScrollReveal',
+      'initNavScroll',
+      'initMobileMenu',
+      'initGalleryEvents',
+      'initLightbox',
+      'initCtaForm',
+      'initScrollToTop',
+      'initLanguage',
+      'initScrollProgress',
+      'initNavActiveState',
+      'initCounters',
+      'initChatAnimation',
+      'initContactForm',
+      'initHeroSlideshow',
+      'initAiTabs',
+      'initAgentAnimation',
+      'initAnchorSettle',
+      'initContactPage',
+      'initLogicTour',
+    ].forEach((step) => {
+      try { this[step](); } catch (err) { console.error('VegaFencer: ' + step + ' failed', err); }
+    });
   },
 
   /* Product page. Interface tour: hovering an area of the screenshot, or hovering/focusing its item in the list,
@@ -101,7 +117,8 @@ const Controller = {
      scroll ends, check where the section really is and finish the trip (at most three corrections). */
   initAnchorSettle() {
     // Arriving from another page with #section: once everything has loaded (and pushed things down), go there again.
-    const target = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    const targetId = hashId(location.hash);
+    const target = targetId && document.getElementById(targetId);
     // Jump (no smooth animation: the page is still growing, which would end a slow trip short), then re-check twice.
     if (target) addEventListener('load', () => {
       const go = () => {
@@ -116,7 +133,7 @@ const Controller = {
       if (!a) return;
       const url = new URL(a.href, location.href);
       if (url.pathname !== location.pathname) return;   // another page: handled there on arrival
-      const id = decodeURIComponent(url.hash.slice(1));
+      const id = hashId(url.hash);
       const el = id && document.getElementById(id);
       if (!el) return;
       let tries = 0;
@@ -131,12 +148,11 @@ const Controller = {
     });
   },
 
-  /* Language — initialize from localStorage or default to 'ko' */
+  /* Language — the saved choice, or Korean */
   initLanguage() {
-    var savedLang = localStorage.getItem('lang') || 'ko';
-    // Validate saved language
-    if (!i18n[savedLang]) savedLang = 'ko';
-    switchLanguage(savedLang);
+    var lang = savedLang();
+    if (!Object.prototype.hasOwnProperty.call(i18n, lang)) lang = 'ko';   // also rejects '__proto__' and the like
+    switchLanguage(lang);
 
     // Attach click handlers to all lang-btn elements
     document.querySelectorAll('.lang-btn').forEach(function(btn) {
@@ -277,7 +293,7 @@ const Controller = {
         email.reportValidity();
         return;
       }
-      const lang = localStorage.getItem('lang') || 'ko';
+      const lang = savedLang();
       if (!isBusinessEmail(email.value)) {
         errorEl.textContent = (i18n[lang] && i18n[lang].cta_business_only) || 'Please enter a business email.';
         errorEl.classList.remove('hidden');
@@ -594,7 +610,7 @@ const Controller = {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
-      const lang = localStorage.getItem('lang') || 'ko';
+      const lang = savedLang();
       const t = i18n[lang] || i18n.ko;
       if (!isBusinessEmail(field('email').value)) { showError(t.cta_business_only || 'Please enter a business email.'); return; }
       const type = field('type').options[field('type').selectedIndex].text;
@@ -644,7 +660,7 @@ const Controller = {
         form.reportValidity();
         return;
       }
-      const lang = localStorage.getItem('lang') || 'ko';
+      const lang = savedLang();
       if (!isBusinessEmail(email.value)) {
         errorEl.textContent = (i18n[lang] && i18n[lang].cta_business_only) || 'Please enter a business email.';
         errorEl.classList.remove('hidden');
