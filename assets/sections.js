@@ -304,20 +304,20 @@
 `,
   cta: () => `
 <section class="py-16 md:py-24" id="cta">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-    <header class="reveal lg-head">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 cta-grid">
+    <!-- Closing section: copy on the left, the form on the right (stacked on phones). Not an lg-head on purpose. -->
+    <div class="reveal">
       <p class="lg-kicker">DEMO</p>
-      <h2 class="lg-name" translate="no">Request a Demo</h2>
-      <p class="lg-tagline" data-i18n="cta_title">E/E 설계 워크플로우를 혁신할 준비가 되셨나요?</p>
-      <p class="font-body text-base leading-relaxed lg-lead" data-i18n="cta_subtitle">VegaFencer 데모를 신청하고, 맞춤형 솔루션을 경험하세요. 전문 엔지니어가 귀사의 E/E 설계 프로세스를 분석하여 최적의 워크플로우를 제안합니다.</p>
-    </header>
+      <h2 class="cta-title" data-i18n="cta_title">E/E 설계 워크플로우를 혁신할 준비가 되셨나요?</h2>
+      <p class="cta-lead font-body" data-i18n="cta_subtitle">VegaFencer 데모를 신청하고, 맞춤형 솔루션을 경험하세요. 전문 엔지니어가 귀사의 E/E 설계 프로세스를 분석하여 최적의 워크플로우를 제안합니다.</p>
+    </div>
 
     <!-- Email Form -->
-    <div class="reveal reveal-delay-1 mt-8">
-      <form class="flex flex-col sm:flex-row gap-3 max-w-lg" id="ctaForm" method="post" onsubmit="return false;">
+    <div class="reveal reveal-delay-1">
+      <form class="cta-form" id="ctaForm" method="post" onsubmit="return false;">
         <input class="hp-field" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <input class="flex-1 px-5 py-3.5 rounded-xl bg-white/10 border border-white/15 text-white placeholder-white/40 font-body text-sm focus:outline-none focus:border-primary-container/50 focus:ring-2 focus:ring-primary-container/20 transition-all" type="email" name="email" data-i18n-placeholder="cta_placeholder" placeholder="업무 이메일을 입력하세요" required>
-        <button class="btn btn-primary-dark" type="submit" data-i18n-html="cta_submit">데모 신청 &rarr;</button>
+        <input class="w-full px-5 py-3.5 rounded-xl bg-white/10 border border-white/15 text-white placeholder-white/40 font-body text-sm focus:outline-none focus:border-primary-container/50 focus:ring-2 focus:ring-primary-container/20 transition-all" type="email" name="email" data-i18n-placeholder="cta_placeholder" placeholder="업무 이메일을 입력하세요" required>
+        <button class="btn btn-primary-dark w-full" type="submit" data-i18n-html="cta_submit">데모 신청 &rarr;</button>
       </form>
       <p class="hidden mt-6 text-secondary-container font-body font-semibold" id="ctaSuccess" data-i18n="cta_success">감사합니다! 곧 연락드리겠습니다.</p>
       <p class="hidden mt-6 text-red-400 font-body font-semibold" id="ctaError" data-i18n="cta_error"></p>
