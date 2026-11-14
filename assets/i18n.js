@@ -147,7 +147,8 @@ const i18n = {
     int_coming: "Coming soon",
 
     // CTA
-    cta_title: 'E/E 설계 워크플로우를 혁신할 준비가 되셨나요?',
+    cta_badge: "Enterprise Ready",
+    cta_title: 'E/E 설계 워크플로우를<br>혁신할 준비가 되셨나요?',
     cta_subtitle: "VegaFencer 데모를 신청하고, 맞춤형 솔루션을 경험하세요. 전문 엔지니어가 귀사의 E/E 설계 프로세스를 분석하여 최적의 워크플로우를 제안합니다.",
     cta_placeholder: "업무 이메일을 입력하세요",
     cta_submit: '데모 신청 &rarr;',
@@ -368,7 +369,8 @@ const i18n = {
     int_coming: "Coming soon",
 
     // CTA
-    cta_title: 'Ready to transform your E/E design workflow?',
+    cta_badge: "Enterprise Ready",
+    cta_title: 'Ready to transform your<br>E/E design workflow?',
     cta_subtitle: "Request a VegaFencer demo and experience a tailored solution. Our expert engineers will analyze your E/E design process and propose the optimal workflow.",
     cta_placeholder: "Enter your work email",
     cta_submit: 'Request Demo &rarr;',
@@ -589,7 +591,8 @@ const i18n = {
     int_coming: "即将推出",
 
     // CTA
-    cta_title: '准备好革新您的 E/E 设计工作流程了吗？',
+    cta_badge: "企业级就绪",
+    cta_title: '准备好革新您的<br>E/E设计工作流程了吗？',
     cta_subtitle: "申请VegaFencer演示，体验定制化解决方案。我们的专业工程师将分析您的E/E设计流程，提出最佳工作流方案。",
     cta_placeholder: "请输入工作邮箱",
     cta_submit: '申请演示 &rarr;',
@@ -811,7 +814,8 @@ const i18n = {
     int_coming: "近日公開",
 
     // CTA
-    cta_title: 'E/E設計ワークフローを革新する準備はできていますか？',
+    cta_badge: "エンタープライズ対応",
+    cta_title: 'E/E設計ワークフローを<br>革新する準備はできていますか？',
     cta_subtitle: "VegaFencerデモを申請して、カスタマイズされたソリューションを体験してください。専門エンジニアが貴社のE/E設計プロセスを分析し、最適なワークフローを提案します。",
     cta_placeholder: "業務メールアドレスを入力してください",
     cta_submit: 'デモ申請 &rarr;',

@@ -410,6 +410,8 @@ html[lang="ko"] body { word-break: keep-all; overflow-wrap: break-word; }
   .engineering-button { padding-inline: 16px; font-size: 12px; }
   .engineering-drawing .diagram-label, .engineering-drawing .diagram-callout, .engineering-drawing .dimension-line { display: none; }
   .eng-bridge .bridge-lane-text { letter-spacing: .2px; }
+  #cta h2 { font-size: 27px; }
+  #cta h2 + p { font-size: 15px; }
   .eng-fig .fig-label, .eng-fig .fig-pin-text { font-size: 10.5px; }
   .eng-fig .fig-dim-text, .eng-fig .fig-tag-text { font-size: 11px; }
 }
