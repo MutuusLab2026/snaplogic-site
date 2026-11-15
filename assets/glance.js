@@ -80,24 +80,19 @@
     '설계 규칙 검사(DRC)로 오류를 찾고, BOM 리포트로 필요한 목록을 뽑습니다.',
     'CATIA V5, Siemens NX와 와이어 리스트와 번들 길이를 주고받습니다.'
   ];
-  // After each caption: a link to that module's section on the product page, in the page's current language.
+  // After each caption: a link to that module's section on the product page, in the page's current language
+  // (glance_more_1..5 in i18n.js).
   var MORE_IDS = ['logic', 'integrator', 'harness', 'variant', 'bridge'];
-  var MORE = {
-    ko: { names: ['Logic', 'Integrator', 'Harness Drawing', 'DRC · BOM', 'CAD 연동'], fmt: function (n) { return n + ' 자세히 보기'; } },
-    en: { names: ['Logic', 'Integrator', 'Harness Drawing', 'DRC · BOM', 'CAD integration'], fmt: function (n) { return 'More on ' + n; } },
-    zh: { names: ['Logic', 'Integrator', 'Harness Drawing', 'DRC · BOM', 'CAD 集成'], fmt: function (n) { return '详细了解 ' + n; } },
-    ja: { names: ['Logic', 'Integrator', 'Harness Drawing', 'DRC · BOM', 'CAD連携'], fmt: function (n) { return n + '\u2060の詳細'; } }
-  };
   var capIndex = 0;
   function setCap(i) {
     capIndex = i;
-    var m = MORE[document.documentElement.lang] || MORE.ko;
+    var t = i18n[document.documentElement.lang] || i18n.ko;
     var cap = $('#cap');
     cap.textContent = CAPS[i] + ' ';
     var a = document.createElement('a');
     a.className = 'glance-more';
     a.href = 'product#' + MORE_IDS[i];
-    a.textContent = m.fmt(m.names[i]);
+    a.textContent = t['glance_more_' + (i + 1)];
     a.insertAdjacentHTML('beforeend', '<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg>');
     cap.appendChild(a);
   }

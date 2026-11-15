@@ -2,62 +2,6 @@
 (() => {
   'use strict';
 
-  const copy = {
-    ko: {
-      hero_title: '모든 연결에,<br>설계의 확신을.',
-      hero_subtitle: '전기적 설계 의도에서 실제 와이어링 하네스까지. VegaFencer는 차량 E/E 아키텍처의 모든 연결을 하나의 일관된 데이터로 이어줍니다.',
-      hero_cta_demo: '데모 신청하기', motion_kicker: 'VegaFencer / 차량 E/E 엔지니어링',
-      motion_explore: '설계 흐름 살펴보기',
-      motion_drawing: 'E/E 아키텍처 · 개념도', motion_pause: '모션 일시정지', motion_resume: '모션 재생',
-      motion_static: '모션 감소 적용', motion_model: '논리적 연결에서 물리적 배선으로', motion_concept: '개념 시각화',
-      motion_power: '전원 분배', motion_data: '데이터 연결', motion_control: '제어 신호',
-      motion_scroll: '플랫폼 살펴보기', motion_interface_label: 'VegaFencer 작업 환경',
-      motion_interface_title: '복잡한 설계도,<br>명확한 하나의 화면으로.',
-      motion_interface_desc: '회로 설계, 토폴로지 통합, 하네스 도면과 검증까지. 실제 제품 화면에서 연결된 워크플로우를 확인하세요.'
-    },
-    en: {
-      hero_title: 'Every connection.<br>Engineered with intent.',
-      hero_subtitle: 'From electrical intent to the physical wiring harness. VegaFencer connects every part of your vehicle E/E architecture through one consistent data model.',
-      hero_cta_demo: 'Request a demo', motion_kicker: 'VegaFencer / Vehicle E/E engineering',
-      motion_explore: 'Explore the workflow',
-      motion_drawing: 'E/E architecture · concept', motion_pause: 'Pause motion', motion_resume: 'Play motion',
-      motion_static: 'Reduced motion', motion_model: 'From logical connections to physical wiring', motion_concept: 'Concept visualization',
-      motion_power: 'Power distribution', motion_data: 'Data connection', motion_control: 'Control signal',
-      motion_scroll: 'Explore the platform', motion_interface_label: 'Inside VegaFencer',
-      motion_interface_title: 'Complex engineering.<br>One clear workspace.',
-      motion_interface_desc: 'Circuit design, topology integration, harness drawings and verification. Explore the connected workflow in the actual product interface.'
-    },
-    zh: {
-      hero_title: '每一处连接，<br>皆有设计依据。',
-      hero_subtitle: '从电气设计意图到实际线束。VegaFencer 通过一致的数据模型，连接车辆 E/E 架构的每一个环节。',
-      hero_cta_demo: '申请演示', motion_kicker: 'VegaFencer / 车辆 E/E 工程',
-      motion_explore: '探索设计流程',
-      motion_drawing: 'E/E 架构 · 概念图', motion_pause: '暂停动画', motion_resume: '播放动画',
-      motion_static: '已减少动态效果', motion_model: '从逻辑连接到物理布线', motion_concept: '概念可视化',
-      motion_power: '电源分配', motion_data: '数据连接', motion_control: '控制信号',
-      motion_scroll: '探索平台', motion_interface_label: 'VegaFencer 工作环境',
-      motion_interface_title: '复杂工程，<br>清晰呈现。',
-      motion_interface_desc: '从电路设计、拓扑集成到线束图纸与验证，在实际产品界面中探索连贯的工作流程。'
-    },
-    ja: {
-      hero_title: 'すべての接続に、<br>確かな設計意図を。',
-      hero_subtitle: '電気的な設計意図から実際のワイヤーハーネスまで。VegaFencer\u2060は、一貫したデータモデルで車両E/Eアーキテクチャのすべてをつなぎます。',
-      hero_cta_demo: 'デモを申し込む', motion_kicker: 'VegaFencer / 車両E/Eエンジニアリング',
-      motion_explore: '設計フローを見る',
-      motion_drawing: 'E/Eアーキテクチャ · 概念図', motion_pause: 'モーションを停止', motion_resume: 'モーションを再生',
-      motion_static: '動きを抑える設定', motion_model: '論理的な接続から物理的な配線へ', motion_concept: '概念ビジュアライゼーション',
-      motion_power: '電源分配', motion_data: 'データ接続', motion_control: '制御信号',
-      motion_scroll: 'プラットフォームを見る', motion_interface_label: 'VegaFencer\u2060の作業環境',
-      motion_interface_title: '複雑な設計を、<br>明確なワークスペースに。',
-      motion_interface_desc: '回路設計、トポロジー統合、ハーネス図面、検証まで。実際の製品画面でつながるワークフローをご覧ください。'
-    }
-  };
-  Object.assign(copy.ko, { fig_logic: '핀 단위 연결 의도와 신호 타입', fig_int: '회로 넷과 토폴로지 세그먼트의 동기화', fig_harness: '번들 길이·직경 자동 산출', fig_drc: '24개 DRC 규칙 일괄 검증' });
-  Object.assign(copy.en, { fig_logic: 'Pin-level intent and signal types', fig_int: 'Circuit nets and topology segments, in sync', fig_harness: 'Bundle lengths and diameters, calculated', fig_drc: '24 DRC rules, checked in one pass' });
-  Object.assign(copy.zh, { fig_logic: '引脚级连接意图与信号类型', fig_int: '电路网络与拓扑段同步', fig_harness: '自动计算线束长度与直径', fig_drc: '24 条 DRC 规则一次性校验' });
-  Object.assign(copy.ja, { fig_logic: 'ピン単位の接続意図と信号タイプ', fig_int: '回路ネットとトポロジーセグメントの同期', fig_harness: 'バンドル長・径を自動算出', fig_drc: '24\u2060のDRCルールを一括検証' });
-  Object.entries(copy).forEach(([lang, values]) => Object.assign(i18n[lang], values));
-
   // Drawing strips under the feature screenshots. .fd paths draw, .fp parts appear; --d sequences them.
   const d = (path, delay, extra = '') => '<path class="fd' + extra + '" pathLength="1" style="--d:' + delay + 's" d="' + path + '"/>';
   const tag = (x, y, text, delay) => '<g class="fp" style="--d:' + delay + 's"><rect class="fig-tag" x="' + (x - 21) + '" y="' + (y - 8) + '" width="42" height="16" rx="3"/><text class="fig-tag-text" x="' + x + '" y="' + (y + 3.5) + '">' + text + '</text></g>';

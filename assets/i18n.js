@@ -15,9 +15,6 @@ const i18n = {
 
     // Hero
     hero_badge: "출시 — VegaFencer Logic v1.0",
-    hero_title: 'From architecture design<br>to series production',
-    hero_subtitle: "요구사항 정의부터 와이어링 하네스 설계까지 — 차량 E/E 개발 전 과정을 하나의 플랫폼으로 통합합니다.",
-    hero_cta_demo: 'Request Demo <span class="ml-1">&rarr;</span>',
     hero_cta_video: '<span class="material-symbols-outlined text-base align-middle mr-1" style="font-size:18px">play_circle</span> Watch Video',
 
     // Trust
@@ -237,9 +234,6 @@ const i18n = {
 
     // Hero
     hero_badge: "Now Available — VegaFencer Logic v1.0",
-    hero_title: 'From architecture design<br>to series production',
-    hero_subtitle: "From requirement definition to wiring harness design — unifying the entire vehicle E/E development process on a single platform.",
-    hero_cta_demo: 'Request Demo <span class="ml-1">&rarr;</span>',
     hero_cta_video: '<span class="material-symbols-outlined text-base align-middle mr-1" style="font-size:18px">play_circle</span> Watch Video',
 
     // Trust
@@ -459,9 +453,6 @@ const i18n = {
 
     // Hero
     hero_badge: "现已推出 — VegaFencer Logic v1.0",
-    hero_title: '从架构设计<br>到量产',
-    hero_subtitle: "从需求定义到线束设计 — 将整个车辆E/E开发流程整合到一个平台上。基于数据建模的精密工程解决方案。",
-    hero_cta_demo: '申请演示 <span class="ml-1">&rarr;</span>',
     hero_cta_video: '<span class="material-symbols-outlined text-base align-middle mr-1" style="font-size:18px">play_circle</span> 观看视频',
 
     // Trust
@@ -682,9 +673,6 @@ const i18n = {
 
     // Hero
     hero_badge: "リリース — VegaFencer Logic v1.0",
-    hero_title: 'アーキテクチャ設計から<br>量産まで',
-    hero_subtitle: "要件定義からワイヤーハーネス設計まで — 車両E/E開発の全プロセスを一つのプラットフォームに統合します。データモデリングベースの精密エンジニアリングソリューション。",
-    hero_cta_demo: 'デモを申請 <span class="ml-1">&rarr;</span>',
     hero_cta_video: '<span class="material-symbols-outlined text-base align-middle mr-1" style="font-size:18px">play_circle</span> 動画を見る',
 
     // Trust
@@ -1110,6 +1098,86 @@ Object.assign(i18n.ja, {
   glance_video: "製品画面を見る",
   glance_product: "製品を見る",
   glance_tagline: "回路図からハーネス図面まで、統合 E/E\u2060エンジニアリングプラットフォーム",
+});
+
+/* Home hero, hero motion labels and the product page's drawing captions (fig_*). Used by engineering.js. */
+Object.assign(i18n.ko, {
+  hero_title: '모든 연결에,<br>설계의 확신을.',
+  hero_subtitle: '전기적 설계 의도에서 실제 와이어링 하네스까지. VegaFencer는 차량 E/E 아키텍처의 모든 연결을 하나의 일관된 데이터로 이어줍니다.',
+  hero_cta_demo: '데모 신청하기', motion_kicker: 'VegaFencer / 차량 E/E 엔지니어링',
+  motion_explore: '설계 흐름 살펴보기',
+  motion_drawing: 'E/E 아키텍처 · 개념도', motion_pause: '모션 일시정지', motion_resume: '모션 재생',
+  motion_static: '모션 감소 적용', motion_model: '논리적 연결에서 물리적 배선으로', motion_concept: '개념 시각화',
+  motion_power: '전원 분배', motion_data: '데이터 연결', motion_control: '제어 신호',
+  motion_scroll: '플랫폼 살펴보기', motion_interface_label: 'VegaFencer 작업 환경',
+  motion_interface_title: '복잡한 설계도,<br>명확한 하나의 화면으로.',
+  motion_interface_desc: '회로 설계, 토폴로지 통합, 하네스 도면과 검증까지. 실제 제품 화면에서 연결된 워크플로우를 확인하세요.',
+  fig_logic: '핀 단위 연결 의도와 신호 타입', fig_int: '회로 넷과 토폴로지 세그먼트의 동기화', fig_harness: '번들 길이·직경 자동 산출', fig_drc: '24개 DRC 규칙 일괄 검증'
+});
+Object.assign(i18n.en, {
+  hero_title: 'Every connection.<br>Engineered with intent.',
+  hero_subtitle: 'From electrical intent to the physical wiring harness. VegaFencer connects every part of your vehicle E/E architecture through one consistent data model.',
+  hero_cta_demo: 'Request a demo', motion_kicker: 'VegaFencer / Vehicle E/E engineering',
+  motion_explore: 'Explore the workflow',
+  motion_drawing: 'E/E architecture · concept', motion_pause: 'Pause motion', motion_resume: 'Play motion',
+  motion_static: 'Reduced motion', motion_model: 'From logical connections to physical wiring', motion_concept: 'Concept visualization',
+  motion_power: 'Power distribution', motion_data: 'Data connection', motion_control: 'Control signal',
+  motion_scroll: 'Explore the platform', motion_interface_label: 'Inside VegaFencer',
+  motion_interface_title: 'Complex engineering.<br>One clear workspace.',
+  motion_interface_desc: 'Circuit design, topology integration, harness drawings and verification. Explore the connected workflow in the actual product interface.',
+  fig_logic: 'Pin-level intent and signal types', fig_int: 'Circuit nets and topology segments, in sync', fig_harness: 'Bundle lengths and diameters, calculated', fig_drc: '24 DRC rules, checked in one pass'
+});
+Object.assign(i18n.zh, {
+  hero_title: '每一处连接，<br>皆有设计依据。',
+  hero_subtitle: '从电气设计意图到实际线束。VegaFencer 通过一致的数据模型，连接车辆 E/E 架构的每一个环节。',
+  hero_cta_demo: '申请演示', motion_kicker: 'VegaFencer / 车辆 E/E 工程',
+  motion_explore: '探索设计流程',
+  motion_drawing: 'E/E 架构 · 概念图', motion_pause: '暂停动画', motion_resume: '播放动画',
+  motion_static: '已减少动态效果', motion_model: '从逻辑连接到物理布线', motion_concept: '概念可视化',
+  motion_power: '电源分配', motion_data: '数据连接', motion_control: '控制信号',
+  motion_scroll: '探索平台', motion_interface_label: 'VegaFencer 工作环境',
+  motion_interface_title: '复杂工程，<br>清晰呈现。',
+  motion_interface_desc: '从电路设计、拓扑集成到线束图纸与验证，在实际产品界面中探索连贯的工作流程。',
+  fig_logic: '引脚级连接意图与信号类型', fig_int: '电路网络与拓扑段同步', fig_harness: '自动计算线束长度与直径', fig_drc: '24 条 DRC 规则一次性校验'
+});
+Object.assign(i18n.ja, {
+  hero_title: 'すべての接続に、<br>確かな設計意図を。',
+  hero_subtitle: '電気的な設計意図から実際のワイヤーハーネスまで。VegaFencer\u2060は、一貫したデータモデルで車両E/Eアーキテクチャのすべてをつなぎます。',
+  hero_cta_demo: 'デモを申し込む', motion_kicker: 'VegaFencer / 車両E/Eエンジニアリング',
+  motion_explore: '設計フローを見る',
+  motion_drawing: 'E/Eアーキテクチャ · 概念図', motion_pause: 'モーションを停止', motion_resume: 'モーションを再生',
+  motion_static: '動きを抑える設定', motion_model: '論理的な接続から物理的な配線へ', motion_concept: '概念ビジュアライゼーション',
+  motion_power: '電源分配', motion_data: 'データ接続', motion_control: '制御信号',
+  motion_scroll: 'プラットフォームを見る', motion_interface_label: 'VegaFencer\u2060の作業環境',
+  motion_interface_title: '複雑な設計を、<br>明確なワークスペースに。',
+  motion_interface_desc: '回路設計、トポロジー統合、ハーネス図面、検証まで。実際の製品画面でつながるワークフローをご覧ください。',
+  fig_logic: 'ピン単位の接続意図と信号タイプ', fig_int: '回路ネットとトポロジーセグメントの同期', fig_harness: 'バンドル長・径を自動算出', fig_drc: '24\u2060のDRCルールを一括検証'
+});
+
+/* Home: Brand Story label under the Vega star (story.js) and the At a Glance "more" links (glance.js). */
+Object.assign(i18n.ko, {
+  story_vega_sub: '직녀성 · α Lyrae', story_vega_line: '별의 밝기에 대한 기준',
+  story_aria: '항해사의 나침반이 가리키는 별 Vega가 VegaFencer 로고로 바뀌고, Install · Logic · Library · Symbol 네 로고로 펼쳐지는 애니메이션',
+  glance_more_1: 'Logic 자세히 보기', glance_more_2: 'Integrator 자세히 보기', glance_more_3: 'Harness Drawing 자세히 보기',
+  glance_more_4: 'DRC · BOM 자세히 보기', glance_more_5: 'CAD 연동 자세히 보기'
+});
+Object.assign(i18n.en, {
+  story_vega_sub: 'α Lyrae', story_vega_line: 'The reference for the brightness of stars',
+  story_aria: 'Animation: Vega, the star a navigator’s compass points to, becomes the VegaFencer logo and opens into the four logos Install, Logic, Library and Symbol',
+  glance_more_1: 'More on Logic', glance_more_2: 'More on Integrator', glance_more_3: 'More on Harness Drawing',
+  glance_more_4: 'More on DRC · BOM', glance_more_5: 'More on CAD integration'
+});
+Object.assign(i18n.zh, {
+  story_vega_sub: '织女星 · α Lyrae', story_vega_line: '星星亮度的基准',
+  story_aria: '动画：航海者罗盘所指的织女星（Vega）变成VegaFencer标志，并展开为Install、Logic、Library、Symbol四个标志',
+  glance_more_1: '详细了解 Logic', glance_more_2: '详细了解 Integrator', glance_more_3: '详细了解 Harness Drawing',
+  glance_more_4: '详细了解 DRC · BOM', glance_more_5: '详细了解 CAD 集成'
+});
+Object.assign(i18n.ja, {
+  story_vega_sub: 'ベガ（織女星）· α Lyrae', story_vega_line: '星の明るさの基準',
+  story_aria: 'アニメーション：航海士のコンパスが指す星ベガがVegaFencerのロゴに変わり、Install・Logic・Library・Symbolの4つのロゴに広がります',
+  glance_more_1: 'Logic\u2060の詳細', glance_more_2: 'Integrator\u2060の詳細', glance_more_3: 'Harness Drawing\u2060の詳細',
+  glance_more_4: 'DRC · BOM\u2060の詳細', glance_more_5: 'CAD連携\u2060の詳細'
 });
 
 /* =============================================================

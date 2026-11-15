@@ -8,13 +8,7 @@
   if (!box) return;
   var REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- the Vega label, in the page's language ---------- */
-  var TEXT = {
-    ko: { sub: '직녀성 · α Lyrae', line: '별의 밝기에 대한 기준', aria: '항해사의 나침반이 가리키는 별 Vega가 VegaFencer 로고로 바뀌고, Install · Logic · Library · Symbol 네 로고로 펼쳐지는 애니메이션' },
-    en: { sub: 'α Lyrae', line: 'The reference for the brightness of stars', aria: 'Animation: Vega, the star a navigator’s compass points to, becomes the VegaFencer logo and opens into the four logos Install, Logic, Library and Symbol' },
-    zh: { sub: '织女星 · α Lyrae', line: '星星亮度的基准', aria: '动画：航海者罗盘所指的织女星（Vega）变成VegaFencer标志，并展开为Install、Logic、Library、Symbol四个标志' },
-    ja: { sub: 'ベガ（織女星）· α Lyrae', line: '星の明るさの基準', aria: 'アニメーション：航海士のコンパスが指す星ベガがVegaFencerのロゴに変わり、Install・Logic・Library・Symbolの4つのロゴに広がります' }
-  };
+  /* ---------- the Vega label, in the page's language (story_* in i18n.js) ---------- */
 
   /* ---------- SVG ---------- */
   var LOGO =
@@ -99,11 +93,11 @@
   label.style.opacity = '0';
   box.appendChild(label);
   function setLabel() {
-    var T = TEXT[document.documentElement.lang] || TEXT.ko;
+    var T = i18n[document.documentElement.lang] || i18n.ko;
     label.innerHTML = '<span class="story-label-1"><b translate="no">Vega</b><span></span></span><span class="story-label-2"></span>';
-    label.querySelector('.story-label-1 span').textContent = T.sub;
-    label.querySelector('.story-label-2').textContent = T.line;
-    svg.setAttribute('aria-label', T.aria);
+    label.querySelector('.story-label-1 span').textContent = T.story_vega_sub;
+    label.querySelector('.story-label-2').textContent = T.story_vega_line;
+    svg.setAttribute('aria-label', T.story_aria);
   }
   setLabel();
   // 1/100 of the card width (offsetWidth is in CSS pixels, so this also holds when the page is zoomed).
