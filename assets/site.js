@@ -174,6 +174,11 @@ const Controller = {
     // bottom), so the fade-in happens where the reader is looking.
     }, { threshold: 0.1, rootMargin: '0px 0px -12% 0px' });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    // Focus reaching a block that has not faded in yet (keyboard Tab) reveals it for good.
+    document.addEventListener('focusin', (e) => {
+      const block = e.target.closest('.reveal') || e.target.closest('.reveal-follow')?.previousElementSibling;
+      if (block && block.classList.contains('reveal')) block.classList.add('visible');
+    });
   },
 
   /* Nav — add shadow class on scroll */
@@ -206,13 +211,18 @@ const Controller = {
       }
     });
 
+    const close = () => {
+      toggle.setAttribute('aria-expanded', 'false');
+      links.classList.remove('nav-open');
+      toggle.classList.remove('hamburger-open');
+    };
     // Close on link click
-    links.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        toggle.setAttribute('aria-expanded', 'false');
-        links.classList.remove('nav-open');
-        toggle.classList.remove('hamburger-open');
-      });
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+    // Keyboard: Tab moving on past the header closes the open menu, so focus never lands on the page hidden
+    // behind it. Only when focus goes to another element (a tap on the menu's empty space keeps it open).
+    const header = document.getElementById('nav');
+    header.addEventListener('focusout', (e) => {
+      if (toggle.getAttribute('aria-expanded') === 'true' && e.relatedTarget && !header.contains(e.relatedTarget)) close();
     });
   },
 

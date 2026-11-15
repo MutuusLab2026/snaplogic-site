@@ -147,6 +147,9 @@
     opacity: 1;
     transform: translateY(0);
   }
+  /* Keyboard users: a fade-in block that receives focus shows at once (Tab can land on it while it is still
+     below the trigger line), and so does the scroll-to-top button while it is resting out of sight. */
+  .reveal:focus-within, .reveal-follow:focus-within { opacity: 1 !important; transform: none !important; transition: none !important; }
   .reveal-delay-1 { transition-delay: 0.1s; --reveal-delay: .1s; }
   .reveal-delay-2 { transition-delay: 0.2s; --reveal-delay: .2s; }
   .reveal-delay-3 { transition-delay: 0.3s; --reveal-delay: .3s; }
@@ -574,6 +577,8 @@ body #cta :is(input, textarea, select):focus-visible { outline-color: #7be4ee; }
 }
 #nav #navLinks .nav-menu a.nav-menu-link:hover,
 #nav #navLinks .nav-menu a.nav-menu-link:focus-visible { background: rgba(26, 115, 232, .08); color: #1a73e8; outline: none; }
+/* Keyboard focus also gets a 2px line inside the item, so it reads differently from a mouse hover. */
+#nav #navLinks .nav-menu a.nav-menu-link:focus-visible { outline: 2px solid #1765cc; outline-offset: -2px; }
 /* Sub-items (핵심 모듈 → Logic, Integrator, …): indented under a thin line. When the card opens the line draws
    downward and the items unroll one after another like a blind (each revealed from its top edge). */
 .nav-menu-sub { position: relative; margin: 0 0 4px 16px; padding-left: 6px; }
