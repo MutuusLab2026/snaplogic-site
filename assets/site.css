@@ -526,6 +526,10 @@ body[data-page="contact"] .footer-contact { display: none; }
   background: #fff; font: 400 15px 'Manrope', 'Noto Sans KR', sans-serif; color: #151b2b; }
 .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { outline: none; border-color: rgba(26,115,232,.6); box-shadow: 0 0 0 3px rgba(26,115,232,.12); }
 .contact-form textarea { resize: vertical; min-height: 140px; }
+/* Focus on every form field: a solid 2px ring (WCAG 2.4.7/2.4.11). Beats Tailwind's focus:outline-none and the
+   faint 12% halo above (specificity 0,2,2). Dark CTA band: the cyan of its button instead of blue. */
+body :is(input, textarea, select):not(.hp-field):focus-visible { outline: 2px solid #1765cc; outline-offset: 1px; }
+body #cta :is(input, textarea, select):focus-visible { outline-color: #7be4ee; }
 
 .contact-side { display: grid; gap: 24px; }
 .info-list { display: grid; gap: 14px; margin: 0; }

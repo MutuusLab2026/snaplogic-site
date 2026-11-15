@@ -172,13 +172,13 @@
             <span class="ai-win-title" data-for="shot" data-i18n="chat_title" hidden>VegaFencer AI</span>
             <div class="ai-seg" role="tablist" aria-label="AI modes">
               <span class="ai-seg-thumb" aria-hidden="true"></span>
-              <button type="button" role="tab" class="ai-tab-active" aria-selected="true" data-ai-tab="chat" translate="no">AI Chat</button>
-              <button type="button" role="tab" aria-selected="false" data-ai-tab="agent" translate="no">AI Agent</button>
-              <button type="button" role="tab" aria-selected="false" data-ai-tab="shot" data-i18n="ai_tab_shot">실제 화면</button>
+              <button type="button" role="tab" id="aiTabChat" aria-controls="aiPanelChat" class="ai-tab-active" aria-selected="true" data-ai-tab="chat" translate="no">AI Chat</button>
+              <button type="button" role="tab" id="aiTabAgent" aria-controls="aiPanelAgent" aria-selected="false" tabindex="-1" data-ai-tab="agent" translate="no">AI Agent</button>
+              <button type="button" role="tab" id="aiTabShot" aria-controls="aiPanelShot" aria-selected="false" tabindex="-1" data-ai-tab="shot" data-i18n="ai_tab_shot">실제 화면</button>
             </div>
           </div>
           <div class="ai-win-body">
-            <div id="aiPanelChat" class="ai-panel ai-pane ai-pane-chat">
+            <div id="aiPanelChat" role="tabpanel" aria-labelledby="aiTabChat" tabindex="0" class="ai-panel ai-pane ai-pane-chat">
               <div class="space-y-4" id="chatMessages">
               <div class="flex justify-end">
                 <div class="bg-primary-container text-white px-4 py-3 rounded-2xl rounded-br-sm max-w-[80%] font-body text-sm" data-i18n="chat_user1">
@@ -216,7 +216,7 @@
               </div>
               </div>
             </div>
-            <div id="aiPanelAgent" class="ai-panel ai-pane ai-pane-agent font-body text-sm hidden">
+            <div id="aiPanelAgent" role="tabpanel" aria-labelledby="aiTabAgent" tabindex="0" class="ai-panel ai-pane ai-pane-agent font-body text-sm hidden">
               <!-- Steps run one after another each time the Agent tab opens (site.js initAgentAnimation). -->
               <div class="ag-q"><div class="bg-primary-container text-white px-4 py-3 rounded-2xl rounded-br-sm max-w-[85%] leading-relaxed" data-i18n="agent_task">C29 커넥터 2번 핀에 와이어를 연결하고 DRC를 실행해줘.</div></div>
               <div class="ag-a bg-surface-container-high/60 text-on-surface px-4 py-3 rounded-2xl rounded-bl-sm" id="agentSteps">
@@ -242,7 +242,7 @@
                 </div>
               </div>
             </div>
-            <div id="aiPanelShot" class="ai-panel ai-pane ai-pane-shot hidden">
+            <div id="aiPanelShot" role="tabpanel" aria-labelledby="aiTabShot" tabindex="0" class="ai-panel ai-pane ai-pane-shot hidden">
               <img src="assets/img/ai-assistant-screen.jpg" width="1400" height="794" alt="VegaFencer AI Assistant screen" loading="lazy">
             </div>
           </div>

@@ -1145,11 +1145,9 @@ function switchLanguage(lang) {
 
   // Update active button in both desktop and mobile switchers
   document.querySelectorAll('.lang-btn').forEach(function(b) {
-    if (b.getAttribute('data-lang') === lang) {
-      b.classList.add('active');
-    } else {
-      b.classList.remove('active');
-    }
+    var on = b.getAttribute('data-lang') === lang;
+    b.classList.toggle('active', on);
+    b.setAttribute('aria-pressed', String(on));
   });
 
   // Save preference

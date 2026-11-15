@@ -63,6 +63,12 @@ if (location.protocol === 'file:') {
     var chevron = menus[name] ? '<svg class="nav-chevron" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.75 5 6.75 8 3.75"/></svg>' : '';
     return '<div class="nav-item' + (menus[name] ? ' has-menu' : '') + '">' + link(pageUrl(name), key, label, name) + chevron + menu(name) + '</div>';
   };
+  // Language buttons: the short visible label, then the language's own name for screen readers (read in that
+  // language, so "中" is not read as a Korean word). aria-pressed marks the current one (i18n.js keeps it in sync).
+  var langButtons = [['ko', 'KO', ' 한국어'], ['en', 'EN', ' English'], ['zh', '中', '文'], ['ja', '日', '本語']].map(function (l) {
+    return '<button type="button" class="lang-btn' + (l[0] === 'ko' ? ' active' : '') + '" data-lang="' + l[0] + '" lang="' + l[0] +
+      '" aria-pressed="' + (l[0] === 'ko') + '">' + l[1] + '<span class="sr-only">' + l[2] + '</span></button>';
+  }).join('');
   document.currentScript.insertAdjacentHTML('beforebegin', `
 <!-- Skip Link -->
 <a href="#${skip}" class="skip-link" data-i18n="skip_link">Skip to main content</a>
@@ -88,21 +94,15 @@ if (location.protocol === 'file:') {
       <a class="nav-demo-mobile md:hidden" href="${pageUrl('home', '#cta')}" id="navDemoMobile" data-i18n="nav_demo">Request Demo</a>
     </div>
     <!-- Language Switcher (Desktop) -->
-    <div class="hidden md:flex items-center gap-1 font-label text-xs mr-4" id="langSwitcherDesktop">
-      <button class="lang-btn active" data-lang="ko">KO</button>
-      <button class="lang-btn" data-lang="en">EN</button>
-      <button class="lang-btn" data-lang="zh">中</button>
-      <button class="lang-btn" data-lang="ja">日</button>
+    <div class="hidden md:flex items-center gap-1 font-label text-xs mr-4" id="langSwitcherDesktop" role="group" aria-label="Language">
+      ${langButtons}
     </div>
     <!-- Demo request: scrolls to the form when the page has one, otherwise opens it on the home page -->
     <a class="btn btn-primary" href="${pageUrl('home', '#cta')}" id="navDemo" data-i18n="nav_demo">Request Demo</a>
   </nav>
   <!-- Language Switcher (Mobile) -->
-  <div class="flex md:hidden items-center justify-center gap-1 font-label text-xs pb-2" id="langSwitcherMobile">
-    <button class="lang-btn active" data-lang="ko">KO</button>
-    <button class="lang-btn" data-lang="en">EN</button>
-    <button class="lang-btn" data-lang="zh">中</button>
-    <button class="lang-btn" data-lang="ja">日</button>
+  <div class="flex md:hidden items-center justify-center gap-1 font-label text-xs pb-2" id="langSwitcherMobile" role="group" aria-label="Language">
+    ${langButtons}
   </div>
 </header>
 

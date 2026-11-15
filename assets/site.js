@@ -562,11 +562,26 @@ const Controller = {
           if (panels[key]) panels[key].classList.toggle('hidden', key !== name);
         });
         tabs.forEach((t) => {
-          t.classList.toggle('ai-tab-active', t.dataset.aiTab === name);
-          if (t.hasAttribute('aria-selected')) t.setAttribute('aria-selected', String(t.dataset.aiTab === name));
+          const on = t.dataset.aiTab === name;
+          t.classList.toggle('ai-tab-active', on);
+          if (t.getAttribute('role') === 'tab') { t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1; }
         });
         if (win) win.querySelectorAll('.ai-win-title').forEach((t) => { t.hidden = t.dataset.for !== name; });
         moveThumb();
+      });
+    });
+    // Tab pattern keys: arrows move between tabs (and open them, as clicking does), Home/End jump to the ends.
+    document.querySelectorAll('[role="tablist"]').forEach((list) => {
+      list.addEventListener('keydown', (e) => {
+        const own = Array.from(list.querySelectorAll('[role="tab"]'));
+        const i = own.indexOf(document.activeElement);
+        if (i < 0) return;
+        const next = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: own.length - 1 }[e.key];
+        if (next === undefined) return;
+        e.preventDefault();
+        const t = own[(next + own.length) % own.length];
+        t.focus();
+        t.click();
       });
     });
     if (!win) return;
