@@ -268,35 +268,35 @@
         <span class="material-symbols-outlined text-on-surface-variant mb-3 block" style="font-size:32px">shortcut</span>
         <h3 class="font-headline font-bold text-on-surface text-sm mb-1">Git</h3>
         <p class="font-body text-on-surface-variant text-xs mb-3" data-i18n="int_git_desc">버전 관리 &amp; 협업</p>
-        <span class="inline-block px-2.5 py-1 rounded-full text-[10px] font-label font-bold bg-secondary-container/30 text-secondary" data-i18n="int_available">Available</span>
+        <span class="inline-block px-2.5 py-1 rounded-full text-[11px] font-label font-bold bg-secondary-container/30 text-secondary" data-i18n="int_available">Available</span>
       </div>
       <!-- DXF/DWG -->
       <div class="reveal reveal-delay-2 bg-white rounded-2xl p-6 text-center border border-outline-variant/15 hover:shadow-lg hover:-translate-y-1 transition-all">
         <span class="material-symbols-outlined text-on-surface-variant mb-3 block" style="font-size:32px">square</span>
         <h3 class="font-headline font-bold text-on-surface text-sm mb-1">DXF / DWG</h3>
         <p class="font-body text-on-surface-variant text-xs mb-3" data-i18n="int_dxf_desc">CAD 포맷 임포트</p>
-        <span class="inline-block px-2.5 py-1 rounded-full text-[10px] font-label font-bold bg-secondary-container/30 text-secondary" data-i18n="int_available">Available</span>
+        <span class="inline-block px-2.5 py-1 rounded-full text-[11px] font-label font-bold bg-secondary-container/30 text-secondary" data-i18n="int_available">Available</span>
       </div>
       <!-- AI/MCP -->
       <div class="reveal reveal-delay-3 bg-white rounded-2xl p-6 text-center border border-outline-variant/15 hover:shadow-lg hover:-translate-y-1 transition-all">
         <span class="material-symbols-outlined text-on-surface-variant mb-3 block" style="font-size:32px">auto_awesome</span>
         <h3 class="font-headline font-bold text-on-surface text-sm mb-1">AI / MCP</h3>
         <p class="font-body text-on-surface-variant text-xs mb-3" data-i18n="int_ai_desc">LLM 연동 프로토콜</p>
-        <span class="inline-block px-2.5 py-1 rounded-full text-[10px] font-label font-bold bg-secondary-container/30 text-secondary" data-i18n="int_available">Available</span>
+        <span class="inline-block px-2.5 py-1 rounded-full text-[11px] font-label font-bold bg-secondary-container/30 text-secondary" data-i18n="int_available">Available</span>
       </div>
       <!-- Jira -->
       <div class="reveal reveal-delay-4 bg-white rounded-2xl p-6 text-center border border-outline-variant/15 hover:shadow-lg hover:-translate-y-1 transition-all">
         <span class="material-symbols-outlined text-on-surface-variant mb-3 block" style="font-size:32px">grid_view</span>
         <h3 class="font-headline font-bold text-on-surface text-sm mb-1">Jira</h3>
         <p class="font-body text-on-surface-variant text-xs mb-3" data-i18n="int_jira_desc">프로젝트 관리</p>
-        <span class="inline-block px-2.5 py-1 rounded-full text-[10px] font-label font-bold bg-error-container/40 text-error" data-i18n="int_coming">Coming soon</span>
+        <span class="inline-block px-2.5 py-1 rounded-full text-[11px] font-label font-bold bg-error-container/40 text-error" data-i18n="int_coming">Coming soon</span>
       </div>
       <!-- Creo/SOLIDWORKS -->
       <div class="reveal reveal-delay-4 bg-white rounded-2xl p-6 text-center border border-outline-variant/15 hover:shadow-lg hover:-translate-y-1 transition-all col-span-2 md:col-span-1">
         <span class="material-symbols-outlined text-on-surface-variant mb-3 block" style="font-size:32px">hexagon</span>
         <h3 class="font-headline font-bold text-on-surface text-sm mb-1">Creo / SOLIDWORKS</h3>
         <p class="font-body text-on-surface-variant text-xs mb-3" data-i18n="int_cad_desc">3D CAD 브릿지</p>
-        <span class="inline-block px-2.5 py-1 rounded-full text-[10px] font-label font-bold bg-error-container/40 text-error" data-i18n="int_coming">Coming soon</span>
+        <span class="inline-block px-2.5 py-1 rounded-full text-[11px] font-label font-bold bg-error-container/40 text-error" data-i18n="int_coming">Coming soon</span>
       </div>
     </div>
   </div>

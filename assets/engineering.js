@@ -404,3 +404,33 @@
     });
   });
 })();
+
+/* Keep labels inside scaled drawings at 11px or more on screen (site rule, REVIEW.md).
+   The hero drawing and the brand-story card shrink with the window, so a fixed font-size cannot hold 11px at every
+   size: measure how much each drawing is scaled down and enlarge its labels only when they would fall below 11px.
+   The At a Glance diagram is not included: its labels sit beside pins and boxes and would collide if enlarged. */
+(() => {
+  const MIN = 11.2;
+  const TARGETS = ['.engineering-drawing .diagram-label', '.engineering-drawing .dimension-text', '#vs-names'];
+  function fit() {
+    TARGETS.forEach((sel) => document.querySelectorAll(sel).forEach((el) => {
+      el.style.fontSize = '';
+      const m = el.getScreenCTM && el.getScreenCTM();
+      const base = parseFloat(getComputedStyle(el).fontSize);
+      if (!m || !base) return;
+      const scale = Math.hypot(m.a, m.b);
+      if (scale > 0 && base * scale < MIN) el.style.fontSize = (MIN / scale).toFixed(2) + 'px';
+    }));
+  }
+  let queued = false;
+  const later = () => { if (!queued) { queued = true; requestAnimationFrame(() => { queued = false; fit(); }); } };
+  window.addEventListener('load', () => {
+    fit();
+    // Drawings also change size without a window resize (web fonts arriving, layout settling), so watch them.
+    if ('ResizeObserver' in window) {
+      const ro = new ResizeObserver(later);
+      document.querySelectorAll('.engineering-drawing, #vs-st').forEach((svg) => ro.observe(svg));
+    }
+  });
+  window.addEventListener('resize', later);
+})();

@@ -87,7 +87,7 @@ section[id] { scroll-margin-top: 100px; }
 .engineering-drawing .vehicle-detail { fill: none; stroke: #688aa1; stroke-width: .75; opacity: .47; }
 .engineering-drawing .vehicle-glass { fill: #5d94b512; stroke: #709bb8; stroke-width: .9; }
 .engineering-drawing .dimension-line { fill: none; stroke: #40667f; stroke-width: .7; }
-.engineering-drawing .dimension-text { fill: #6f95ae; font: 10px 'Space Grotesk', sans-serif; letter-spacing: 1px; }
+.engineering-drawing .dimension-text { fill: #6f95ae; font: 12.5px 'Space Grotesk', sans-serif; letter-spacing: 1px; }
 .engineering-drawing .signal-track { fill: none; stroke: #3e8195; stroke-width: 2.1; opacity: .55; }
 .engineering-drawing .signal-flow { fill: none; stroke: var(--eng-signal); stroke-width: 2.7; stroke-linecap: round; stroke-dasharray: 28 172; animation: engineering-signal 4s linear infinite; }
 .engineering-drawing .signal-flow.secondary { stroke: var(--eng-blue); animation-delay: -1.7s; }
@@ -95,7 +95,7 @@ section[id] { scroll-margin-top: 100px; }
 .engineering-drawing .node-body { fill: #12384e; stroke: #65ccdc; stroke-width: 1.2; }
 .engineering-drawing .node-core { fill: #7de7f0; }
 .engineering-drawing .node-halo { fill: none; stroke: #60dced; stroke-width: 1; transform-box: fill-box; transform-origin: center; animation: engineering-node 4s ease-out infinite; }
-.engineering-drawing .diagram-label { fill: #b7d2e2; font: 11.5px 'Space Grotesk', sans-serif; letter-spacing: .6px; }
+.engineering-drawing .diagram-label { fill: #b7d2e2; font: 12.5px 'Space Grotesk', sans-serif; letter-spacing: .6px; }
 .engineering-drawing .diagram-callout { fill: none; stroke: #53829c; stroke-width: .8; }
 .engineering-drawing .scan-line { fill: url(#engineering-scan-fill); animation: engineering-scan 9s ease-in-out infinite; }
 .engineering-caption { display: flex; justify-content: space-between; margin: -18px 0 20px; padding-inline: 24px; color: #6e96ae; font: 11px 'Space Grotesk', sans-serif; letter-spacing: .3px; }
@@ -185,7 +185,7 @@ section[id] { scroll-margin-top: 100px; }
 .wf-glyph { display: block; width: 88px; height: 54px; margin: 2px auto 14px; fill: none; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; overflow: visible; }
 .wf-glyph .wf-base { stroke: #5a8299; }
 .wf-glyph .wf-draw { stroke: #7be4ee; stroke-width: 1.6; stroke-dasharray: 1; stroke-dashoffset: 0; animation: wf-draw var(--wf-cycle) calc(var(--wf-delay) + var(--n, 0) * .18s) infinite backwards; }
-.wf-artifact { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; padding: 4px 9px; border: 1px solid #2f5268; border-radius: 4px; font: 500 10.5px 'Space Grotesk', sans-serif; letter-spacing: .4px; color: #8fb2c6; animation: wf-artifact var(--wf-cycle) var(--wf-delay) infinite backwards; }
+.wf-artifact { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; padding: 4px 9px; border: 1px solid #2f5268; border-radius: 4px; font: 500 11px 'Space Grotesk', sans-serif; letter-spacing: .4px; color: #8fb2c6; animation: wf-artifact var(--wf-cycle) var(--wf-delay) infinite backwards; }
 .wf-artifact::before { content: ''; width: 10px; height: 1px; background: currentColor; }
 
 /* Feature figures: a drawing strip under each screenshot, drawn once when it scrolls in.
@@ -197,7 +197,7 @@ section[id] { scroll-margin-top: 100px; }
 .eng-fig-harness { --fig-accent: #e8710a; --fig-text: #a34a06; }
 .eng-fig figcaption { display: flex; flex-direction: column; gap: 6px; font-size: 12.5px; line-height: 1.5; color: #44627a; word-break: keep-all; }
 .eng-fig figcaption span:nth-child(2) { text-wrap: balance; }
-.eng-fig figcaption span:first-child { font: 600 10.5px 'Space Grotesk', sans-serif; letter-spacing: 1.2px; color: var(--fig-text, var(--fig-accent)); }
+.eng-fig figcaption span:first-child { font: 600 11px 'Space Grotesk', sans-serif; letter-spacing: 1.2px; color: var(--fig-text, var(--fig-accent)); }
 .eng-fig svg { width: 100%; height: auto; max-height: 124px; overflow: visible; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 .eng-fig .fig-ink { stroke: #8ea9ba; stroke-width: 1; fill: #ffffff; }
 .eng-fig path.fig-ink { fill: none; }
@@ -396,10 +396,10 @@ html[lang="ko"] body { word-break: keep-all; overflow-wrap: break-word; }
   .engineering-kicker { font-size: 11px; margin-bottom: 22px; }
   .engineering-copy h1 { font-size: 38px; line-height: 1.3; }
   .engineering-description { font-size: 13px; line-height: 1.9; margin-bottom: 25px; }
-  .engineering-stage-head { font-size: 10px; }
-  .motion-control { font-size: 10.5px; padding-inline: 8px; }
-  .engineering-caption { font-size: 9px; margin-top: -10px; margin-bottom: 18px; }
-  .engineering-legend { gap: 14px; font-size: 10px; margin-bottom: 24px; }
+  .engineering-stage-head { font-size: 11px; }
+  .motion-control { font-size: 11px; padding-inline: 8px; }
+  .engineering-caption { font-size: 11px; margin-top: -10px; margin-bottom: 18px; }
+  .engineering-legend { gap: 14px; font-size: 11px; margin-bottom: 24px; }
   .engineering-rail { grid-template-columns: 1fr; padding: 22px 0; }
   .engineering-pipeline { gap: 9px; font-size: 11px; }
   .engineering-pipeline svg { width: 17px; }
