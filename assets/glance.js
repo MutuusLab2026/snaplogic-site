@@ -1,4 +1,4 @@
-/* Home page, "VegaFencer at a Glance": a simplified, looping animation of the five design steps
+/* Home page, "VegaFencer at a Glance": a simplified animation of the five design steps, played once
    (Logic with the AI assistant, Integrator, Harness Drawing, DRC/BOM, CAD link). Not real product screens.
    Everything is scoped to #glance. */
 (function () {
@@ -8,16 +8,18 @@
   var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
   var REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var STOP = {};
+  var instant = false;                       // true while the final Logic frame is drawn without motion
+  function fast() { return REDUCE || instant; }
   var token = 0;
   var cur = { x: 470, y: 400 };
 
   /* ---------- timing helpers (all stop when another scene starts) ---------- */
   function guard(p) { var tk = token; return p.then(function (v) { if (tk !== token) throw STOP; return v; }); }
-  function wait(ms) { return guard(new Promise(function (r) { setTimeout(r, REDUCE ? 0 : ms); })); }
+  function wait(ms) { return guard(new Promise(function (r) { setTimeout(r, fast() ? 0 : ms); })); }
   function ease(t) { return t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
   function tween(ms, fn) {
     var tk = token;
-    if (REDUCE) ms = 0;
+    if (fast()) ms = 0;
     return guard(new Promise(function (resolve) {
       if (!ms) { fn(1); return resolve(); }
       var t0 = performance.now();
@@ -31,7 +33,7 @@
   }
   function fadeIn(el, ms) {
     el.classList.remove('h');
-    if (REDUCE) return Promise.resolve();
+    if (fast()) return Promise.resolve();
     return el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: ms || 300 }).finished;
   }
   function show(sel, ms) { return guard(Promise.all($$(sel).map(function (el) { return fadeIn(el, ms); }))); }
@@ -52,12 +54,13 @@
   function setCursor(x, y) { cur.x = x; cur.y = y; $('#cursor').setAttribute('transform', 'translate(' + x + ' ' + y + ')'); }
   function move(x, y, ms) { var x0 = cur.x, y0 = cur.y; return tween(ms, function (e) { setCursor(x0 + (x - x0) * e, y0 + (y - y0) * e); }); }
   function click() {
+    if (fast()) return wait(0);                // no ripple when nothing animates: it would stay on screen
     var c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     c.setAttribute('cx', cur.x); c.setAttribute('cy', cur.y); c.setAttribute('r', 12);
     c.setAttribute('fill', 'none'); c.setAttribute('stroke', '#1a5fd0'); c.setAttribute('stroke-width', 1.5);
     c.style.transformBox = 'fill-box'; c.style.transformOrigin = 'center';
     $('#fx').appendChild(c);
-    if (!REDUCE) c.animate([{ transform: 'scale(.3)', opacity: .9 }, { transform: 'scale(1.2)', opacity: 0 }], { duration: 450, fill: 'forwards' });
+    c.animate([{ transform: 'scale(.3)', opacity: .9 }, { transform: 'scale(1.2)', opacity: 0 }], { duration: 450, fill: 'forwards' });
     return wait(260);
   }
 
@@ -109,11 +112,11 @@
     $$('#steps button').forEach(function (b, k) { b.classList.toggle('on', k === i); b.setAttribute('aria-current', k === i ? 'step' : 'false'); });
     setCap(i);
     panel('Properties');
-    if (!REDUCE) $('#stage').animate([{ opacity: 0 }, { opacity: 1 }], { duration: 300 });
+    if (!fast()) $('#stage').animate([{ opacity: 0 }, { opacity: 1 }], { duration: 300 });
   }
   async function hold() {
     await wait(3000);
-    if (REDUCE) return;
+    if (fast()) return;
     await guard($('#stage').animate([{ opacity: 1 }, { opacity: 0 }], { duration: 400, fill: 'forwards' }).finished);
   }
 
@@ -317,7 +320,7 @@
   }
   function press(id) {
     var r = $('#' + id + ' rect');
-    if (!REDUCE) r.animate([{ fill: '#dce7fb' }, { fill: '#fff' }], { duration: 600 });
+    if (!fast()) r.animate([{ fill: '#dce7fb' }, { fill: '#fff' }], { duration: 600 });
   }
   async function s4() {
     var e = T(560, 290);
@@ -452,13 +455,21 @@
   // Animations cancelled by a scene change reject their promises; that is expected.
   window.addEventListener('unhandledrejection', function (e) { if (e.reason === STOP || (e.reason && e.reason.name === 'AbortError')) e.preventDefault(); });
   var SCENES = [s1, s2, s3, s4, s5];
+  // Plays from the given scene to the last one once, then rests on the finished Logic scene (no endless loop,
+  // so nothing keeps moving: WCAG 2.2.2). With reduced motion only the finished Logic scene is shown.
   async function play(from) {
     var tk = ++token;
-    for (var i = from; ; i = (i + 1) % SCENES.length) {
-      try { await SCENES[i](); }
-      catch (err) { if (err !== STOP && err.name !== 'AbortError') console.error(err); return; }
-      if (tk !== token || REDUCE) return;
+    instant = false;
+    try {
+      if (!REDUCE) {
+        for (var i = from; i < SCENES.length; i++) { await SCENES[i](); if (tk !== token) return; }
+      }
+      instant = true;
+      await s1();
+      $('#cursor').classList.add('h');
     }
+    catch (err) { if (err !== STOP && err.name !== 'AbortError') console.error(err); }
+    finally { if (tk === token) instant = false; }
   }
   // Start from scene 1 every time the animation scrolls into view, and stop while it is off screen.
   if (!('IntersectionObserver' in window)) { play(0); return; }

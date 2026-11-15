@@ -151,15 +151,15 @@ section[id] { scroll-margin-top: 100px; }
 }
 
 #workflow { background: var(--eng-ink) !important; }
-/* Workflow: one 10s handoff cycle. A packet carries data along the rail and each
-   stage lights, draws its glyph and emits its artifact as the packet arrives.
-   Base styles are the static "complete" state used for paused / reduced motion. */
+/* Workflow: one 10s handoff cycle, played once (no loop, WCAG 2.2.2). A packet carries data along the rail and
+   each stage lights, draws its glyph and emits its artifact as the packet arrives; afterwards every stage stays unlit
+   (fill: both keeps the last keyframe). Base styles are the static "complete" state used for paused / reduced motion. */
 #workflow { --wf-cycle: 10s; word-break: keep-all; }
 #workflow .workflow-step { display: flex; flex-direction: column; align-items: center; }
 #workflow .workflow-step > p { margin-bottom: 16px; }
 #workflow .workflow-motion-line { top: 23px !important; opacity: 1 !important; background: #2a4b60 !important; overflow: visible; }
-#workflow .workflow-motion-line::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, #4fb8cb, #7be4ee); transform-origin: left; opacity: .55; animation: wf-fill var(--wf-cycle) infinite; }
-#workflow .workflow-motion-line::after { content: ''; position: absolute; left: -10px; top: -9px; width: 100%; height: 20px; background: radial-gradient(circle at 10px 50%, #f0feff 0 3px, #7be4ee 4px, #60dced55 6.5px, transparent 10px) no-repeat; opacity: 0; animation: wf-packet var(--wf-cycle) infinite; }
+#workflow .workflow-motion-line::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, #4fb8cb, #7be4ee); transform-origin: left; opacity: .55; animation: wf-fill var(--wf-cycle) 1 both; }
+#workflow .workflow-motion-line::after { content: ''; position: absolute; left: -10px; top: -9px; width: 100%; height: 20px; background: radial-gradient(circle at 10px 50%, #f0feff 0 3px, #7be4ee 4px, #60dced55 6.5px, transparent 10px) no-repeat; opacity: 0; animation: wf-packet var(--wf-cycle) 1 both; }
 #workflow .glass-card { border-radius: 7px; background: #16364a66; }
 /* Header in the shared template (kicker / name / tagline / lead), coloured for the navy background. */
 #workflow .wf-head { max-width: none; margin-bottom: 64px; }
@@ -181,11 +181,11 @@ section[id] { scroll-margin-top: 100px; }
 }
 @media (max-width: 1023px) { #workflow .wf-br { display: none; } }
 #workflow .text-white\/40, #workflow .text-white\/50 { color: #a4bdcd; }
-#workflow .workflow-step > div:first-child { border-color: #537c95; color: #b6e6ef; background: #14374b; animation: wf-step var(--wf-cycle) var(--wf-delay) infinite backwards; }
+#workflow .workflow-step > div:first-child { border-color: #537c95; color: #b6e6ef; background: #14374b; animation: wf-step var(--wf-cycle) var(--wf-delay) 1 both; }
 .wf-glyph { display: block; width: 88px; height: 54px; margin: 2px auto 14px; fill: none; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; overflow: visible; }
 .wf-glyph .wf-base { stroke: #5a8299; }
-.wf-glyph .wf-draw { stroke: #7be4ee; stroke-width: 1.6; stroke-dasharray: 1; stroke-dashoffset: 0; animation: wf-draw var(--wf-cycle) calc(var(--wf-delay) + var(--n, 0) * .18s) infinite backwards; }
-.wf-artifact { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; padding: 4px 9px; border: 1px solid #2f5268; border-radius: 4px; font: 500 11px 'Space Grotesk', sans-serif; letter-spacing: .4px; color: #8fb2c6; animation: wf-artifact var(--wf-cycle) var(--wf-delay) infinite backwards; }
+.wf-glyph .wf-draw { stroke: #7be4ee; stroke-width: 1.6; stroke-dasharray: 1; stroke-dashoffset: 0; animation: wf-draw var(--wf-cycle) calc(var(--wf-delay) + var(--n, 0) * .18s) 1 both; }
+.wf-artifact { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; padding: 4px 9px; border: 1px solid #2f5268; border-radius: 4px; font: 500 11px 'Space Grotesk', sans-serif; letter-spacing: .4px; color: #8fb2c6; animation: wf-artifact var(--wf-cycle) var(--wf-delay) 1 both; }
 .wf-artifact::before { content: ''; width: 10px; height: 1px; background: currentColor; }
 
 /* Feature figures: a drawing strip under each screenshot, drawn once when it scrolls in.
