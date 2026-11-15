@@ -280,6 +280,25 @@ html[lang="ko"] body { word-break: keep-all; overflow-wrap: break-word; }
 #scrollTopBtn.scroll-top-resting { opacity: 0 !important; transform: translateY(20px) !important; pointer-events: none; }
 .engineering-ent-icon svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .engineering-scroll, .engineering-pipeline a { min-height: 24px; display: inline-flex; align-items: center; }
+/* Touch targets: 44px or more (site rule, stricter than WCAG 2.2 AA's 24px).
+   1) Hit area only: an invisible ::after grows the tappable box without changing how the control looks.
+      Only grown where no neighbour sits within reach, so two targets never share a spot. */
+#nav nav > a:first-child, #navToggle, .engineering-pipeline a, #engineeringMotionToggle, .ai-seg button,
+.page-subnav a, .info-list a { position: relative; }
+#nav nav > a:first-child::after, .engineering-pipeline a::after, .ai-seg button::after, .info-list a::after {
+  content: ''; position: absolute; inset: -13px 0; }
+#navToggle::after, #engineeringMotionToggle::after, .page-subnav a::after { content: ''; position: absolute; inset: -4px; }
+#nav nav > a:first-child { display: inline-block; }
+/* 2) Touch screens only (phones, tablets): controls packed too tightly for a finger get real size. A mouse keeps
+      the compact desktop look. */
+@media (pointer: coarse) {
+  .lang-btn { position: relative; min-width: 44px; }
+  .lang-btn::after { content: ''; position: absolute; inset: -10px 0; } /* height by hit area: the header stays as thin */
+  footer div.flex.flex-col.gap-2\.5 { gap: 0; }
+  footer div.flex.flex-col.gap-2\.5 > a { min-height: 44px; display: flex; align-items: center; }
+  footer #contactForm input:not(.hp-field) { min-height: 44px; }
+  #glance .glance-steps button { min-height: 44px; box-sizing: border-box; }
+}
 /* Module tags carry inline colours; darker ink keeps the same hue at ≥ 4.5:1 on their tints. */
 [data-i18n="mod_logic_tag"] { color: #1557b0 !important; }
 [data-i18n="mod_integrator_tag"] { color: #0b6b62 !important; }
