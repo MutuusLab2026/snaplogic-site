@@ -48,6 +48,43 @@ function showFormFailure(el, text) {
   el.style.display = 'block';
 }
 
+/* One sender for every form. Checks the fields (required, email format) and that the address is a business one,
+   shows "Sending..." on the button, posts the form's fields plus the honeypot to Formspree, then either runs done()
+   and shows the thank-you line, or restores the button and shows the failure note with the fallback email.
+   opts: success, error (elements), errorKey (i18n key of the failure text), payload(form.elements) → object, done() */
+function wireForm(form, opts) {
+  const button = form.querySelector('button[type="submit"]');
+  const label = button.innerHTML;
+  const text = (key, fallback) => { const t = i18n[savedLang()] || i18n.ko; return t[key] || fallback; };
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    if (!isBusinessEmail(form.elements.email.value)) {
+      opts.error.textContent = text('cta_business_only', 'Please enter a business email.');
+      opts.error.classList.remove('hidden');
+      opts.error.style.display = 'block';
+      return;
+    }
+    button.disabled = true;
+    button.textContent = text('cta_sending', 'Sending...');
+    opts.error.classList.add('hidden');
+    fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(Object.assign(opts.payload(form.elements), { _gotcha: honeypot(form) })),
+    }).then(r => r.json().then(body => r.ok && body.ok !== false)).then((ok) => {
+      if (!ok) throw new Error();
+      opts.done();
+      opts.success.classList.remove('hidden');
+      opts.success.style.display = 'block';
+    }).catch(() => {
+      button.disabled = false;
+      button.innerHTML = label;
+      showFormFailure(opts.error, text(opts.errorKey, 'Failed to send.'));
+    });
+  });
+}
+
 const FREE_EMAIL_DOMAINS = ['gmail.com','yahoo.com','yahoo.co.kr','hotmail.com','outlook.com','live.com','aol.com','icloud.com','me.com','mac.com','mail.com','protonmail.com','zoho.com','yandex.com','gmx.com','naver.com','daum.net','hanmail.net','nate.com','kakao.com','qq.com','163.com','126.com','sina.com','yeah.net'];
 
 function isBusinessEmail(email) {
@@ -291,55 +328,20 @@ const Controller = {
     }, { passive: true });
   },
 
-  /* CTA Form — prevent default, validate, show success message */
+  /* CTA email form (home, product, pricing, resources): a demo request with the email only */
   initCtaForm() {
     const form = document.getElementById('ctaForm');
     if (!form) return;
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const successEl = document.getElementById('ctaSuccess');
-    const errorEl = document.getElementById('ctaError');
-    const originalBtnHTML = submitBtn.innerHTML;
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const email = form.querySelector('input[name="email"]');
-      if (!email.value || !email.checkValidity()) {
-        email.reportValidity();
-        return;
-      }
-      const lang = savedLang();
-      if (!isBusinessEmail(email.value)) {
-        errorEl.textContent = (i18n[lang] && i18n[lang].cta_business_only) || 'Please enter a business email.';
-        errorEl.classList.remove('hidden');
-        errorEl.style.display = 'block';
-        return;
-      }
-
-      // Loading state
-      submitBtn.disabled = true;
-      submitBtn.textContent = (i18n[lang] && i18n[lang].cta_sending) || 'Sending...';
-      errorEl.classList.add('hidden');
-
-      fetch(FORM_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          email: email.value,
-          _subject: 'VegaFencer Demo Request from ' + email.value,
-          message: 'New demo request from: ' + email.value,
-          _gotcha: honeypot(form),
-        }),
-      }).then(r => r.json().then(body => ({ success: r.ok && body.ok !== false }))).then(data => {
-        if (data.success) {
-          form.style.display = 'none';
-          successEl.classList.remove('hidden');
-          successEl.style.display = 'block';
-        } else { throw new Error(); }
-      }).catch(() => {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = originalBtnHTML;
-        showFormFailure(errorEl, (i18n[lang] && i18n[lang].cta_error) || 'Failed to send.');
-      });
+    wireForm(form, {
+      success: document.getElementById('ctaSuccess'),
+      error: document.getElementById('ctaError'),
+      errorKey: 'cta_error',
+      payload: (f) => ({
+        email: f.email.value,
+        _subject: 'VegaFencer Demo Request from ' + f.email.value,
+        message: 'New demo request from: ' + f.email.value,
+      }),
+      done: () => { form.style.display = 'none'; },
     });
   },
 
@@ -621,99 +623,44 @@ const Controller = {
   initContactPage() {
     const form = document.getElementById('contactPageForm');
     if (!form) return;
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const successEl = document.getElementById('contactPageSuccess');
-    const errorEl = document.getElementById('contactPageError');
-    const field = (name) => form.elements[name];
-    const showError = (text) => { errorEl.textContent = text; errorEl.classList.remove('hidden'); };
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      if (!form.checkValidity()) { form.reportValidity(); return; }
-      const lang = savedLang();
-      const t = i18n[lang] || i18n.ko;
-      if (!isBusinessEmail(field('email').value)) { showError(t.cta_business_only || 'Please enter a business email.'); return; }
-      const type = field('type').options[field('type').selectedIndex].text;
-      const original = submitBtn.textContent;
-      submitBtn.disabled = true;
-      submitBtn.textContent = t.cta_sending || 'Sending...';
-      errorEl.classList.add('hidden');
-      fetch(FORM_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
+    wireForm(form, {
+      success: document.getElementById('contactPageSuccess'),
+      error: document.getElementById('contactPageError'),
+      errorKey: 'contact_error',
+      payload: (f) => {
+        const type = f.type.options[f.type.selectedIndex].text;
+        return {
           type: type,
-          name: field('name').value,
-          company: field('company').value || '-',
-          email: field('email').value,
-          phone: field('phone').value || '-',
-          message: field('message').value,
-          _subject: 'VegaFencer Contact [' + type + '] from ' + field('name').value,
-          _gotcha: honeypot(form),
-        }),
-      }).then(r => r.json().then(body => ({ success: r.ok && body.ok !== false }))).then(data => {
-        if (!data.success) throw new Error();
-        form.style.display = 'none';
-        successEl.classList.remove('hidden');
-      }).catch(() => {
-        submitBtn.disabled = false;
-        submitBtn.textContent = original;
-        showFormFailure(errorEl, t.contact_error || 'Failed to send.');
-      });
+          name: f.name.value,
+          company: f.company.value || '-',
+          email: f.email.value,
+          phone: f.phone.value || '-',
+          message: f.message.value,
+          _subject: 'VegaFencer Contact [' + type + '] from ' + f.name.value,
+        };
+      },
+      done: () => { form.style.display = 'none'; },
     });
   },
 
+  /* Footer contact form (every page except the contact page) */
   initContactForm() {
     const form = document.getElementById('contactForm');
     if (!form) return;
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const successEl = document.getElementById('contactSuccess');
-    const errorEl = document.getElementById('contactError');
-    const originalText = submitBtn.textContent;
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = form.querySelector('input[name="name"]');
-      const email = form.querySelector('input[name="email"]');
-      const message = form.querySelector('textarea[name="message"]');
-      if (!email.value || !email.checkValidity() || !name.value || !message.value) {
-        form.reportValidity();
-        return;
-      }
-      const lang = savedLang();
-      if (!isBusinessEmail(email.value)) {
-        errorEl.textContent = (i18n[lang] && i18n[lang].cta_business_only) || 'Please enter a business email.';
-        errorEl.classList.remove('hidden');
-        errorEl.style.display = 'block';
-        return;
-      }
-      submitBtn.disabled = true;
-      submitBtn.textContent = (i18n[lang] && i18n[lang].cta_sending) || 'Sending...';
-      errorEl.classList.add('hidden');
-
-      fetch(FORM_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          name: name.value,
-          company: form.querySelector('input[name="company"]').value || '-',
-          email: email.value,
-          message: message.value,
-          _subject: 'VegaFencer Contact from ' + name.value,
-          _gotcha: honeypot(form),
-        }),
-      }).then(r => r.json().then(body => ({ success: r.ok && body.ok !== false }))).then(data => {
-        if (data.success) {
-          // the thank-you line sits inside this form, so hide the fields rather than the whole form
-          Array.from(form.children).forEach((el) => { if (el !== successEl) el.style.display = 'none'; });
-          successEl.classList.remove('hidden');
-          successEl.style.display = 'block';
-        } else { throw new Error(); }
-      }).catch(() => {
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
-        showFormFailure(errorEl, (i18n[lang] && i18n[lang].contact_error) || 'Failed to send.');
-      });
+    const success = document.getElementById('contactSuccess');
+    wireForm(form, {
+      success: success,
+      error: document.getElementById('contactError'),
+      errorKey: 'contact_error',
+      payload: (f) => ({
+        name: f.name.value,
+        company: f.company.value || '-',
+        email: f.email.value,
+        message: f.message.value,
+        _subject: 'VegaFencer Contact from ' + f.name.value,
+      }),
+      // the thank-you line sits inside this form, so hide the fields rather than the whole form
+      done: () => { Array.from(form.children).forEach((el) => { if (el !== success) el.style.display = 'none'; }); },
     });
   },
 };
