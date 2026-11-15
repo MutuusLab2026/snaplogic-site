@@ -16,8 +16,9 @@ section[id] { scroll-margin-top: 100px; }
   box-shadow: none;
 }
 #nav.engineering-nav-dark nav > a,
-#nav.engineering-nav-dark #navLinks a,
-#nav.engineering-nav-dark .lang-btn { color: #d5e5ef; }
+#nav.engineering-nav-dark #navLinks a { color: #d5e5ef; }
+#nav.engineering-nav-dark .lang-btn { color: #a9bfcd; }
+#nav.engineering-nav-dark .lang-btn:hover { color: #e6f1f7; }
 #nav.engineering-nav-dark #navLinks a:hover { color: var(--eng-signal); }
 #nav.engineering-nav-dark .lang-btn.active { color: var(--eng-signal); background: #1a3c50; }
 #nav.engineering-nav-dark #navToggle span { background: #d5e5ef; }
@@ -279,7 +280,6 @@ html[lang="ko"] body { word-break: keep-all; overflow-wrap: break-word; }
 #scrollTopBtn.scroll-top-resting { opacity: 0 !important; transform: translateY(20px) !important; pointer-events: none; }
 .engineering-ent-icon svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .engineering-scroll, .engineering-pipeline a { min-height: 24px; display: inline-flex; align-items: center; }
-.lang-btn { opacity: .72; }
 /* Module tags carry inline colours; darker ink keeps the same hue at ≥ 4.5:1 on their tints. */
 [data-i18n="mod_logic_tag"] { color: #1557b0 !important; }
 [data-i18n="mod_integrator_tag"] { color: #0b6b62 !important; }
@@ -547,7 +547,7 @@ html[lang="ja"] * { word-break: auto-phrase; }
 /* ---- Home: "VegaFencer at a Glance" (second screen). Header uses the product page's module template
    (.lg-kicker / .lg-name / .lg-lead in site.css); the animation itself is driven by glance.js. ---- */
 .glance {
-  --ink: #1d2330; --mute: #6b7280; --faint: #9aa0aa; --line: #d9dde3; --sel: #1a5fd0; --red: #c8372d; --green: #2f8f4e;
+  --ink: #1d2330; --mute: #6b7280; --faint: #646b78; --line: #d9dde3; --sel: #1a5fd0; --red: #c8372d; --green: #2f8f4e;
   color: var(--ink);
 }
 .glance-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px 32px; flex-wrap: wrap; margin-bottom: 8px; }

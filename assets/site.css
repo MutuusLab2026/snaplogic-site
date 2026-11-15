@@ -320,23 +320,21 @@
   .lang-btn {
     padding: 2px 8px;
     border-radius: 6px;
-    opacity: 0.5;
     cursor: pointer;
     border: none;
     background: transparent;
     font-family: 'Space Grotesk', sans-serif;
     font-size: 12px;
     font-weight: 600;
-    color: #151b2b;
-    transition: all 0.2s;
+    color: #5f6675; /* 5.8:1 on white */
+    transition: color 0.2s, background-color 0.2s;
   }
   .lang-btn:hover {
-    opacity: 0.8;
+    color: #151b2b;
   }
   .lang-btn.active {
-    opacity: 1;
     background: rgba(26, 115, 232, 0.1);
-    color: #1a73e8;
+    color: #1765cc; /* 4.9:1 on the tint */
   }
 
   /* Nav active link indicator */
@@ -424,9 +422,9 @@
 /* Segmented switch: the white thumb slides to the chosen button (site.js sets its left/width). */
 .ai-seg { position: relative; display: flex; margin-left: auto; padding: 3px; border-radius: 999px; background: #eef2f7; }
 .ai-seg button { position: relative; z-index: 1; padding: 5px 12px; border: 0; border-radius: 999px; background: none; cursor: pointer;
-  font: 700 12px/1.2 Inter, 'Noto Sans KR', sans-serif; color: #64748b; white-space: nowrap; transition: color .3s ease; }
+  font: 700 12px/1.2 Inter, 'Noto Sans KR', sans-serif; color: #475569; white-space: nowrap; transition: color .3s ease; }
 .ai-seg button:hover { color: #151b2b; }
-.ai-seg button.ai-tab-active { color: #1a73e8 !important; background: none !important; box-shadow: none; }
+.ai-seg button.ai-tab-active { color: #1765cc !important; background: none !important; box-shadow: none; }
 .ai-seg-thumb { position: absolute; top: 3px; bottom: 3px; left: 3px; width: 0; border-radius: 999px; background: #fff;
   box-shadow: 0 1px 3px rgba(21, 27, 43, .12); }
 .ai-seg.ready .ai-seg-thumb { transition: left .35s cubic-bezier(.4, 0, .2, 1), width .35s cubic-bezier(.4, 0, .2, 1); }
@@ -534,7 +532,7 @@ body[data-page="contact"] .footer-contact { display: none; }
 .info-list div { display: grid; grid-template-columns: 9.5em minmax(0, 1fr); gap: 12px; font-size: 14px; }
 .info-list dt { color: #6b7280; }
 .info-list dd { margin: 0; color: #151b2b; overflow-wrap: anywhere; }
-.info-list .tbd { color: #9ca3af; }
+.info-list .tbd { color: #6b7280; }
 @media (max-width: 639px) { .info-list div { grid-template-columns: 1fr; gap: 2px; } }
 
 /* ---- Header drop-down cards (desktop with a mouse) ----
@@ -698,10 +696,10 @@ body[data-page="product"] :is(#logic, #integrator, #harness) .rounded-2xl { bord
 .lg-legend button:focus-visible { outline: 2px solid #1a73e8; outline-offset: 2px; }
 .lg-dot {
   flex: none; display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; margin-top: 1px;
-  border-radius: 50%; background: #e2e7fd; color: #1a73e8; font: 700 12px/1 'Space Grotesk', sans-serif;
+  border-radius: 50%; background: #e2e7fd; color: #1765cc; font: 700 12px/1 'Space Grotesk', sans-serif;
   transition: background-color .2s, color .2s;
 }
-.lg-legend button.on .lg-dot { background: #1a73e8; color: #fff; }
+.lg-legend button.on .lg-dot { background: #1765cc; color: #fff; }
 .lg-legend b { display: block; font: 700 15px/1.4 Inter, 'Noto Sans KR', sans-serif; color: #151b2b; }
 .lg-legend b + span { display: block; margin-top: 2px; font: 400 13.5px/1.55 Manrope, 'Noto Sans KR', sans-serif; color: #414754; }
 
