@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Content Security Policy: only this site's own files run (no inline scripts or event attributes), fonts come from
+     Google Fonts and forms post to Formspree. Inline style attributes stay allowed (the markup uses many). -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self'; connect-src 'self' https://formspree.io; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
 <meta name="description" content="VegaFencer 자료실 — 실제 제품 화면, 구동 영상, 문서.">
 <meta property="og:title" content="VegaFencer — 자료실">
 <meta property="og:description" content="VegaFencer 자료실 — 실제 제품 화면, 구동 영상, 문서.">
@@ -31,7 +34,7 @@
 <body class="bg-surface antialiased" data-page="resources">
 
 <script src="assets/header.js?v=154001fe"></script>
-<script src="assets/sections.js?v=353a507d"></script>
+<script src="assets/sections.js?v=481c72f7"></script>
 
 <main id="main" class="page-top">
 <!-- Page title and the sections of this page -->
@@ -137,7 +140,7 @@
 </section>
 
 <!-- shared with the other pages: edit in assets/sections.js -->
-<script>vfSection('cta')</script>
+<script src="assets/section.js?v=73f8c02f" data-section="cta"></script>
 </main>
 
 <script src="assets/footer.js?v=23e15037"></script>

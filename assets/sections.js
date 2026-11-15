@@ -1,5 +1,6 @@
 /* Sections that appear on more than one page (home, product; the CTA also on pricing and resources): edit them here once.
-   A page shows one with  <script>vfSection('ai')</script>  at the spot where it belongs; the tag is replaced by the
+   A page shows one with  <script src="assets/section.js?v=…" data-section="ai"></script>  at the spot where it
+   belongs (see section.js); the tag is replaced by the
    markup synchronously (like header.js / footer.js), so i18n and site.js see it as ordinary page content.
    Needs header.js first (pageUrl). */
 (function () {

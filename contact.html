@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Content Security Policy: only this site's own files run (no inline scripts or event attributes), fonts come from
+     Google Fonts and forms post to Formspree. Inline style attributes stay allowed (the markup uses many). -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self'; connect-src 'self' https://formspree.io; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
 <meta name="description" content="VegaFencer 구매·기술 지원·협력 문의와 연락처.">
 <meta property="og:title" content="VegaFencer — 문의">
 <meta property="og:description" content="VegaFencer 구매·기술 지원·협력 문의와 연락처.">

@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Content Security Policy: only this site's own files run (no inline scripts or event attributes), fonts come from
+     Google Fonts and forms post to Formspree. Inline style attributes stay allowed (the markup uses many). -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self'; connect-src 'self' https://formspree.io; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
 <meta name="description" content="VegaFencer — 요구사항 정의부터 와이어링 하네스 설계까지, 차량 E/E 개발 전 과정을 통합하는 엔지니어링 플랫폼. 설계 시간 70% 단축.">
 <meta property="og:title" content="VegaFencer — From Architecture Design to Series Production">
 <meta property="og:description" content="차량 E/E 설계의 전 과정을 하나의 플랫폼으로 통합합니다. Logic, Integrator, Harness Drawing, Variant 관리.">
@@ -31,7 +34,7 @@
 <body class="bg-surface antialiased" data-page="home" data-skip="about">
 
 <script src="assets/header.js?v=154001fe"></script>
-<script src="assets/sections.js?v=353a507d"></script>
+<script src="assets/sections.js?v=481c72f7"></script>
 
 <!-- ============================================================
      HERO
@@ -251,25 +254,25 @@
      CORE MODULES
      ============================================================ -->
 <!-- shared with the other page: edit in assets/sections.js -->
-<script>vfSection('modules')</script>
+<script src="assets/section.js?v=73f8c02f" data-section="modules"></script>
 
 <!-- ============================================================
      WORKFLOW (Dark Section)
      ============================================================ -->
 <!-- shared with the other page: edit in assets/sections.js -->
-<script>vfSection('workflow')</script>
+<script src="assets/section.js?v=73f8c02f" data-section="workflow"></script>
 
 <!-- ============================================================
      AI ASSISTANT
      ============================================================ -->
 <!-- shared with the other page: edit in assets/sections.js -->
-<script>vfSection('ai')</script>
+<script src="assets/section.js?v=73f8c02f" data-section="ai"></script>
 
 <!-- ============================================================
      INTEGRATIONS
      ============================================================ -->
 <!-- shared with the other page: edit in assets/sections.js -->
-<script>vfSection('ecosystem')</script>
+<script src="assets/section.js?v=73f8c02f" data-section="ecosystem"></script>
 
 <!-- ============================================================
      STATS
@@ -306,7 +309,7 @@
      CTA
      ============================================================ -->
 <!-- shared with the other page: edit in assets/sections.js -->
-<script>vfSection('cta')</script>
+<script src="assets/section.js?v=73f8c02f" data-section="cta"></script>
 
 <script src="assets/footer.js?v=23e15037"></script>
 </div><!-- /.engineering-after -->
