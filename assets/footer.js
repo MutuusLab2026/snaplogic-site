@@ -34,7 +34,7 @@ document.currentScript.insertAdjacentHTML('beforebegin', `
       <!-- Contact Form (hidden on the contact page, which has its own form) -->
       <div class="md:col-span-2 lg:col-span-1 footer-contact">
         <h2 class="font-headline font-bold text-on-surface text-sm mb-4" data-i18n="contact_title">Contact Us</h2>
-        <form class="flex flex-col gap-2.5" id="contactForm" method="post" onsubmit="return false;">
+        <form class="flex flex-col gap-2.5" id="contactForm" method="post">
           <input class="hp-field" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
           <input class="px-3 py-2 rounded-lg border border-outline-variant/30 bg-white text-sm font-body text-on-surface placeholder-on-surface-variant/50 focus:outline-none focus:border-primary-container/50 focus:ring-1 focus:ring-primary-container/20" type="text" name="name" data-i18n-placeholder="contact_name" placeholder="이름" required>
           <input class="px-3 py-2 rounded-lg border border-outline-variant/30 bg-white text-sm font-body text-on-surface placeholder-on-surface-variant/50 focus:outline-none focus:border-primary-container/50 focus:ring-1 focus:ring-primary-container/20" type="text" name="company" data-i18n-placeholder="contact_company" placeholder="회사명">
@@ -63,9 +63,9 @@ document.currentScript.insertAdjacentHTML('beforebegin', `
      LIGHTBOX
      ============================================================ -->
 <div class="fixed inset-0 z-[2000] bg-black/90 hidden items-center justify-center p-4 md:p-8 cursor-zoom-out" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
-  <button class="absolute top-3 right-3 md:top-6 md:right-6 w-12 h-12 rounded-full bg-white/10 text-white text-2xl flex items-center justify-center hover:bg-white/25 transition-colors z-10" aria-label="Close" onclick="closeLightbox()">&times;</button>
-  <button class="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 text-white text-2xl md:text-3xl flex items-center justify-center hover:bg-white/25 transition-colors z-10" aria-label="Previous" onclick="navigateLightbox(-1)">&#8249;</button>
+  <button class="absolute top-3 right-3 md:top-6 md:right-6 w-12 h-12 rounded-full bg-white/10 text-white text-2xl flex items-center justify-center hover:bg-white/25 transition-colors z-10" aria-label="Close" data-lightbox="close">&times;</button>
+  <button class="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 text-white text-2xl md:text-3xl flex items-center justify-center hover:bg-white/25 transition-colors z-10" aria-label="Previous" data-lightbox="-1">&#8249;</button>
   <img id="lightboxImg" class="max-w-[95%] max-h-[85vh] md:max-h-[90vh] rounded-xl object-contain" src="" alt="">
-  <button class="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 text-white text-2xl md:text-3xl flex items-center justify-center hover:bg-white/25 transition-colors z-10" aria-label="Next" onclick="navigateLightbox(1)">&#8250;</button>
+  <button class="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 text-white text-2xl md:text-3xl flex items-center justify-center hover:bg-white/25 transition-colors z-10" aria-label="Next" data-lightbox="1">&#8250;</button>
 </div>
 `);

@@ -249,7 +249,12 @@ const Controller = {
   initLightbox() {
     const lb = document.getElementById('lightbox');
     lb.addEventListener('click', (e) => {
-      if (e.target === lb) closeLightbox();
+      if (e.target === lb) return closeLightbox();
+      // Close / previous / next buttons (data-lightbox="close" | "-1" | "1"), wired here instead of inline onclick
+      const btn = e.target.closest('[data-lightbox]');
+      if (!btn) return;
+      if (btn.dataset.lightbox === 'close') closeLightbox();
+      else navigateLightbox(Number(btn.dataset.lightbox));
     });
     document.addEventListener('keydown', (e) => {
       if (!lb.classList.contains('active')) return;
