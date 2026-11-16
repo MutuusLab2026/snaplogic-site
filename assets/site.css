@@ -729,8 +729,9 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
 .about-company .contact-card { max-width: 640px; }
 
 /* ---- Home product gallery (#gallery, assets/gallery.js): navy section, real screens in a sideways row that wraps.
-   The current screen is 64% of the width in the middle; neighbours show blurred at the sides. ---- */
-.ga-sec { background: var(--eng-ink, #081e30); padding: 96px 0 88px; overflow: hidden; }
+   The current screen lines up with the heading on the left and is sized to the window height (the section fits one
+   screen, like the hero and At a Glance); a glass caption block sits at its right over the blurred next screen. ---- */
+.ga-sec { background: var(--eng-ink, #081e30); padding: 56px 0 40px; overflow: hidden; }
 .ga-sec .lg-kicker { color: #7be4ee; }
 .ga-sec .lg-name, .ga-sec .lg-tagline { color: #fff; }
 .ga-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
@@ -739,24 +740,51 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
 .ga-arrows button:hover { background: #12344a; }
 .ga-arrows svg { width: 20px; height: 20px; }
 .ga-count { min-width: 52px; margin-right: 6px; color: #a9bfcd; font: 600 14px Inter, sans-serif; letter-spacing: .04em; text-align: right; }
-.ga-arrows button:focus-visible, .ga-track:focus-visible, .ga-slide a:focus-visible { outline: 2px solid #7be4ee; outline-offset: 3px; }
-.ga-track { display: flex; gap: 28px; margin-top: 40px; padding: 8px 18% 4px; scroll-padding: 0 18%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
+.ga-arrows button:focus-visible, .ga-track:focus-visible, .ga-info a:focus-visible { outline: 2px solid #7be4ee; outline-offset: 3px; }
+.ga-stage { position: relative; margin-top: 28px;
+  --ga-left: max(16px, calc((100% - 1280px) / 2 + 32px));      /* same left edge as the heading */
+  --ga-info: 340px; --ga-gap: 28px; --ga-shift: 40px;          /* caption block width, gap, and its nudge to the right */
+  --ga-h: calc((100svh - 72px) / var(--hero-s, 1) - 306px);    /* what the window leaves under the header and heading */
+  --ga-w: min(calc(100% - 2 * var(--ga-left) - var(--ga-info) - var(--ga-gap)), calc(var(--ga-h) * 2)); }
+.ga-track { display: flex; gap: var(--ga-gap); padding: 8px 0 4px var(--ga-left); scroll-padding-left: var(--ga-left);
+  overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
 .ga-track::-webkit-scrollbar { display: none; }
-.ga-slide { flex: 0 0 100%; margin: 0; scroll-snap-align: center; cursor: pointer; filter: blur(3px); opacity: .45; transform: scale(.95); transition: filter .45s, opacity .45s, transform .45s; }
-.ga-slide.is-on { filter: none; opacity: 1; transform: none; cursor: default; }
+.ga-track::after { content: ''; flex: 0 0 calc(100% - var(--ga-left) - var(--ga-w)); }
+.ga-slide { flex: 0 0 var(--ga-w); margin: 0; scroll-snap-align: start; cursor: pointer; filter: blur(4px); opacity: .4; transition: filter .45s, opacity .45s; }
+.ga-slide.is-on { filter: none; opacity: 1; cursor: default; }
 .ga-frame { border-radius: 10px; overflow: hidden; background: #0d2638; border: 1px solid #23465c; box-shadow: 0 30px 60px -20px rgba(0,0,0,.6); }
 .ga-bar { height: 30px; display: flex; align-items: center; gap: 6px; padding: 0 12px; background: #10293b; border-bottom: 1px solid #1f4054; }
 .ga-bar i { width: 9px; height: 9px; border-radius: 50%; background: #2c4a5e; }
 .ga-bar span { margin-left: 10px; color: #8fa9b9; font: 500 12px Inter, sans-serif; }
-.ga-frame img { display: block; width: 100%; height: auto; aspect-ratio: 1.857; object-fit: cover; object-position: top left; }
-.ga-slide figcaption { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; margin-top: 18px; color: #c3d3de; font-size: 15px; line-height: 1.6; }
-.ga-slide figcaption b { color: #fff; font: 700 17px Inter, 'Noto Sans KR', sans-serif; }
-.ga-slide figcaption a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; color: #7be4ee; font-weight: 600; }
-.ga-slide figcaption a svg { width: 14px; height: 14px; }
-@media (max-width: 767px) {
-  .ga-sec { padding: 64px 0 48px; }
-  .ga-arrows { display: none; }
-  .ga-track { padding: 8px 8% 4px; scroll-padding: 0 8%; gap: 14px; }
-  .ga-slide { filter: blur(2px); }
+.ga-frame img { display: block; width: 100%; height: auto; aspect-ratio: 2; object-fit: cover; object-position: top left; }
+.ga-slide figcaption { display: none; }                         /* shown through the caption block */
+.ga-info { position: absolute; z-index: 2; width: var(--ga-info);
+  left: min(calc(var(--ga-left) + var(--ga-w) + var(--ga-gap) + var(--ga-shift)), calc(100% - var(--ga-info) - 24px));   /* stays inside narrow windows */
+  top: 50%; transform: translateY(-50%); padding: 30px 30px 24px; border-radius: 16px;
+  background: rgba(8, 30, 48, .72); border: 1px solid rgba(255, 255, 255, .16);
+  -webkit-backdrop-filter: blur(18px) saturate(140%); backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: 0 20px 50px -20px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.12);
+  transition: opacity .35s ease, transform .45s cubic-bezier(.2,.7,.2,1); }
+.ga-moving .ga-info { opacity: 0; transform: translate(24px, -50%); transition: opacity .15s, transform .15s; }
+.ga-num { margin: 0 0 6px; color: #7be4ee; font: 700 14px Inter, sans-serif; letter-spacing: .08em; }
+.ga-info b { display: block; margin-bottom: 12px; color: #fff; font: 800 28px/1.2 Inter, 'Noto Sans KR', sans-serif; letter-spacing: -.02em; }
+.ga-info > span { display: block; margin-bottom: 18px; color: #c3d3de; font-size: 15.5px; line-height: 1.7; }
+.ga-info a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; color: #7be4ee; font-weight: 600; }
+.ga-info a svg { width: 14px; height: 14px; }
+/* Narrower than a laptop: the block moves under the screen; on phones the screen keeps its full program ratio */
+@media (max-width: 1023px) {
+  .ga-stage { --ga-w: min(84%, calc(var(--ga-h) * 2)); }
+  .ga-info { position: static; width: auto; margin: 18px var(--ga-left) 0; transform: none; }
+  .ga-moving .ga-info { transform: none; }
 }
-@media (prefers-reduced-motion: reduce) { .ga-slide { transition: none; } }
+@media (max-width: 767px) {
+  .ga-sec { padding: 56px 0 40px; }
+  .ga-arrows button { display: none; }
+  .ga-stage { --ga-w: 84%; }
+  .ga-track { gap: 14px; }
+  .ga-frame img { aspect-ratio: 1.857; }
+  .ga-slide { filter: blur(2px); }
+  .ga-info { padding: 22px 22px 16px; }
+  .ga-info b { font-size: 24px; }
+}
+@media (prefers-reduced-motion: reduce) { .ga-slide, .ga-info, .ga-moving .ga-info { transition: none; } }

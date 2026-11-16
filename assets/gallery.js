@@ -1,13 +1,17 @@
 /* Home "Product Gallery" (#gallery): real program screens in a row that pages sideways and wraps around.
-   The current screen sits in the middle; its neighbours show blurred at the sides.
+   The current screen lines up with the heading on the left; a numbered caption block (.ga-info: "01. Logic",
+   description, link) sits at its right over the blurred next screen. The block slides out while the row moves
+   and comes back with the new screen's caption once the row rests.
    Wrapping: copies of the last and first screens sit at either end of the row. When the row comes to rest on a
    copy it jumps, without animation, to the real screen it copies, so paging past the end carries on from the start.
    Copies are hidden from screen readers and keyboard (inert). Arrow buttons, the left/right keys on the focused
-   row, a click on a side screen, or a swipe/trackpad move it. */
+   row, a click on a side screen, or a swipe/trackpad move it. The captions live in each screen's <figcaption>
+   (translated by i18n.js) and are copied into the block. */
 (function () {
   var root = document.getElementById('gallery');
   if (!root) return;
   var track = root.querySelector('.ga-track');
+  var info = root.querySelector('.ga-info');
   var real = Array.prototype.slice.call(track.querySelectorAll('.ga-slide'));
   var n = real.length;
   var COPIES = 2;
@@ -28,7 +32,7 @@
   var pos = COPIES;                           // index in slides (copies included)
 
   function realIndex(p) { return ((p - COPIES) % n + n) % n; }
-  function target(p) { var s = slides[p]; return s.offsetLeft - (track.clientWidth - s.offsetWidth) / 2; }
+  function target(p) { return slides[p].offsetLeft - (parseFloat(getComputedStyle(track).scrollPaddingLeft) || 0); }
   function jump(p) {                           // move without animation (wrapping, resizing, first paint)
     track.style.scrollSnapType = 'none';
     track.scrollLeft = target(p);
@@ -53,14 +57,24 @@
     });
     if (count) count.textContent = (realIndex(pos) + 1) + ' / ' + n;
   }
-  // While scrolling, mark the screen nearest the middle; once the row rests, swap a copy for the real screen.
+  // The caption block shows the resting screen's caption, numbered "01.".
+  function fillInfo(force) {
+    var r = realIndex(pos);
+    if (force || info.dataset.at !== String(r)) {
+      info.dataset.at = r;
+      info.innerHTML = '<p class="ga-num">' + (r + 1 < 10 ? '0' : '') + (r + 1) + '.</p>' + real[r].querySelector('figcaption').innerHTML;
+    }
+    root.classList.remove('ga-moving');
+  }
+  // While scrolling, mark the screen nearest the left edge; once the row rests, swap a copy for the real screen.
   var settle = 0;
   function rest() {
     pos = nearest();
     if (pos < COPIES || pos >= COPIES + n) jump(COPIES + realIndex(pos));
-    paint();
+    paint(); fillInfo();
   }
   track.addEventListener('scroll', function () {
+    if (Math.abs(target(pos) - track.scrollLeft) > 4) root.classList.add('ga-moving');
     pos = nearest(); paint();
     clearTimeout(settle); settle = setTimeout(rest, 140);
   }, { passive: true });
@@ -74,14 +88,16 @@
   });
   window.addEventListener('resize', function () { jump(pos); paint(); });
 
-  // Accessible names follow the page language (switchLanguage only rewrites text, not aria-label).
+  // Language switch: accessible names (switchLanguage only rewrites text, not aria-label) and the caption block
+  // (a copy of the figcaption, so it is refilled after i18n.js has translated the figcaptions).
   function labels() {
     var t = i18n[document.documentElement.lang] || i18n.ko;
     prev.setAttribute('aria-label', t.gal_prev); next.setAttribute('aria-label', t.gal_next);
     track.setAttribute('aria-label', t.gal_track);
   }
-  new MutationObserver(labels).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+  new MutationObserver(function () { labels(); setTimeout(function () { fillInfo(true); }, 0); })
+    .observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
   labels();
   jump(COPIES);
-  paint();
+  paint(); fillInfo(true);
 })();
