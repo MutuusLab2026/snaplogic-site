@@ -137,8 +137,8 @@
       // wheel, Chrome would also stall half way before the hero/second-screen snap.) Trackpads, keyboard, touch, the
       // scrollbar and everything below Product Gallery are left to the browser. Set WHEEL_PAGING to false to switch
       // this off.
-      const WHEEL_PAGING = false;   // off for now (2026-11-16, user); true brings the wheel paging back
-      const PAGED = ['product', 'gallery'];   // sections after the second screen that a wheel notch pages to
+      const WHEEL_PAGING = true;
+      const PAGED = [];   // sections after the second screen that a wheel notch also pages to, e.g. ['product', 'gallery'] (off: user, 2026-11-16)
       const second = document.querySelector('.engineering-after');   // carries the snap (and its scroll-margin)
 
       // Below the second screen the snap has nothing left to do, but a browser can still pull the page back up to it

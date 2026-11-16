@@ -446,7 +446,7 @@ html[lang="ja"] body, html[lang="ja"] :is(.font-body, .font-headline, .font-labe
 /* ---- Scroll stops: the hero, the second screen, then the start of everything below. ----
    Each of the first two is exactly one screen tall, so the page always rests on one of them and a hard or fast scroll
    cannot skip the second one (stop: always). Everything after that is one tall block, which scrolls freely. */
-html:has(.engineering-after) { scroll-snap-type: none; }   /* off for now (2026-11-16, user); y mandatory brings the hero/second-screen snap back */   /* home only: other pages have no stops, and a
+html:has(.engineering-after) { scroll-snap-type: y mandatory; }   /* home only: other pages have no stops, and a
    mandatory snap with nothing to snap to makes keyboard focus scroll stop short of the focused element */
 html.engineering-free-scroll { scroll-snap-type: none; }   /* set by engineering.js once past the middle of the second screen;
    below it a mouse wheel pages to Core Modules and Product Gallery (engineering.js), everything else scrolls freely */

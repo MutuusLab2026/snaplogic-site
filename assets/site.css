@@ -767,7 +767,7 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
 .ga-frame img { display: block; width: 100%; height: auto; aspect-ratio: 2; object-fit: cover; object-position: top left; }
 .ga-slide figcaption { display: none; }                         /* shown through the caption block */
 .ga-info { position: absolute; z-index: 2; width: var(--ga-info);
-  left: min(calc(var(--ga-left) + var(--ga-w) + var(--ga-gap) + var(--ga-shift)), calc(100% - var(--ga-info) - 24px));   /* stays inside narrow windows */
+  left: calc(var(--ga-left) + var(--ga-w) + var(--ga-gap) + var(--ga-shift));
   top: 50%; transform: translateY(-50%); padding: 30px 30px 24px; border-radius: 16px;
   background: rgba(8, 30, 48, .72); border: 1px solid rgba(255, 255, 255, .16);
   -webkit-backdrop-filter: blur(18px) saturate(140%); backdrop-filter: blur(18px) saturate(140%);
@@ -780,6 +780,8 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
 .ga-info a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; color: #7be4ee; font-weight: 600; }
 .ga-info a svg { width: 14px; height: 14px; }
 /* Narrower than a laptop: the block moves under the screen; on phones the screen keeps its full program ratio */
+/* narrow laptops: the block keeps inside the window */
+@media (max-width: 1180px) { .ga-info { left: min(calc(var(--ga-left) + var(--ga-w) + var(--ga-gap) + var(--ga-shift)), calc(100% - var(--ga-info) - 24px)); } }
 @media (max-width: 1023px) {
   .ga-stage { --ga-w: min(84%, calc(var(--ga-h) * 2)); }
   .ga-info { position: static; width: auto; margin: 18px var(--ga-left) 0; transform: none; }
