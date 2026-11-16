@@ -18,7 +18,6 @@ const i18n = {
     hero_cta_video: '<span class="material-symbols-outlined text-base align-middle mr-1" style="font-size:18px">play_circle</span> Watch Video',
 
     // Trust
-    trust_label: "선도적인 E/E 엔지니어링 팀이 신뢰합니다",
 
     // Core Modules
     modules_label: "CORE MODULES",
@@ -237,7 +236,6 @@ const i18n = {
     hero_cta_video: '<span class="material-symbols-outlined text-base align-middle mr-1" style="font-size:18px">play_circle</span> Watch Video',
 
     // Trust
-    trust_label: "Trusted by leading E/E engineering teams",
 
     // Core Modules
     modules_label: "CORE MODULES",
@@ -456,7 +454,6 @@ const i18n = {
     hero_cta_video: '<span class="material-symbols-outlined text-base align-middle mr-1" style="font-size:18px">play_circle</span> 观看视频',
 
     // Trust
-    trust_label: "深受领先E/E工程团队的信赖",
 
     // Core Modules
     modules_label: "核心模块",
@@ -676,7 +673,6 @@ const i18n = {
     hero_cta_video: '<span class="material-symbols-outlined text-base align-middle mr-1" style="font-size:18px">play_circle</span> 動画を見る',
 
     // Trust
-    trust_label: "先進的なE/Eエンジニアリングチームから信頼されています",
 
     // Core Modules
     modules_label: "コアモジュール",
