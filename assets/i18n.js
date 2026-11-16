@@ -1396,6 +1396,52 @@ Object.assign(i18n.en, { nav_about: 'About', about_title: 'About', about_desc: '
 Object.assign(i18n.zh, { nav_about: '关于我们', about_title: '关于我们', about_desc: '介绍VegaFencer名字背后的故事与公司信息。' });
 Object.assign(i18n.ja, { nav_about: '会社概要', about_title: '会社概要', about_desc: 'VegaFencer\u2060という名前に込めた思いと会社情報をご紹介します。' });
 
+/* Home: Product Gallery (index.html #gallery, assets/gallery.js). */
+Object.assign(i18n.ko, {
+  gal_tagline: '실제 프로그램 화면으로 확인하세요.',
+  gal_logic: '회로도에서 핀 단위로 연결을 정의하고, 전기적 오류를 바로 검증합니다.',
+  gal_integrator: '회로 설계를 차량 토폴로지와 3D 번들 경로에 연결합니다.',
+  gal_harness: '번들 길이와 직경을 계산해 하네스 도면과 와이어 리스트를 만듭니다.',
+  gal_ai: '자연어로 설계 데이터를 조회하고, 연결·수정을 요청합니다.',
+  gal_more: '자세히 보기',
+  gal_prev: '이전 화면',
+  gal_next: '다음 화면',
+  gal_track: '제품 화면, 좌우 화살표 키로 넘기기'
+});
+Object.assign(i18n.en, {
+  gal_tagline: 'See the real program screens.',
+  gal_logic: 'Define connections pin by pin in the schematic and check for electrical errors right away.',
+  gal_integrator: 'Link the circuit design to the vehicle topology and 3D bundle routes.',
+  gal_harness: 'Calculate bundle lengths and diameters to produce harness drawings and wire lists.',
+  gal_ai: 'Query design data in plain language and ask for connections and edits.',
+  gal_more: 'Learn more',
+  gal_prev: 'Previous screen',
+  gal_next: 'Next screen',
+  gal_track: 'Product screens; use the left and right arrow keys'
+});
+Object.assign(i18n.zh, {
+  gal_tagline: '通过实际软件界面了解产品。',
+  gal_logic: '在原理图中按引脚定义连接，并即时检查电气错误。',
+  gal_integrator: '将电路设计与车辆拓扑和3D线束路径关联。',
+  gal_harness: '计算线束长度与直径，生成线束图纸和导线清单。',
+  gal_ai: '用自然语言查询设计数据，并请求连接与修改。',
+  gal_more: '详细了解',
+  gal_prev: '上一张',
+  gal_next: '下一张',
+  gal_track: '产品界面，可用左右方向键切换'
+});
+Object.assign(i18n.ja, {
+  gal_tagline: '実際のプログラム画面でご確認ください。',
+  gal_logic: '回路図でピン単位の接続を定義し、電気的なエラーをその場で検証します。',
+  gal_integrator: '回路設計を車両トポロジーと3D\u2060バンドル経路に結び付けます。',
+  gal_harness: 'バンドルの長さと径を計算し、ハーネス図面とワイヤーリストを作成します。',
+  gal_ai: '自然な言葉で設計データを照会し、接続や修正を依頼できます。',
+  gal_more: '詳しく見る',
+  gal_prev: '前の画面',
+  gal_next: '次の画面',
+  gal_track: '製品画面（左右の矢印キーで切り替え）'
+});
+
 /* =============================================================
    switchLanguage — Update all translatable elements
    ============================================================= */
