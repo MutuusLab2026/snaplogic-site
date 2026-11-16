@@ -1390,12 +1390,6 @@ Object.assign(i18n.ja, {
   ga_synced: '同期完了'
 });
 
-/* Home: the short Brand Story band (index.html #story). */
-Object.assign(i18n.ko, { story_band: 'VegaFencer는 거문고자리의 Vega(직녀성)에서 이름을 따왔습니다. 천문학이 Vega의 밝기를 기준으로 다른 별의 밝기를 재 왔듯, VegaFencer는 모든 E/E 설계 데이터가 하나의 기준 아래에서 연결되고 검증되도록 합니다.' });
-Object.assign(i18n.en, { story_band: 'VegaFencer is named after Vega, a star in the constellation Lyra. Just as astronomers have measured the brightness of other stars against Vega, VegaFencer connects and verifies all E/E design data against a single reference.' });
-Object.assign(i18n.zh, { story_band: 'VegaFencer的名字源于天琴座的织女星（Vega）。正如天文学以织女星的亮度为基准测量其他恒星，VegaFencer让所有E/E设计数据在同一个基准下连接并得到验证。' });
-Object.assign(i18n.ja, { story_band: 'VegaFencer\u2060は、こと座のベガ（織女星）にちなんで名付けられました。天文学がベガの明るさを基準にほかの星を測ってきたように、VegaFencer\u2060はすべてのE/E設計データをひとつの基準のもとでつなぎ、検証します。' });
-
 /* =============================================================
    switchLanguage — Update all translatable elements
    ============================================================= */

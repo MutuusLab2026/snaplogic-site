@@ -476,8 +476,8 @@ html.engineering-free-scroll { scroll-snap-type: none; }   /* set by engineering
     #fff;
 }
 /* Home section colours below the hero: white and paper take turns (the navy workflow and CTA stay as they are). */
-/* Home order (2026-11-16): Glance white · Core Modules paper · Brand Story navy · AI white · Integrations paper ·
-   Key Figures white · CTA navy. On the paper section the module cards turn white so they stay visible. */
+/* Home order (2026-11-16): Glance white · Core Modules paper · AI white · Integrations paper · Key Figures white ·
+   CTA navy (Brand Story moves to a company page later). On the paper section the module cards turn white so they stay visible. */
 body[data-page="home"] #product, body[data-page="home"] #integrations { background: var(--eng-paper); }
 body[data-page="home"] #product > div > .grid > a { background: #fff; }
 body[data-page="home"] #ai, body[data-page="home"] #stats { background: #fff; }
