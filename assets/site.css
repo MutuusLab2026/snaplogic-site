@@ -751,7 +751,7 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
 .ga-arrows button:focus-visible, .ga-track:focus-visible, .ga-info a:focus-visible { outline: 2px solid #7be4ee; outline-offset: 3px; }
 .ga-stage { position: relative; margin-top: 28px;
   --ga-left: max(16px, calc((100% - 1280px) / 2 + 32px));      /* same left edge as the heading */
-  --ga-info: 340px; --ga-gap: 28px; --ga-shift: 40px;          /* caption block width, gap, and its nudge to the right */
+  --ga-info: 340px; --ga-gap: 28px; --ga-shift: 80px;          /* caption block width, gap, and its nudge to the right */
   --ga-h: calc((100svh - 72px) / var(--hero-s, 1) - 306px);    /* what the window leaves under the header and heading */
   --ga-w: min(calc(100% - 2 * var(--ga-left) - var(--ga-info) - var(--ga-gap)), calc(var(--ga-h) * 2)); }
 .ga-track { display: flex; gap: var(--ga-gap); padding: 8px 0 4px var(--ga-left); scroll-padding-left: var(--ga-left);
