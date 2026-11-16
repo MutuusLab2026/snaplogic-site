@@ -724,3 +724,14 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
     background: #081e30; color: #fff; font: 700 17px/20px Inter, 'Noto Sans KR', sans-serif; text-align: center; text-decoration: none; }
   #nav.engineering-nav-dark #navLinks.nav-open a.nav-demo-mobile { background: #7be4ee; color: #081e30; }
 }
+
+/* ---- Home brand story band: a short navy band after Core Modules (the full story moves to a company page later) ---- */
+.story-band { padding: 64px 0; background: var(--eng-ink, #081e30); color: #fff; }
+.story-band-in { display: grid; gap: 32px; align-items: center; }
+@media (min-width: 1024px) { .story-band { padding: 80px 0; } .story-band-in { grid-template-columns: 1fr 1fr; column-gap: 64px; } }
+.story-band .lg-kicker { color: #7be4ee; }
+.story-band-title { margin: 10px 0 14px; color: #fff; font: 800 32px/1.25 Inter, 'Noto Sans KR', sans-serif; letter-spacing: -.01em; }
+@media (max-width: 767px) { .story-band-title { font-size: 24px; } }
+.story-band-body { margin: 0; max-width: 520px; color: #c3d3de; font-size: 16px; line-height: 1.75; }
+.story-band-media { border-radius: 12px; overflow: hidden; aspect-ratio: 2.4; }
+.story-band-media img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
