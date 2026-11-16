@@ -1390,6 +1390,12 @@ Object.assign(i18n.ja, {
   ga_synced: '同期完了'
 });
 
+/* About page (about.html) and its menu tab. */
+Object.assign(i18n.ko, { nav_about: '회사 소개', about_title: '회사 소개', about_desc: 'VegaFencer라는 이름에 담긴 이야기와 회사 정보를 소개합니다.' });
+Object.assign(i18n.en, { nav_about: 'About', about_title: 'About', about_desc: 'The story behind the name VegaFencer, and our company details.' });
+Object.assign(i18n.zh, { nav_about: '关于我们', about_title: '关于我们', about_desc: '介绍VegaFencer名字背后的故事与公司信息。' });
+Object.assign(i18n.ja, { nav_about: '会社概要', about_title: '会社概要', about_desc: 'VegaFencer\u2060という名前に込めた思いと会社情報をご紹介します。' });
+
 /* =============================================================
    switchLanguage — Update all translatable elements
    ============================================================= */

@@ -29,6 +29,7 @@ document.currentScript.insertAdjacentHTML('beforebegin', `
           <a href="${pageUrl('resources', '#gallery')}" class="font-body text-on-surface-variant text-sm hover:text-primary-container transition-colors" data-i18n="footer_gallery">Gallery</a>
           <a href="${pageUrl('product', '#workflow')}" class="font-body text-on-surface-variant text-sm hover:text-primary-container transition-colors" data-i18n="footer_workflow">Workflow</a>
           <a href="${pageUrl('product', '#integrations')}" class="font-body text-on-surface-variant text-sm hover:text-primary-container transition-colors" data-i18n="footer_integrations">Integrations</a>
+          <a href="${pageUrl('about')}" class="font-body text-on-surface-variant text-sm hover:text-primary-container transition-colors" data-i18n="nav_about">About</a>
         </div>
       </div>
       <!-- Contact Form (hidden on the contact page, which has its own form) -->

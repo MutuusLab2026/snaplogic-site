@@ -724,3 +724,6 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
     background: #081e30; color: #fff; font: 700 17px/20px Inter, 'Noto Sans KR', sans-serif; text-align: center; text-decoration: none; }
   #nav.engineering-nav-dark #navLinks.nav-open a.nav-demo-mobile { background: #7be4ee; color: #081e30; }
 }
+
+/* ---- About page: company details card (same card as the contact page), kept to a readable width ---- */
+.about-company .contact-card { max-width: 640px; }

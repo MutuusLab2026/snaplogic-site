@@ -1,7 +1,7 @@
 /* Shared header for every page (skip link, navigation, language switcher, scroll progress bar): edit it here once.
    The <script> tag that loads this file is replaced by the markup synchronously, so the page renders with it from the
    first paint. Each page says who it is on <body>:
-     data-page="home|product|resources|pricing|contact"  -> marks the current menu item; "home" also starts the header dark
+     data-page="home|product|resources|pricing|about|contact"  -> marks the current menu item; "home" also starts the header dark
                                                  (it sits on the navy hero)
      data-skip="<id>"                          -> where "Skip to main content" jumps (default: main) */
 /* Page addresses without ".html" (roiscompany.com/product): GitHub Pages serves product.html for them. A page opened
@@ -17,7 +17,7 @@ if (location.protocol === 'file:') {
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[href]');
     if (!a) return;
-    var m = a.getAttribute('href').match(/^(product|resources|pricing|contact)(#.*)?$/);
+    var m = a.getAttribute('href').match(/^(product|resources|pricing|about|contact)(#.*)?$/);
     if (m) a.setAttribute('href', m[1] + '.html' + (m[2] || ''));
   }, true);
 }
@@ -89,6 +89,7 @@ if (location.protocol === 'file:') {
       ${tab('product', 'nav_product', 'Product')}
       ${tab('resources', 'nav_resources', 'Resources')}
       ${tab('pricing', 'nav_pricing', 'Pricing')}
+      ${tab('about', 'nav_about', 'About')}
       ${tab('contact', 'nav_contact', 'Contact')}
       <!-- Phones only: the header's demo button is hidden below md, so the open menu ends with it -->
       <a class="nav-demo-mobile md:hidden" href="${pageUrl('home', '#cta')}" id="navDemoMobile" data-i18n="nav_demo">Request Demo</a>
