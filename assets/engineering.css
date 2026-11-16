@@ -446,20 +446,11 @@ html[lang="ja"] body, html[lang="ja"] :is(.font-body, .font-headline, .font-labe
 /* ---- Scroll stops: the hero, the second screen, then the start of everything below. ----
    Each of the first two is exactly one screen tall, so the page always rests on one of them and a hard or fast scroll
    cannot skip the second one (stop: always). Everything after that is one tall block, which scrolls freely. */
-html:has(.engineering-after) { scroll-snap-type: y mandatory; }   /* home only: other pages have no stops, and a
+html:has(.engineering-after) { scroll-snap-type: none; }   /* off for now (2026-11-16, user); y mandatory brings the hero/second-screen snap back */   /* home only: other pages have no stops, and a
    mandatory snap with nothing to snap to makes keyboard focus scroll stop short of the focused element */
-/* Below the second screen (engineering.js sets the class once past its middle) the stops turn gentle: the tops of
-   Core Modules and Product Gallery are stops (from AI Assistant down the page scrolls freely, user decision 2026-11-16), but the page only settles there when a scroll ends close to it (proximity), so reading inside a long
-   section is never pulled. The tops land just under the fixed header. Far below, nothing pulls back up to the second
-   screen either, since proximity only acts on nearby stops. */
-html.engineering-free-scroll { scroll-snap-type: y proximity; }
-/* the tall second-screen block would otherwise also make Chrome stop at section bottoms inside it */
-html.engineering-free-scroll .engineering-after { scroll-snap-align: none; }
-html.engineering-free-scroll body[data-page="home"] :is(#product, #gallery) {
-  scroll-snap-align: start; scroll-margin-top: calc(73px / var(--hero-s, 1)); }
-@media (max-width: 767px) {
-  html.engineering-free-scroll body[data-page="home"] :is(#product, #gallery) { scroll-margin-top: calc(105px / var(--hero-s, 1)); }
-}
+html.engineering-free-scroll { scroll-snap-type: none; }   /* set by engineering.js once past the middle of the second screen;
+   below it a mouse wheel pages to Core Modules and Product Gallery (engineering.js), everything else scrolls freely */
+
 .engineering-hero { scroll-snap-align: start; }
 /* Second screen through the footer = one snap area taller than the screen: the snap stops only at its top (where the
    fade has ended, so no navy is left at the top), and inside it the browser lets the page scroll freely. */

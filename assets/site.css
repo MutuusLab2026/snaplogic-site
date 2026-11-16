@@ -437,7 +437,10 @@
 .ai-pane.hidden { display: none; }
 /* Chat and Agent: scrolling panes, like a messenger. New content appears at the bottom and site.js follows it, so the
    first lines slide up out of view (the scrollbar brings them back). The top edge fades while something is above it. */
-:is(.ai-pane-chat, .ai-pane-agent) { display: block; overflow-y: auto; overscroll-behavior: contain; scrollbar-gutter: stable; padding-right: 14px; }   /* room for the scrollbar kept from the start, so text never re-wraps when it appears */
+:is(.ai-pane-chat, .ai-pane-agent) { display: block; overflow-y: auto; scrollbar-gutter: stable; padding-right: 14px; }
+/* While the conversation plays (site.js sets .ai-playing) the pane only scrolls itself: a mouse wheel over it scrolls
+   the page. Once it has finished, the reader can scroll the pane, and at its ends the wheel carries on to the page. */
+:is(.ai-pane-chat, .ai-pane-agent).ai-playing { overflow-y: hidden; }   /* room for the scrollbar kept from the start, so text never re-wraps when it appears */
 :is(.ai-pane-chat, .ai-pane-agent).hidden { display: none; }
 /* A slim scrollbar that stays visible (Chrome/Safari draw these even with overlay scrollbars); Firefox gets the thin one. */
 :is(.ai-pane-chat, .ai-pane-agent)::-webkit-scrollbar { width: 10px; }

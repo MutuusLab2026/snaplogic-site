@@ -132,18 +132,18 @@
       window.matchMedia('(max-width: 800px)').addEventListener('change', watchHero);
       window.matchMedia('(max-width: 767px)').addEventListener('change', watchHero);
 
-      // Mouse wheel between the hero and the second screen. With a wheel, Chrome first scrolls the wheel's own distance,
-      // waits for the wheel to stop and only then snaps the rest of the way, so the motion stalls once in the middle.
-      // In this stretch the snap already allows only two resting places, so a mouse-wheel turn goes straight to the
-      // one the snap would pick anyway. Trackpads, keyboard, touch, the scrollbar and everything below the second
-      // screen are left to the browser. Set WHEEL_PAGING to false to switch this off.
-      const WHEEL_PAGING = true;
+      // Mouse wheel paging: the hero, the second screen, Core Modules and Product Gallery. One notch of a mouse wheel
+      // moves to the next (or previous) of them, so a section is never left half under the fixed header. (With a
+      // wheel, Chrome would also stall half way before the hero/second-screen snap.) Trackpads, keyboard, touch, the
+      // scrollbar and everything below Product Gallery are left to the browser. Set WHEEL_PAGING to false to switch
+      // this off.
+      const WHEEL_PAGING = false;   // off for now (2026-11-16, user); true brings the wheel paging back
+      const PAGED = ['product', 'gallery'];   // sections after the second screen that a wheel notch pages to
       const second = document.querySelector('.engineering-after');   // carries the snap (and its scroll-margin)
 
-      // Below the second screen the hard stops give way to gentle ones (proximity, at each section's top: see
-      // engineering.css). Switching while inside the tall second-screen block moves nothing, so the switch sits at
-      // the middle of the second screen. Far down, a browser can no longer pull the page back up to the second screen
-      // (e.g. the elastic bounce at the very bottom on a Mac), since proximity only acts on nearby stops.
+      // Below the second screen the snap has nothing left to do, but a browser can still pull the page back up to it
+      // (e.g. the elastic bounce at the very bottom on a Mac). So once past the middle of the second screen, snapping
+      // is switched off (switching inside the tall second-screen block moves nothing); it comes back on above it.
       if (second) {
         const root = document.documentElement;
         const freeFrom = () => second.getBoundingClientRect().top + scrollY + innerHeight * 0.6;
@@ -181,10 +181,31 @@
           if (now < busyUntil) { e.preventDefault(); busyUntil = Math.max(busyUntil, now + 200); return; }
           if (calm.matches || e.ctrlKey || e.defaultPrevented || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
           if (gap < 120 || !isMouseWheel(e) || innerScroller(e.target, e.deltaY)) return;   // only the first notch of a fresh turn
-          const stop = Math.round(secondStop()), y = scrollY;
+          // Pages: the hero, the second screen, then Core Modules and Product Gallery with their tops just under the
+          // fixed header (user decision 2026-11-16: one notch should land on a whole section, not leave it half
+          // under the header). A page taller than the window scrolls normally inside (s..e) until its end.
+          // Below the last page the wheel is left alone.
+          const nav = document.getElementById('nav'), navH = nav ? nav.getBoundingClientRect().height : 0;
+          const room = innerHeight - navH;
+          const pages = [{ s: 0, e: 0 }, { s: Math.round(secondStop()), e: Math.round(secondStop()) }];
+          PAGED.forEach(id => {
+            const el = document.getElementById(id);
+            if (!el) return;
+            const r = el.getBoundingClientRect(), s = Math.round(r.top + scrollY - navH);
+            pages.push({ s, e: s + Math.max(0, Math.round(r.height - room)) });
+          });
+          const y = scrollY, last = pages[pages.length - 1];
+          const inside = pages.find(p => y > p.s + 1 && y < p.e - 1);   // part-way through a tall page
           let target = null;
-          if (e.deltaY > 0 && y < stop - 1) target = stop;          // hero (or in between) -> second screen
-          else if (e.deltaY < 0 && y > 0 && y <= stop + 1) target = 0; // second screen -> hero
+          if (e.deltaY > 0) {
+            if (y >= last.e - 1 || inside) return;
+            const nextPage = pages.find(p => p.s > y + 1);
+            if (nextPage) target = nextPage.s;
+          } else {
+            if (y > last.e + room || inside || y <= 0) return;   // within a screen below the last page: back onto it
+            const prevPage = pages.filter(p => p.s < y - 1).pop();
+            if (prevPage) target = prevPage.s;
+          }
           if (target === null) return;
           e.preventDefault();
           busyUntil = now + 900;

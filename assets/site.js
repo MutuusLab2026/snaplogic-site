@@ -424,6 +424,11 @@ const Controller = {
     const delays = pane ? [400, 1400, 3200, 4200] : [0, 800, 1800, 2600];   // home: Q1 rises in a moment after the window shows; a little longer to read Q1/A1
     let timers = [];
     const play = () => {
+      // the pane scrolls only itself until the last answer has typed in and risen (600 typing + 400 rise)
+      if (pane) {
+        pane.classList.add('ai-playing');
+        timers.push(setTimeout(() => pane.classList.remove('ai-playing'), delays[delays.length - 1] + 1100));
+      }
       messages.forEach((msg, i) => {
         timers.push(setTimeout(() => {
           if (i === 1 || i === 3) {
@@ -447,6 +452,7 @@ const Controller = {
       timers = [];
       container.querySelectorAll('.chat-typing').forEach((d) => d.remove());
       messages.forEach((m) => m.classList.remove('chat-visible'));
+      pane.classList.remove('ai-playing');
       pane.scrollTop = 0;
     };
     const win = pane && pane.closest('#aiWindow');
@@ -542,7 +548,9 @@ const Controller = {
       ask.classList.remove('on');
       pane.scrollTop = 0;
       edge();
+      pane.classList.remove('ai-playing');
       if (still.matches) { ask.classList.add('on'); steps.forEach((st) => st.classList.add('done')); return; }
+      pane.classList.add('ai-playing');   // the pane scrolls only itself until the last step is done
       timers.push(setTimeout(() => ask.classList.add('on'), 300));   // the request rises in first, like a sent message
       let t = 1100;
       steps.forEach((st, i) => {
@@ -551,6 +559,7 @@ const Controller = {
         timers.push(setTimeout(() => { st.classList.remove('run'); st.classList.add('done'); follow(); }, t));
         t += 200 + st.querySelectorAll('.ag-sub > span').length * 140 + 250;
       });
+      timers.push(setTimeout(() => pane.classList.remove('ai-playing'), t));
     };
     if (tab) tab.addEventListener('click', play);
   },
