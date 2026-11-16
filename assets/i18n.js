@@ -1442,6 +1442,12 @@ Object.assign(i18n.ja, {
   gal_track: '製品画面（左右の矢印キーで切り替え）'
 });
 
+/* Home hero (index.html #hero). The product name and the English category line are not translated. */
+Object.assign(i18n.ko, { hero_sub: 'VegaFencer는 물리 레이아웃과 설계 의도를 하나로 맞춰, 설계부터 구현까지 신뢰할 수 있는 연결을 완성합니다.', hero_btn_product: '제품 살펴보기', hero_btn_contact: '문의하기' });
+Object.assign(i18n.en, { hero_sub: 'VegaFencer brings the physical layout and the design intent together, so every connection holds from design through to build.', hero_btn_product: 'Explore the product', hero_btn_contact: 'Contact us' });
+Object.assign(i18n.zh, { hero_sub: 'VegaFencer将物理布局与设计意图统一起来，从设计到实施，打造值得信赖的连接。', hero_btn_product: '了解产品', hero_btn_contact: '联系我们' });
+Object.assign(i18n.ja, { hero_sub: 'VegaFencer\u2060は、物理レイアウトと設計意図をひとつにそろえ、設計から実装まで信頼できる接続を実現します。', hero_btn_product: '製品を見る', hero_btn_contact: 'お問い合わせ' });
+
 /* =============================================================
    switchLanguage — Update all translatable elements
    ============================================================= */

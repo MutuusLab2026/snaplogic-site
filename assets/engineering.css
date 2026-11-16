@@ -11,7 +11,7 @@
 section[id] { scroll-margin-top: 100px; }
 #nav { transition: background .35s, border-color .35s, box-shadow .35s; }
 #nav.engineering-nav-dark {
-  background: rgba(8, 30, 48, .88);
+  background: rgba(15, 26, 36, .96);   /* the hero's colour (--hero-ink, site.css) */
   border-bottom-color: rgba(150, 189, 212, .12);
   box-shadow: none;
 }
@@ -446,7 +446,7 @@ html[lang="ja"] body, html[lang="ja"] :is(.font-body, .font-headline, .font-labe
 /* ---- Scroll stops: the hero, the second screen, then the start of everything below. ----
    Each of the first two is exactly one screen tall, so the page always rests on one of them and a hard or fast scroll
    cannot skip the second one (stop: always). Everything after that is one tall block, which scrolls freely. */
-html:has(.engineering-after) { scroll-snap-type: y mandatory; }   /* home only: other pages have no stops, and a
+html:has(.engineering-after) { scroll-snap-type: none; }   /* 2026-11-17: no snap since the photo hero (it is shorter than the screen) */   /* home only: other pages have no stops, and a
    mandatory snap with nothing to snap to makes keyboard focus scroll stop short of the focused element */
 html.engineering-free-scroll { scroll-snap-type: none; }   /* set by engineering.js once past the middle of the second screen;
    below it a mouse wheel pages to Core Modules and Product Gallery (engineering.js), everything else scrolls freely */
@@ -464,19 +464,9 @@ html.engineering-free-scroll { scroll-snap-type: none; }   /* set by engineering
 @media (max-width: 800px) { .engineering-after { --fade: 84px; } }
 @media (max-width: 767px) { .engineering-glance { --nav-h: 105px; } }
 
-/* The hero's navy fades into the paper colour at the top of the second screen (the connector); the screen itself
-   starts where the fade ends, fills the viewport, and centres its content in the space below the header.
-   The second screen is "VegaFencer at a Glance" (the five-step animation). */
-.engineering-glance {
-  box-sizing: border-box;
-  min-height: calc(100vh + var(--fade));
-  min-height: calc(100svh + var(--fade));
-  padding: calc(var(--fade) + var(--nav-h) + 16px) 0 16px;   /* 16px = minimum gap; any extra height is shared equally above and below */
-  display: flex; flex-direction: column; justify-content: center;
-  background:
-    linear-gradient(#081e30 0, #14324a 22%, #55728a 52%, #b3c5d3 80%, #fff 100%) top / 100% var(--fade) no-repeat,
-    #fff;
-}
+/* "VegaFencer at a Glance": an ordinary white section under the hero (the hero no longer fills the screen, 2026-11-17). */
+.engineering-glance { padding: 96px 0; background: #fff; }
+@media (max-width: 767px) { .engineering-glance { padding: 64px 0; } }
 /* Home section colours below the hero: white and paper take turns (the navy workflow and CTA stay as they are). */
 /* Home order (2026-11-16): Glance white · Core Modules paper · Product Gallery navy (site.css) · AI white ·
    Integrations paper · Key Figures white · CTA navy (Brand Story is on the About page). On the paper section the module cards turn white so they stay visible. */
@@ -493,13 +483,6 @@ body[data-page="home"] #ai, body[data-page="home"] #stats { background: #fff; }
   body:not([data-page="home"]) main, body:not([data-page="home"]) > footer { zoom: var(--hero-s, 1); }
   body:not([data-page="home"]) .page-top { padding-top: calc(var(--page-nav-h) / var(--hero-s, 1)); }
   body:not([data-page="home"]) section[id] { scroll-margin-top: calc(var(--page-nav-h) / var(--hero-s, 1)); }
-  /* Inside the zoom, screen heights and the real header height are divided back by the zoom, so the second
-     screen still fills exactly one screen below the header. */
-  body[data-page="home"] .engineering-glance {
-    --nav-h: calc(73px / var(--hero-s, 1));
-    min-height: calc(100vh / var(--hero-s, 1) + var(--fade));
-    min-height: calc(100svh / var(--hero-s, 1) + var(--fade));
-  }
 }
 @media (prefers-reduced-motion: reduce) { html, html:has(.engineering-after) { scroll-snap-type: none; } }
 
