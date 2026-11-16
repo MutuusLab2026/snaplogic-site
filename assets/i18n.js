@@ -84,12 +84,6 @@ const i18n = {
     wf_step3_desc: "상세 도면과 와이어 리스트를 자동 생성합니다.",
     wf_step4_title: "검증 & 출력",
     wf_step4_desc: "DRC 24개 규칙 검증 후 <br class=\"wf-br\">BOM 리포트를 출력합니다.",
-    wf_card1_title: "실시간 협업",
-    wf_card1_desc: "Git 기반 버전 관리로 팀 전체가 동일한 설계 데이터에서 작업합니다.",
-    wf_card2_title: "지능형 DRC",
-    wf_card2_desc: "24개 검증 규칙이 설계 오류를 실시간으로 탐지하고 수정을 제안합니다.",
-    wf_card3_title: "원클릭 리포트",
-    wf_card3_desc: "BOM, Wire list, Connector list를 한 번의 클릭으로 생성합니다.",
 
     // AI
     ai_label: "AI ASSISTANT",
@@ -302,12 +296,6 @@ const i18n = {
     wf_step3_desc: "Generates detailed drawings and wire lists automatically.",
     wf_step4_title: "Verification & Output",
     wf_step4_desc: "Checks 24 DRC rules, then outputs the BOM report.",
-    wf_card1_title: "Real-time Collaboration",
-    wf_card1_desc: "Git-based version control allows the entire team to work on the same design data.",
-    wf_card2_title: "Intelligent DRC",
-    wf_card2_desc: "24 verification rules detect design errors in real-time and suggest corrections.",
-    wf_card3_title: "One-click Reports",
-    wf_card3_desc: "Generate BOM, Wire list, and Connector list with a single click.",
 
     // AI
     ai_label: "AI ASSISTANT",
@@ -520,12 +508,6 @@ const i18n = {
     wf_step3_desc: "自动生成详细图纸和线列表。",
     wf_step4_title: "验证与输出",
     wf_step4_desc: "通过24条DRC规则验证后输出BOM报告。",
-    wf_card1_title: "实时协作",
-    wf_card1_desc: "基于Git的版本管理，让整个团队在同一设计数据上工作。",
-    wf_card2_title: "智能DRC",
-    wf_card2_desc: "24条验证规则实时检测设计错误并建议修正。",
-    wf_card3_title: "一键报告",
-    wf_card3_desc: "一键生成BOM、Wire list和Connector list。",
 
     // AI
     ai_label: "AI 助手",
@@ -739,12 +721,6 @@ const i18n = {
     wf_step3_desc: "詳細図面とワイヤーリストを自動生成します。",
     wf_step4_title: "検証と出力",
     wf_step4_desc: "24\u2060のDRCルール検証後、BOMレポートを出力します。",
-    wf_card1_title: "リアルタイム協業",
-    wf_card1_desc: "Gitベースのバージョン管理でチーム全体が同じ設計データで作業します。",
-    wf_card2_title: "インテリジェントDRC",
-    wf_card2_desc: "24\u2060の検証ルールが設計エラーをリアルタイムで検出し、修正を提案します。",
-    wf_card3_title: "ワンクリックレポート",
-    wf_card3_desc: "BOM、Wire list、Connector list\u2060をワンクリックで生成します。",
 
     // AI
     ai_label: "AIアシスタント",

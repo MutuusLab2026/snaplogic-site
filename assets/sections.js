@@ -74,7 +74,7 @@
     </header>
 
     <!-- Steps Row -->
-    <div class="relative mb-20">
+    <div class="relative">
       <!-- Connector Line -->
       <div class="workflow-motion-line hidden lg:block absolute top-12 left-[12%] right-[12%] h-0.5" style="background:linear-gradient(90deg, #1A73E8, #006a61, #E8710A, #732de4); opacity:0.3;"></div>
 
@@ -110,24 +110,6 @@
       </div>
     </div>
 
-    <!-- Bottom Glass Cards -->
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="glass-card p-8 reveal reveal-delay-1">
-        <span class="material-symbols-outlined text-secondary-container mb-4 block" style="font-size:28px">group</span>
-        <h3 class="font-headline font-bold text-white text-lg mb-2" data-i18n="wf_card1_title">실시간 협업</h3>
-        <p class="font-body text-white/40 text-sm leading-relaxed" data-i18n="wf_card1_desc">Git 기반 버전 관리로 팀 전체가 동일한 설계 데이터에서 작업합니다.</p>
-      </div>
-      <div class="glass-card p-8 reveal reveal-delay-2">
-        <span class="material-symbols-outlined text-secondary-container mb-4 block" style="font-size:28px">verified</span>
-        <h3 class="font-headline font-bold text-white text-lg mb-2" data-i18n="wf_card2_title">지능형 DRC</h3>
-        <p class="font-body text-white/40 text-sm leading-relaxed" data-i18n="wf_card2_desc">24개 검증 규칙이 설계 오류를 실시간으로 탐지하고 수정을 제안합니다.</p>
-      </div>
-      <div class="glass-card p-8 reveal reveal-delay-3">
-        <span class="material-symbols-outlined text-secondary-container mb-4 block" style="font-size:28px">description</span>
-        <h3 class="font-headline font-bold text-white text-lg mb-2" data-i18n="wf_card3_title">원클릭 리포트</h3>
-        <p class="font-body text-white/40 text-sm leading-relaxed" data-i18n="wf_card3_desc">BOM, Wire list, Connector list를 한 번의 클릭으로 생성합니다.</p>
-      </div>
-    </div>
   </div>
 </section>
 `,
