@@ -731,7 +731,11 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
 /* ---- Home product gallery (#gallery, assets/gallery.js): navy section, real screens in a sideways row that wraps.
    The current screen lines up with the heading on the left and is sized to the window height (the section fits one
    screen, like the hero and At a Glance); a glass caption block sits at its right over the blurred next screen. ---- */
-.ga-sec { background: var(--eng-ink, #081e30); padding: 56px 0 40px; overflow: hidden; }
+.ga-sec { background: var(--eng-ink, #081e30); padding: 56px 0 40px; overflow: hidden;
+  /* fills the screen under the header (like the hero and At a Glance); extra height is shared above and below */
+  --nav-h: 73px; box-sizing: border-box; min-height: calc((100svh - var(--nav-h)) / var(--hero-s, 1));
+  display: flex; flex-direction: column; justify-content: center; }
+@media (max-width: 767px) { .ga-sec { --nav-h: 105px; } }
 .ga-sec .lg-kicker { color: #7be4ee; }
 .ga-sec .lg-name, .ga-sec .lg-tagline { color: #fff; }
 .ga-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
@@ -739,7 +743,7 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
 .ga-arrows button { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 50%; border: 1px solid #2a4b60; color: #fff; transition: background .2s; }
 .ga-arrows button:hover { background: #12344a; }
 .ga-arrows svg { width: 20px; height: 20px; }
-.ga-count { min-width: 52px; margin-right: 6px; color: #a9bfcd; font: 600 14px Inter, sans-serif; letter-spacing: .04em; text-align: right; }
+.ga-count { min-width: 60px; margin-right: 8px; color: #a9bfcd; font: 600 16px Inter, sans-serif; letter-spacing: .04em; text-align: right; }
 .ga-arrows button:focus-visible, .ga-track:focus-visible, .ga-info a:focus-visible { outline: 2px solid #7be4ee; outline-offset: 3px; }
 .ga-stage { position: relative; margin-top: 28px;
   --ga-left: max(16px, calc((100% - 1280px) / 2 + 32px));      /* same left edge as the heading */

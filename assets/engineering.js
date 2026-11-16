@@ -140,12 +140,13 @@
       const WHEEL_PAGING = true;
       const second = document.querySelector('.engineering-after');   // carries the snap (and its scroll-margin)
 
-      // Further down the page the snap has nothing left to do, but a browser can still pull the page back up to the
-      // second screen (e.g. the elastic bounce at the very bottom on a Mac). So once the reader is more than one
-      // screen below the second screen, snapping is switched off; it comes back on before they return to it.
+      // Below the second screen the hard stops give way to gentle ones (proximity, at each section's top: see
+      // engineering.css). Switching while inside the tall second-screen block moves nothing, so the switch sits at
+      // the middle of the second screen. Far down, a browser can no longer pull the page back up to the second screen
+      // (e.g. the elastic bounce at the very bottom on a Mac), since proximity only acts on nearby stops.
       if (second) {
         const root = document.documentElement;
-        const freeFrom = () => second.getBoundingClientRect().top + scrollY + innerHeight * 2;
+        const freeFrom = () => second.getBoundingClientRect().top + scrollY + innerHeight * 0.6;
         let free = false, limit = freeFrom();
         const check = () => {
           const now = scrollY > limit;
