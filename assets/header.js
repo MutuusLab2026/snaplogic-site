@@ -86,10 +86,10 @@ if (location.protocol === 'file:') {
       <span class="block w-6 h-0.5 bg-on-surface transition-all origin-center" id="bar3"></span>
     </button>
     <div class="hidden md:flex gap-8" id="navLinks">
+      ${tab('about', 'nav_about', 'About')}
       ${tab('product', 'nav_product', 'Product')}
       ${tab('resources', 'nav_resources', 'Resources')}
       ${tab('pricing', 'nav_pricing', 'Pricing')}
-      ${tab('about', 'nav_about', 'About')}
       ${tab('contact', 'nav_contact', 'Contact')}
       <!-- Phones only: the header's demo button is hidden below md, so the open menu ends with it -->
       <a class="nav-demo-mobile md:hidden" href="${pageUrl('home', '#cta')}" id="navDemoMobile" data-i18n="nav_demo">Request Demo</a>
