@@ -64,22 +64,18 @@
     return wait(260);
   }
 
+  /* ---------- text in the page's current language (ga_* keys in i18n.js) ---------- */
+  function L(k) { var t = i18n[document.documentElement.lang] || i18n.ko; return t['ga_' + k] || i18n.ko['ga_' + k]; }
+
   /* ---------- panel ---------- */
-  function panel(title, html) { $('#pTitle').textContent = title; $('#pBody').innerHTML = html || '<p class="empty">선택된 항목 없음</p>'; }
+  function panel(title, html) { $('#pTitle').textContent = title; $('#pBody').innerHTML = html || '<p class="empty">' + L('empty') + '</p>'; }
   function rows(list) {
     return '<dl>' + list.map(function (r) { return '<div class="h"' + (r[2] ? ' id="' + r[2] + '"' : '') + '><dt>' + r[0] + '</dt><dd>' + r[1] + '</dd></div>'; }).join('') + '</dl>';
   }
   function sw(c) { return '<span class="sw" style="background:' + c + '"></span>'; }
 
   /* ---------- scene frame ---------- */
-  var STEPS = ['Logic', 'Integrator', 'Harness Drawing', 'DRC · BOM', 'CAD 연동'];
-  var CAPS = [
-    '회로도에서 핀 연결을 정의합니다. 직접 그리거나, AI 어시스턴트에게 말로 요청할 수 있습니다.',
-    '정의한 와이어를 차량 바닥을 따라가는 경로에 배치하고 번들로 묶습니다.',
-    '번들 길이와 직경을 계산해 하네스 도면과 와이어 리스트를 만듭니다.',
-    '설계 규칙 검사(DRC)로 오류를 찾고, BOM 리포트로 필요한 목록을 뽑습니다.',
-    'CATIA V5, Siemens NX와 와이어 리스트와 번들 길이를 주고받습니다.'
-  ];
+  function steps() { return ['Logic', 'Integrator', 'Harness Drawing', 'DRC · BOM', L('step5')]; }
   // After each caption: a link to that module's section on the product page, in the page's current language
   // (glance_more_1..5 in i18n.js).
   var MORE_IDS = ['logic', 'integrator', 'harness', 'variant', 'bridge'];
@@ -88,7 +84,7 @@
     capIndex = i;
     var t = i18n[document.documentElement.lang] || i18n.ko;
     var cap = $('#cap');
-    cap.textContent = CAPS[i] + ' ';
+    cap.textContent = L('cap_' + (i + 1)) + ' ';
     var a = document.createElement('a');
     a.className = 'glance-more';
     a.href = 'product#' + MORE_IDS[i];
@@ -96,14 +92,29 @@
     a.insertAdjacentHTML('beforeend', '<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg>');
     cap.appendChild(a);
   }
-  new MutationObserver(function () { setCap(capIndex); }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
-  $('#steps').innerHTML = STEPS.map(function (s, i) { return '<button type="button" data-i="' + i + '"><i>' + (i + 1) + '</i>' + s + '</button>'; }).join('');
+  var started = false;                       // a scene has been entered (a step is highlighted)
+  function renderSteps() {
+    $('#steps').innerHTML = steps().map(function (s, i) {
+      var on = started && i === capIndex;
+      return '<button type="button" data-i="' + i + '"' + (on ? ' class="on" aria-current="step"' : '') + '><i>' + (i + 1) + '</i>' + s + '</button>';
+    }).join('');
+    $('#stage svg').setAttribute('aria-label', L('aria'));
+  }
+  renderSteps();
+  // Language switch: relabel the steps and caption, then redraw the scene in the new language
+  // (the scene on screen plays again; once playback has finished, only the final frame is redrawn).
+  new MutationObserver(function () {
+    renderSteps(); setCap(capIndex);
+    if (finished) rest(++token);
+    else if (inView) play(capIndex);
+  }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
   $('#steps').addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) play(+b.dataset.i); });
 
   function enter(i, markup) {
     root.getAnimations({ subtree: true }).forEach(function (a) { a.cancel(); });
     $('#scene').innerHTML = markup; $('#fx').innerHTML = '';
     $('#cursor').classList.add('h'); setCursor(470, 400);
+    started = true;
     $$('#steps button').forEach(function (b, k) { b.classList.toggle('on', k === i); b.setAttribute('aria-current', k === i ? 'step' : 'false'); });
     setCap(i);
     panel('Properties');
@@ -170,11 +181,11 @@
     await show('#w1l');
 
     // Ask the AI assistant for the other two wires
-    $('#pTitle').innerHTML = 'AI Assistant <span class="mcp">MCP 연결됨</span>';
+    $('#pTitle').innerHTML = 'AI Assistant <span class="mcp">' + L('mcp') + '</span>';
     $('#pBody').innerHTML = chat();
     await move(860, 380, 700);
     $('#cursor').classList.add('h');
-    var ask = 'C8의 2, 3번 핀을 J1의 2, 3번 핀에 연결해줘';
+    var ask = L('ask');
     await type(ask, 1600);
     await wait(300);
     $('#typed').textContent = '';
@@ -184,7 +195,7 @@
     $('#msgs').appendChild(dots);
     await wait(1000);
     dots.remove();
-    await addMsg('ai', '와이어 2개를 만들었습니다.<br><span class="code">W2</span> C8-2 → J1-2<br><span class="code">W3</span> C8-3 → J1-3');
+    await addMsg('ai', L('reply') + '<br><span class="code">W2</span> C8-2 → J1-2<br><span class="code">W3</span> C8-3 → J1-3');
     draw('#w2', 800); await wait(200);
     await draw('#w3', 800);
     show('#w2l'); show('#w3l');
@@ -197,16 +208,16 @@
     await move(400, 152, 700);
     await click();
     show('#w1halo', 200);
-    panel('Properties', rows([['이름', 'W1'], ['규격', 'AVSS 0.5 mm²'], ['색상', sw('#c8372d') + 'R (빨강)'],
-      ['시작', 'C8 · 1번 핀'], ['끝', 'J1 · 1번 핀'], ['하네스', 'MAIN']]));
+    panel('Properties', rows([[L('name'), 'W1'], [L('spec'), 'AVSS 0.5 mm²'], [L('color'), sw('#c8372d') + L('red')],
+      [L('start'), L('pin_from')], [L('end'), L('pin_to')], [L('harness'), 'MAIN']]));
     await showEach('#pBody .h', 70);
     await hold();
   }
 
   /* ---------- 2. Integrator ---------- */
   // Vehicle seen from above (front on the left): the harness runs along the floor
-  var CAR =
-    '<text class="small" x="60" y="92">차량 평면도 · 위에서 본 모습</text>' +
+  function car() { return '' +
+    '<text class="small" x="60" y="92">' + L('plan') + '</text>' +
     '<g id="car">' +
     '<path class="cbody h" d="M160 120 H720 Q808 122 818 190 V290 Q808 358 720 360 H160 Q96 358 86 300 V180 Q96 122 160 120 Z" fill="none" stroke="#9aa3ae" stroke-width="1.5"/>' +
     '<g id="carx" class="h" fill="none" stroke="#c4cad2" stroke-width="1.2">' +
@@ -215,11 +226,11 @@
     '<path d="M298 132 Q282 240 298 348"/><path d="M618 136 Q634 240 618 344"/>' +
     '<rect x="370" y="146" width="56" height="62" rx="8"/><rect x="370" y="272" width="56" height="62" rx="8"/>' +
     '<rect x="510" y="146" width="62" height="188" rx="8"/>' +
-    '<text x="110" y="244" class="small" style="font-size:10px;fill:#b3b9c2;stroke:none">앞</text>' +
-    '<text x="790" y="244" class="small" style="font-size:10px;fill:#b3b9c2;stroke:none">뒤</text></g></g>';
+    '<text x="110" y="244" class="small" style="font-size:10px;fill:#b3b9c2;stroke:none">' + L('front') + '</text>' +
+    '<text x="790" y="244" class="small" style="font-size:10px;fill:#b3b9c2;stroke:none">' + L('rear') + '</text></g></g>'; }
   var ROUTE = 'M236 196 L330 196 L470 240 L690 240';
   async function s2() {
-    enter(1, CAR +
+    enter(1, car() +
       '<path id="route" class="h" d="' + ROUTE + '" fill="none" stroke="#e3e7ec" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>' +
       '<path id="branch" class="h" d="M330 196 L330 300 L352 312" fill="none" stroke="#e3e7ec" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>' +
       '<path id="bhalo" class="halo h" d="' + ROUTE + '" stroke-width="20"/>' +
@@ -247,8 +258,8 @@
     await move(400, 219, 700);
     await click();
     show('#bhalo', 200);
-    panel('Bundle', rows([['이름', 'B01'], ['와이어', sw('#c8372d') + 'W1 ' + sw('#1d2330') + 'W2 ' + sw('#2f8f4e') + 'W3'],
-      ['경로', 'C8 → N1 → N2 → J1'], ['길이', '1,240 mm'], ['토폴로지', '<span class="ok">✓</span> 끊긴 구간 없음', 'topo']]));
+    panel('Bundle', rows([[L('name'), 'B01'], [L('wires'), sw('#c8372d') + 'W1 ' + sw('#1d2330') + 'W2 ' + sw('#2f8f4e') + 'W3'],
+      [L('route'), 'C8 → N1 → N2 → J1'], [L('length'), '1,240 mm'], [L('topology'), '<span class="ok">✓</span> ' + L('topo_ok'), 'topo']]));
     await showEach('#pBody .h:not(#topo)', 70);
     await wait(700);
     await show('#topo');
@@ -284,8 +295,8 @@
       '<g id="dimt" class="h small" text-anchor="middle"><text x="237" y="208">380</text><text x="522" y="208">860</text><text x="435" y="236" style="fill:#1d2330;font-weight:600">1,240</text></g>' +
       '<path id="lead" class="h" d="M520 167 L552 126 H600" stroke="#6b7280" stroke-width="1" fill="none"/>' +
       '<text id="dia" class="h" x="558" y="120" style="font-size:13px;font-weight:600;fill:#1d2330">Ø4.2</text>' +
-      '<text id="tt" class="h" x="92" y="276" style="font-size:13px;font-weight:600;fill:#1d2330">와이어 리스트</text>' +
-      tr('th', ['와이어', '시작', '끝', '규격', '색', '길이 (mm)'], 302, true) +
+      '<text id="tt" class="h" x="92" y="276" style="font-size:13px;font-weight:600;fill:#1d2330">' + L('wirelist') + '</text>' +
+      tr('th', [L('wire'), L('start'), L('end'), L('spec'), L('col'), L('len_mm')], 302, true) +
       tr('r1', ['W1', 'C8-1', 'J1-1', 'AVSS 0.5', 'R', '1,280'], 328) +
       tr('r2', ['W2', 'C8-2', 'J1-2', 'AVSS 0.5', 'B', '1,280'], 352) +
       tr('r3', ['W3', 'C8-3', 'J1-3', 'AVSS 0.3', 'G', '1,280'], 376));
@@ -299,7 +310,7 @@
     await show('#dimt');
     await draw('#lead', 400);
     await show('#dia');
-    panel('도면', rows([['번들 길이', '1,240 mm'], ['번들 직경', 'Ø4.2 mm'], ['와이어', '3개'], ['커넥터', 'C8 · J1 · C11']]));
+    panel(L('drawing'), rows([[L('blen'), '1,240 mm'], [L('bdia'), 'Ø4.2 mm'], [L('wires'), L('count3')], [L('connectors'), 'C8 · J1 · C11']]));
     showEach('#pBody .h', 80);
     await show('#tt');
     await showEach('.trow', 260);
@@ -333,8 +344,8 @@
     await move(81, 84, 800);
     await click(); press('bDrc');
     await wait(300);
-    $('#msum').textContent = '규칙 24개 검사 · 오류 1';
-    $('#m1').innerHTML = '<tspan style="fill:#c8372d;font-weight:700">●</tspan>  연결성 · W3의 끝이 핀에 연결되지 않았습니다';
+    $('#msum').textContent = L('drc_1');
+    $('#m1').innerHTML = '<tspan style="fill:#c8372d;font-weight:700">●</tspan>  ' + L('drc_err');
     show('#msum'); await show('#m1');
     await move(200, 389, 700);
     await click();
@@ -354,18 +365,18 @@
     await move(81, 84, 800);
     await click(); press('bDrc');
     await wait(300);
-    $('#msum').textContent = '규칙 24개 검사 · 오류 0';
-    $('#m1').innerHTML = '<tspan style="fill:#2f8f4e;font-weight:700">✓</tspan>  오류가 없습니다';
+    $('#msum').textContent = L('drc_0');
+    $('#m1').innerHTML = '<tspan style="fill:#2f8f4e;font-weight:700">✓</tspan>  ' + L('drc_ok');
     await show('#m1');
     await wait(500);
     await move(168, 84, 600);
     await click(); press('bBom');
     panel('BOM Report',
-      '<p class="ptl h">와이어 리스트</p><table class="h"><tr><th>와이어</th><th>규격</th><th class="r">길이</th></tr>' +
+      '<p class="ptl h">' + L('wirelist') + '</p><table class="h"><tr><th>' + L('wire') + '</th><th>' + L('spec') + '</th><th class="r">' + L('length') + '</th></tr>' +
       '<tr><td>' + sw('#c8372d') + 'W1</td><td>AVSS 0.5</td><td class="r">1,280</td></tr>' +
       '<tr><td>' + sw('#1d2330') + 'W2</td><td>AVSS 0.5</td><td class="r">1,280</td></tr>' +
       '<tr><td>' + sw('#2f8f4e') + 'W3</td><td>AVSS 0.3</td><td class="r">1,280</td></tr></table>' +
-      '<p class="ptl h">커넥터 리스트</p><table class="h"><tr><th>커넥터</th><th>종류</th><th class="r">극수</th></tr>' +
+      '<p class="ptl h">' + L('connlist') + '</p><table class="h"><tr><th>' + L('connector') + '</th><th>' + L('type') + '</th><th class="r">' + L('ways') + '</th></tr>' +
       '<tr><td>C8</td><td>ECU</td><td class="r">4</td></tr><tr><td>J1</td><td>Inline</td><td class="r">4</td></tr></table>');
     await showEach('#pBody .h', 180);
     await hold();
@@ -387,13 +398,13 @@
     var mid = [652, 262];
     enter(4,
       '<g id="vf" class="h"><rect x="60" y="100" width="300" height="250" rx="6" fill="#fff" stroke="#c9ced6"/>' +
-      '<text x="80" y="130" style="font-size:15px;font-weight:700;fill:#1d2330">VegaFencer</text><text x="80" y="148" class="small">와이어 리스트</text>' +
-      '<g style="font-size:12px;fill:#1d2330"><text x="80" y="180" class="small">와이어</text><text x="150" y="180" class="small">규격</text><text x="340" y="180" text-anchor="end" class="small">길이 (mm)</text>' +
+      '<text x="80" y="130" style="font-size:15px;font-weight:700;fill:#1d2330">VegaFencer</text><text x="80" y="148" class="small">' + L('wirelist') + '</text>' +
+      '<g style="font-size:12px;fill:#1d2330"><text x="80" y="180" class="small">' + L('wire') + '</text><text x="150" y="180" class="small">' + L('spec') + '</text><text x="340" y="180" text-anchor="end" class="small">' + L('len_mm') + '</text>' +
       '<path d="M80 188 H340" stroke="#1d2330"/>' +
       '<text x="80" y="210">W1</text><text x="150" y="210">AVSS 0.5</text><text id="vw1" x="340" y="210" text-anchor="end">1,280</text><path d="M80 218 H340" stroke="#eceef2"/>' +
       '<text x="80" y="236">W2</text><text x="150" y="236">AVSS 0.5</text><text id="vw2" x="340" y="236" text-anchor="end">1,280</text><path d="M80 244 H340" stroke="#eceef2"/>' +
       '<text x="80" y="262">W3</text><text x="150" y="262">AVSS 0.3</text><text id="vw3" x="340" y="262" text-anchor="end">1,280</text><path d="M80 270 H340" stroke="#eceef2"/>' +
-      '<text x="80" y="310" class="small">번들 B01 길이</text><text id="vlen" x="340" y="310" text-anchor="end" style="font-weight:600">1,240 mm</text></g></g>' +
+      '<text x="80" y="310" class="small">' + L('b01len') + '</text><text id="vlen" x="340" y="310" text-anchor="end" style="font-weight:600">1,240 mm</text></g></g>' +
       '<g id="cad" class="h"><rect x="540" y="100" width="300" height="250" rx="6" fill="#fff" stroke="#c9ced6"/>' +
       '<text x="560" y="130" style="font-size:15px;font-weight:700;fill:#1d2330">3D CAD</text><text x="560" y="148" class="small">CATIA V5 · Siemens NX</text>' +
       '<g stroke="#9aa0aa" stroke-width="1"><path d="M806 150 L826 140"/><path d="M806 150 L786 140"/><path d="M806 150 V128"/></g>' +
@@ -404,12 +415,12 @@
       '<text class="ref" x="578" y="326" style="font-size:12px">C8</text><text class="ref" x="812" y="246" style="font-size:12px">J1</text></g>' +
       '<text id="clen" class="h" x="690" y="315" style="font-size:12px;font-weight:600;fill:#1d2330">1,240 mm</text>' +
       '<g id="a1" class="h"><path d="M372 190 H522" stroke="#1d2330" stroke-width="1.3"/><path d="M522 185 L530 190 L522 195 Z" fill="#1d2330"/>' +
-      '<text x="451" y="176" text-anchor="middle" class="small">와이어 리스트 · 번들 정보</text></g>' +
+      '<text x="451" y="176" text-anchor="middle" class="small">' + L('send') + '</text></g>' +
       '<g id="a2" class="h"><path d="M528 270 H378" stroke="#1d2330" stroke-width="1.3"/><path d="M378 265 L370 270 L378 275 Z" fill="#1d2330"/>' +
-      '<text x="451" y="294" text-anchor="middle" class="small">번들 길이</text></g>' +
+      '<text x="451" y="294" text-anchor="middle" class="small">' + L('blen') + '</text></g>' +
       packet('pk1', 'W1–W3', 70) + packet('pk2', '1,265 mm', 78));
-    panel('Bridge', rows([['연동', 'CATIA V5<br>Siemens NX'], ['보냄', '와이어 리스트, 번들 정보'], ['받음', '번들 길이'],
-      ['상태', '<span id="st">대기</span>']]));
+    panel('Bridge', rows([[L('link'), 'CATIA V5<br>Siemens NX'], [L('sent'), L('sent_v')], [L('recv'), L('blen')],
+      [L('status'), '<span id="st">' + L('idle') + '</span>']]));
     await wait(300);
     show('#vf', 400); await wait(250);
     await show('#cad', 400);
@@ -418,10 +429,10 @@
     await wait(300);
     // Send the wire list to CAD
     var p1 = $('#pk1'); p1.classList.remove('h');
-    $('#st').textContent = '보내는 중';
+    $('#st').textContent = L('sending');
     await tween(1000, function (t) { p1.setAttribute('transform', 'translate(' + (372 + 156 * t) + ' 190)'); });
     p1.classList.add('h');
-    $('#st').textContent = 'CAD에서 경로 수정';
+    $('#st').textContent = L('reroute');
     await draw('#tubeO', 900); show('#tubeI', 200);
     show('#cubes'); await show('#clen');
     await wait(500);
@@ -434,7 +445,7 @@
     await wait(400);
     // Send the new length back to VegaFencer
     var p2 = $('#pk2'); p2.classList.remove('h');
-    $('#st').textContent = '받는 중';
+    $('#st').textContent = L('receiving');
     await tween(1000, function (t) { p2.setAttribute('transform', 'translate(' + (528 - 156 * t) + ' 270)'); });
     p2.classList.add('h');
     ['#vlen', '#vw1', '#vw2', '#vw3'].forEach(function (s) {
@@ -442,7 +453,7 @@
       el.textContent = s === '#vlen' ? '1,265 mm' : '1,305';
       el.style.fill = '#1a5fd0'; el.style.fontWeight = 700;
     });
-    $('#st').innerHTML = '<span class="ok">✓</span> 동기화 완료';
+    $('#st').innerHTML = '<span class="ok">✓</span> ' + L('synced');
     await hold();
   }
 
@@ -452,17 +463,22 @@
   var SCENES = [s1, s2, s3, s4, s5];
   // Plays from the given scene to the last one once, then rests on the finished Logic scene (no endless loop,
   // so nothing keeps moving: WCAG 2.2.2). With reduced motion only the finished Logic scene is shown.
+  var finished = false;                      // playback has reached the resting Logic frame
   async function play(from) {
     var tk = ++token;
-    instant = false;
+    instant = false; finished = false;
     try {
       if (!REDUCE) {
         for (var i = from; i < SCENES.length; i++) { await SCENES[i](); if (tk !== token) return; }
       }
-      instant = true;
-      await s1();
-      $('#cursor').classList.add('h');
     }
+    catch (err) { if (err !== STOP && err.name !== 'AbortError') console.error(err); return; }
+    await rest(tk);
+  }
+  // Draws the finished Logic scene without motion and leaves it there.
+  async function rest(tk) {
+    instant = true;
+    try { await s1(); $('#cursor').classList.add('h'); finished = true; }
     catch (err) { if (err !== STOP && err.name !== 'AbortError') console.error(err); }
     finally { if (tk === token) instant = false; }
   }
