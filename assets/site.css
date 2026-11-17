@@ -759,8 +759,10 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
   overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
 .ga-track::-webkit-scrollbar { display: none; }
 .ga-track::after { content: ''; flex: 0 0 calc(100% - var(--ga-left) - var(--ga-w)); }
-.ga-slide { flex: 0 0 var(--ga-w); margin: 0; scroll-snap-align: start; cursor: pointer; filter: blur(4px); opacity: .4; transition: filter .45s, opacity .45s; }
-.ga-slide.is-on { filter: none; opacity: 1; cursor: default; }
+/* side screens: stronger blur, fainter and smaller, so only the current one reads */
+.ga-slide { flex: 0 0 var(--ga-w); margin: 0; scroll-snap-align: start; cursor: pointer; filter: blur(10px); opacity: .3; transform: scale(.86);
+  transition: filter .45s, opacity .45s, transform .45s; }
+.ga-slide.is-on { filter: none; opacity: 1; transform: none; cursor: default; }
 .ga-frame { border-radius: 10px; overflow: hidden; background: #f3f5f7; border: 1px solid #d5dbe2; box-shadow: 0 30px 60px -24px rgba(8,30,48,.35); }
 .ga-bar { height: 30px; display: flex; align-items: center; gap: 6px; padding: 0 12px; background: #eef1f4; border-bottom: 1px solid #d5dbe2; }
 .ga-bar i { width: 9px; height: 9px; border-radius: 50%; background: #c3cbd4; }
@@ -798,7 +800,7 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
   .ga-stage { --ga-w: 84%; }
   .ga-track { gap: 14px; }
   .ga-frame img { aspect-ratio: 1.857; }
-  .ga-slide { filter: blur(2px); }
+  .ga-slide { filter: blur(5px); }
   .ga-info { padding: 22px 22px 16px; }
   .ga-info b { font-size: 24px; }
 }
