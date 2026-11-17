@@ -1,4 +1,4 @@
-/* Home "Product Gallery" (#gallery): real program screens in a row that pages sideways and wraps around.
+/* Home "Quick Tour" (#gallery, right under the hero): real program screens in a row that pages sideways and wraps around.
    The current screen lines up with the heading on the left; a numbered caption block (.ga-info: "01. Logic",
    description, link) sits at its right over the blurred next screen. The block slides out while the row moves
    and comes back with the new screen's caption once the row rests.
