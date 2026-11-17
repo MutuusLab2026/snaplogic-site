@@ -745,11 +745,10 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
 /* lead line with a "자세히 보기 →" text link (to the product page) right after it: colour and underline on hover,
    like the old At a Glance lead link */
 .ga-lead { margin: 14px 0 0; color: #3d4a5c; font-size: 16px; line-height: 1.6; }
-.ga-link { display: inline-flex; align-items: center; gap: 4px; min-height: 44px; vertical-align: middle;
-  color: #151b2b; font-weight: 600; white-space: nowrap; text-underline-offset: 4px; transition: color .15s; }
+.ga-link { color: #151b2b; font-weight: 600; white-space: nowrap; text-underline-offset: 4px; transition: color .15s; }   /* inline in the sentence: same size and baseline as the text */
 .ga-link:hover, .ga-link:focus-visible { color: #1e3a8a; }
 .ga-link:hover span, .ga-link:focus-visible span { text-decoration: underline; }
-.ga-link svg { width: 14px; height: 14px; }
+.ga-link svg { display: inline-block; width: 14px; height: 14px; margin-left: 4px; vertical-align: -1px; }
 .ga-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
 .ga-arrows { display: flex; align-items: center; gap: 8px; flex: none; }
 .ga-arrows button { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 50%; border: 1px solid #b9c2cc; color: #151b2b; transition: background .2s; }
