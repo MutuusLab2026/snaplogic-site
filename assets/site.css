@@ -742,19 +742,21 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
 @media (max-width: 767px) { .ga-sec { --nav-h: 105px; } }
 .ga-sec > .max-w-7xl { width: 100%; }   /* a centred box in a flex column would shrink to its content */
 .ga-sec .lg-head { max-width: 900px; }
-/* lead line with the "자세히 보기" button (to the product page) right after it */
-.ga-lead { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin: 14px 0 0; color: #3d4a5c; font-size: 16px; line-height: 1.6; }
-.ga-btn { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 18px; border-radius: 8px;
-  background: #081e30; color: #fff; font: 600 14px Inter, 'Noto Sans KR', sans-serif; white-space: nowrap; transition: background .2s; }
-.ga-btn:hover { background: #1765cc; }
-.ga-btn svg { width: 14px; height: 14px; }
+/* lead line with a "자세히 보기 →" text link (to the product page) right after it: colour and underline on hover,
+   like the old At a Glance lead link */
+.ga-lead { margin: 14px 0 0; color: #3d4a5c; font-size: 16px; line-height: 1.6; }
+.ga-link { display: inline-flex; align-items: center; gap: 4px; min-height: 44px; vertical-align: middle;
+  color: #151b2b; font-weight: 600; white-space: nowrap; text-underline-offset: 4px; transition: color .15s; }
+.ga-link:hover, .ga-link:focus-visible { color: #1e3a8a; }
+.ga-link:hover span, .ga-link:focus-visible span { text-decoration: underline; }
+.ga-link svg { width: 14px; height: 14px; }
 .ga-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
 .ga-arrows { display: flex; align-items: center; gap: 8px; flex: none; }
 .ga-arrows button { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 50%; border: 1px solid #b9c2cc; color: #151b2b; transition: background .2s; }
 .ga-arrows button:hover { background: #eef1f4; }
 .ga-arrows svg { width: 20px; height: 20px; }
 .ga-count { min-width: 60px; margin-right: 8px; color: #5b6e7f; font: 600 16px Inter, sans-serif; letter-spacing: .04em; text-align: right; }
-.ga-arrows button:focus-visible, .ga-track:focus-visible, .ga-info a:focus-visible, .ga-btn:focus-visible { outline: 2px solid #1765cc; outline-offset: 3px; }
+.ga-arrows button:focus-visible, .ga-track:focus-visible, .ga-info a:focus-visible, .ga-link:focus-visible { outline: 2px solid #1765cc; outline-offset: 3px; }
 .ga-stage { position: relative; margin-top: 28px;
   --ga-left: max(16px, calc((100% - 1280px) / 2 + 32px));      /* same left edge as the heading */
   --ga-info: 340px; --ga-gap: 28px; --ga-shift: 80px;          /* caption block width, gap, and its nudge to the right */
