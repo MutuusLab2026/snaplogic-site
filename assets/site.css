@@ -766,19 +766,13 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
 @media (min-width: 1101px) { .ga-track { scroll-snap-type: none; } }
 .ga-track::after { content: ''; flex: 0 0 calc(100% - var(--ga-left) - var(--ga-w)); }
 /* side screens: stronger blur, fainter and smaller, so only the current one reads */
-.ga-slide { flex: 0 0 var(--ga-w); margin: 0; scroll-snap-align: start; cursor: pointer; opacity: .3; transform: scale(.8);
-  transition: opacity .45s, transform .45s; }
-.ga-slide.is-on { opacity: 1; transform: none; cursor: default; }
-/* Side screens are blurred, but their grey title bar less so and a shade darker, so the frame's top edge still shows
-   (without it the blurred screen looked lower than the current one). */
-.ga-slide .ga-frame img, .ga-slide .ga-bar { transition: filter .45s, background-color .45s; }
-.ga-slide:not(.is-on) .ga-frame img { filter: blur(10px); }
-.ga-slide:not(.is-on) .ga-bar { filter: blur(4px); background: #a9b4bf; border-bottom-color: #a9b4bf; }
-.ga-slide:not(.is-on) .ga-bar i { background: #7d8b99; }
+.ga-slide { flex: 0 0 var(--ga-w); margin: 0; scroll-snap-align: start; cursor: pointer; filter: blur(10px); opacity: .3; transform: scale(.8);
+  transition: filter .45s, opacity .45s, transform .45s; }
+.ga-slide.is-on { filter: none; opacity: 1; transform: none; cursor: default; }
 /* Side screens (2026-11-18, from a sketch): the screens sit edge to edge and each side screen shrinks about its own
    centre, so its diagonals, carried on, run through the current screen's near corners. The scale alone sets both its
    size and the gap; at .8 the next screen's left edge still shows before the caption block. */
-.ga-instant .ga-slide, .ga-instant .ga-slide img, .ga-instant .ga-bar { transition: none; }
+.ga-instant .ga-slide { transition: none; }
 .ga-frame { border-radius: 10px; overflow: hidden; background: #f3f5f7; border: 1px solid #d5dbe2; box-shadow: 0 30px 60px -24px rgba(8,30,48,.35); }
 .ga-bar { height: 30px; display: flex; align-items: center; gap: 6px; padding: 0 12px; background: #eef1f4; border-bottom: 1px solid #d5dbe2; }
 .ga-bar i { width: 9px; height: 9px; border-radius: 50%; background: #c3cbd4; }
@@ -833,12 +827,11 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
   .ga-count { text-align: left; }
   .ga-stage { --ga-w: 84%; }
   .ga-frame img { aspect-ratio: 1.857; }
-  .ga-slide:not(.is-on) .ga-frame img { filter: blur(5px); }
-  .ga-slide:not(.is-on) .ga-bar { filter: blur(2px); }
+  .ga-slide { filter: blur(5px); }
   .ga-info { padding: 22px 22px 16px; }
   .ga-info b { font-size: 24px; }
 }
-@media (prefers-reduced-motion: reduce) { .ga-slide, .ga-slide img, .ga-bar, .ga-body, .ga-moving .ga-body, .ga-dots span { transition: none; } .ga-pause { display: none; } }
+@media (prefers-reduced-motion: reduce) { .ga-slide, .ga-body, .ga-moving .ga-body, .ga-dots span { transition: none; } .ga-pause { display: none; } }
 
 /* ---- Home hero (#hero, assets/hero.js), 2026-11-17: product name, category and one line on the left; a photo of an
    engineer at a monitor that shows the real Logic screen on the right. About 65% of the screen tall so the next
