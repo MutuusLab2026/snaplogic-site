@@ -742,9 +742,9 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
 @media (max-width: 767px) { .ga-sec { --nav-h: 105px; } }
 .ga-sec > .max-w-7xl { width: 100%; }   /* a centred box in a flex column would shrink to its content */
 .ga-sec .lg-head { max-width: 900px; }
-/* lead line with a "자세히 보기 →" text link (to the product page) right after it: colour and underline on hover,
+/* lead line (template .lg-lead) with a "자세히 보기 →" text link to the product page: colour and underline on hover,
    like the old At a Glance lead link */
-.ga-lead { margin: 14px 0 0; color: #3d4a5c; font-size: 16px; line-height: 1.6; }
+.ga-sec .lg-lead { margin: 10px 0 0; }   /* same as Core Modules (the module header template) */
 .ga-link { color: #151b2b; font-weight: 600; white-space: nowrap; text-underline-offset: 4px; transition: color .15s; }   /* inline in the sentence: same size and baseline as the text */
 .ga-link:hover, .ga-link:focus-visible { color: #1e3a8a; }
 .ga-link:hover span, .ga-link:focus-visible span { text-decoration: underline; }
@@ -759,7 +759,7 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
 .ga-stage { position: relative; margin-top: 28px;
   --ga-left: max(16px, calc((100% - 1280px) / 2 + 32px));      /* same left edge as the heading */
   --ga-info: 340px; --ga-gap: 28px; --ga-shift: 80px;          /* caption block width, gap, and its nudge to the right */
-  --ga-h: calc((100svh - 72px) / var(--hero-s, 1) - 366px);    /* what the window leaves under the header and heading (with the lead line) */
+  --ga-h: calc((100svh - 72px) / var(--hero-s, 1) - 342px);    /* what the window leaves under the header and heading (with the lead line) */
   --ga-w: min(calc(100% - 2 * var(--ga-left) - var(--ga-info) - var(--ga-gap)), calc(var(--ga-h) * 2)); }
 /* room below for the screen shadow and the blur, which a scrolling row would otherwise cut off in a straight line */
 .ga-track { display: flex; gap: var(--ga-gap); padding: 8px 0 48px var(--ga-left); margin-bottom: -44px; scroll-padding-left: var(--ga-left);
