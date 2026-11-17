@@ -462,7 +462,7 @@ html.engineering-free-scroll { scroll-snap-type: none; }   /* set by engineering
 @media (max-width: 800px) { .engineering-after { --fade: 84px; } }
 
 /* Home section colours below the hero: white and paper take turns (the navy workflow and CTA stay as they are). */
-/* Home order (2026-11-17): Quick Tour white (site.css) · Core Modules paper · AI white ·
+/* Home order (2026-11-17): Explore the Workspace white (site.css) · Core Modules paper · AI white ·
    Integrations paper · Key Figures white · CTA navy (Brand Story is on the About page). On the paper section the module cards turn white so they stay visible. */
 body[data-page="home"] #product, body[data-page="home"] #integrations { background: var(--eng-paper); }
 body[data-page="home"] #product > div > .grid > a { background: #fff; }

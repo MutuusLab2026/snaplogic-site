@@ -731,7 +731,7 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
 /* ---- About page: company details card (same card as the contact page), kept to a readable width ---- */
 .about-company .contact-card { max-width: 640px; }
 
-/* ---- Home "Quick Tour" (#gallery, assets/gallery.js), right under the hero: white section, real screens in a
+/* ---- Home "Explore the Workspace" (#gallery, assets/gallery.js), right under the hero: white section, real screens in a
    sideways row that wraps. The current screen lines up with the heading on the left and is sized to the window height
    (the section fits one screen); a glass caption block sits at its right over the blurred next screen.
    (Navy "Product Gallery" until 2026-11-17, when it took the place of the "At a Glance" animation.) ---- */

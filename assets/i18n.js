@@ -1046,7 +1046,7 @@ Object.assign(i18n.ja, {
   hd_r4_t: "Variant\u2060・Option\u2060ごとのレイアウトフィルタリング",
 });
 
-/* Home: Quick Tour tagline (the title itself stays in English in every language). */
+/* Home: Explore the Workspace tagline (the title itself stays in English in every language). */
 Object.assign(i18n.ko, {
   tour_tagline: "회로도부터 하네스 도면까지, 통합 E/E 엔지니어링 플랫폼",
 });
@@ -1138,7 +1138,7 @@ Object.assign(i18n.en, { nav_about: 'About', about_title: 'About', about_desc: '
 Object.assign(i18n.zh, { nav_about: '关于我们', about_title: '关于我们', about_desc: '介绍VegaFencer名字背后的故事与公司信息。' });
 Object.assign(i18n.ja, { nav_about: '会社概要', about_title: '会社概要', about_desc: 'VegaFencer\u2060という名前に込めた思いと会社情報をご紹介します。' });
 
-/* Home: Quick Tour (index.html #gallery, assets/gallery.js). */
+/* Home: Explore the Workspace (index.html #gallery, assets/gallery.js). */
 Object.assign(i18n.ko, {
   tour_lead: 'VegaFencer의 실제 제품 화면을 직접 확인하세요.',
   gal_logic: '회로도에서 핀 단위로 연결을 정의하고, 전기적 오류를 바로 검증합니다.',
