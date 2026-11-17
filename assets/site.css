@@ -735,7 +735,7 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
    sideways row that wraps. The current screen lines up with the heading on the left and is sized to the window height
    (the section fits one screen); a glass caption block sits at its right over the blurred next screen.
    (Navy "Product Gallery" until 2026-11-17, when it took the place of the "At a Glance" animation.) ---- */
-.ga-sec { background: #fff; padding: 56px 0 40px; overflow: hidden;
+.ga-sec { background: #fff; padding: 96px 0 40px; overflow: hidden;   /* top: more room under the hero (2026-11-18) */
   /* fills the screen under the header; extra height is shared above and below */
   --nav-h: 73px; box-sizing: border-box; min-height: calc((100svh - var(--nav-h)) / var(--hero-s, 1));
   display: flex; flex-direction: column; justify-content: center; }
@@ -750,10 +750,12 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
 .ga-arrows svg { width: 20px; height: 20px; }
 .ga-count { min-width: 60px; margin-right: 8px; color: #5b6e7f; font: 600 16px Inter, sans-serif; letter-spacing: .04em; text-align: right; }
 .ga-arrows button:focus-visible, .ga-track:focus-visible, .ga-info a:focus-visible, .ga-info button:focus-visible { outline: 2px solid #1765cc; outline-offset: 3px; }
-.ga-stage { position: relative; margin-top: 28px;
+/* lead -> screen gap: the same as tagline -> lead as the eye sees it (10px + the tagline's half-leading, the screen
+   frame has none), 2026-11-18 */
+.ga-stage { position: relative; margin-top: 6px;
   --ga-left: max(16px, calc((100% - 1280px) / 2 + 32px));      /* same left edge as the heading */
   --ga-info: 340px; --ga-gap: 28px; --ga-shift: 100px;          /* caption block width, gap, and its nudge to the right */
-  --ga-h: calc((100svh - 72px) / var(--hero-s, 1) - 330px);    /* what the window leaves under the header and heading (with the lead line) */
+  --ga-h: calc((100svh - 72px) / var(--hero-s, 1) - 308px);    /* what the window leaves under the header and heading (with the lead line) */
   --ga-w: min(calc(100% - 2 * var(--ga-left) - var(--ga-info) - var(--ga-gap)), calc(var(--ga-h) * 2)); }
 /* room below for the screen shadow and the blur, which a scrolling row would otherwise cut off in a straight line */
 .ga-track { display: flex; gap: 0;   /* screens sit edge to edge; the side ones shrink about their centre (below) */
@@ -821,7 +823,7 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
 }
 @media (max-width: 767px) {
   .ga-sec { padding: 56px 0 40px; }
-  .ga-arrows button { display: none; }
+  .ga-arrows { display: none; }   /* nothing left in it on phones (no arrows, no counter) */
   .ga-head { flex-wrap: wrap; }
   .ga-head > header { flex: 1 1 100%; }   /* the counter goes under the tagline, so the title keeps one line */
   .ga-count { text-align: left; }
