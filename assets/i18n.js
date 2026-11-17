@@ -1148,7 +1148,8 @@ Object.assign(i18n.ko, {
   gal_more: '자세히 보기',
   gal_prev: '이전 화면',
   gal_next: '다음 화면',
-  gal_track: '제품 화면, 좌우 화살표 키로 넘기기'
+  gal_track: '제품 화면, 좌우 화살표 키로 넘기기',
+  gal_pause: '자동 넘김 멈춤', gal_play: '자동 넘김 시작', gal_dot: '{n}번 화면'
 });
 Object.assign(i18n.en, {
   tour_lead: 'See the real VegaFencer product screens for yourself.',
@@ -1159,7 +1160,8 @@ Object.assign(i18n.en, {
   gal_more: 'Learn more',
   gal_prev: 'Previous screen',
   gal_next: 'Next screen',
-  gal_track: 'Product screens; use the left and right arrow keys'
+  gal_track: 'Product screens; use the left and right arrow keys',
+  gal_pause: 'Pause slideshow', gal_play: 'Play slideshow', gal_dot: 'Screen {n}'
 });
 Object.assign(i18n.zh, {
   tour_lead: '亲自查看 VegaFencer 的实际产品界面。',
@@ -1170,7 +1172,8 @@ Object.assign(i18n.zh, {
   gal_more: '详细了解',
   gal_prev: '上一张',
   gal_next: '下一张',
-  gal_track: '产品界面，可用左右方向键切换'
+  gal_track: '产品界面，可用左右方向键切换',
+  gal_pause: '暂停自动播放', gal_play: '开始自动播放', gal_dot: '第{n}张'
 });
 Object.assign(i18n.ja, {
   tour_lead: 'VegaFencer\u2060の実際の製品画面をご覧ください。',
@@ -1181,7 +1184,8 @@ Object.assign(i18n.ja, {
   gal_more: '詳しく見る',
   gal_prev: '前の画面',
   gal_next: '次の画面',
-  gal_track: '製品画面（左右の矢印キーで切り替え）'
+  gal_track: '製品画面（左右の矢印キーで切り替え）',
+  gal_pause: '自動再生を停止', gal_play: '自動再生を開始', gal_dot: '画面{n}'
 });
 
 /* Home hero (index.html #hero). The product name and the English category line are not translated. */
