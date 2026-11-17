@@ -745,7 +745,7 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
 /* lead line (template .lg-lead) with a "자세히 보기 →" text link to the product page: colour and underline on hover,
    like the old At a Glance lead link */
 .ga-sec .lg-lead { margin: 10px 0 0; }   /* same as Core Modules (the module header template) */
-.ga-link { color: #151b2b; font-weight: 600; white-space: nowrap; text-underline-offset: 4px; transition: color .15s; }   /* inline in the sentence: same size and baseline as the text */
+.ga-link { font: inherit; color: inherit; letter-spacing: inherit; white-space: nowrap; text-underline-offset: 4px; transition: color .15s; }   /* part of the sentence: same font, size and colour */
 .ga-link:hover, .ga-link:focus-visible { color: #1e3a8a; }
 .ga-link:hover span, .ga-link:focus-visible span { text-decoration: underline; }
 .ga-link svg { display: inline-block; width: 14px; height: 14px; margin-left: 4px; vertical-align: -1px; }
