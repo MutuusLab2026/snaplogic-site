@@ -752,7 +752,7 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
 .ga-arrows button:focus-visible, .ga-track:focus-visible, .ga-info a:focus-visible, .ga-info button:focus-visible { outline: 2px solid #1765cc; outline-offset: 3px; }
 .ga-stage { position: relative; margin-top: 28px;
   --ga-left: max(16px, calc((100% - 1280px) / 2 + 32px));      /* same left edge as the heading */
-  --ga-info: 340px; --ga-gap: 28px; --ga-shift: 80px;          /* caption block width, gap, and its nudge to the right */
+  --ga-info: 340px; --ga-gap: 28px; --ga-shift: 100px;          /* caption block width, gap, and its nudge to the right */
   --ga-h: calc((100svh - 72px) / var(--hero-s, 1) - 330px);    /* what the window leaves under the header and heading (with the lead line) */
   --ga-w: min(calc(100% - 2 * var(--ga-left) - var(--ga-info) - var(--ga-gap)), calc(var(--ga-h) * 2)); }
 /* room below for the screen shadow and the blur, which a scrolling row would otherwise cut off in a straight line */
@@ -766,12 +766,12 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
 @media (min-width: 1101px) { .ga-track { scroll-snap-type: none; } }
 .ga-track::after { content: ''; flex: 0 0 calc(100% - var(--ga-left) - var(--ga-w)); }
 /* side screens: stronger blur, fainter and smaller, so only the current one reads */
-.ga-slide { flex: 0 0 var(--ga-w); margin: 0; scroll-snap-align: start; cursor: pointer; filter: blur(10px); opacity: .3; transform: scale(.8);
+.ga-slide { flex: 0 0 var(--ga-w); margin: 0; scroll-snap-align: start; cursor: pointer; filter: blur(10px); opacity: .3; transform: scale(.85);
   transition: filter .45s, opacity .45s, transform .45s; }
 .ga-slide.is-on { filter: none; opacity: 1; transform: none; cursor: default; }
 /* Side screens (2026-11-18, from a sketch): the screens sit edge to edge and each side screen shrinks about its own
    centre, so its diagonals, carried on, run through the current screen's near corners. The scale alone sets both its
-   size and the gap; at .8 the next screen's left edge still shows before the caption block. */
+   size and the gap; at .85 the next screen's left edge still shows before the caption block. */
 .ga-instant .ga-slide { transition: none; }
 .ga-frame { border-radius: 10px; overflow: hidden; background: #f3f5f7; border: 1px solid #d5dbe2; box-shadow: 0 30px 60px -24px rgba(8,30,48,.35); }
 .ga-bar { height: 30px; display: flex; align-items: center; gap: 6px; padding: 0 12px; background: #eef1f4; border-bottom: 1px solid #d5dbe2; }
