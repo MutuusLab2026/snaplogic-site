@@ -115,7 +115,7 @@
       updateMotion();
 
       // The header stays dark through the hero and the fade below it, and turns light once the fade is nearly over.
-      const fadeEl = document.querySelector('.engineering-glance');
+      const fadeEl = document.querySelector('.engineering-after');   // carries --fade
       let heroWatch = null;
       const watchHero = () => {
         if (heroWatch) heroWatch.disconnect();

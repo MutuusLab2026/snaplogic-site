@@ -1398,7 +1398,7 @@ Object.assign(i18n.ja, { nav_about: '会社概要', about_title: '会社概要',
 
 /* Home: Product Gallery (index.html #gallery, assets/gallery.js). */
 Object.assign(i18n.ko, {
-  gal_tagline: '실제 프로그램 화면으로 확인하세요.',
+  tour_lead: 'VegaFencer의 실제 제품 화면을 직접 확인하세요.',
   gal_logic: '회로도에서 핀 단위로 연결을 정의하고, 전기적 오류를 바로 검증합니다.',
   gal_integrator: '회로 설계를 차량 토폴로지와 3D 번들 경로에 연결합니다.',
   gal_harness: '번들 길이와 직경을 계산해 하네스 도면과 와이어 리스트를 만듭니다.',
@@ -1409,7 +1409,7 @@ Object.assign(i18n.ko, {
   gal_track: '제품 화면, 좌우 화살표 키로 넘기기'
 });
 Object.assign(i18n.en, {
-  gal_tagline: 'See the real program screens.',
+  tour_lead: 'See the real VegaFencer product screens for yourself.',
   gal_logic: 'Define connections pin by pin in the schematic and check for electrical errors right away.',
   gal_integrator: 'Link the circuit design to the vehicle topology and 3D bundle routes.',
   gal_harness: 'Calculate bundle lengths and diameters to produce harness drawings and wire lists.',
@@ -1420,7 +1420,7 @@ Object.assign(i18n.en, {
   gal_track: 'Product screens; use the left and right arrow keys'
 });
 Object.assign(i18n.zh, {
-  gal_tagline: '通过实际软件界面了解产品。',
+  tour_lead: '亲自查看 VegaFencer 的实际产品界面。',
   gal_logic: '在原理图中按引脚定义连接，并即时检查电气错误。',
   gal_integrator: '将电路设计与车辆拓扑和3D线束路径关联。',
   gal_harness: '计算线束长度与直径，生成线束图纸和导线清单。',
@@ -1431,7 +1431,7 @@ Object.assign(i18n.zh, {
   gal_track: '产品界面，可用左右方向键切换'
 });
 Object.assign(i18n.ja, {
-  gal_tagline: '実際のプログラム画面でご確認ください。',
+  tour_lead: 'VegaFencer\u2060の実際の製品画面をご覧ください。',
   gal_logic: '回路図でピン単位の接続を定義し、電気的なエラーをその場で検証します。',
   gal_integrator: '回路設計を車両トポロジーと3D\u2060バンドル経路に結び付けます。',
   gal_harness: 'バンドルの長さと径を計算し、ハーネス図面とワイヤーリストを作成します。',
