@@ -677,8 +677,8 @@ html[lang="ja"] .story-label span, html[lang="zh"] .story-label span { font-fami
 #interface .lg-head { max-width: 900px; }
 /* #1765cc: at least 5:1 on every light section background (WCAG AA asks 4.5:1 for text this size). */
 .lg-kicker { margin: 0 0 12px; font: 700 13px/1 'Space Grotesk', sans-serif; letter-spacing: .2em; color: #1765cc; }
-.lg-name { margin: 0; font: 900 40px/1.05 Inter, sans-serif; letter-spacing: -.04em; color: #151b2b; }
-@media (min-width: 768px) { .lg-name { font-size: 56px; } }
+.lg-name { margin: 0; font: 900 30px/1.05 Inter, sans-serif; letter-spacing: -.04em; color: #151b2b; }
+@media (min-width: 768px) { .lg-name { font-size: 44px; } }   /* a step under the hero product name (56px), 2026-11-18 */
 .lg-tagline { margin: 12px 0 0; font: 700 19px/1.35 Inter, 'Noto Sans KR', sans-serif; letter-spacing: -.02em; color: #151b2b; }
 @media (min-width: 768px) { .lg-tagline { font-size: 22px; } }
 .lg-lead { margin-top: 14px; }
@@ -752,7 +752,7 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
 .ga-arrows button:focus-visible, .ga-track:focus-visible, .ga-info a:focus-visible, .ga-stage { position: relative; margin-top: 28px;
   --ga-left: max(16px, calc((100% - 1280px) / 2 + 32px));      /* same left edge as the heading */
   --ga-info: 340px; --ga-gap: 28px; --ga-shift: 80px;          /* caption block width, gap, and its nudge to the right */
-  --ga-h: calc((100svh - 72px) / var(--hero-s, 1) - 342px);    /* what the window leaves under the header and heading (with the lead line) */
+  --ga-h: calc((100svh - 72px) / var(--hero-s, 1) - 330px);    /* what the window leaves under the header and heading (with the lead line) */
   --ga-w: min(calc(100% - 2 * var(--ga-left) - var(--ga-info) - var(--ga-gap)), calc(var(--ga-h) * 2)); }
 /* room below for the screen shadow and the blur, which a scrolling row would otherwise cut off in a straight line */
 .ga-track { display: flex; gap: var(--ga-gap); padding: 8px 0 48px var(--ga-left); margin-bottom: -44px; scroll-padding-left: var(--ga-left);
@@ -823,7 +823,7 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
 .hero-copy { position: relative; z-index: 1; height: 100%; display: flex; flex-direction: column; justify-content: center; }
 @media (min-width: 1101px) { .hero-copy { zoom: var(--hero-s, 1); } }   /* same scale as the header on wide screens */
 .hero h1 { margin: 0; font: 800 56px/1.05 Inter, 'Noto Sans KR', sans-serif; letter-spacing: -.035em; color: #fff; }
-.hero-cat { margin: 14px 0 0; white-space: nowrap; font: 600 19px/1.35 Inter, sans-serif; letter-spacing: -.01em; color: #dce7ef; }
+.hero-cat { margin: 14px 0 0; white-space: nowrap; font: 600 22px/1.35 Inter, sans-serif; letter-spacing: -.01em; color: #dce7ef; }
 .hero-sub { margin: 16px 0 28px; max-width: 420px; color: #a9bccb; font-size: 15px; line-height: 1.7; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
 .hero-btn { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 20px; border-radius: 8px; font: 700 14px Inter, 'Noto Sans KR', sans-serif; }
@@ -843,5 +843,5 @@ html[lang="zh"] .hero-sub, html[lang="ja"] .hero-sub { font-family: inherit; }
   .hero-shade { background: linear-gradient(0deg, var(--hero-ink) 0%, rgba(15,26,36,0) 45%); }
   .hero-copy { margin-top: -40px; }
   .hero h1 { font-size: 36px; }
-  .hero-cat { font-size: 16px; white-space: normal; }
+  .hero-cat { font-size: 19px; white-space: normal; }   /* same steps as the section tagline (22 / 19px) */
 }
