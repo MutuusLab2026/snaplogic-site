@@ -41,7 +41,9 @@
   var pos = COPIES;                           // index in slides (copies included)
 
   function realIndex(p) { return ((p - COPIES) % n + n) % n; }
-  function target(p) { return slides[p].offsetLeft - (parseFloat(getComputedStyle(track).scrollPaddingLeft) || 0); }
+  // scroll-padding-left reads back as an unresolved max()/calc() string, so take the same length from padding-left,
+  // which reads back in px (both are --ga-left)
+  function target(p) { return slides[p].offsetLeft - (parseFloat(getComputedStyle(track).paddingLeft) || 0); }
   function jump(p) {                           // move without animation (wrapping, resizing, first paint)
     track.classList.add('ga-instant');         // the real screen takes the copy's look at once (no grow/sharpen)
     track.style.scrollSnapType = 'none';
@@ -96,6 +98,11 @@
     driving = null;
     pos = nearest();
     if (pos < COPIES || pos >= COPIES + n) jump(COPIES + realIndex(pos));
+    // Wide screens have no scroll snap (see site.css), so a swipe that stops between screens glides to the nearest one.
+    else if (Math.abs(track.scrollLeft - target(pos)) > 1) {
+      track.scrollTo({ left: target(pos), behavior: reduce ? 'auto' : 'smooth' });
+      return;
+    }
     paint(); fillInfo();
   }
   track.addEventListener('scroll', function () {
