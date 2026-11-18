@@ -20,7 +20,7 @@
   var dotsBox = root.querySelector('.ga-dots');
   var pauseBtn = root.querySelector('.ga-pause');
   var stage = root.querySelector('.ga-stage');
-  var TIME = 5000;                              // ms per screen
+  var TIME = 3500;                              // ms per screen
   var real = Array.prototype.slice.call(track.querySelectorAll('.ga-slide'));
   var n = real.length;
   var COPIES = 2;
