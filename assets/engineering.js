@@ -355,17 +355,22 @@
     document.addEventListener('visibilitychange', updateVisibility);
     updateVisibility();
 
-    const symbols = [
-      '<path d="M3 7h7v14H3m18-14h-7v14h7M10 11h4m-4 6h4M6 3v4m0 14v4m12-22v4m0 14v4"/>',
-      '<path d="M4 6h7v6H4zm13 10h7v6h-7zM11 9h9v7M7 12v7h10"/><circle cx="20" cy="6" r="2"/><circle cx="7" cy="22" r="2"/>',
-      '<path d="M3 7h8l5 7h9M3 21h8l5-7M5 4v6m0 8v6m17-13v6M11 7v14"/>',
-      '<path d="M4 7h20M4 14h20M4 21h20"/><path d="M9 4v6m10 1v6m-7 1v6" stroke-width="3"/>',
-      '<path d="M4 8h7v12H4m20-12h-7v12h7M11 11h6m-6 6h6M7 4v4m14-4v4M7 20v4m14-4v4"/>'
-    ];
-    document.querySelectorAll('#product > div > .grid > a').forEach((card, index) => {
+    // one connector-style line symbol per module (data-mod on the card in sections.js)
+    const symbols = {
+      logic: '<path d="M3 7h7v14H3m18-14h-7v14h7M10 11h4m-4 6h4M6 3v4m0 14v4m12-22v4m0 14v4"/>',
+      integrator: '<path d="M4 6h7v6H4zm13 10h7v6h-7zM11 9h9v7M7 12v7h10"/><circle cx="20" cy="6" r="2"/><circle cx="7" cy="22" r="2"/>',
+      harness: '<path d="M3 7h8l5 7h9M3 21h8l5-7M5 4v6m0 8v6m17-13v6M11 7v14"/>',
+      power: '<path d="M3 9h19v10H3zm19 3h3v4h-3"/><path d="M13.5 10.5 10 14.5h4.5L11 18"/>',
+      multiuser: '<circle cx="10" cy="9" r="3.5"/><path d="M3 23c0-4 3-6.5 7-6.5s7 2.5 7 6.5"/><circle cx="19.5" cy="8" r="2.8"/><path d="M18.5 14.5c3.3 0 5.5 2.2 5.5 5.5"/>',
+      ai: '<path d="M4 5h20v13H12l-5 5v-5H4z"/><path d="M14 7.5l1.2 2.8L18 11.5l-2.8 1.2L14 15.5l-1.2-2.8L10 11.5l2.8-1.2z"/>',
+      drc: '<path d="M6 3h16v22H6z"/><path d="M9 9.5l2 2 3.5-4M9 18l2 2 3.5-4M17 9.5h2.5M17 18h2.5"/>',
+      variant: '<path d="M4 7h20M4 14h20M4 21h20"/><path d="M9 4v6m10 1v6m-7 1v6" stroke-width="3"/>',
+      bridge: '<path d="M4 8h7v12H4m20-12h-7v12h7M11 11h6m-6 6h6M7 4v4m14-4v4M7 20v4m14-4v4"/>'
+    };
+    document.querySelectorAll('#product > div > .grid > a').forEach((card) => {
       const symbol = card.firstElementChild;
       symbol.classList.add('engineering-module-symbol');
-      symbol.innerHTML = '<svg viewBox="0 0 28 28" aria-hidden="true">' + symbols[index] + '</svg>';
+      symbol.innerHTML = '<svg viewBox="0 0 28 28" aria-hidden="true">' + (symbols[card.dataset.mod] || '') + '</svg>';
       card.insertAdjacentHTML('beforeend', '<svg class="engineering-module-trace" viewBox="0 0 80 26" aria-hidden="true"><path d="M0 20h24L39 5h41M40 20h40"/><path class="trace-runner" d="M0 20h24L39 5h41"/><circle cx="24" cy="20" r="2"/><circle cx="65" cy="5" r="2"/></svg>');
     });
   });
