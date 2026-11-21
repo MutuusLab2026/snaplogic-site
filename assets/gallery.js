@@ -59,7 +59,9 @@
   function go(p) {
     p = Math.max(0, Math.min(slides.length - 1, p));
     if (p === pos) return;
+    var from = realIndex(pos);
     driving = p; pos = p; paint();
+    if (from === n - 1 && realIndex(p) === 0) slideDots(from);
     root.classList.add('ga-moving');
     track.scrollTo({ left: target(p), behavior: reduce ? 'auto' : 'smooth' });
   }
@@ -92,6 +94,18 @@
     }
     root.classList.remove('ga-moving');
   }
+  // Every caption block keeps the height of the tallest caption (a two-line title like "Multiuser Environment"
+  // would otherwise make that one card taller than the rest).
+  function sizeInfo() {
+    body.style.minHeight = '';
+    var tall = 0;
+    real.forEach(function (s, i) {
+      body.innerHTML = '<p class="ga-num">0' + (i + 1) + '.</p>' + s.querySelector('figcaption').innerHTML;
+      tall = Math.max(tall, body.offsetHeight);
+    });
+    body.style.minHeight = tall + 'px';
+    fillInfo(true);
+  }
   // While scrolling, mark the screen nearest the left edge; once the row rests, swap a copy for the real screen.
   var settle = 0;
   function rest() {
@@ -118,7 +132,7 @@
     if (e.key === 'ArrowRight') { e.preventDefault(); go(pos + 1); }
     if (e.key === 'ArrowLeft') { e.preventDefault(); go(pos - 1); }
   });
-  window.addEventListener('resize', function () { jump(pos); paint(); });
+  window.addEventListener('resize', function () { jump(pos); paint(); sizeInfo(); });
 
   // Dots: one button per real screen; the current one holds the filling bar.
   var dots = real.map(function (s, i) {
@@ -139,6 +153,21 @@
     body.setAttribute('aria-live', stopped ? 'polite' : 'off');   // no announcement every few seconds while it runs
     var t = i18n[document.documentElement.lang] || i18n.ko;
     pauseBtn.setAttribute('aria-label', stopped ? t.gal_play : t.gal_pause);
+  }
+  // Back from the last screen to the first: the long bar slides right to left onto dot 1 instead of jumping there.
+  var ghostT = 0;
+  function slideDots(from) {
+    if (reduce) return;
+    var old = dots[from].querySelector('span');
+    var x0 = old.offsetLeft, x1 = dots[0].offsetLeft + 8;   // both relative to .ga-dots (8: the button's side padding)
+    var g = dotsBox.querySelector('.ga-ghost') || dotsBox.appendChild(document.createElement('div'));
+    g.className = 'ga-ghost';
+    g.style.transition = 'none'; g.style.transform = 'translateX(' + x0 + 'px)';
+    g.offsetWidth;                                    // apply the start position before moving
+    g.style.transition = ''; g.style.transform = 'translateX(' + x1 + 'px)';
+    dotsBox.classList.add('ga-sliding');
+    clearTimeout(ghostT);
+    ghostT = setTimeout(function () { dotsBox.classList.remove('ga-sliding'); }, 600);
   }
   function restart() {
     driving = null;
@@ -176,9 +205,12 @@
     dots.forEach(function (d, i) { d.setAttribute('aria-label', t.gal_dot.replace('{n}', i + 1)); });
     state();
   }
-  new MutationObserver(function () { labels(); setTimeout(function () { fillInfo(true); }, 0); })
+  new MutationObserver(function () { labels(); setTimeout(sizeInfo, 0); })
     .observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
   labels();
   jump(COPIES);
-  paint(); fillInfo(true);
+  paint(); sizeInfo();
+  // web fonts arrive after this runs (a heavy title weight is only fetched once it is first drawn), so measure again
+  if (document.fonts) { document.fonts.ready.then(sizeInfo); document.fonts.addEventListener('loadingdone', sizeInfo); }
+  window.addEventListener('load', sizeInfo);
 })();

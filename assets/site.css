@@ -800,7 +800,12 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
 /* Autoplay controls at the bottom of the caption block (2026-11-18): one dot per screen, the current one a bar that
    fills over the interval (gallery.js moves on when it is full), and a pause/play button. Hover or focus holds it. */
 .ga-ctrl { display: flex; align-items: center; justify-content: space-between; margin-top: 6px; padding-top: 4px; border-top: 1px solid rgba(21, 27, 43, .08); }
-.ga-dots { display: flex; align-items: center; margin-left: -8px; }
+.ga-dots { position: relative; display: flex; align-items: center; margin-left: -8px; }
+.ga-ghost { position: absolute; left: 0; top: 18px; width: 36px; height: 8px; border-radius: 4px; background: #d5dbe2; opacity: 0; pointer-events: none;
+  transition: transform .55s cubic-bezier(.45,0,.2,1); }
+.ga-sliding .ga-ghost { opacity: 1; }
+.ga-sliding .on span { visibility: hidden; }
+.ga-sliding .on i { animation-play-state: paused !important; }
 .ga-dots button { height: 44px; min-width: 24px; padding: 0 8px; display: grid; place-items: center; box-sizing: border-box; }
 .ga-dots span { display: block; width: 8px; height: 8px; border-radius: 4px; background: #7d8b99; overflow: hidden; transition: width .3s; }
 .ga-dots .on span { width: 36px; background: #d5dbe2; }
