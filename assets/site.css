@@ -780,6 +780,7 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
 .ga-bar i { width: 9px; height: 9px; border-radius: 50%; background: #c3cbd4; }
 .ga-bar span { margin-left: 10px; color: #5b6e7f; font: 500 12px Inter, sans-serif; }
 .ga-frame img { display: block; width: 100%; height: auto; aspect-ratio: 2; object-fit: cover; object-position: top left; }
+.ga-empty { aspect-ratio: 2; background: #f3f5f7; } /* screen not shot yet */
 .ga-slide figcaption { display: none; }                         /* shown through the caption block */
 .ga-info { position: absolute; z-index: 2; width: var(--ga-info);
   left: calc(var(--ga-left) + var(--ga-w) + var(--ga-gap) + var(--ga-shift));
@@ -828,7 +829,7 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
   .ga-head > header { flex: 1 1 100%; }   /* the counter goes under the tagline, so the title keeps one line */
   .ga-count { text-align: left; }
   .ga-stage { --ga-w: 84%; }
-  .ga-frame img { aspect-ratio: 1.857; }
+  .ga-frame img, .ga-empty { aspect-ratio: 1.857; }
   .ga-slide { filter: blur(5px); }
   .ga-info { padding: 22px 22px 16px; }
   .ga-info b { font-size: 24px; }
