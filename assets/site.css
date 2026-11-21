@@ -780,7 +780,15 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
 .ga-bar i { width: 9px; height: 9px; border-radius: 50%; background: #c3cbd4; }
 .ga-bar span { margin-left: 10px; color: #5b6e7f; font: 500 12px Inter, sans-serif; }
 .ga-frame img { display: block; width: 100%; height: auto; aspect-ratio: 2; object-fit: cover; object-position: top left; }
-.ga-empty { aspect-ratio: 2; background: #f3f5f7; } /* screen not shot yet */
+/* Screen not shot yet: a plain outline of the program window (title band, ribbon, side panels, canvas) so it still
+   reads as a screen when it is a blurred neighbour; a flat grey frame vanishes on the white background. */
+.ga-empty { aspect-ratio: 2; background:
+  linear-gradient(#4b6a9b, #4b6a9b) 0 0 / 100% 7% no-repeat,
+  linear-gradient(#e4e8ee, #e4e8ee) 0 7% / 100% 11% no-repeat,
+  linear-gradient(#e9edf2, #e9edf2) 0 100% / 15% 82% no-repeat,
+  linear-gradient(#e9edf2, #e9edf2) 100% 100% / 16% 82% no-repeat,
+  linear-gradient(#dde3ea, #dde3ea) 50% 100% / 69% 16% no-repeat,
+  #fbfcfd; }
 .ga-slide figcaption { display: none; }                         /* shown through the caption block */
 .ga-info { position: absolute; z-index: 2; width: var(--ga-info);
   left: calc(var(--ga-left) + var(--ga-w) + var(--ga-gap) + var(--ga-shift));
