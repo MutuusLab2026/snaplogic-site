@@ -127,6 +127,9 @@ section[id] { scroll-margin-top: 100px; }
 
 /* Modules use connector symbols instead of decorative emoji. */
 #product { background: #fff; }
+/* bottom space under the cards = the space above the kicker (2026-11-23) */
+#product { padding-bottom: 92px; }
+@media (min-width: 768px) { #product { padding-bottom: 136px; } }
 #product > div > .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }   /* five per row from 1101px (below) */
 #product > div > .grid > a { position: relative; border-radius: 8px; background: #f3f7fa; box-shadow: none;
   /* hover colour at once, the scroll fade-in (.reveal) with its stagger */
