@@ -154,6 +154,10 @@ section[id] { scroll-margin-top: 100px; }
   transition: background .2s, box-shadow .45s cubic-bezier(.2, .7, .2, 1), translate .45s cubic-bezier(.2, .7, .2, 1), opacity .7s cubic-bezier(.16, 1, .3, 1), transform .7s cubic-bezier(.16, 1, .3, 1);
   transition-delay: 0s, 0s, 0s, var(--reveal-delay, 0s), var(--reveal-delay, 0s); }
 #product a[data-grp] > p { flex: 1; }
+/* Keep each card on its own layer all the time. Without it the browser draws the card on a separate layer only
+   while it moves and puts it back onto the page when the lift ends; the text is then re-snapped to whole pixels
+   (the page is zoomed by --hero-s) and the titles visibly drop by a fraction of a pixel. */
+#product a[data-grp] { will-change: translate; }
 #product a[data-grp] .engineering-module-symbol { transition: background .25s, color .25s; }
 #product .grid > a[data-grp]:hover, #product .grid > a[data-grp]:focus-visible { translate: 0 -4px; box-shadow: 0 18px 36px -18px rgba(8, 30, 48, .3); }
 #product a[data-grp]:hover .engineering-module-symbol, #product a[data-grp]:focus-visible .engineering-module-symbol { background: var(--grp) !important; color: #fff; }
