@@ -14,71 +14,75 @@
       <p class="lg-kicker">PLATFORM</p>
       <h2 class="lg-name" translate="no">Core Modules</h2>
       <p class="lg-tagline" data-i18n="modules_title">하나의 플랫폼, 완전한 E/E 설계</p>
-      <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead" data-i18n="modules_desc">회로도의 전기적 의도부터 물리적 하네스 도면까지 — 아홉 개의 핵심 모듈이 끊김 없이 연결됩니다.</p>
+      <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead" data-i18n="modules_desc">회로도의 전기적 의도부터 물리적 하네스 도면까지 — 열 개의 핵심 모듈이 끊김 없이 연결됩니다.</p>
     </header>
 
+    <!-- Module groups: the colour of each card's symbol (engineering.css, data-grp) -->
+    <ul class="mod-legend reveal">
+      <li data-grp="1"><i></i><span data-i18n="mod_grp1">설계</span></li>
+      <li data-grp="2"><i></i><span data-i18n="mod_grp2">검증 · 관리</span></li>
+      <li data-grp="3"><i></i><span data-i18n="mod_grp3">협업 · 연동</span></li>
+    </ul>
+
     <div class="grid sm:grid-cols-2 gap-4 md:gap-6">
-      <a href="${here('product', '#logic')}" data-mod="logic" class="reveal reveal-delay-1 group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
+      <a href="${here('product', '#logic')}" data-mod="logic" data-grp="1" class="reveal reveal-delay-1 group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
         <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5"></div>
         <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-primary-container transition-colors" translate="no" data-i18n="mod_logic_title">Logic</h3>
         <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n-html="mod_logic_desc">전기적 설계 의도를 정의하는 핵심 모듈.<br>디바이스 핀 연결부터 전기적 오류 검증까지.</p>
-        <span class="inline-block px-3 py-1 rounded-full text-xs font-label font-semibold" style="background:#E8F0FE;color:#1A73E8" data-i18n="mod_logic_tag">설계 의도</span>
       </a>
 
-      <a href="${here('product', '#integrator')}" data-mod="integrator" class="reveal reveal-delay-2 group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
+      <a href="${here('product', '#integrator')}" data-mod="integrator" data-grp="1" class="reveal reveal-delay-2 group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
         <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5"></div>
-        <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-secondary transition-colors" translate="no" data-i18n="mod_integrator_title">Integrator</h3>
+        <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-primary-container transition-colors" translate="no" data-i18n="mod_integrator_title">Integrator</h3>
         <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n="mod_integrator_desc">회로도와 3D 번들 설계를 연결&middot;동기화. 와이어 라우팅, 번들 구성, 토폴로지 검증을 하나의 워크플로우로.</p>
-        <span class="inline-block px-3 py-1 rounded-full text-xs font-label font-semibold" style="background:#CCFBF1;color:#0D9488" data-i18n="mod_integrator_tag">데이터 동기화</span>
       </a>
 
-      <a href="${here('product', '#harness')}" data-mod="harness" class="reveal reveal-delay-3 group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
+      <a href="${here('product', '#harness')}" data-mod="harness" data-grp="1" class="reveal reveal-delay-3 group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
         <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5"></div>
-        <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-orange-600 transition-colors" translate="no" data-i18n="mod_harness_title">Harness</h3>
+        <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-primary-container transition-colors" translate="no" data-i18n="mod_harness_title">Harness</h3>
         <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n="mod_harness_desc">상세 하네스 도면 자동 생성. 플러그 심볼, 와이어 리스트, 번들 직경 계산까지 원스톱.</p>
-        <span class="inline-block px-3 py-1 rounded-full text-xs font-label font-semibold" style="background:#FFF3E0;color:#E8710A" data-i18n="mod_harness_tag">문서화</span>
       </a>
 
-      <a href="${here('product', '#main')}" data-mod="power" class="reveal reveal-delay-1 group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
+      <a href="${here('product', '#main')}" data-mod="power" data-grp="2" class="reveal reveal-delay-4 group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
         <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5"></div>
         <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-primary-container transition-colors" translate="no" data-i18n="mod_power_title">Power Check</h3>
         <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n="mod_power_desc">전원&middot;퓨즈&middot;부하&middot;접지 역할과 전류값을 지정해 회로의 전원 용량을 점검합니다.</p>
-        <span class="inline-block px-3 py-1 rounded-full text-xs font-label font-semibold" style="background:#FEF3C7;color:#92400E" data-i18n="mod_power_tag">전원 점검</span>
       </a>
 
-      <a href="${here('product', '#enterprise')}" data-mod="multiuser" class="reveal reveal-delay-2 group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
-        <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5"></div>
-        <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-primary-container transition-colors" translate="no" data-i18n="mod_multiuser_title">Multiuser</h3>
-        <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n="mod_multiuser_desc">Server/Client 환경에서 함께 설계합니다. 사용자별 권한 관리와 편집 중인 도면 자동 잠금.</p>
-        <span class="inline-block px-3 py-1 rounded-full text-xs font-label font-semibold" style="background:#DCFCE7;color:#166534" data-i18n="mod_multiuser_tag">협업</span>
-      </a>
-
-      <a href="${here('product', '#ai')}" data-mod="ai" class="reveal reveal-delay-3 group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
-        <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5"></div>
-        <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-primary-container transition-colors" translate="no" data-i18n="mod_ai_title">AI</h3>
-        <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n="mod_ai_desc">MCP 기반 AI 어시스턴트. 자연어로 설계 데이터를 조회하고, 연결&middot;수정까지 요청합니다.</p>
-        <span class="inline-block px-3 py-1 rounded-full text-xs font-label font-semibold" style="background:#FCE7F3;color:#BE185D" data-i18n="mod_ai_tag">AI 어시스턴트</span>
-      </a>
-
-      <a href="${here('product', '#variant')}" data-mod="drc" class="reveal reveal-delay-1 group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
+      <a href="${here('product', '#variant')}" data-mod="drc" data-grp="2" class="reveal reveal-delay-5 group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
         <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5"></div>
         <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-primary-container transition-colors" translate="no" data-i18n="mod_drc_title">DRC / BOM</h3>
         <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n="mod_drc_desc">24개 DRC 규칙으로 연결&middot;일관성&middot;명명 오류를 검출하고, 와이어&middot;커넥터 BOM 리포트를 출력합니다.</p>
-        <span class="inline-block px-3 py-1 rounded-full text-xs font-label font-semibold" style="background:#FEE2E2;color:#B91C1C" data-i18n="mod_drc_tag">품질 검증</span>
       </a>
 
-      <a href="${here('product', '#variant')}" data-mod="variant" class="reveal reveal-delay-2 group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
+      <a href="${here('product', '#variant')}" data-mod="variant" data-grp="2" class="reveal reveal-delay-1 group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
         <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5"></div>
-        <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-tertiary transition-colors" translate="no" data-i18n="mod_variant_title">Variant / Option Configuration</h3>
+        <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-primary-container transition-colors" translate="no" data-i18n="mod_variant_title">Variant / Option Configuration</h3>
         <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n="mod_variant_desc">Variant, Option, Configuration별 다이어그램 필터링. Worst-case 설계 내 특정 구성만 시각화.</p>
-        <span class="inline-block px-3 py-1 rounded-full text-xs font-label font-semibold" style="background:#EDE9FE;color:#7C3AED" data-i18n="mod_variant_tag">유연성</span>
       </a>
 
-      <a href="${here('product', '#bridge')}" data-mod="bridge" class="reveal reveal-delay-3 group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
+      <a href="${here('product', '#enterprise')}" data-mod="library" data-grp="2" class="reveal reveal-delay-2 group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
         <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5"></div>
-        <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-cyan-700 transition-colors" translate="no" data-i18n="mod_bridge_title">3D CAD Bridge</h3>
+        <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-primary-container transition-colors" translate="no" data-i18n="mod_library_title">Library / Symbol Editor</h3>
+        <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n="mod_library_desc">표준화된 Library를 사용자별로 커스터마이즈하고, 필드별 속성을 지정해 어드밴스드 모듈까지 지원합니다.</p>
+      </a>
+
+      <a href="${here('product', '#enterprise')}" data-mod="multiuser" data-grp="3" class="reveal reveal-delay-3 group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5"></div>
+        <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-primary-container transition-colors" translate="no" data-i18n="mod_multiuser_title">Multiuser Environment</h3>
+        <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n="mod_multiuser_desc">Server/Client 환경에서 함께 설계합니다. 사용자별 권한 관리와 편집 중인 도면 자동 잠금.</p>
+      </a>
+
+      <a href="${here('product', '#ai')}" data-mod="ai" data-grp="3" class="reveal reveal-delay-4 group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5"></div>
+        <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-primary-container transition-colors" translate="no" data-i18n="mod_ai_title">AI Assistant</h3>
+        <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n="mod_ai_desc">MCP 기반 AI 어시스턴트. 자연어로 설계 데이터를 조회하고, 연결&middot;수정까지 요청합니다.</p>
+      </a>
+
+      <a href="${here('product', '#bridge')}" data-mod="bridge" data-grp="3" class="reveal reveal-delay-5 group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5"></div>
+        <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-primary-container transition-colors" translate="no" data-i18n="mod_bridge_title">3D CAD Bridge</h3>
         <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n="mod_bridge_desc">CATIA V5 &amp; NX 3D CAD와의 양방향 상호운용성. 와이어 리스트&middot;번들 길이 데이터를 실시간으로 교환합니다.</p>
-        <span class="inline-block px-3 py-1 rounded-full text-xs font-label font-semibold" style="background:#CFFAFE;color:#0E7490" data-i18n="mod_bridge_tag">Interop</span>
       </a>
     </div>
   </div>

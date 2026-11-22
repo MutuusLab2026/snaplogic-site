@@ -127,13 +127,31 @@ section[id] { scroll-margin-top: 100px; }
 
 /* Modules use connector symbols instead of decorative emoji. */
 #product { background: #fff; }
-#product > div > .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+#product > div > .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }   /* five per row from 1101px (below) */
 #product > div > .grid > a { position: relative; border-radius: 8px; background: #f3f7fa; box-shadow: none;
   /* hover colour at once, the scroll fade-in (.reveal) with its stagger */
   transition: background .2s, opacity .7s cubic-bezier(.16, 1, .3, 1), transform .7s cubic-bezier(.16, 1, .3, 1);
   transition-delay: 0s, var(--reveal-delay, 0s), var(--reveal-delay, 0s); }
 #product > div > .grid > a:hover { transform: none; background: #eaf2f7; box-shadow: none; }
 .engineering-module-symbol { border-radius: 5px !important; background: #e3edf4 !important; color: #39708f; }
+/* Module groups (2026-11-23): the symbol, its tile and the trace take the group's colour; the legend above names them.
+   1 design (blue), 2 verification / management (teal), 3 collaboration / integration (amber). */
+#product { --grp1: #1f5fbf; --grp1-bg: #e4eefb; --grp2: #0f766e; --grp2-bg: #ddf1ee; --grp3: #b45309; --grp3-bg: #fbeddd; }
+#product [data-grp="1"] { --grp: var(--grp1); --grp-bg: var(--grp1-bg); }
+#product [data-grp="2"] { --grp: var(--grp2); --grp-bg: var(--grp2-bg); }
+#product [data-grp="3"] { --grp: var(--grp3); --grp-bg: var(--grp3-bg); }
+#product a[data-grp] .engineering-module-symbol { background: var(--grp-bg) !important; color: var(--grp); }
+#product a[data-grp] .engineering-module-trace { stroke: var(--grp); opacity: .4; }
+#product a[data-grp] .trace-runner { stroke: var(--grp); }
+.mod-legend { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 0 0 18px; padding: 0; list-style: none;
+  font: 600 14px 'Noto Sans KR', Inter, sans-serif; color: #3d4a5c; }
+.mod-legend li { display: flex; align-items: center; gap: 8px; }
+.mod-legend i { width: 10px; height: 10px; border-radius: 3px; background: var(--grp); }
+/* Wide screens: five narrow cards in a row (two rows), less padding. */
+@media (min-width: 1101px) {
+  #product > div > .grid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }
+  #product > div > .grid > a { padding: 22px 20px; }
+}
 .engineering-module-symbol svg { width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 1.3; }
 .engineering-module-trace { position: absolute; top: 48px; right: 28px; width: 76px; height: 25px; fill: none; stroke: #b5cddd; stroke-width: 1; }
 .engineering-module-trace .trace-runner { stroke: #368aa4; stroke-dasharray: 8 100; stroke-dashoffset: 108; }
@@ -382,7 +400,6 @@ html[lang="ko"] body { word-break: keep-all; overflow-wrap: break-word; }
   .eng-bridge .bridge-vendor, .eng-bridge .bridge-lane-text { font-size: 11px; }
   .eng-bridge .bridge-name { font-size: 13px; }
   #product > div > .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  #product > div > .grid > a:last-child { grid-column: span 2; }
   #nav.engineering-nav-dark #navLinks.nav-open { background: #0c263a; }
   /* The header's blur makes it the containing box of this fixed panel, so bottom:0 would end it at the header's
      edge (a thin empty strip); give the panel the rest of the screen explicitly. */

@@ -365,7 +365,9 @@
       ai: '<path d="M4 5h20v13H12l-5 5v-5H4z"/><path d="M14 7.5l1.2 2.8L18 11.5l-2.8 1.2L14 15.5l-1.2-2.8L10 11.5l2.8-1.2z"/>',
       drc: '<path d="M6 3h16v22H6z"/><path d="M9 9.5l2 2 3.5-4M9 18l2 2 3.5-4M17 9.5h2.5M17 18h2.5"/>',
       variant: '<path d="M4 7h20M4 14h20M4 21h20"/><path d="M9 4v6m10 1v6m-7 1v6" stroke-width="3"/>',
-      bridge: '<path d="M4 8h7v12H4m20-12h-7v12h7M11 11h6m-6 6h6M7 4v4m14-4v4M7 20v4m14-4v4"/>'
+      library: '<path d="M4 5h6v19H4zm7 0h6v19h-6z"/><path d="M16.5 6.5 22 5l4 18-5.5 1.5z"/><path d="M6 9h2m5 0h2"/>',
+      // schematic box, both-way arrows, 3D part
+      bridge: '<path d="M2 9h8v10H2zm2.5 3.5h3m-3 3h3"/><path d="M11.5 12h5m-1.8-1.8 1.8 1.8-1.8 1.8M16.5 16h-5m1.8-1.8-1.8 1.8 1.8 1.8"/><path d="M18.5 10.5 22.5 8l4 2.5v6l-4 2.5-4-2.5zm0 0 4 2.5 4-2.5M22.5 13v6"/>'
     };
     document.querySelectorAll('#product > div > .grid > a').forEach((card) => {
       const symbol = card.firstElementChild;
