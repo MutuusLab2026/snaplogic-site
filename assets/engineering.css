@@ -143,6 +143,8 @@ section[id] { scroll-margin-top: 100px; }
 #product a[data-grp] .engineering-module-symbol { background: var(--grp-bg) !important; color: var(--grp); }
 #product a[data-grp] .engineering-module-trace { stroke: var(--grp); opacity: .4; }
 #product a[data-grp] .trace-runner { stroke: var(--grp); }
+/* hover / keyboard focus: the title takes the group colour too (all three pass 4.5:1 on white) */
+#product a[data-grp]:hover h3, #product a[data-grp]:focus-visible h3 { color: var(--grp); }
 .mod-legend { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 0 0 18px; padding: 0; list-style: none;
   font: 600 14px 'Noto Sans KR', Inter, sans-serif; color: #3d4a5c; }
 .mod-legend li { display: flex; align-items: center; gap: 8px; }
