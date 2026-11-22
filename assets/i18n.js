@@ -30,7 +30,7 @@ const i18n = {
     mod_harness_title: "Harness",
     mod_harness_desc: "하네스 도면을 자동 생성하고, 와이어 리스트와 번들 직경을 계산합니다.",
     mod_variant_title: "Variant / Option Configuration",
-    mod_variant_desc: "Variant, Option, Configuration별로 다이어그램을 걸러 원하는 구성만 봅니다.",
+    mod_variant_desc: "Variant, Option, Configuration 별로 원하는 구성을 표시합니다.",
 
     // Feature: Logic
     feat_logic_label: "VEGAFENCER LOGIC",
@@ -186,7 +186,7 @@ const i18n = {
     mod_bridge_title: "3D CAD Bridge",
     mod_bridge_desc: "CATIA V5·NX와 와이어 리스트·번들 길이 데이터를 양방향으로 주고받습니다.",
     mod_library_title: "Library / Symbol Editor",
-    mod_library_desc: "표준화된 Library를 사용자별로 커스터마이즈하고, 필드별 속성을 지정합니다.",
+    mod_library_desc: "표준화된 라이브러리를 사용자화하고, 필드별 속성을 지정합니다.",
     mod_grp1: "설계",
     mod_grp2: "검증 · 관리",
     mod_grp3: "협업 · 연동",
@@ -250,7 +250,7 @@ const i18n = {
     mod_harness_title: "Harness",
     mod_harness_desc: "Generate harness drawings automatically, with wire lists and bundle diameters.",
     mod_variant_title: "Variant / Option Configuration",
-    mod_variant_desc: "Filter diagrams by variant, option and configuration to see just the build you need.",
+    mod_variant_desc: "Show just the build you need by variant, option and configuration.",
 
     // Feature: Logic
     feat_logic_label: "VEGAFENCER LOGIC",
@@ -470,7 +470,7 @@ const i18n = {
     mod_harness_title: "Harness",
     mod_harness_desc: "自动生成线束图纸，并计算导线清单与线束直径。",
     mod_variant_title: "Variant / Option Configuration",
-    mod_variant_desc: "按Variant、Option、Configuration筛选图表，只看所需配置。",
+    mod_variant_desc: "按Variant、Option、Configuration显示所需配置。",
 
     // Feature: Logic
     feat_logic_label: "VEGAFENCER LOGIC",
@@ -691,7 +691,7 @@ const i18n = {
     mod_harness_title: "Harness",
     mod_harness_desc: "ハーネス図面を自動生成し、ワイヤーリストとバンドル径を計算します。",
     mod_variant_title: "Variant / Option Configuration",
-    mod_variant_desc: "Variant、Option、Configurationごとにダイアグラムを絞り込み、必要な構成だけを表示します。",
+    mod_variant_desc: "Variant、Option、Configurationごとに必要な構成を表示します。",
 
     // Feature: Logic
     feat_logic_label: "VEGAFENCER LOGIC",

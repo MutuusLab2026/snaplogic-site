@@ -58,13 +58,13 @@
       <a href="${here('product', '#variant')}" data-mod="variant" data-grp="2" class="reveal reveal-delay-1 group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
         <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5"></div>
         <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-primary-container transition-colors" translate="no" data-i18n="mod_variant_title">Variant / Option Configuration</h3>
-        <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n="mod_variant_desc">Variant, Option, Configuration별로 다이어그램을 걸러 원하는 구성만 봅니다.</p>
+        <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n="mod_variant_desc">Variant, Option, Configuration 별로 원하는 구성을 표시합니다.</p>
       </a>
 
       <a href="${here('product', '#enterprise')}" data-mod="library" data-grp="2" class="reveal reveal-delay-2 group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
         <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5"></div>
         <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-primary-container transition-colors" translate="no" data-i18n="mod_library_title">Library / Symbol Editor</h3>
-        <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n="mod_library_desc">표준화된 Library를 사용자별로 커스터마이즈하고, 필드별 속성을 지정합니다.</p>
+        <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n="mod_library_desc">표준화된 라이브러리를 사용자화하고, 필드별 속성을 지정합니다.</p>
       </a>
 
       <a href="${here('product', '#enterprise')}" data-mod="multiuser" data-grp="3" class="reveal reveal-delay-3 group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
