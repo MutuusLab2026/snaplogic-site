@@ -21,8 +21,8 @@ const i18n = {
 
     // Core Modules
     modules_label: "CORE MODULES",
-    modules_title: "하나의 플랫폼, 완전한 E/E 설계",
-    modules_desc: "회로도의 전기적 의도부터 물리적 하네스 도면까지 — 열 개의 핵심 모듈이 끊김 없이 연결됩니다.",
+    modules_title: "설계부터 검증, 협업까지 하나의 플랫폼에서 이어집니다.",
+    modules_desc: "회로 설계부터 전원·규칙 검증, 팀 협업과 3D CAD 연동까지 — 열 개의 핵심 모듈이 모든 과정을 지원합니다.",
     mod_logic_title: "Logic",
     mod_logic_desc: "핀 단위로 연결을 정의하고, 전기적 오류를 바로 검증합니다.",
     mod_integrator_title: "Integrator",
@@ -241,8 +241,8 @@ const i18n = {
 
     // Core Modules
     modules_label: "CORE MODULES",
-    modules_title: "One platform, complete E/E design",
-    modules_desc: "From the electrical intent of schematics to physical harness drawings — ten core modules seamlessly connected.",
+    modules_title: "From design to verification and collaboration, it all connects on one platform.",
+    modules_desc: "From circuit design to power and rule checks, team collaboration and 3D CAD integration — ten core modules support every step.",
     mod_logic_title: "Logic",
     mod_logic_desc: "Define connections pin by pin and check for electrical errors right away.",
     mod_integrator_title: "Integrator",
@@ -461,8 +461,8 @@ const i18n = {
 
     // Core Modules
     modules_label: "核心模块",
-    modules_title: "一个平台，完整的E/E设计",
-    modules_desc: "从电路图的电气意图到物理线束图纸 — 十个核心模块无缝连接。",
+    modules_title: "从设计到验证、协作，在同一个平台上贯通。",
+    modules_desc: "从电路设计到电源与规则检查、团队协作和3D CAD联动 — 十个核心模块支持每一个环节。",
     mod_logic_title: "Logic",
     mod_logic_desc: "按引脚定义连接，并即时检查电气错误。",
     mod_integrator_title: "Integrator",
@@ -682,8 +682,8 @@ const i18n = {
 
     // Core Modules
     modules_label: "コアモジュール",
-    modules_title: "一つのプラットフォーム、完全なE/E設計",
-    modules_desc: "回路図の電気的意図から物理的ハーネス図面まで — 10のコアモジュールがシームレスに接続されます。",
+    modules_title: "設計から検証、コラボレーションまで、一つのプラットフォームでつながります。",
+    modules_desc: "回路設計から電源・ルール検証、チームコラボレーション、3D CAD連携まで — 10のコアモジュールがすべての工程を支えます。",
     mod_logic_title: "Logic",
     mod_logic_desc: "ピン単位で接続を定義し、電気的なエラーをその場で検証します。",
     mod_integrator_title: "Integrator",
