@@ -616,51 +616,36 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 .hcta-plan span { color: #5b6e7f; font-size: 15px; }
 @media (prefers-reduced-motion: reduce) { .hcta-link svg { transition: none; } .hcta-link:hover svg { transform: none; } }
 
-/* ---- Home: VegaFencer 도입 효과 (#stats, 2026-11-23). Title column closed by a short thick divider, then one set:
-   the 70% block and, beside it, 100% and Zero with a small picture each. The two blocks are centred on each other.
-   Negative margins pull each text box in to the letters, so "centred" and the 40px gap under 70% are what the eye sees
-   (pixel-checked at 1440). Wide desktop (zoomed by --hero-s, so laid out at about 1440): one row. Narrower: stacked. ---- */
+/* ---- Home: The Impact (#stats, 2026-11-23). Title, a thick divider and three figures in one row: each figure is a big
+   number over its label, the two centred on each other. Wide desktop (zoomed by --hero-s, laid out at about 1440): the
+   five items spread over the width so the visible gaps between them are equal (112px at 1440, pixel-checked).
+   Narrower: stacked and centred. ---- */
 .kf-sec { padding: 64px 0; }
-:where(.kf-sec) p { margin: 0; }
-.kf-title { margin: 0; white-space: pre-line; font: 800 28px/1.2 Inter, 'Noto Sans KR', sans-serif; letter-spacing: -.035em; color: #151b2b; }
-.kf-title::after { content: ''; display: block; width: 48px; height: 4px; margin-top: 20px; background: #151b2b; }
-.kf-hero { display: flex; flex-direction: column; gap: 12px; margin-top: 40px; }
-.kf-hero-n { font: 800 104px/.9 Inter, sans-serif; letter-spacing: -.055em; color: #1765cc; margin-top: -.073em; }
-.kf-hero-n small, .kf-n small { font-size: .42em; letter-spacing: -.02em; margin-left: 2px; }
-.kf-hero-l { font: 700 24px/1.3 Inter, 'Noto Sans KR', sans-serif; letter-spacing: -.02em; color: #151b2b; text-wrap: balance; }
-.kf-side { margin-top: 40px; max-width: 420px; }
-.kf-row { padding: 14px 0; border-top: 1px solid #c2cbd4; }
-.kf-row:first-child { padding-top: 0; border-top: 0; }
-.kf-row:last-child { padding-bottom: 0; }
-.kf-fig { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; }
-.kf-n { font: 700 42px/1 Inter, sans-serif; letter-spacing: -.04em; color: #151b2b; }
-.kf-l { font: 700 18px/1.45 Inter, 'Noto Sans KR', sans-serif; color: #414754; }
-.kf-match, .kf-flow { margin-top: 8px; font: 500 11px/1.3 Inter, 'Noto Sans KR', sans-serif; color: #5b6e7f; }
-.kf-match { display: grid; grid-template-columns: max-content 1fr; gap: 8px 10px; align-items: center; max-width: 320px; }
-.kf-match i { display: flex; justify-content: space-between; position: relative; }
-.kf-match i::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 2px; margin-top: -1px; background: var(--c); }
-.kf-match i b { width: 9px; height: 9px; border-radius: 50%; background: #fff; border: 2px solid var(--c); position: relative; }
-.kf-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
-.kf-flow b { padding: 5px 10px; border-radius: 6px; background: #fff; border: 1px solid #dfe5eb; color: #151b2b; font-weight: 600; }
-.kf-flow .kf-x { color: #5b6e7f; text-decoration: line-through; border-style: dashed; }
-.kf-flow svg { width: 14px; height: 14px; color: #1765cc; flex: none; }
-@media (min-width: 640px) {
-  .kf-hero-n { font-size: 128px; }
-  .kf-hero-l { font-size: 30px; }
-}
-@media (min-width: 768px) { .kf-sec { padding: 96px 0; } .kf-title { font-size: 36px; } }
+.kf-lead { margin: -28px 0 0 !important; text-align: center; text-wrap: balance; }   /* tagline template (.lg-tagline): under the title on phones, above the figures on desktop */
+.kf { display: flex; flex-direction: column; align-items: center; gap: 40px; text-align: center; }
+.kf-title { white-space: pre-line; }
+.kf-bar { width: 48px; height: 4.5px; background: #151b2b; margin: -16px 0 0; }
+.kf-fig { display: flex; flex-direction: column; align-items: center; }
+:where(.kf) p { margin: 0; }
+.kf-n { font: 775 88px/.9 Inter, sans-serif; letter-spacing: -.055em; color: #1765cc; }
+.kf-n small { font-size: .42em; letter-spacing: -.02em; margin-left: 2px; }
+.kf-word { padding-right: .055em; }   /* the last letter's negative spacing pushed the ink right of the box */
+.kf-l { margin-top: 16px !important; font: 700 22px/1.3 Inter, 'Noto Sans KR', sans-serif; letter-spacing: -.02em; color: #151b2b; }
+@media (min-width: 768px) { .kf-sec { padding: 96px 0; } }
 @media (min-width: 1101px) {
-  .kf-sec { padding: 120px 0; }
-  /* title -> divider 56px, divider -> 70% 176px, 70% -> right 88px. The gaps are grid columns: when a language runs
-     long (en, ja), the divider -> 70% gap gives way (down to 72px) before the right block's text has to wrap. */
-  .kf { display: grid; grid-template-columns: max-content minmax(56px, 176px) max-content 88px minmax(350px, 380px); align-items: center; }
-  .kf-hero { grid-column: 3; }
-  .kf-side { grid-column: 5; }
-  .kf-head { align-self: stretch; display: flex; align-items: center; position: relative; padding-right: 56px; }
-  .kf-title { font-size: 40px; }
-  .kf-title::after { position: absolute; right: 0; top: 50%; width: 5px; height: 40%; margin: 0; transform: translateY(-50%); }
-  .kf-hero { margin: 0; gap: 21px; align-items: center; }   /* 70% centred over its label (the label sets the width in en) */
-  .kf-hero-n { font-size: 148px; }
-  .kf-hero-l { font-size: 36px; white-space: nowrap; margin-bottom: -7px; }   /* one line in every language (en ran to two) */
-  .kf-side { margin: 0; max-width: none; }
+  .kf-sec { padding: 104px 0 112px; }
+  .kf { flex-wrap: wrap; }
+  .kf-lead { order: -1; flex: 0 0 100%; margin: 0 0 48px !important; text-align: left; font-size: 26px; }   /* first line on its own, a step larger than the usual tagline (2026-11-23) */
+  .kf { flex-direction: row; justify-content: space-between; gap: 0; text-align: center; }
+  .kf-title { text-align: left; }
+  .kf-bar { width: 4.5px; height: 92px; margin: 0; position: relative; top: 4px; }   /* centred on the title's letters */
+  .kf-n { font-size: 64px; margin-top: -.073em; }
+  .kf-l { margin-top: 12px !important; font-size: 20px; }
+  .kf-fig { position: relative; top: 6px; }   /* the figures' letters centred on the title's (pixel-checked) */
+  /* box edges are not ink edges (side bearings, the small %, tight letter spacing): nudge so the visible gaps match,
+     per language since the labels differ in width (pixel-checked at 1440) */
+  .kf-bar { transform: translateX(2.0px); } .kf > .kf-fig:nth-child(4) { transform: translateX(2.0px); } .kf > .kf-fig:nth-child(5) { transform: translateX(2.0px); }
+  html[lang="en"] .kf-bar { transform: translateX(2.0px); } html[lang="en"] .kf > .kf-fig:nth-child(4) { transform: translateX(2.0px); } html[lang="en"] .kf > .kf-fig:nth-child(5) { transform: translateX(1.0px); }
+  html[lang="zh"] .kf-bar { transform: translateX(1.8px); } html[lang="zh"] .kf > .kf-fig:nth-child(4) { transform: translateX(2.5px); } html[lang="zh"] .kf > .kf-fig:nth-child(5) { transform: translateX(1.2px); }
+  html[lang="ja"] .kf-bar { transform: translateX(2.0px); } html[lang="ja"] .kf > .kf-fig:nth-child(4) { transform: translateX(3.0px); } html[lang="ja"] .kf > .kf-fig:nth-child(5) { transform: translateX(1.0px); }
 }
