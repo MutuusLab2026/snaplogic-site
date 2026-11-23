@@ -482,21 +482,28 @@ const Controller = {
   },
 
   /* CTA 1 switch (#cta-ask): turns off while the card is out of view and flips on again each time it comes back
-     (as soon as a quarter of the card is in view); pressing it turns it off and on, just for fun. Reduced motion: stays on. */
+     (as soon as it can be seen); pressing it turns it off and on, just for fun. Reduced motion: stays on. */
   initCtaSwitch() {
     const sw = document.querySelector('#cta-ask .hcta-switch');
     if (!sw) return;
     const set = (on) => { sw.classList.toggle('is-on', on); sw.setAttribute('aria-pressed', String(on)); };
     sw.addEventListener('click', () => set(!sw.classList.contains('is-on')));
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    let timer = 0;
+    // On when half the card is in view. The first time, the card is still fading in (.reveal, 0.7s), so the flip waits
+    // until it is mostly visible; after that (the card stays visible) it flips at once.
+    const card = sw.closest('.hcta-band');
+    let timer = 0, shownAt = 0;
+    new MutationObserver(() => { if (card.classList.contains('visible') && !shownAt) shownAt = performance.now(); })
+      .observe(card, { attributes: true, attributeFilter: ['class'] });
     new IntersectionObserver((entries) => {
       entries.forEach((e) => {
-        // off only once the card is fully out of view (never while someone is looking at it); on when most of it is in
-        if (!e.isIntersecting) { clearTimeout(timer); set(false); }
-        else if (e.intersectionRatio >= 0.25 && !sw.classList.contains('is-on')) { clearTimeout(timer); set(true); }   // at once, no delay (2026-11-24)
+        clearTimeout(timer);
+        if (!e.isIntersecting) { set(false); return; }   // fully out of view: ready to flip again
+        if (e.intersectionRatio < 0.5 || sw.classList.contains('is-on')) return;
+        const wait = shownAt ? Math.max(0, 450 - (performance.now() - shownAt)) : 450;
+        timer = setTimeout(() => set(true), wait);
       });
-    }, { threshold: [0, 0.25] }).observe(sw.closest('.hcta-band'));
+    }, { threshold: [0, 0.5] }).observe(card);
   },
 
   /* Chat Sequential Animation — reveal messages one by one */
