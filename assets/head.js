@@ -1,4 +1,4 @@
-/* Web fonts: Google Fonts only for Korean and English, loaded without blocking the page (Chinese and Japanese use the device fonts). */
+/* Web fonts: Google Fonts only for Korean and English, requested at once without blocking the page (Chinese and Japanese use the device fonts). */
 window.loadWebFonts = function (lang) {
   if (window.__webFontsLoaded || (lang !== 'ko' && lang !== 'en')) return;
   window.__webFontsLoaded = true;
@@ -12,5 +12,7 @@ window.loadWebFonts = function (lang) {
   var saved = null, nav = (navigator.language || '').toLowerCase();
   try { saved = localStorage.getItem('lang'); } catch (_) {}
   var lang = saved || (nav.indexOf('zh') === 0 ? 'zh' : 'ko');
-  window.addEventListener('load', function () { window.loadWebFonts(lang); });
+  // Right away (2026-11-24): waiting for the load event meant waiting for every image, so the headline showed in the
+  // fallback font for a long time and then jumped. The stylesheet still does not block the page (display=swap).
+  window.loadWebFonts(lang);
 })();

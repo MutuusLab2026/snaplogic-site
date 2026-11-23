@@ -25,7 +25,9 @@
   }
   place();
   addEventListener('resize', place);
-  addEventListener('DOMContentLoaded', place);   // engineering.js sets --hero-s then
+  // engineering.js sets --hero-s on DOMContentLoaded, after this listener; place again on the next tick, then show the
+  // photo (it is hidden until then, site.css), so it never appears off to the side and slides into place (2026-11-24)
+  addEventListener('DOMContentLoaded', function () { setTimeout(function () { place(); img.classList.add('is-placed'); }, 0); });
   addEventListener('load', place);
   wide.addEventListener('change', place);
   if (window.ResizeObserver) new ResizeObserver(place).observe(box);

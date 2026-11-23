@@ -618,14 +618,6 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 .hcta-btn2 { border: 1.5px solid #151b2b; color: #151b2b; background: #fff; }
 .hcta-btn2:hover { background: #eef1f4; }
 .hcta-btn:focus-visible { outline: 2px solid #1765cc; outline-offset: 3px; }
-/* Wide desktop (2026-11-24): the card is scaled 1.05 as one piece (every proportion kept; the scale property, so the fade-in transform does not undo it) and made wider, so that after
-   scaling the switch's left edge and the last button's right edge sit on the content edges of the sections above
-   (layout width = C / 1.05 + 2 x the 56px inner padding). The title is 32px (33.6px as seen); The Impact tagline above it is 30px. */
-@media (min-width: 1101px) {
-  .hcta-band { padding: 64px 56px; scale: 1.05; margin-inline: calc((100% - 100% / 1.05) / 2 - 56px); }
-  .hcta-title { font-size: 32px; }   /* 33.6px as seen (x 1.05) */
-  .hcta-lead { font-size: 18px; margin-top: 14px; }
-}
 /* A switch left of the text: it flips on each time the card comes into view, and it can be pressed for fun (site.js
    initCtaSwitch, 2026-11-24). Off track #8a97a5 keeps 3:1 against the white card.
    Its gap to the text equals the card's inner padding, so card edge -> switch and switch -> text are the same. */
@@ -649,6 +641,23 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
   .hcta-switch.is-on:active::after { transform: translate(34px, -50%); }
 }
 @media (prefers-reduced-motion: reduce) { .hcta-switch, .hcta-switch::after { transition: none; } }
+/* Wide desktop (2026-11-24): the card at 1.05 of its base size, every proportion kept. Written out as sizes, not with a
+   scale transform (that blurred the text). The card reaches out by its inner padding, so the switch's left edge and the
+   last button's right edge sit on the content edges of the sections above. Title 33.6px; The Impact tagline is 30px. */
+@media (min-width: 1101px) {
+  .hcta-band { padding: 67.2px 58.8px; margin-inline: -58.8px; border-radius: 21px; gap: 25.2px 42px; }
+  .hcta-title { font-size: 33.6px; }
+  .hcta-lead { font-size: 18.9px; margin-top: 14.7px; }
+  .hcta-text { gap: 58.8px; }
+  .hcta-switch { width: 92.4px; height: 50.4px; }
+  .hcta-switch::after { left: 5.25px; width: 39.9px; height: 39.9px; }
+  .hcta-switch.is-on::after { transform: translate(42px, -50%); }
+  .hcta-switch:active::after { width: 46.2px; }
+  .hcta-switch.is-on:active::after { transform: translate(35.7px, -50%); }
+  .hcta-actions { gap: 12.6px; }
+  .hcta-btn { min-height: 54.6px; padding: 0 27.3px; border-radius: 10.5px; font-size: 16.8px; gap: 8.4px; }
+  .hcta-btn svg { width: 15.75px; height: 15.75px; }
+}
 /* the text takes the free width and wraps, so the buttons stay on the right in every language */
 .hcta-band > div:first-child { flex: 1 1 360px; min-width: 0; }
 .hcta-btn { white-space: nowrap; }

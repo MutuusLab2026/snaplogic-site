@@ -858,7 +858,8 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
   --nav-h: 73px; padding-top: var(--nav-h);
   height: calc(var(--nav-h) + clamp(480px, (100svh - var(--nav-h)) * .65, 760px)); }
 .hero-photo { position: absolute; left: 0; right: 0; top: var(--nav-h); bottom: 0; overflow: hidden; }
-.hero-bg { position: absolute; max-width: none;
+.hero-bg { position: absolute; max-width: none; opacity: 0; transition: opacity .35s ease;   /* shown once hero.js has placed it */
+
   -webkit-mask-image: linear-gradient(90deg, transparent 0, transparent 14%, rgba(0,0,0,.18) 30%, #000 44%, #000 82%, rgba(0,0,0,.72) 86.5%, rgba(0,0,0,.35) 90.5%, rgba(0,0,0,.1) 93%, transparent 94.3%);
           mask-image: linear-gradient(90deg, transparent 0, transparent 14%, rgba(0,0,0,.18) 30%, #000 44%, #000 82%, rgba(0,0,0,.72) 86.5%, rgba(0,0,0,.35) 90.5%, rgba(0,0,0,.1) 93%, transparent 94.3%); }
 .hero-shade { position: absolute; inset: 0; z-index: 1; background:
@@ -882,10 +883,13 @@ html[lang="zh"] .hero-sub, html[lang="ja"] .hero-sub { font-family: inherit; }
 @media (max-width: 767px) {
   .hero { --nav-h: 105px; height: auto; padding-bottom: 48px; }
   .hero-photo { position: relative; top: 0; height: 300px; }
-  .hero-bg { left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% 50%;
+  .hero-bg { opacity: 1; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% 50%;
     -webkit-mask-image: none; mask-image: none; }
   .hero-shade { background: linear-gradient(0deg, var(--hero-ink) 0%, rgba(15,26,36,0) 45%); }
   .hero-copy { margin-top: -40px; }
   .hero h1 { font-size: 32px; }
   .hero-cat { font-size: 19px; white-space: normal; }   /* same steps as the section tagline (22 / 19px) */
 }
+
+.hero-bg.is-placed { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .hero-bg { transition: none; } }
