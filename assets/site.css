@@ -759,7 +759,9 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
   --ga-left: max(16px, calc((100% - 1280px) / 2 + 32px));      /* same left edge as the heading */
   --ga-info: 340px; --ga-gap: 28px; --ga-shift: 100px;          /* caption block width, gap, and its nudge to the right */
   --ga-h: calc((100svh - 72px) / var(--hero-s, 1) - 308px);    /* what the window leaves under the header and heading (with the lead line) */
-  --ga-w: min(calc(100% - 2 * var(--ga-left) - var(--ga-info) - var(--ga-gap)), calc(var(--ga-h) * 2)); }
+  /* the width cap counts the nudge too, so the caption block never ends right of the arrows (2026-11-23: in tall
+     windows, e.g. Safari with its thin toolbar, the screen grew to the width cap and pushed the block to the edge) */
+  --ga-w: min(calc(100% - 2 * var(--ga-left) - var(--ga-info) - var(--ga-gap) - var(--ga-shift)), calc(var(--ga-h) * 2)); }
 /* room below for the screen shadow and the blur, which a scrolling row would otherwise cut off in a straight line */
 .ga-track { display: flex; gap: 0;   /* screens sit edge to edge; the side ones shrink about their centre (below) */
    padding: 8px 0 48px var(--ga-left); margin-bottom: -44px; scroll-padding-left: var(--ga-left);
