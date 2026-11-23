@@ -630,7 +630,7 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 .hcta-link:hover svg { transform: translateX(3px); }
 .hcta-link:focus-visible { outline: 2px solid #1765cc; outline-offset: 3px; }
 .hcta-plans { display: grid; gap: 16px; margin: 32px 0 16px; padding: 0; list-style: none; }
-@media (min-width: 768px) { .hcta-plans { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 768px) { .hcta-plans { grid-template-columns: repeat(2, 1fr); } }   /* two plans: Professional, Enterprise (no Standard, 2026-11-23) */
 .hcta-plan { padding: 24px 28px; border-radius: 8px; background: #fff; border: 1px solid #dfe5eb; }
 .hcta-plan b { display: block; margin-bottom: 6px; font: 800 20px/1.3 Inter, sans-serif; color: #151b2b; }
 .hcta-plan span { color: #5b6e7f; font-size: 15px; }
