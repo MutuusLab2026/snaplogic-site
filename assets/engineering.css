@@ -659,7 +659,7 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
   .kf-head { align-self: stretch; display: flex; align-items: center; position: relative; padding-right: 56px; }
   .kf-title { font-size: 40px; }
   .kf-title::after { position: absolute; right: 0; top: 50%; width: 5px; height: 40%; margin: 0; transform: translateY(-50%); }
-  .kf-hero { margin: 0; gap: 21px; }
+  .kf-hero { margin: 0; gap: 21px; align-items: center; }   /* 70% centred over its label (the label sets the width in en) */
   .kf-hero-n { font-size: 148px; }
   .kf-hero-l { font-size: 36px; white-space: nowrap; margin-bottom: -7px; }   /* one line in every language (en ran to two) */
   .kf-side { margin: 0; max-width: none; }
