@@ -630,6 +630,11 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 .kf-n { font: 775 88px/.9 Inter, sans-serif; letter-spacing: -.055em; color: #1765cc; }
 .kf-n small { font-size: .42em; letter-spacing: -.02em; margin-left: 2px; }
 .kf-word { padding-right: .055em; }   /* the last letter's negative spacing pushed the ink right of the box */
+.kf-sec { position: relative; }
+.kf-l sup { font-size: .6em; margin-left: 1px; top: -.6em; }
+.kf-minus { margin-right: .04em; }
+/* footnote for the cost figure: under the figures on phones, in the section's bottom-right corner (screen edge) on desktop */
+.kf-note { margin: 32px 16px 0; text-align: center; text-wrap: balance; font: 500 11px/1.4 Inter, 'Noto Sans KR', sans-serif; color: #5b6e7f; }
 .kf-l { margin-top: 16px !important; font: 700 22px/1.3 Inter, 'Noto Sans KR', sans-serif; letter-spacing: -.02em; color: #151b2b; }
 @media (min-width: 768px) { .kf-sec { padding: 96px 0; } }
 @media (min-width: 1101px) {
@@ -642,10 +647,12 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
   .kf-n { font-size: 64px; margin-top: -.073em; }
   .kf-l { margin-top: 12px !important; font-size: 20px; }
   .kf-fig { position: relative; top: 6px; }   /* the figures' letters centred on the title's (pixel-checked) */
+  .kf-note { position: absolute; right: 24px; bottom: 20px; margin: 0; text-align: right; }
+  html[lang="en"] .kf-l { max-width: 170px; text-wrap: balance; }   /* English labels are long: two even lines leave room between the four figures */
   /* box edges are not ink edges (side bearings, the small %, tight letter spacing): nudge so the visible gaps match,
      per language since the labels differ in width (pixel-checked at 1440) */
-  .kf-bar { transform: translateX(2.0px); } .kf > .kf-fig:nth-child(4) { transform: translateX(2.0px); } .kf > .kf-fig:nth-child(5) { transform: translateX(2.0px); }
-  html[lang="en"] .kf-bar { transform: translateX(2.0px); } html[lang="en"] .kf > .kf-fig:nth-child(4) { transform: translateX(2.0px); } html[lang="en"] .kf > .kf-fig:nth-child(5) { transform: translateX(1.0px); }
-  html[lang="zh"] .kf-bar { transform: translateX(1.8px); } html[lang="zh"] .kf > .kf-fig:nth-child(4) { transform: translateX(2.5px); } html[lang="zh"] .kf > .kf-fig:nth-child(5) { transform: translateX(1.2px); }
-  html[lang="ja"] .kf-bar { transform: translateX(2.0px); } html[lang="ja"] .kf > .kf-fig:nth-child(4) { transform: translateX(3.0px); } html[lang="ja"] .kf > .kf-fig:nth-child(5) { transform: translateX(1.0px); }
+  .kf-bar { transform: translateX(1.8px); } .kf > .kf-fig:nth-child(4) { transform: translateX(1.6px); } .kf > .kf-fig:nth-child(5) { transform: translateX(2.4px); } .kf > .kf-fig:nth-child(6) { transform: translateX(1.2px); }
+  html[lang="en"] .kf-bar { transform: translateX(30.8px); } html[lang="en"] .kf > .kf-fig:nth-child(4) { transform: translateX(30.6px); } html[lang="en"] .kf > .kf-fig:nth-child(5) { transform: translateX(13.4px); } html[lang="en"] .kf > .kf-fig:nth-child(6) { transform: translateX(5.2px); }
+  html[lang="zh"] .kf-bar { transform: translateX(2.4px); } html[lang="zh"] .kf > .kf-fig:nth-child(4) { transform: translateX(3.8px); } html[lang="zh"] .kf > .kf-fig:nth-child(5) { transform: translateX(4.2px); } html[lang="zh"] .kf > .kf-fig:nth-child(6) { transform: translateX(3.6px); }
+  html[lang="ja"] .kf-bar { transform: translateX(3.8px); } html[lang="ja"] .kf > .kf-fig:nth-child(4) { transform: translateX(4.6px); } html[lang="ja"] .kf > .kf-fig:nth-child(5) { transform: translateX(3.4px); } html[lang="ja"] .kf > .kf-fig:nth-child(6) { transform: translateX(3.2px); }
 }

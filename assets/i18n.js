@@ -113,6 +113,8 @@ const i18n = {
     stat3: "논리-하네스 일관성",
     stat4_value: "Zero",
     stat4: "수동 데이터 변환",
+    stat5: "라이선스 비용 절감",
+    stats_note: "*2026년 ○월 기준, 동급 E/E 설계 툴 3종의 연간 좌석당 공개 가격 평균과 비교",
 
     // Gallery
     gallery_label: "PRODUCT GALLERY",
@@ -338,6 +340,8 @@ const i18n = {
     stat3: "Logic-harness consistency",
     stat4_value: "Zero",
     stat4: "Manual data conversion",
+    stat5: "License cost savings",
+    stats_note: "*Compared with the average published annual per-seat price of three comparable E/E design tools, as of ○ 2026.",
 
     // Gallery
     gallery_label: "PRODUCT GALLERY",
@@ -563,6 +567,8 @@ const i18n = {
     stat3: "逻辑-线束一致性",
     stat4_value: "Zero",
     stat4: "手动数据转换",
+    stat5: "许可费用节省",
+    stats_note: "*以 2026 年 ○ 月为准，与 3 款同类 E/E 设计工具的每席位年度公开价格平均值相比。",
 
     // Gallery
     gallery_label: "产品展示",
@@ -789,6 +795,8 @@ const i18n = {
     stat3: "ロジック-ハーネス一貫性",
     stat4_value: "Zero",
     stat4: "手動データ変換",
+    stat5: "ライセンス費用の削減",
+    stats_note: "*2026年○月時点、同等クラスの E/E 設計ツール3製品の年間1席あたり公開価格の平均と比較。",
 
     // Gallery
     gallery_label: "製品ギャラリー",
