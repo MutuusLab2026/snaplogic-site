@@ -463,12 +463,13 @@ const Controller = {
     const spin = () => {
       if (started) return;
       started = true;
-      setTimeout(() => {
+      // all reels start together, as the block starts to rise; they stop a little apart (left to right)
+      requestAnimationFrame(() => {
         reels.forEach((r, i) => {
-          r.strip.style.transitionDelay = (i * 0.09) + 's';
+          r.strip.style.transitionDuration = (1.5 + i * 0.12).toFixed(2) + 's';
           r.strip.style.transform = 'translateY(' + (-r.steps * 0.9) + 'em)';
         });
-      }, 450);   // after the rise of the block (.reveal, 0.7s) is mostly done
+      });
     };
     if (block.classList.contains('visible')) spin();
     else new MutationObserver((list, mo) => { if (block.classList.contains('visible')) { mo.disconnect(); spin(); } })
