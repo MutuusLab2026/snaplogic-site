@@ -14,7 +14,7 @@
       <p class="lg-kicker">PLATFORM</p>
       <h2 class="lg-name" translate="no">Core Modules</h2>
       <p class="lg-tagline" data-i18n="modules_title">설계부터 검증, 협업까지 하나의 플랫폼에서 이어집니다.</p>
-      <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead" data-i18n="modules_desc">회로 설계부터 전원·규칙 검증, 팀 협업과 3D CAD 연동까지 — 열 개의 핵심 모듈이 모든 과정을 지원합니다.</p>
+      <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead" data-i18n="modules_desc">회로 설계부터 전원·규칙 검증, 팀 협업과 3D&nbsp;CAD 연동까지 — 열 개의 핵심 모듈이 설계의 전 과정을 함께합니다.</p>
     </header>
 
     <!-- Module groups: the colour of each card's symbol (engineering.css, data-grp) -->

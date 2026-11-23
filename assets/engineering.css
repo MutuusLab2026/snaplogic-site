@@ -590,3 +590,5 @@ html[lang="ja"] * { word-break: auto-phrase; }
 /* ---- Home: Core Modules header uses the same template as the other home sections (left-aligned, cards right below). ---- */
 .modules-head { max-width: 900px; margin-bottom: 24px; }
 .modules-head .lg-lead { margin: 10px 0 0; }
+/* other languages: the lead wraps at 1440 and left one word on its own line, so split it into even lines (2026-11-23); Korean keeps the usual wrap */
+html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }

@@ -22,7 +22,7 @@ const i18n = {
     // Core Modules
     modules_label: "CORE MODULES",
     modules_title: "설계부터 검증, 협업까지 하나의 플랫폼에서 이어집니다.",
-    modules_desc: "회로 설계부터 전원·규칙 검증, 팀 협업과 3D CAD 연동까지 — 열 개의 핵심 모듈이 모든 과정을 지원합니다.",
+    modules_desc: "회로 설계부터 전원·규칙 검증, 팀 협업과 3D\u00a0CAD 연동까지 — 열 개의 핵심 모듈이 설계의 전 과정을 함께합니다.",
     mod_logic_title: "Logic",
     mod_logic_desc: "핀 단위로 연결을 정의하고, 전기적 오류를 바로 검증합니다.",
     mod_integrator_title: "Integrator",
@@ -242,7 +242,7 @@ const i18n = {
     // Core Modules
     modules_label: "CORE MODULES",
     modules_title: "From design to verification and collaboration, it all connects on one platform.",
-    modules_desc: "From circuit design to power and rule checks, team collaboration and 3D CAD integration — ten core modules support every step.",
+    modules_desc: "From circuit design to power and rule checks, team collaboration and 3D\u00a0CAD integration — ten core modules cover the entire design process.",
     mod_logic_title: "Logic",
     mod_logic_desc: "Define connections pin by pin and check for electrical errors right away.",
     mod_integrator_title: "Integrator",
@@ -462,7 +462,7 @@ const i18n = {
     // Core Modules
     modules_label: "核心模块",
     modules_title: "从设计到验证、协作，在同一个平台上贯通。",
-    modules_desc: "从电路设计到电源与规则检查、团队协作和3D CAD联动 — 十个核心模块支持每一个环节。",
+    modules_desc: "从电路设计到电源与规则检查、团队协作和3D\u00a0CAD联动 — 十个核心模块贯穿设计全过程。",
     mod_logic_title: "Logic",
     mod_logic_desc: "按引脚定义连接，并即时检查电气错误。",
     mod_integrator_title: "Integrator",
@@ -683,7 +683,7 @@ const i18n = {
     // Core Modules
     modules_label: "コアモジュール",
     modules_title: "設計から検証、コラボレーションまで、一つのプラットフォームでつながります。",
-    modules_desc: "回路設計から電源・ルール検証、チームコラボレーション、3D CAD連携まで — 10のコアモジュールがすべての工程を支えます。",
+    modules_desc: "回路設計から電源・ルール検証、チームコラボレーション、3D\u00a0CAD連携まで — 10のコアモジュールが設計の全工程をカバーします。",
     mod_logic_title: "Logic",
     mod_logic_desc: "ピン単位で接続を定義し、電気的なエラーをその場で検証します。",
     mod_integrator_title: "Integrator",
