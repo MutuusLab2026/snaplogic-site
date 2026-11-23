@@ -110,6 +110,7 @@ const Controller = {
       'initLanguage',
       'initNavActiveState',
       'initCounters',
+      'initImpactSlots',
       'initChatAnimation',
       'initContactForm',
       'initHeroSlideshow',
@@ -402,6 +403,76 @@ const Controller = {
       });
     }, { threshold: 0.3 });
     counters.forEach(el => observer.observe(el));
+  },
+
+  /* The Impact (#stats): once the block has risen into view, each figure spins like a slot machine and stops on its
+     value; the digits reel through 0-9, and "Zero" counts down Ten, Nine ... One before stopping (2026-11-23).
+     The reel takes the final character's width, so the layout (and the equal gaps) never moves; wider characters
+     passing through may overhang the sides. Screen readers get the plain value; reduced motion skips the spin. */
+  initImpactSlots() {
+    const block = document.querySelector('#stats .kf');
+    if (!block || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const words = ['Ten', 'Nine', 'Eight', 'Seven', 'Six', 'Five', 'Four', 'Three', 'Two', 'One', 'Zero'];
+    const reels = [];
+    const makeReel = (finalText, items) => {
+      const reel = document.createElement('span');
+      reel.className = 'kf-reel';
+      reel.setAttribute('aria-hidden', 'true');
+      const sizer = document.createElement('span');
+      sizer.className = 'kf-reel-size';
+      sizer.textContent = finalText;
+      const strip = document.createElement('span');
+      strip.className = 'kf-strip';
+      items.forEach((t) => { const i = document.createElement('span'); i.textContent = t; strip.appendChild(i); });
+      reel.append(sizer, strip);
+      reels.push({ strip, steps: items.length - 1 });
+      return reel;
+    };
+    block.querySelectorAll('.kf-n').forEach((fig) => {
+      const plain = fig.textContent.trim();
+      const sr = document.createElement('span');
+      sr.className = 'sr-only';
+      sr.textContent = plain;
+      if (fig.classList.contains('kf-word')) {
+        fig.textContent = '';
+        fig.append(sr, makeReel('Zero', words));
+        return;
+      }
+      // digits only: the minus sign and the small % stay as they are
+      const walker = document.createTreeWalker(fig, NodeFilter.SHOW_TEXT);
+      const texts = [];
+      while (walker.nextNode()) if (/\d/.test(walker.currentNode.nodeValue) && !walker.currentNode.parentElement.closest('small')) texts.push(walker.currentNode);
+      texts.forEach((node) => {
+        const frag = document.createDocumentFragment();
+        const chars = [...node.nodeValue];
+        chars.forEach((ch, idx) => {
+          if (!/\d/.test(ch)) { frag.append(ch); return; }
+          const d = +ch, items = [];
+          // 100: the hundreds place stays empty while the two digits spin, and the 1 drops in as they stop
+          if (chars.length === 3 && idx === 0) { for (let k = 0; k < 20 + d; k++) items.push('\u00a0'); items.push(ch); }
+          else for (let k = 0; k <= 20 + d; k++) items.push(String(k % 10));   // two full turns, then the digit
+          frag.append(makeReel(ch, items));
+        });
+        node.replaceWith(frag);
+      });
+      [...fig.childNodes].forEach((n) => { if (n !== sr && n.nodeType === 1 && !n.classList.contains('kf-reel')) n.setAttribute('aria-hidden', 'true'); });
+      fig.querySelectorAll('.kf-minus, small').forEach((n) => n.setAttribute('aria-hidden', 'true'));
+      fig.prepend(sr);
+    });
+    let started = false;
+    const spin = () => {
+      if (started) return;
+      started = true;
+      setTimeout(() => {
+        reels.forEach((r, i) => {
+          r.strip.style.transitionDelay = (i * 0.09) + 's';
+          r.strip.style.transform = 'translateY(' + (-r.steps * 0.9) + 'em)';
+        });
+      }, 450);   // after the rise of the block (.reveal, 0.7s) is mostly done
+    };
+    if (block.classList.contains('visible')) spin();
+    else new MutationObserver((list, mo) => { if (block.classList.contains('visible')) { mo.disconnect(); spin(); } })
+      .observe(block, { attributes: true, attributeFilter: ['class'] });
   },
 
   /* Chat Sequential Animation — reveal messages one by one */

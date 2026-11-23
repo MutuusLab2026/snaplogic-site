@@ -631,6 +631,13 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 .kf-n small { font-size: .42em; letter-spacing: -.02em; margin-left: 2px; }
 .kf-word { padding-right: .055em; }   /* the last letter's negative spacing pushed the ink right of the box */
 .kf-sec { position: relative; }
+/* slot reels for the figures (site.js initImpactSlots): the box is the final character, the strip slides up behind
+   a window as tall as one line; sideways the characters may overhang (wider digits and words passing through) */
+.kf-reel { position: relative; display: inline-block; vertical-align: top; height: .9em; clip-path: inset(0 -1.5em); }
+.kf-reel-size { visibility: hidden; }
+.kf-strip { position: absolute; top: 0; left: 50%; display: flex; flex-direction: column; align-items: center;
+  transform: translateY(0); translate: -50% 0; transition: transform 1.9s cubic-bezier(.12, .8, .2, 1); }
+.kf-strip > span { display: block; height: .9em; line-height: .9em; white-space: nowrap; }
 .kf-l sup { font-size: .6em; margin-left: 1px; top: -.6em; }
 .kf-minus { margin-right: .04em; }
 /* footnote for the cost figure: under the figures on phones, in the section's bottom-right corner (screen edge) on desktop */
@@ -640,7 +647,7 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 @media (min-width: 1101px) {
   .kf-sec { padding: 144px 0 152px; }
   .kf { flex-wrap: wrap; }
-  .kf-lead { order: -1; flex: 0 0 100%; margin: 0 0 48px !important; text-align: left; font-size: 26px; }   /* first line on its own, a step larger than the usual tagline (2026-11-23) */
+  .kf-lead { order: -1; flex: 0 0 100%; margin: 0 0 48px !important; text-align: left; font-size: 29px; }   /* first line on its own, a step larger than the usual tagline (2026-11-23) */
   .kf { flex-direction: row; justify-content: space-between; gap: 0; text-align: center; }
   .kf-title { text-align: left; }
   .kf-bar { width: 4.5px; height: 92px; margin: 0; position: relative; top: 4px; }   /* centred on the title's letters */

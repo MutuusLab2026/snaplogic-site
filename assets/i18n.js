@@ -111,10 +111,9 @@ const i18n = {
     stats_lead: "VegaFencer가 만드는 변화, 숫자로 확인하세요.",
     stat1: "설계 시간 단축",
     stat3: "논리-하네스 일관성",
-    stat4_value: "Zero",
     stat4: "수동 데이터 변환",
     stat5: "라이선스 비용 절감",
-    stats_note: "*2026년 ○월 기준, 동급 E/E 설계 툴 3종의 연간 좌석당 공개 가격 평균과 비교",
+    stats_note: "*2026년 ○월 기준, 동급 E/E 설계 툴 3종의 사용자 1인당 연간 라이선스 공개 가격 평균과 비교",
 
     // Gallery
     gallery_label: "PRODUCT GALLERY",
@@ -338,7 +337,6 @@ const i18n = {
     stats_lead: "See the difference VegaFencer makes, in numbers.",
     stat1: "Design time reduction",
     stat3: "Logic-harness consistency",
-    stat4_value: "Zero",
     stat4: "Manual data conversion",
     stat5: "License cost savings",
     stats_note: "*Compared with the average published annual per-seat price of three comparable E/E design tools, as of ○ 2026.",
@@ -565,10 +563,9 @@ const i18n = {
     stats_lead: "VegaFencer 带来的改变，用数字来见证。",
     stat1: "设计时间缩短",
     stat3: "逻辑-线束一致性",
-    stat4_value: "Zero",
     stat4: "手动数据转换",
     stat5: "许可费用节省",
-    stats_note: "*以 2026 年 ○ 月为准，与 3 款同类 E/E 设计工具的每席位年度公开价格平均值相比。",
+    stats_note: "*以 2026 年 ○ 月为准，与 3 款同类 E/E 设计工具的每用户年度许可公开价格平均值相比。",
 
     // Gallery
     gallery_label: "产品展示",
@@ -793,10 +790,9 @@ const i18n = {
     stats_lead: "VegaFencer がもたらす変化を、数字でご確認ください。",
     stat1: "設計時間の短縮",
     stat3: "ロジック-ハーネス一貫性",
-    stat4_value: "Zero",
     stat4: "手動データ変換",
     stat5: "ライセンス費用の削減",
-    stats_note: "*2026年○月時点、同等クラスの E/E 設計ツール3製品の年間1席あたり公開価格の平均と比較。",
+    stats_note: "*2026年○月時点、同等クラスの E/E 設計ツール3製品の1ユーザーあたり年間ライセンス公開価格の平均と比較。",
 
     // Gallery
     gallery_label: "製品ギャラリー",
