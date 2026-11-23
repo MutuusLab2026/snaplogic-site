@@ -5,7 +5,7 @@ window.loadWebFonts = function (lang) {
   var pc = document.createElement('link'); pc.rel = 'preconnect'; pc.href = 'https://fonts.googleapis.com';
   var pg = document.createElement('link'); pg.rel = 'preconnect'; pg.href = 'https://fonts.gstatic.com'; pg.crossOrigin = '';
   var css = document.createElement('link'); css.rel = 'stylesheet';
-  css.href = 'https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&family=Inter:wght@400..800&family=Space+Grotesk:wght@400..700&family=Noto+Sans+KR:wght@400..800&display=swap';
+  css.href = 'https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&family=Inter:wght@400..900&family=Space+Grotesk:wght@400..700&family=Noto+Sans+KR:wght@400..800&display=swap';
   document.head.appendChild(pc); document.head.appendChild(pg); document.head.appendChild(css);
 };
 (function () {

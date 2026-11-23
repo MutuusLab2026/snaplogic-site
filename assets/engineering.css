@@ -516,7 +516,7 @@ body[data-page="home"] #ai, body[data-page="home"] #stats, body[data-page="home"
    (--hero-s, 1x at 1440 x 790), so on a big monitor the sections keep the proportions designed at 1440 instead of
    sitting small in the middle. zoom (not transform) so the page length grows with it. */
 @media (min-width: 1101px) {
-  body[data-page="home"] .engineering-after { zoom: var(--hero-s, 1); }
+  body[data-page="home"] .engineering-after { zoom: var(--page-s, var(--hero-s, 1)); }   /* width only (--page-s), not the window height (2026-11-23) */
   /* Other pages: the content and footer grow the same way. The space kept for the fixed header (and the stop
      under it when jumping to a section) is divided back, so it still matches the real header. */
   body:not([data-page="home"]) main, body:not([data-page="home"]) > footer { zoom: var(--hero-s, 1); }

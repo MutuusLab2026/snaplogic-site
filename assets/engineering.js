@@ -55,10 +55,11 @@
      1x at 1440 wide, 1.2x at 1920, 1.6x at 2560 and no more (ultrawide screens keep the content in the middle),
      straight lines in between. Never more than the height allows (1x = 790 tall, so the hero fits one screen),
      and never below .8. */
-  const heroScale = (w, h) => {
-    const byWidth = w <= 1440 ? w / 1440 : w <= 1920 ? 1 + (w - 1440) / 480 * .2 : Math.min(1.6, 1.2 + (w - 1920) / 640 * .4);
-    return Math.max(.8, Math.min(byWidth, h / 790));
-  };
+  const byWidth = (w) => w <= 1440 ? w / 1440 : w <= 1920 ? 1 + (w - 1440) / 480 * .2 : Math.min(1.6, 1.2 + (w - 1920) / 640 * .4);
+  const heroScale = (w, h) => Math.max(.8, Math.min(byWidth(w), h / 790));
+  // Everything that is scrolled (the home sections below the hero, and the other pages) only follows the width:
+  // the same width looks the same in any window height (Safari's taller window, Chrome's shorter one). 2026-11-23
+  const pageScale = (w) => Math.max(.8, byWidth(w));
   document.addEventListener('DOMContentLoaded', () => {
     const hero = document.getElementById('about');
     const nav = document.getElementById('nav');
@@ -66,8 +67,8 @@
     if (!hero) {
       const wideOnly = window.matchMedia('(min-width: 1101px)');
       const setScale = () => {
-        const w = document.documentElement.clientWidth, h = window.innerHeight;
-        const s = wideOnly.matches ? heroScale(w, h) : 1;
+        const w = document.documentElement.clientWidth;
+        const s = wideOnly.matches ? pageScale(w) : 1;
         document.documentElement.style.setProperty('--hero-s', s.toFixed(4));
       };
       addEventListener('resize', setScale);
@@ -82,6 +83,7 @@
         const s = wide.matches ? heroScale(w, h) : 1;
         // On the root so the header can use the same scale as the hero.
         document.documentElement.style.setProperty('--hero-s', s.toFixed(4));
+        document.documentElement.style.setProperty('--page-s', (wide.matches ? pageScale(w) : 1).toFixed(4));
         // If the content is taller than the screen allows (very low windows), the hero grows instead of clipping.
         hero.style.setProperty('--hero-need', wide.matches ? Math.floor(nav.offsetHeight + scaleBox.offsetHeight * s) + 'px' : '0px');
       };

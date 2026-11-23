@@ -667,7 +667,7 @@ html[lang="ja"] .story-label span, html[lang="zh"] .story-label span { font-fami
 #interface .lg-head { max-width: 900px; }
 /* #1765cc: at least 5:1 on every light section background (WCAG AA asks 4.5:1 for text this size). */
 .lg-kicker { margin: 0 0 12px; font: 700 13px/1 'Space Grotesk', sans-serif; letter-spacing: .2em; color: #1765cc; }
-.lg-name { margin: 0; font: 900 30px/1.05 Inter, sans-serif; letter-spacing: -.04em; color: #151b2b; }
+.lg-name { margin: 0; font: 800 30px/1.05 Inter, sans-serif; letter-spacing: -.04em; color: #151b2b; }
 @media (min-width: 768px) { .lg-name { font-size: 44px; } }   /* a step under the hero product name (56px), 2026-11-18 */
 .lg-tagline { margin: 12px 0 0; font: 700 19px/1.35 Inter, 'Noto Sans KR', sans-serif; letter-spacing: -.02em; color: #151b2b; }
 @media (min-width: 768px) { .lg-tagline { font-size: 22px; } }
@@ -730,7 +730,7 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
      the extra (pb - 40px) so the contents stay put */
   --ga-pb: 124px;
   /* fills the screen under the header; extra height is shared above and below */
-  --nav-h: 73px; box-sizing: border-box; min-height: calc((100svh - var(--nav-h)) / var(--hero-s, 1) + var(--ga-pb) - 40px);
+  --nav-h: 73px; box-sizing: border-box; min-height: calc((100svh - var(--nav-h)) / var(--page-s, var(--hero-s, 1)) + var(--ga-pb) - 40px);
   display: flex; flex-direction: column; justify-content: center; }
 @media (max-width: 767px) { .ga-sec { --nav-h: 105px; } }
 .ga-sec > .max-w-7xl { width: 100%; }   /* a centred box in a flex column would shrink to its content */
@@ -748,7 +748,7 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
 .ga-stage { position: relative; margin-top: 6px;
   --ga-left: max(16px, calc((100% - 1280px) / 2 + 32px));      /* same left edge as the heading */
   --ga-info: 340px; --ga-gap: 28px; --ga-shift: 100px;          /* caption block width, gap, and its nudge to the right */
-  --ga-h: calc((100svh - 72px) / var(--hero-s, 1) - 308px);    /* what the window leaves under the header and heading (with the lead line) */
+  --ga-h: calc((100svh - 72px) / var(--page-s, var(--hero-s, 1)) - 308px);    /* what the window leaves under the header and heading (with the lead line) */
   /* the width cap counts the nudge too, so the caption block never ends right of the arrows (2026-11-23: in tall
      windows, e.g. Safari with its thin toolbar, the screen grew to the width cap and pushed the block to the edge) */
   --ga-w: min(calc(100% - 2 * var(--ga-left) - var(--ga-info) - var(--ga-gap) - var(--ga-shift)), calc(var(--ga-h) * 2)); }
@@ -862,7 +862,7 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
   linear-gradient(0deg, rgba(15,26,36,.45), rgba(15,26,36,0) 25%); }
 .hero-copy { position: relative; z-index: 1; height: 100%; display: flex; flex-direction: column; justify-content: center; }
 @media (min-width: 1101px) { .hero-copy { zoom: var(--hero-s, 1); } }   /* same scale as the header on wide screens */
-.hero h1 { margin: 0; font: 800 56px/1.05 Inter, 'Noto Sans KR', sans-serif; letter-spacing: -.035em; color: #fff; }
+.hero h1 { margin: 0; font: 850 52px/1.05 Inter, 'Noto Sans KR', sans-serif; letter-spacing: -.035em; color: #fff; }
 .hero-cat { margin: 14px 0 0; white-space: nowrap; font: 600 22px/1.35 Inter, sans-serif; letter-spacing: -.01em; color: #dce7ef; }
 .hero-sub { margin: 16px 0 28px; max-width: 420px; color: #a9bccb; font-size: 15px; line-height: 1.7; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
@@ -882,6 +882,10 @@ html[lang="zh"] .hero-sub, html[lang="ja"] .hero-sub { font-family: inherit; }
     -webkit-mask-image: none; mask-image: none; }
   .hero-shade { background: linear-gradient(0deg, var(--hero-ink) 0%, rgba(15,26,36,0) 45%); }
   .hero-copy { margin-top: -40px; }
-  .hero h1 { font-size: 36px; }
+  .hero h1 { font-size: 34px; }
   .hero-cat { font-size: 19px; white-space: normal; }   /* same steps as the section tagline (22 / 19px) */
 }
+
+/* Inter is loaded up to 900 since 2026-11-23 (for the hero title at 850). Before that, 900 showed as 800;
+   keep "font-black" headings looking as they did. */
+.font-black { font-weight: 800; }
