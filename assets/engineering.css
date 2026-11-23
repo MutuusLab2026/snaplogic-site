@@ -641,6 +641,7 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 .hcta-switch.is-on:active::after { transform: translate(24px, -50%); }
 .hcta-switch:focus-visible { outline: 2px solid #1765cc; outline-offset: 4px; }
 @media (min-width: 768px) {
+  .hcta-text { flex-direction: row; align-items: center; gap: 56px; }   /* switch beside the text; gap = the card's inner padding */
   .hcta-switch { width: 88px; height: 48px; }
   .hcta-switch::after { left: 5px; width: 38px; height: 38px; }
   .hcta-switch.is-on::after { transform: translate(40px, -50%); }
