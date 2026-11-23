@@ -746,7 +746,8 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
 /* lead -> screen gap: the same as tagline -> lead as the eye sees it (10px + the tagline's half-leading, the screen
    frame has none), 2026-11-18 */
 .ga-stage { position: relative; margin-top: 6px;
-  --ga-left: max(16px, calc((100% - 1280px) / 2 + 32px));      /* same left edge as the heading */
+  /* same left edge as the heading: the page container's side padding (.max-w-7xl: 32 / 24 / 16px by width) */
+  --ga-pad: 32px; --ga-left: max(var(--ga-pad), calc((100% - 1280px) / 2 + 32px));
   --ga-info: 340px; --ga-gap: 28px; --ga-shift: 100px;          /* caption block width, gap, and its nudge to the right */
   --ga-h: calc((100svh - 72px) / var(--page-s, var(--hero-s, 1)) - 308px);    /* what the window leaves under the header and heading (with the lead line) */
   /* the width cap counts the nudge too, so the caption block never ends right of the arrows (2026-11-23: in tall
@@ -786,7 +787,7 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
   #fbfcfd; }
 .ga-slide figcaption { display: none; }                         /* shown through the caption block */
 .ga-info { position: absolute; z-index: 2; width: var(--ga-info);
-  left: calc(var(--ga-left) + var(--ga-w) + var(--ga-gap) + var(--ga-shift));
+  right: var(--ga-left);   /* right edge on the arrows' right edge, at every window size (2026-11-23) */
   top: 50%; transform: translateY(-50%); padding: 30px 30px 24px; border-radius: 16px;
   background: rgba(255, 255, 255, .78); border: 1px solid rgba(21, 27, 43, .1);
   -webkit-backdrop-filter: blur(18px) saturate(140%); backdrop-filter: blur(18px) saturate(140%);
@@ -824,12 +825,15 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
 .ga-stopped .ga-pause .ga-play-icon { display: block; }
 /* Narrower than a laptop: the block moves under the screen; on phones the screen keeps its full program ratio */
 /* narrow laptops: the block keeps inside the window */
-@media (max-width: 1180px) { .ga-info { left: min(calc(var(--ga-left) + var(--ga-w) + var(--ga-gap) + var(--ga-shift)), calc(100% - var(--ga-info) - 24px)); } }
+/* narrow laptops (not zoomed): the screen is short, so a centred card rose into the arrows; it starts at the screen's top instead */
+@media (min-width: 1024px) and (max-width: 1100px) { .ga-info { top: 8px; transform: none; } }
 @media (max-width: 1023px) {
   .ga-stage { --ga-w: min(84%, calc(var(--ga-h) * 2)); }
   .ga-info { position: static; width: auto; margin: 18px var(--ga-left) 0; transform: none; }
   .ga-moving .ga-body { transform: none; }
 }
+@media (max-width: 767px) { .ga-stage { --ga-pad: 24px; } }
+@media (max-width: 639px) { .ga-stage { --ga-pad: 16px; } }
 @media (max-width: 767px) {
   .ga-sec { --ga-pb: 120px; padding: 56px 0 var(--ga-pb); }
   .ga-arrows { display: none; }   /* nothing left in it on phones (no arrows, no counter) */
