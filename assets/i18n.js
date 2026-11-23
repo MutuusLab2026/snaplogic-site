@@ -109,7 +109,7 @@ const i18n = {
 
     // Stats
     stats_label: "IMPACT",
-    stats_lead: "VegaFencer가 만드는 변화, 숫자로 확인하세요.",
+    stats_lead: "VegaFencer가 <span class=\"kf-hl\">만드는 변화</span>, 숫자로 확인하세요.",
     stat1: "설계 시간 단축",
     stat3: "논리-하네스 일관성",
     stat4: "수동 데이터 변환",
@@ -336,7 +336,7 @@ const i18n = {
 
     // Stats
     stats_label: "IMPACT",
-    stats_lead: "See the difference VegaFencer makes, in numbers.",
+    stats_lead: "See <span class=\"kf-hl\">the difference VegaFencer makes</span>, in numbers.",
     stat1: "Design time reduction",
     stat3: "Logic-harness consistency",
     stat4: "Manual data conversion",
@@ -563,7 +563,7 @@ const i18n = {
 
     // Stats
     stats_label: "影响力",
-    stats_lead: "VegaFencer 带来的改变，用数字来见证。",
+    stats_lead: "VegaFencer <span class=\"kf-hl\">带来的改变</span>，用数字来见证。",
     stat1: "设计时间缩短",
     stat3: "逻辑-线束一致性",
     stat4: "手动数据转换",
@@ -791,7 +791,7 @@ const i18n = {
 
     // Stats
     stats_label: "インパクト",
-    stats_lead: "VegaFencer がもたらす変化を、数字でご確認ください。",
+    stats_lead: "VegaFencer が<span class=\"kf-hl\">もたらす変化</span>を、数字でご確認ください。",
     stat1: "設計時間の短縮",
     stat3: "ロジック-ハーネス一貫性",
     stat4: "手動データ変換",
