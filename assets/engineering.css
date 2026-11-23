@@ -592,3 +592,5 @@ html[lang="ja"] * { word-break: auto-phrase; }
 .modules-head .lg-lead { margin: 10px 0 0; }
 /* other languages: the lead wraps at 1440 and left one word on its own line, so split it into even lines (2026-11-23); Korean keeps the usual wrap */
 html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
+/* the tagline wraps on phones and left one word on the second line, so split it evenly too (2026-11-23, all languages) */
+.modules-head .lg-tagline { text-wrap: balance; }
