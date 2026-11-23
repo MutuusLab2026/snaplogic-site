@@ -620,11 +620,10 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 .hcta-btn:focus-visible { outline: 2px solid #1765cc; outline-offset: 3px; }
 /* Wide desktop (2026-11-24): the card is scaled 1.05 as one piece (every proportion kept; the scale property, so the fade-in transform does not undo it) and made wider, so that after
    scaling the switch's left edge and the last button's right edge sit on the content edges of the sections above
-   (layout width = C / 1.05 + 2 x the 56px inner padding). The title is 32px as seen (30.48 x 1.05), the same as The Impact
-   tagline above it. */
+   (layout width = C / 1.05 + 2 x the 56px inner padding). The title is 32px (33.6px as seen); The Impact tagline above it is 30px. */
 @media (min-width: 1101px) {
   .hcta-band { padding: 64px 56px; scale: 1.05; margin-inline: calc((100% - 100% / 1.05) / 2 - 56px); }
-  .hcta-title { font-size: 30.48px; }
+  .hcta-title { font-size: 32px; }   /* 33.6px as seen (x 1.05) */
   .hcta-lead { font-size: 18px; margin-top: 14px; }
 }
 /* A switch drawing (not a control) left of the text: off while the card rises, then it flips on (2026-11-23).
@@ -691,7 +690,7 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 @media (min-width: 1101px) {
   .kf-sec { padding: 144px 0 152px; }
   .kf { flex-wrap: wrap; }
-  .kf-lead { order: -1; flex: 0 0 100%; margin: 0 0 48px !important; text-align: left; font-size: 32px; }   /* first line on its own, a step larger than the usual tagline (2026-11-23) */
+  .kf-lead { order: -1; flex: 0 0 100%; margin: 0 0 48px !important; text-align: left; font-size: 30px; }   /* first line on its own, a step larger than the usual tagline (2026-11-23) */
   .kf { flex-direction: row; justify-content: space-between; gap: 0; text-align: center; }
   .kf-title { text-align: left; }
   .kf-bar { width: 4.5px; height: 92px; margin: 0; position: relative; top: 4px; }   /* centred on the title's letters */
