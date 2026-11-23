@@ -638,7 +638,7 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 .kf-l { margin-top: 16px !important; font: 700 22px/1.3 Inter, 'Noto Sans KR', sans-serif; letter-spacing: -.02em; color: #151b2b; }
 @media (min-width: 768px) { .kf-sec { padding: 96px 0; } }
 @media (min-width: 1101px) {
-  .kf-sec { padding: 104px 0 112px; }
+  .kf-sec { padding: 144px 0 152px; }
   .kf { flex-wrap: wrap; }
   .kf-lead { order: -1; flex: 0 0 100%; margin: 0 0 48px !important; text-align: left; font-size: 26px; }   /* first line on its own, a step larger than the usual tagline (2026-11-23) */
   .kf { flex-direction: row; justify-content: space-between; gap: 0; text-align: center; }
@@ -651,8 +651,8 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
   html[lang="en"] .kf-l { max-width: 170px; text-wrap: balance; }   /* English labels are long: two even lines leave room between the four figures */
   /* box edges are not ink edges (side bearings, the small %, tight letter spacing): nudge so the visible gaps match,
      per language since the labels differ in width (pixel-checked at 1440) */
-  .kf-bar { transform: translateX(1.8px); } .kf > .kf-fig:nth-child(4) { transform: translateX(1.6px); } .kf > .kf-fig:nth-child(5) { transform: translateX(2.4px); } .kf > .kf-fig:nth-child(6) { transform: translateX(1.2px); }
-  html[lang="en"] .kf-bar { transform: translateX(30.8px); } html[lang="en"] .kf > .kf-fig:nth-child(4) { transform: translateX(30.6px); } html[lang="en"] .kf > .kf-fig:nth-child(5) { transform: translateX(13.4px); } html[lang="en"] .kf > .kf-fig:nth-child(6) { transform: translateX(5.2px); }
-  html[lang="zh"] .kf-bar { transform: translateX(2.4px); } html[lang="zh"] .kf > .kf-fig:nth-child(4) { transform: translateX(3.8px); } html[lang="zh"] .kf > .kf-fig:nth-child(5) { transform: translateX(4.2px); } html[lang="zh"] .kf > .kf-fig:nth-child(6) { transform: translateX(3.6px); }
-  html[lang="ja"] .kf-bar { transform: translateX(3.8px); } html[lang="ja"] .kf > .kf-fig:nth-child(4) { transform: translateX(4.6px); } html[lang="ja"] .kf > .kf-fig:nth-child(5) { transform: translateX(3.4px); } html[lang="ja"] .kf > .kf-fig:nth-child(6) { transform: translateX(3.2px); }
+  .kf-bar { transform: translateX(1.8px); } .kf > .kf-fig:nth-child(4) { transform: translateX(2.6px); } .kf > .kf-fig:nth-child(5) { transform: translateX(2.4px); } .kf > .kf-fig:nth-child(6) { transform: translateX(1.2px); }
+  html[lang="en"] .kf-bar { transform: translateX(31.0px); } html[lang="en"] .kf > .kf-fig:nth-child(4) { transform: translateX(30.0px); } html[lang="en"] .kf > .kf-fig:nth-child(5) { transform: translateX(12.0px); } html[lang="en"] .kf > .kf-fig:nth-child(6) { transform: translateX(4.0px); }
+  html[lang="zh"] .kf-bar { transform: translateX(3.0px); } html[lang="zh"] .kf > .kf-fig:nth-child(4) { transform: translateX(4.0px); } html[lang="zh"] .kf > .kf-fig:nth-child(5) { transform: translateX(4.0px); } html[lang="zh"] .kf > .kf-fig:nth-child(6) { transform: translateX(3.0px); }
+  html[lang="ja"] .kf-bar { transform: translateX(3.0px); } html[lang="ja"] .kf > .kf-fig:nth-child(4) { transform: translateX(4.0px); } html[lang="ja"] .kf > .kf-fig:nth-child(5) { transform: translateX(3.0px); } html[lang="ja"] .kf > .kf-fig:nth-child(6) { transform: translateX(3.0px); }
 }
