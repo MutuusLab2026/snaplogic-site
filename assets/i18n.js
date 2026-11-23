@@ -108,12 +108,12 @@ const i18n = {
 
     // Stats
     stats_label: "IMPACT",
-    stats_title: "측정 가능한 설계 혁신",
+    stats_title: "VegaFencer\n도입 효과",
     stat1: "설계 시간 단축",
-    stat2: "DRC 검증 규칙",
     stat3: "논리-하네스 일관성",
     stat4_value: "Zero",
     stat4: "수동 데이터 변환",
+    stat4_flow: "수작업 변환",
 
     // Gallery
     gallery_label: "PRODUCT GALLERY",
@@ -334,12 +334,12 @@ const i18n = {
 
     // Stats
     stats_label: "IMPACT",
-    stats_title: "Measurable design innovation",
+    stats_title: "The Impact of\nVegaFencer",
     stat1: "Design time reduction",
-    stat2: "DRC verification rules",
     stat3: "Logic-harness consistency",
     stat4_value: "Zero",
     stat4: "Manual data conversion",
+    stat4_flow: "Manual conversion",
 
     // Gallery
     gallery_label: "PRODUCT GALLERY",
@@ -560,12 +560,12 @@ const i18n = {
 
     // Stats
     stats_label: "影响力",
-    stats_title: "可衡量的设计创新",
+    stats_title: "VegaFencer\n的引入效果",
     stat1: "设计时间缩短",
-    stat2: "DRC验证规则",
     stat3: "逻辑-线束一致性",
     stat4_value: "Zero",
     stat4: "手动数据转换",
+    stat4_flow: "手动转换",
 
     // Gallery
     gallery_label: "产品展示",
@@ -787,12 +787,12 @@ const i18n = {
 
     // Stats
     stats_label: "インパクト",
-    stats_title: "測定可能な設計革新",
+    stats_title: "VegaFencer\nの導入効果",
     stat1: "設計時間の短縮",
-    stat2: "DRC検証ルール",
     stat3: "ロジック-ハーネス一貫性",
     stat4_value: "Zero",
     stat4: "手動データ変換",
+    stat4_flow: "手作業での変換",
 
     // Gallery
     gallery_label: "製品ギャラリー",

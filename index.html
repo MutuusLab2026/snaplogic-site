@@ -30,9 +30,9 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 
 <link rel="preload" as="image" href="assets/img/hero-office-2048.webp?v=20261121" imagesrcset="assets/img/hero-office-1440.webp?v=20261121 1440w, assets/img/hero-office-2048.webp?v=20261121 2048w, assets/img/hero-office-3072.webp?v=20261121 3072w" imagesizes="(min-width: 768px) 90vw, 200vw" fetchpriority="high">
-<link rel="stylesheet" href="assets/tailwind.css?v=48d8f5b2">
-<link rel="stylesheet" href="assets/site.css?v=14d164d3">
-<link rel="stylesheet" href="assets/engineering.css?v=1ab6a47c">
+<link rel="stylesheet" href="assets/tailwind.css?v=2b20e8e2">
+<link rel="stylesheet" href="assets/site.css?v=0c267f56">
+<link rel="stylesheet" href="assets/engineering.css?v=c50b460f">
 </head>
 <body class="bg-surface antialiased" data-page="home" data-skip="hero">
 
@@ -99,29 +99,24 @@
 <!-- ============================================================
      STATS
      ============================================================ -->
-<section class="py-12 md:py-24" id="stats">
+<section class="kf-sec" id="stats" aria-labelledby="statsTitle">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-    <header class="reveal lg-head mb-12">
-      <p class="lg-kicker">IMPACT</p>
-      <h2 class="lg-name" translate="no">Key Figures</h2>
-      <p class="lg-tagline" data-i18n="stats_title">측정 가능한 설계 혁신</p>
-    </header>
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 text-center" id="statsGrid">
-      <div class="reveal reveal-delay-1 ghost-border rounded-2xl p-4 sm:p-6 md:p-8 bg-white hover:shadow-lg transition-shadow">
-        <div class="font-headline font-black text-3xl sm:text-4xl md:text-6xl text-primary-container mb-2 md:mb-3" data-count-to="70" data-count-suffix="%">0%</div>
-        <div class="font-body text-on-surface-variant text-sm" data-i18n="stat1">설계 시간 단축</div>
+    <div class="kf reveal">
+      <div class="kf-head"><h2 class="kf-title" id="statsTitle" data-i18n="stats_title">VegaFencer
+도입 효과</h2></div>
+      <div class="kf-hero">
+        <p class="kf-hero-n" translate="no">70<small>%</small></p>
+        <p class="kf-hero-l" data-i18n="stat1">설계 시간 단축</p>
       </div>
-      <div class="reveal reveal-delay-2 ghost-border rounded-2xl p-4 sm:p-6 md:p-8 bg-white hover:shadow-lg transition-shadow">
-        <div class="font-headline font-black text-3xl sm:text-4xl md:text-6xl text-primary-container mb-2 md:mb-3" data-count-to="24" data-count-suffix="">0</div>
-        <div class="font-body text-on-surface-variant text-sm" data-i18n="stat2">DRC 검증 규칙</div>
-      </div>
-      <div class="reveal reveal-delay-3 ghost-border rounded-2xl p-4 sm:p-6 md:p-8 bg-white hover:shadow-lg transition-shadow">
-        <div class="font-headline font-black text-3xl sm:text-4xl md:text-6xl text-primary-container mb-2 md:mb-3" data-count-to="100" data-count-suffix="%">0%</div>
-        <div class="font-body text-on-surface-variant text-sm" data-i18n="stat3">논리-하네스 일관성</div>
-      </div>
-      <div class="reveal reveal-delay-4 ghost-border rounded-2xl p-4 sm:p-6 md:p-8 bg-white hover:shadow-lg transition-shadow">
-        <div class="font-headline font-black text-3xl sm:text-4xl md:text-6xl text-primary-container mb-2 md:mb-3" data-i18n="stat4_value" data-count-to="0" data-count-text="Zero">Zero</div>
-        <div class="font-body text-on-surface-variant text-sm" data-i18n="stat4">수동 데이터 변환</div>
+      <div class="kf-side">
+        <div class="kf-row">
+          <p class="kf-fig"><span class="kf-n" translate="no">100<small>%</small></span> <span class="kf-l" data-i18n="stat3">논리-하네스 일관성</span></p>
+          <div class="kf-match" aria-hidden="true"><span translate="no">Logic</span><i style="--c: #1765cc"><b></b><b></b><b></b><b></b></i><span translate="no">Harness</span><i style="--c: #0f766e"><b></b><b></b><b></b><b></b></i></div>
+        </div>
+        <div class="kf-row">
+          <p class="kf-fig"><span class="kf-n" data-i18n="stat4_value">Zero</span> <span class="kf-l" data-i18n="stat4">수동 데이터 변환</span></p>
+          <div class="kf-flow" aria-hidden="true"><b translate="no">Logic</b><svg viewBox="0 0 20 20" fill="none"><path d="M3 10h13m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg><b class="kf-x" data-i18n="stat4_flow">수작업 변환</b><svg viewBox="0 0 20 20" fill="none"><path d="M3 10h13m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg><b translate="no">Harness</b></div>
+        </div>
       </div>
     </div>
   </div>
@@ -199,7 +194,7 @@
 <script src="assets/footer.js?v=9e27fa58"></script>
 </div><!-- /.engineering-after -->
 
-<script src="assets/i18n.js?v=a9661290"></script>
+<script src="assets/i18n.js?v=968fb792"></script>
 <script src="assets/site.js?v=c4d5e1f3"></script>
 
 <script src="assets/engineering.js?v=1cf6453c"></script>

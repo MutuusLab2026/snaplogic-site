@@ -198,11 +198,6 @@
     nav.flex { padding-left: 0.75rem; padding-right: 0.75rem; }
     .max-w-7xl { padding-left: 0.75rem; padding-right: 0.75rem; }
 
-    /* Stats — prevent overflow on tiny screens */
-    #statsGrid .font-headline.font-black {
-      font-size: 2rem !important;
-    }
-
     /* Chat messages — wider on tiny screens */
     #chatMessages .flex.justify-end > div { max-width: 92% !important; }
     #chatMessages .flex.justify-start > div { max-width: 96% !important; }
@@ -220,11 +215,6 @@
 
     /* Hero */
     .hero-headline { font-size: 2rem !important; line-height: 1.15 !important; }
-
-    /* Stats — smaller numbers on small screens */
-    #statsGrid .font-headline.font-black {
-      font-size: 2.5rem !important;
-    }
 
     /* Reduce section padding */
     section.py-24 { padding-top: 3.5rem; padding-bottom: 3.5rem; }
