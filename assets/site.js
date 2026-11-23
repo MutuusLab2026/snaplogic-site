@@ -158,8 +158,12 @@ const Controller = {
     const targetId = hashId(location.hash);
     const target = targetId && document.getElementById(targetId);
     // Jump (no smooth animation: the page is still growing, which would end a slow trip short), then re-check twice.
+    // Once the reader scrolls on their own (wheel, touch, keys), stop: re-checking then would pull the page back up.
+    let readerMoved = false;
+    ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach((ev) => addEventListener(ev, () => { readerMoved = true; }, { once: true, passive: true }));
     if (target) addEventListener('load', () => {
       const go = () => {
+        if (readerMoved) return;
         const want = (parseFloat(getComputedStyle(target).scrollMarginTop) || 0) * (target.currentCSSZoom || 1);   // the home page zooms on wide screens
         if (Math.abs(target.getBoundingClientRect().top - want) > 2) target.scrollIntoView({ behavior: 'instant' });
       };
