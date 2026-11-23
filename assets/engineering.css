@@ -618,6 +618,30 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 .hcta-btn2 { border: 1.5px solid #151b2b; color: #151b2b; background: #fff; }
 .hcta-btn2:hover { background: #eef1f4; }
 .hcta-btn:focus-visible { outline: 2px solid #1765cc; outline-offset: 3px; }
+/* Wide desktop (2026-11-24): the card is scaled 1.05 as one piece (every proportion kept; the scale property, so the fade-in transform does not undo it) and made wider, so that after
+   scaling the switch's left edge and the last button's right edge sit on the content edges of the sections above
+   (layout width = C / 1.05 + 2 x the 56px inner padding). The title is 32px as seen (30.48 x 1.05), the same as The Impact
+   tagline above it. */
+@media (min-width: 1101px) {
+  .hcta-band { padding: 64px 56px; scale: 1.05; margin-inline: calc((100% - 100% / 1.05) / 2 - 56px); }
+  .hcta-title { font-size: 30.48px; }
+  .hcta-lead { font-size: 18px; margin-top: 14px; }
+}
+/* A switch drawing (not a control) left of the text: off while the card rises, then it flips on (2026-11-23).
+   Its gap to the text equals the card's inner padding, so card edge -> switch and switch -> text are the same. */
+.hcta-text { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+.hcta-switch { flex: none; position: relative; width: 64px; height: 35px; border-radius: 999px; background: #d5dbe2; transition: background .35s ease .55s; }
+.hcta-switch::after { content: ''; position: absolute; top: 50%; left: 4px; width: 27px; height: 27px; border-radius: 50%; background: #fff;
+  box-shadow: 0 2px 6px rgba(8,30,48,.25); transform: translateY(-50%); transition: transform .45s cubic-bezier(.3, 1.4, .5, 1) .55s; }
+.hcta-band.visible .hcta-switch { background: #1765cc; }
+.hcta-band.visible .hcta-switch::after { transform: translate(29px, -50%); }
+@media (min-width: 768px) {
+  .hcta-text { flex-direction: row; align-items: center; gap: 56px; }
+  .hcta-switch { width: 88px; height: 48px; }
+  .hcta-switch::after { left: 5px; width: 38px; height: 38px; }
+  .hcta-band.visible .hcta-switch::after { transform: translate(40px, -50%); }
+}
+@media (prefers-reduced-motion: reduce) { .hcta-switch, .hcta-switch::after { transition: none; } }
 /* the text takes the free width and wraps, so the buttons stay on the right in every language */
 .hcta-band > div:first-child { flex: 1 1 360px; min-width: 0; }
 .hcta-btn { white-space: nowrap; }
@@ -667,7 +691,7 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 @media (min-width: 1101px) {
   .kf-sec { padding: 144px 0 152px; }
   .kf { flex-wrap: wrap; }
-  .kf-lead { order: -1; flex: 0 0 100%; margin: 0 0 48px !important; text-align: left; font-size: 29px; }   /* first line on its own, a step larger than the usual tagline (2026-11-23) */
+  .kf-lead { order: -1; flex: 0 0 100%; margin: 0 0 48px !important; text-align: left; font-size: 32px; }   /* first line on its own, a step larger than the usual tagline (2026-11-23) */
   .kf { flex-direction: row; justify-content: space-between; gap: 0; text-align: center; }
   .kf-title { text-align: left; }
   .kf-bar { width: 4.5px; height: 92px; margin: 0; position: relative; top: 4px; }   /* centred on the title's letters */
