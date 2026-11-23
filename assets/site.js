@@ -111,6 +111,7 @@ const Controller = {
       'initNavActiveState',
       'initCounters',
       'initImpactSlots',
+      'initCtaSwitch',
       'initChatAnimation',
       'initContactForm',
       'initHeroSlideshow',
@@ -474,6 +475,24 @@ const Controller = {
     if (block.classList.contains('visible')) spin();
     else new MutationObserver((list, mo) => { if (block.classList.contains('visible')) { mo.disconnect(); spin(); } })
       .observe(block, { attributes: true, attributeFilter: ['class'] });
+  },
+
+  /* CTA 1 switch (#cta-ask): turns off while the card is out of view and flips on again each time it comes back
+     (shortly after the card has risen); pressing it turns it off and on, just for fun. Reduced motion: stays on. */
+  initCtaSwitch() {
+    const sw = document.querySelector('#cta-ask .hcta-switch');
+    if (!sw) return;
+    const set = (on) => { sw.classList.toggle('is-on', on); sw.setAttribute('aria-pressed', String(on)); };
+    sw.addEventListener('click', () => set(!sw.classList.contains('is-on')));
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let timer = 0;
+    new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        // off only once the card is fully out of view (never while someone is looking at it); on when most of it is in
+        if (!e.isIntersecting) { clearTimeout(timer); set(false); }
+        else if (e.intersectionRatio >= 0.6 && !sw.classList.contains('is-on')) { clearTimeout(timer); timer = setTimeout(() => set(true), 650); }
+      });
+    }, { threshold: [0, 0.6] }).observe(sw.closest('.hcta-band'));
   },
 
   /* Chat Sequential Animation — reveal messages one by one */

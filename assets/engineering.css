@@ -626,19 +626,26 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
   .hcta-title { font-size: 32px; }   /* 33.6px as seen (x 1.05) */
   .hcta-lead { font-size: 18px; margin-top: 14px; }
 }
-/* A switch drawing (not a control) left of the text: off while the card rises, then it flips on (2026-11-23).
+/* A switch left of the text: it flips on each time the card comes into view, and it can be pressed for fun (site.js
+   initCtaSwitch, 2026-11-24). Off track #8a97a5 keeps 3:1 against the white card.
    Its gap to the text equals the card's inner padding, so card edge -> switch and switch -> text are the same. */
 .hcta-text { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
-.hcta-switch { flex: none; position: relative; width: 64px; height: 35px; border-radius: 999px; background: #d5dbe2; transition: background .35s ease .55s; }
+.hcta-switch { flex: none; position: relative; width: 64px; height: 35px; padding: 0; border: 0; border-radius: 999px; background: #8a97a5; cursor: pointer;
+  transition: background .3s ease; }
 .hcta-switch::after { content: ''; position: absolute; top: 50%; left: 4px; width: 27px; height: 27px; border-radius: 50%; background: #fff;
-  box-shadow: 0 2px 6px rgba(8,30,48,.25); transform: translateY(-50%); transition: transform .45s cubic-bezier(.3, 1.4, .5, 1) .55s; }
-.hcta-band.visible .hcta-switch { background: #1765cc; }
-.hcta-band.visible .hcta-switch::after { transform: translate(29px, -50%); }
+  box-shadow: 0 2px 6px rgba(8,30,48,.25); transform: translateY(-50%); transition: transform .45s cubic-bezier(.3, 1.4, .5, 1); }
+.hcta-switch.is-on { background: #1765cc; }
+.hcta-switch.is-on::after { transform: translate(29px, -50%); }
+.hcta-switch:hover::after { box-shadow: 0 3px 10px rgba(8,30,48,.35); }
+.hcta-switch:active::after { width: 32px; }   /* the knob stretches a little while pressed, like a real switch */
+.hcta-switch.is-on:active::after { transform: translate(24px, -50%); }
+.hcta-switch:focus-visible { outline: 2px solid #1765cc; outline-offset: 4px; }
 @media (min-width: 768px) {
-  .hcta-text { flex-direction: row; align-items: center; gap: 56px; }
   .hcta-switch { width: 88px; height: 48px; }
   .hcta-switch::after { left: 5px; width: 38px; height: 38px; }
-  .hcta-band.visible .hcta-switch::after { transform: translate(40px, -50%); }
+  .hcta-switch.is-on::after { transform: translate(40px, -50%); }
+  .hcta-switch:active::after { width: 44px; }
+  .hcta-switch.is-on:active::after { transform: translate(34px, -50%); }
 }
 @media (prefers-reduced-motion: reduce) { .hcta-switch, .hcta-switch::after { transition: none; } }
 /* the text takes the free width and wraps, so the buttons stay on the right in every language */

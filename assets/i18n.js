@@ -24,6 +24,7 @@ const i18n = {
     modules_title: "설계부터 검증, 협업까지 하나의 플랫폼에서 이어집니다.",
     modules_desc: "회로 설계부터 전원·규칙 검증, 팀 협업과 3D\u00a0CAD 연동까지 — 열 개의 핵심 모듈이 설계의 전 과정을 함께합니다.",
     hcta1_title: "E/E 설계의 새로운 기준, VegaFencer와 함께 시작하세요.",
+    hcta1_switch: "VegaFencer 스위치 (눌러서 켜고 끄기)",
     hcta1_lead: "VegaFencer의 2가지 플랜 (Professional & Enterprise)\u2060의 다양한 기능을 검토하고, 제품에 대해 궁금한 점을 문의해주세요.",
     hcta1_pricing: "요금제 보기",
     hcta1_contact: "제품 문의",
@@ -250,6 +251,7 @@ const i18n = {
     modules_title: "From design to verification and collaboration, it all connects on one platform.",
     modules_desc: "From circuit design to power and rule checks, team collaboration and 3D\u00a0CAD integration — ten core modules cover the entire design process.",
     hcta1_title: "Set a new standard for E/E design with VegaFencer.",
+    hcta1_switch: "VegaFencer switch (press to turn on and off)",
     hcta1_lead: "Compare the features of VegaFencer's two plans, Professional and Enterprise, and ask us anything about the product.",
     hcta1_pricing: "View plans",
     hcta1_contact: "Ask about the product",
@@ -476,6 +478,7 @@ const i18n = {
     modules_title: "从设计到验证、协作，在同一个平台上贯通。",
     modules_desc: "从电路设计到电源与规则检查、团队协作和3D\u00a0CAD联动 — 十个核心模块贯穿设计全过程。",
     hcta1_title: "E/E 设计的新标准，与 VegaFencer 一起开启。",
+    hcta1_switch: "VegaFencer 开关（按下可开关）",
     hcta1_lead: "VegaFencer 两种方案（Professional 与 Enterprise）功能丰富，欢迎了解，如有产品相关问题，请随时咨询。",
     hcta1_pricing: "查看价格方案",
     hcta1_contact: "产品咨询",
@@ -703,6 +706,7 @@ const i18n = {
     modules_title: "設計から検証、コラボレーションまで、一つのプラットフォームでつながります。",
     modules_desc: "回路設計から電源・ルール検証、チームコラボレーション、3D\u00a0CAD連携まで — 10のコアモジュールが設計の全工程をカバーします。",
     hcta1_title: "E/E 設計の新しい基準を、VegaFencer とともに。",
+    hcta1_switch: "VegaFencer スイッチ（押してオン・オフ）",
     hcta1_lead: "VegaFencer の 2 つのプラン（Professional と Enterprise）の多彩な機能をご確認いただき、製品についてのご質問はお気軽にお問い合わせください。",
     hcta1_pricing: "料金プランを見る",
     hcta1_contact: "製品のお問い合わせ",
@@ -1282,6 +1286,14 @@ function switchLanguage(lang) {
     var key = el.getAttribute('data-i18n-placeholder');
     if (i18n[lang] && i18n[lang][key]) {
       el.placeholder = i18n[lang][key];
+    }
+  });
+
+  // Update all data-i18n-aria elements (aria-label)
+  document.querySelectorAll('[data-i18n-aria]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n-aria');
+    if (i18n[lang] && i18n[lang][key]) {
+      el.setAttribute('aria-label', i18n[lang][key]);
     }
   });
 
