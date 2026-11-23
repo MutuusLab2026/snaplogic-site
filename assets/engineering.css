@@ -506,11 +506,12 @@ html.engineering-free-scroll { scroll-snap-type: none; }   /* set by engineering
 @media (max-width: 800px) { .engineering-after { --fade: 84px; } }
 
 /* Home section colours below the hero: white and paper take turns (the navy workflow and CTA stay as they are). */
-/* Home order (2026-11-17): Explore the Workspace white (site.css) · Core Modules paper · AI white ·
-   Integrations paper · Key Figures white · CTA navy (Brand Story is on the About page). On the paper section the module cards turn white so they stay visible. */
-body[data-page="home"] #product, body[data-page="home"] #integrations { background: var(--eng-paper); }
+/* Home order (2026-11-23): Explore the Workspace white (site.css) · Core Modules paper · Key Figures white · CTA 1 paper ·
+   AI (feature 1) white · CTA 2 plans paper · Multiuser (feature 2) white · CTA navy. Integrations is no longer on the home page
+   (product page only). On the paper section the module cards turn white so they stay visible. */
+body[data-page="home"] #product, body[data-page="home"] #cta-ask, body[data-page="home"] #plans { background: var(--eng-paper); }
 body[data-page="home"] #product > div > .grid > a { background: #fff; }
-body[data-page="home"] #ai, body[data-page="home"] #stats { background: #fff; }
+body[data-page="home"] #ai, body[data-page="home"] #stats, body[data-page="home"] #multiuser { background: #fff; }
 /* Home, wide desktop: everything below the hero grows with the screen by the same factor as the hero and header
    (--hero-s, 1x at 1440 x 790), so on a big monitor the sections keep the proportions designed at 1440 instead of
    sitting small in the middle. zoom (not transform) so the page length grows with it. */
@@ -594,3 +595,23 @@ html[lang="ja"] * { word-break: auto-phrase; }
 html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 /* the tagline wraps on phones and left one word on the second line, so split it evenly too (2026-11-23, all languages) */
 .modules-head .lg-tagline { text-wrap: balance; }
+
+/* ---- Home CTA 1 (#cta-ask) and CTA 2 (#plans): first frames, to be designed (2026-11-23). Kept apart from the navy
+   demo CTA at the bottom: a light band with the question on the left and two ways on, and a row of the plans. ---- */
+.hcta { padding: 56px 0; }
+@media (min-width: 768px) { .hcta { padding: 88px 0; } }
+.hcta-band { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 40px; }
+.hcta-title { margin: 0; font: 800 26px/1.3 Inter, 'Noto Sans KR', sans-serif; letter-spacing: -.02em; color: #151b2b; }
+.hcta-lead { margin: 8px 0 0; color: #414754; font-size: 16px; line-height: 1.6; }
+.hcta-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 24px; }
+.hcta-link { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; color: #1557b0; font-weight: 600; }
+.hcta-link:hover span { text-decoration: underline; text-underline-offset: 4px; }
+.hcta-link svg { width: 14px; height: 14px; transition: transform .2s; }
+.hcta-link:hover svg { transform: translateX(3px); }
+.hcta-link:focus-visible { outline: 2px solid #1765cc; outline-offset: 3px; }
+.hcta-plans { display: grid; gap: 16px; margin: 32px 0 16px; padding: 0; list-style: none; }
+@media (min-width: 768px) { .hcta-plans { grid-template-columns: repeat(3, 1fr); } }
+.hcta-plan { padding: 24px 28px; border-radius: 8px; background: #fff; border: 1px solid #dfe5eb; }
+.hcta-plan b { display: block; margin-bottom: 6px; font: 800 20px/1.3 Inter, sans-serif; color: #151b2b; }
+.hcta-plan span { color: #5b6e7f; font-size: 15px; }
+@media (prefers-reduced-motion: reduce) { .hcta-link svg { transition: none; } .hcta-link:hover svg { transform: none; } }
