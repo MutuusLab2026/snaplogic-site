@@ -622,7 +622,7 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
    (pixel-checked at 1440). Wide desktop (zoomed by --hero-s, so laid out at about 1440): one row. Narrower: stacked. ---- */
 .kf-sec { padding: 64px 0; }
 :where(.kf-sec) p { margin: 0; }
-.kf-title { margin: 0; white-space: pre-line; font: 700 28px/1.2 Inter, 'Noto Sans KR', sans-serif; letter-spacing: -.035em; color: #151b2b; }
+.kf-title { margin: 0; white-space: pre-line; font: 800 28px/1.2 Inter, 'Noto Sans KR', sans-serif; letter-spacing: -.035em; color: #151b2b; }
 .kf-title::after { content: ''; display: block; width: 48px; height: 4px; margin-top: 20px; background: #151b2b; }
 .kf-hero { display: flex; flex-direction: column; gap: 12px; margin-top: 40px; }
 .kf-hero-n { font: 800 104px/.9 Inter, sans-serif; letter-spacing: -.055em; color: #1765cc; margin-top: -.073em; }
@@ -653,7 +653,7 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
   .kf-sec { padding: 120px 0; }
   /* title -> divider 56px, divider -> 70% 176px, 70% -> right 88px. The gaps are grid columns: when a language runs
      long (en, ja), the divider -> 70% gap gives way (down to 72px) before the right block's text has to wrap. */
-  .kf { display: grid; grid-template-columns: max-content minmax(72px, 176px) max-content 88px minmax(0, 380px); align-items: center; }
+  .kf { display: grid; grid-template-columns: max-content minmax(56px, 176px) max-content 88px minmax(350px, 380px); align-items: center; }
   .kf-hero { grid-column: 3; }
   .kf-side { grid-column: 5; }
   .kf-head { align-self: stretch; display: flex; align-items: center; position: relative; padding-right: 56px; }
@@ -661,6 +661,6 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
   .kf-title::after { position: absolute; right: 0; top: 50%; width: 5px; height: 40%; margin: 0; transform: translateY(-50%); }
   .kf-hero { margin: 0; gap: 21px; }
   .kf-hero-n { font-size: 148px; }
-  .kf-hero-l { font-size: 36px; max-width: 8em; margin-bottom: -7px; }
+  .kf-hero-l { font-size: 36px; white-space: nowrap; margin-bottom: -7px; }   /* one line in every language (en ran to two) */
   .kf-side { margin: 0; max-width: none; }
 }
