@@ -604,9 +604,6 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 .hcta-band { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px 40px;
   background: #fff; border-radius: 20px; padding: 28px 24px; box-shadow: 0 20px 50px -30px rgba(8,30,48,.25); }
 @media (min-width: 768px) { .hcta-band { padding: 48px 56px; } }
-/* wide desktop: the card reaches 56px past the content edges, so its text and buttons line up with the sections above
-   (laid out at 1440 or more there, so the page margin is always wider than 56px) */
-@media (min-width: 1101px) { .hcta-band { margin-inline: -56px; } }
 .hcta-title { margin: 0; font: 800 24px/1.3 Inter, 'Noto Sans KR', sans-serif; letter-spacing: -.025em; color: #151b2b; text-wrap: balance; }
 @media (min-width: 768px) { .hcta-title { font-size: 30px; } }
 .hcta-lead { margin: 10px 0 0; color: #414754; font-size: 16px; line-height: 1.6; text-wrap: balance; }
