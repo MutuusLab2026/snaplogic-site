@@ -184,10 +184,11 @@
         </ul>
       </div>
       <div class="reveal reveal-delay-2">
-        <!-- engineering.js adds FIG. 02 under the first .rounded-2xl card in #integrator -->
+        ${o.frame != null ? `<!-- data-frame: an app window like Explore the Workspace, without the FIG. caption -->
+        <div class="ga-frame"><div class="ga-bar" aria-hidden="true"><i></i><i></i><i></i><span translate="no">VegaFencer — Integrator</span></div><img src="assets/img/integrator-ws.webp" width="1920" height="1012" alt="VegaFencer Integrator screen" loading="lazy" decoding="async"></div>` : `<!-- engineering.js adds FIG. 02 under the first .rounded-2xl card in #integrator -->
         <div class="bg-white rounded-2xl shadow-lg shadow-on-surface/5 overflow-hidden border border-outline-variant/15">
           <img src="assets/img/integrator-ws.webp" width="1920" height="1012" alt="VegaFencer Integrator screen" loading="lazy" class="w-full block">
-        </div>
+        </div>`}
       </div>
     </div>
   </div>
@@ -226,10 +227,11 @@
         </ul>
       </div>
       <div class="reveal reveal-delay-2">
-        <!-- engineering.js adds FIG. 03 under the first .rounded-2xl card in #harness -->
+        ${o.frame != null ? `<!-- data-frame: an app window like Explore the Workspace, without the FIG. caption -->
+        <div class="ga-frame"><div class="ga-bar" aria-hidden="true"><i></i><i></i><i></i><span translate="no">VegaFencer — Harness Drawing</span></div><img src="assets/img/harness-ws.webp" width="1745" height="914" alt="VegaFencer Harness Drawing screen" loading="lazy" decoding="async"></div>` : `<!-- engineering.js adds FIG. 03 under the first .rounded-2xl card in #harness -->
         <div class="bg-white rounded-2xl shadow-lg shadow-on-surface/5 overflow-hidden border border-outline-variant/15">
           <img src="assets/img/harness-ws.webp" width="1745" height="914" alt="VegaFencer Harness Drawing screen" loading="lazy" class="w-full block">
-        </div>
+        </div>`}
       </div>
     </div>
   </div>
