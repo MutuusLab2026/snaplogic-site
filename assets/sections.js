@@ -195,7 +195,7 @@
 </section>
 `,
   harness: (o) => `
-<section class="py-12 md:py-24" id="harness">
+<section class="py-12 md:py-24${o.flip != null ? ' is-flip' : ''}" id="harness">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
 
     <!-- Module header and checklist (left), the module's screen (right): same layout as Logic -->
