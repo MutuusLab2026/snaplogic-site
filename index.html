@@ -32,7 +32,7 @@
 <link rel="preload" as="image" href="assets/img/hero-office-2048.webp?v=20261121" imagesrcset="assets/img/hero-office-1440.webp?v=20261121 1440w, assets/img/hero-office-2048.webp?v=20261121 2048w, assets/img/hero-office-3072.webp?v=20261121 3072w" imagesizes="(min-width: 768px) 90vw, 200vw" fetchpriority="high">
 <link rel="stylesheet" href="assets/tailwind.css?v=2b20e8e2">
 <link rel="stylesheet" href="assets/site.css?v=c687b56d">
-<link rel="stylesheet" href="assets/engineering.css?v=9cc1600b">
+<link rel="stylesheet" href="assets/engineering.css?v=0eeca3b4">
 </head>
 <body class="bg-surface antialiased" data-page="home" data-skip="hero">
 
@@ -155,9 +155,13 @@ Impact</h2>
          guess until the plans are decided (see TODO) -->
     <div class="pl-row">
       <header class="lg-head pl-intro reveal">   <!-- section template without the kicker; the link takes the lead's place -->
-        <h2 class="lg-name" id="plansTitle" translate="no">Plans</h2>
-        <p class="lg-tagline" data-i18n="hcta2_title">팀 규모에 맞는 최적의 요금제를 선택하세요.</p>
-        <a class="hcta-link lg-lead" href="pricing"><span data-i18n="hcta2_more">요금제 자세히 보기</span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></a>
+        <div>
+          <h2 class="lg-name" id="plansTitle" translate="no">Plans</h2>
+          <p class="lg-tagline" data-i18n="hcta2_title">팀 규모에 맞는 최적의 요금제를 선택하세요.</p>
+          <a class="hcta-link lg-lead" href="pricing"><span data-i18n="hcta2_more">요금제 자세히 보기</span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></a>
+        </div>
+        <!-- a small card at the foot, level with the plan cards' bottom edge (mockup 3-B, 2026-11-25) -->
+        <div class="pl-help"><span class="pl-help-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8.5 9.5h7M8.5 12.5h4"/></svg></span><div><p data-i18n="pl_help">플랜 선택을 위한 상담이 필요하신가요?</p><a class="hcta-link" href="contact"><span data-i18n="hcta1_contact">제품 문의</span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></a></div></div>
       </header>
       <div class="pl-cards reveal reveal-delay-1">
         <div class="pl-card">
@@ -188,7 +192,7 @@ Impact</h2>
 <script src="assets/footer.js?v=9e27fa58"></script>
 </div><!-- /.engineering-after -->
 
-<script src="assets/i18n.js?v=6c10fe93"></script>
+<script src="assets/i18n.js?v=4d0ca3c6"></script>
 <script src="assets/site.js?v=87f81958"></script>
 
 <script src="assets/engineering.js?v=e3dfa836"></script>
