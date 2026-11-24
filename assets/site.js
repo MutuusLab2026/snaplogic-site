@@ -481,29 +481,31 @@ const Controller = {
       .observe(block, { attributes: true, attributeFilter: ['class'] });
   },
 
-  /* CTA 1 switch (#cta-ask): turns off while the card is out of view and flips on again each time it comes back
-     (as soon as it can be seen); pressing it turns it off and on, just for fun. Reduced motion: stays on. */
+  /* CTA 1 switch (#cta-ask): flips on once, the first time the card comes into view, and then stays as it is
+     (pressing it turns it off and on, just for fun). Reduced motion: stays on. */
   initCtaSwitch() {
     const sw = document.querySelector('#cta-ask .hcta-switch');
     if (!sw) return;
     const set = (on) => { sw.classList.toggle('is-on', on); sw.setAttribute('aria-pressed', String(on)); };
     sw.addEventListener('click', () => set(!sw.classList.contains('is-on')));
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    // On when half the card is in view. The first time, the card is still fading in (.reveal, 0.7s), so the flip waits
-    // until it is mostly visible; after that (the card stays visible) it flips at once.
+    set(false);
+    // On when half the card is in view. The card is still fading in then (.reveal, 0.7s), so the flip waits until
+    // it is mostly visible.
     const card = sw.closest('.hcta-band');
-    let timer = 0, shownAt = 0;
+    let timer = 0, shownAt = 0, done = false;
     new MutationObserver(() => { if (card.classList.contains('visible') && !shownAt) shownAt = performance.now(); })
       .observe(card, { attributes: true, attributeFilter: ['class'] });
-    new IntersectionObserver((entries) => {
+    sw.addEventListener('click', () => { done = true; clearTimeout(timer); });   // the reader got there first
+    const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         clearTimeout(timer);
-        if (!e.isIntersecting) { set(false); return; }   // fully out of view: ready to flip again
-        if (e.intersectionRatio < 0.5 || sw.classList.contains('is-on')) return;
+        if (done || e.intersectionRatio < 0.5) return;
         const wait = shownAt ? Math.max(0, 450 - (performance.now() - shownAt)) : 450;
-        timer = setTimeout(() => set(true), wait);
+        timer = setTimeout(() => { done = true; io.disconnect(); set(true); }, wait);
       });
-    }, { threshold: [0, 0.5] }).observe(card);
+    }, { threshold: [0, 0.5] });
+    io.observe(card);
   },
 
   /* Chat Sequential Animation — reveal messages one by one */
