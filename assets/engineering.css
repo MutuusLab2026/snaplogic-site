@@ -706,11 +706,13 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 #stats .kf > .kf-fig { --kf-d: .4s; }
 #stats .kf.visible > * { opacity: 1; translate: 0 0; }
 .kf-strip { transition-delay: .4s; }
-/* Yellow highlighter on the tagline's key phrase, the full height of the letters, drawn left to right once the row
+/* Yellow highlighter on the tagline's first phrase (from the start of the line; chosen for its look, 2026-11-24), the full height of the letters, drawn left to right once the row
    has slid in (2026-11-24; still under review, TODO). Dark text on #fff3a3 keeps its contrast. */
-.kf-hl { white-space: nowrap; background: linear-gradient(#fff3a3, #fff3a3) no-repeat 0 55% / 0% 1.08em; padding: 0 .1em; margin: 0 -.1em;
+.kf-hl { white-space: nowrap; background: linear-gradient(#fff3a3, #fff3a3) no-repeat 0 55% / 0% 1.08em; padding: 0 .1em 0 0; margin-right: -.1em;   /* starts on the letters: its left edge lines up with "The Impact" below */
+ 
   -webkit-box-decoration-break: clone; box-decoration-break: clone; transition: background-size .8s cubic-bezier(.6, .1, .2, 1) .5s; }
 #stats .kf.visible .kf-hl { background-size: 100% 1.08em; }
+@media (max-width: 767px) { .kf-hl { white-space: normal; } }   /* phones: the long phrase may wrap; each line keeps its own band */
 @media (prefers-reduced-motion: reduce) { .kf-hl { background-size: 100% 1.08em; transition: none; } }
 @media (prefers-reduced-motion: reduce) { #stats .kf > * { opacity: 1; translate: none; transition: none; } }
 .kf-strip > span { display: block; height: .9em; line-height: .9em; white-space: nowrap; }
