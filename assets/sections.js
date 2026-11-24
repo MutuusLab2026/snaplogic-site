@@ -151,7 +151,91 @@
   </div>
 </section>
 `,
-  ai: () => `
+  integrator: (o) => `
+<section class="py-12 md:py-24 bg-surface-container-low" id="integrator">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+
+    <!-- Module header and checklist (left), the module's screen (right): same layout as Logic -->
+    <div class="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
+      <div class="reveal">
+        <header class="lg-head" id="integratorHead">
+          <p class="lg-kicker" translate="no">${o.kicker || 'MODULE 02'}</p>
+          <h2 class="lg-name" translate="no">Integrator</h2>
+          <p class="lg-tagline" data-i18n="in_title">논리 설계와 3D 번들의 동기화</p>
+          <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead mb-6" data-i18n-html="in_lead">Integrator는 회로도의 논리적 연결을 실제 차량의 번들 경로와 연결합니다.<br>두 설계 사이의 데이터 일관성을 유지하고, 변경 사항을 서로 반영합니다.</p>
+        </header>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
+            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
+            <span data-i18n="in_r1_t">논리 설계 데이터 통합</span>
+          </li>
+          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
+            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
+            <span data-i18n="in_r2_t">와이어 라우팅과 번들 구성</span>
+          </li>
+          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
+            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
+            <span data-i18n="in_r3_t">번들 직경과 길이 산출</span>
+          </li>
+          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
+            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
+            <span data-i18n="in_r4_t">회로도와 하네스 간 일관성 검증</span>
+          </li>
+        </ul>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <!-- engineering.js adds FIG. 02 under the first .rounded-2xl card in #integrator -->
+        <div class="bg-white rounded-2xl shadow-lg shadow-on-surface/5 overflow-hidden border border-outline-variant/15">
+          <img src="assets/img/integrator-ws.webp" width="1920" height="1012" alt="VegaFencer Integrator screen" loading="lazy" class="w-full block">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+`,
+  harness: (o) => `
+<section class="py-12 md:py-24" id="harness">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+
+    <!-- Module header and checklist (left), the module's screen (right): same layout as Logic -->
+    <div class="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
+      <div class="reveal">
+        <header class="lg-head" id="harnessHead">
+          <p class="lg-kicker" translate="no">${o.kicker || 'MODULE 03'}</p>
+          <h2 class="lg-name" translate="no">Harness Drawing</h2>
+          <p class="lg-tagline" data-i18n="hd_title">상세 하네스 도면 자동 생성</p>
+          <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead mb-6" data-i18n-html="hd_lead">Harness Drawing은 Logic과 Integrator의 데이터로 상세 도면을 만듭니다.<br>플러그 심볼, 번들 길이, 와이어 리스트를 한 장의 도면에 정리합니다.</p>
+        </header>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
+            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
+            <span data-i18n="hd_r1_t">하네스 도면 생성과 시각화</span>
+          </li>
+          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
+            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
+            <span data-i18n="hd_r2_t">플러그 심볼과 와이어 리스트 테이블</span>
+          </li>
+          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
+            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
+            <span data-i18n="hd_r3_t">번들 직경 계산과 와이어 경로 추적</span>
+          </li>
+          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
+            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
+            <span data-i18n="hd_r4_t">Variant·Option별 레이아웃 필터링</span>
+          </li>
+        </ul>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <!-- engineering.js adds FIG. 03 under the first .rounded-2xl card in #harness -->
+        <div class="bg-white rounded-2xl shadow-lg shadow-on-surface/5 overflow-hidden border border-outline-variant/15">
+          <img src="assets/img/harness-ws.webp" width="1745" height="914" alt="VegaFencer Harness Drawing screen" loading="lazy" class="w-full block">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+`,
+  ai: (o) => `
 <section class="py-12 md:py-24" id="ai">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
     <!-- Text (left) and one app window (right). The window is a little taller than the text (aiWindow sizes it);
@@ -159,7 +243,7 @@
     <div class="ai-row">
       <div class="reveal ai-text" id="aiText">
         <header class="lg-head">
-          <p class="lg-kicker" translate="no">EXTENSIONS</p>
+          <p class="lg-kicker" translate="no">${o.kicker || 'EXTENSIONS'}</p>
           <h2 class="lg-name" translate="no">AI Assistant</h2>
           <p class="lg-tagline" data-i18n="ai_title">자연어로 설계를 탐색하다</p>
           <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead mb-6" data-i18n="ai_desc">MCP (Model Context Protocol) 기반 AI 어시스턴트가 설계 데이터에 직접 접근하여, 복잡한 쿼리도 즉시 답변합니다.</p>
@@ -357,7 +441,8 @@
 </section>
 `,
   };
-  window.vfSection = function (name) {
-    document.currentScript.insertAdjacentHTML('beforebegin', sections[name]());
+  // opts: the tag's data-* attributes; data-kicker swaps the small line above a section's name for this page.
+  window.vfSection = function (name, opts) {
+    document.currentScript.insertAdjacentHTML('beforebegin', sections[name](opts || {}));
   };
 })();

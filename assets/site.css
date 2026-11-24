@@ -672,8 +672,8 @@ html[lang="ja"] .story-label span, html[lang="zh"] .story-label span { font-fami
 .lg-tagline { margin: 12px 0 0; font: 700 19px/1.35 Inter, 'Noto Sans KR', sans-serif; letter-spacing: -.02em; color: #151b2b; }
 @media (min-width: 768px) { .lg-tagline { font-size: 22px; } }
 .lg-lead { margin-top: 14px; }
-/* Module screen cards (Logic, Integrator, Harness) on the product page: 12px corners instead of .rounded-2xl's 16px */
-body[data-page="product"] :is(#logic, #integrator, #harness) .rounded-2xl { border-radius: 12px; }
+/* Module screen cards (Logic, Integrator, Harness; the last two also on the home page): 12px corners instead of .rounded-2xl's 16px */
+:is(#logic, #integrator, #harness) .rounded-2xl { border-radius: 12px; }
 
 /* Interface tour */
 .lg-tour {
