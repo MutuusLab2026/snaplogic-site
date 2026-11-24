@@ -32,7 +32,7 @@
 <link rel="preload" as="image" href="assets/img/hero-office-2048.webp?v=20261121" imagesrcset="assets/img/hero-office-1440.webp?v=20261121 1440w, assets/img/hero-office-2048.webp?v=20261121 2048w, assets/img/hero-office-3072.webp?v=20261121 3072w" imagesizes="(min-width: 768px) 90vw, 200vw" fetchpriority="high">
 <link rel="stylesheet" href="assets/tailwind.css?v=2b20e8e2">
 <link rel="stylesheet" href="assets/site.css?v=c687b56d">
-<link rel="stylesheet" href="assets/engineering.css?v=7a809f86">
+<link rel="stylesheet" href="assets/engineering.css?v=9cc1600b">
 </head>
 <body class="bg-surface antialiased" data-page="home" data-skip="hero">
 
@@ -151,13 +151,14 @@ Impact</h2>
      ============================================================ -->
 <section class="hcta" id="plans" aria-labelledby="plansTitle">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-    <!-- Line and link on the left, the two plans as cards on the right (2026-11-25, mockup B1). Plan contents are a first
+    <!-- Line and link on the left, the two plans as cards on the right (2026-11-25: section template on the left, without the kicker). Plan contents are a first
          guess until the plans are decided (see TODO) -->
     <div class="pl-row">
-      <div class="pl-intro reveal">
-        <h2 class="pl-title" id="plansTitle" data-i18n="hcta2_title">팀 규모에 맞는 최적의 플랜을 선택하세요.</h2>
-        <a class="hcta-link" href="pricing"><span data-i18n="hcta2_more">자세히 보기</span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></a>
-      </div>
+      <header class="lg-head pl-intro reveal">   <!-- section template without the kicker; the link takes the lead's place -->
+        <h2 class="lg-name" id="plansTitle" translate="no">Plans</h2>
+        <p class="lg-tagline" data-i18n="hcta2_title">팀 규모에 맞는 최적의 요금제를 선택하세요.</p>
+        <a class="hcta-link lg-lead" href="pricing"><span data-i18n="hcta2_more">요금제 자세히 보기</span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></a>
+      </header>
       <div class="pl-cards reveal reveal-delay-1">
         <div class="pl-card">
           <h3 class="pl-name" translate="no">Professional</h3>
@@ -187,7 +188,7 @@ Impact</h2>
 <script src="assets/footer.js?v=9e27fa58"></script>
 </div><!-- /.engineering-after -->
 
-<script src="assets/i18n.js?v=76bcbb4d"></script>
+<script src="assets/i18n.js?v=6c10fe93"></script>
 <script src="assets/site.js?v=87f81958"></script>
 
 <script src="assets/engineering.js?v=e3dfa836"></script>
