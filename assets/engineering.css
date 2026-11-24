@@ -672,12 +672,10 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 /* CTA 2 (#plans, 2026-11-25): the section name and tagline centred over the two plan cards, the cards centred under it */
 .pl-row { display: flex; flex-direction: column; align-items: center; gap: 40px; }
 @media (min-width: 768px) { .pl-row { gap: 64px; } }
-.pl-head { max-width: none; text-align: center; }
-.pl-head .lg-name { font-size: 40px; }
-.pl-head .lg-tagline { margin-top: 14px; font-size: 22px; text-wrap: balance; }
+.pl-head { text-align: center; }
 #plans { padding: 80px 0; }
-@media (min-width: 768px) { .pl-head .lg-name { font-size: 56px; } .pl-head .lg-tagline { font-size: 28px; } #plans { padding: 120px 0; } }
-@media (min-width: 1101px) { .pl-head .lg-name { font-size: 64px; } .pl-head .lg-tagline { margin-top: 16px; font-size: 33.6px; } #plans { padding: 152px 0; } }   /* the tagline as big as the CTA 1 line; more room above and below, like The Impact */
+@media (min-width: 768px) { #plans { padding: 120px 0; } }
+@media (min-width: 1101px) { #plans { padding: 152px 0; } }   /* more room above and below, like The Impact */
 .pl-cards { width: 100%; max-width: 840px; }
 .pl-cards { display: grid; gap: 16px; }
 @media (min-width: 640px) { .pl-cards { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
