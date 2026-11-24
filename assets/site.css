@@ -675,7 +675,10 @@ html[lang="ja"] .story-label span, html[lang="zh"] .story-label span { font-fami
 /* Module screen cards (Logic, Integrator, Harness; the last two also on the home page): 12px corners instead of .rounded-2xl's 16px */
 :is(#logic, #integrator, #harness) .rounded-2xl { border-radius: 12px; }
 /* data-flip (home, KEY FEATURE 02): screen on the left, text on the right from the two-column width up; phones keep text first */
-@media (min-width: 1024px) { .is-flip > div > .grid > :first-child { order: 2; } }
+@media (min-width: 1024px) {
+  .is-flip > div > .grid > :first-child { order: 2; text-align: right; }   /* the text hugs the right edge, mirroring 01 and 03 */
+  .is-flip > div > .grid > :first-child li { flex-direction: row-reverse; }   /* check marks on the right, next to the edge */
+}
 
 /* Interface tour */
 .lg-tour {
