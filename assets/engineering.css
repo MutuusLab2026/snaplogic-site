@@ -676,13 +676,13 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 .pl-intro { display: flex; flex-direction: column; align-items: flex-start; }
 @media (min-width: 1024px) { .pl-intro { padding-top: 34px; } }   /* cap tops of "Plans" level with the plan names inside the cards (Professional, Enterprise), measured 2026-11-25 */
 /* Help line under a divider. Desktop: the divider is level with the top edge of the "price" buttons in the cards
-   (card bottom padding 36 + border 1 + button height), the text below it ends level with the buttons' bottom. */
-.pl-help { display: flex; align-items: center; gap: 16px; width: 100%; padding-top: 20px; border-top: 1px solid #cfd8e1; }
-@media (min-width: 1024px) { .pl-help { --pl-btn: 52px; box-sizing: border-box; height: calc(var(--pl-btn) + 37px); padding: 0 0 37px; margin-top: auto; } }
+   (card bottom padding 36 + border 1 + button height); the text follows 18px under it. */
+.pl-help { display: flex; align-items: center; gap: 16px; width: 100%; padding-top: 18px; border-top: 1px solid #cfd8e1; }
+@media (min-width: 1024px) { .pl-help { --pl-btn: 52px; box-sizing: border-box; height: calc(var(--pl-btn) + 37px); padding-top: 18px; margin-top: auto; flex-wrap: wrap; align-content: flex-start; } }   /* only the divider is placed; the text keeps its gap under it */
 @media (min-width: 1101px) { .pl-help { --pl-btn: 54.6px; } }   /* .hcta-btn is 54.6px tall from here (CTA 1 desktop sizes) */
 @media (max-width: 1023px) { .pl-intro { display: contents; } .pl-help { order: 1; } }   /* stacked: the help line goes under the plans */
 .pl-help p { margin: 0; font: 600 16px/1.5 Inter, 'Noto Sans KR', sans-serif; color: #151b2b; }
-.pl-help-ic { flex: 0 0 40px; height: 40px; border-radius: 10px; background: #e8f0fe; color: #1765cc; display: grid; place-items: center; }
+.pl-help-ic { flex: 0 0 44px; height: 44px; border-radius: 12px; background: #e8f0fe; color: #1765cc; display: grid; place-items: center; }
 .pl-help-ic svg { width: 22px; height: 22px; }
 .pl-cards { display: grid; gap: 16px; }
 @media (min-width: 640px) { .pl-cards { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
