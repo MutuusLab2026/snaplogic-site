@@ -433,7 +433,7 @@
       <form class="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto" id="ctaForm" method="post">
         <input class="hp-field" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
         <input class="flex-1 px-6 py-3.5 rounded-full bg-white/10 border border-white/15 text-white placeholder-white/30 font-body text-sm focus:outline-none focus:border-primary-container/50 focus:ring-2 focus:ring-primary-container/20 transition-all" type="email" name="email" data-i18n-placeholder="cta_placeholder" placeholder="업무 이메일을 입력하세요" required>
-        <button class="btn-primary-dark px-8 py-3.5 rounded-full font-label font-bold text-sm whitespace-nowrap transition-colors" type="submit" data-i18n-html="cta_submit">데모 신청 &rarr;</button>
+        <button class="btn-primary-dark px-8 py-3.5 rounded-full font-label font-bold text-sm whitespace-nowrap transition-colors" type="submit" data-i18n-html="cta_submit">제품 문의 &rarr;</button>
       </form>
       <p class="hidden mt-6 text-secondary-container font-body font-semibold" id="ctaSuccess" data-i18n="cta_success">감사합니다! 곧 연락드리겠습니다.</p>
       <p class="hidden mt-6 text-red-400 font-body font-semibold" id="ctaError" data-i18n="cta_error"></p>
