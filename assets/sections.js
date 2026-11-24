@@ -7,11 +7,11 @@
   /* A link to another page, or just the #hash when we are already on that page (no reload). */
   const here = (page, hash) => (document.body.getAttribute('data-page') === page ? hash : pageUrl(page, hash));
   const sections = {
-  modules: () => `
+  modules: (o) => `
 <section class="py-12 md:py-24" id="product">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
     <header class="lg-head modules-head reveal">
-      <p class="lg-kicker">PLATFORM</p>
+      ${o.noKicker != null ? '' : '<p class="lg-kicker">PLATFORM</p>'}
       <h2 class="lg-name" translate="no">Core Modules</h2>
       <p class="lg-tagline" data-i18n="modules_title">설계부터 검증, 협업까지 하나의 플랫폼에서 이어집니다.</p>
       <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead" data-i18n="modules_desc">회로 설계부터 전원·규칙 검증, 팀 협업과 3D&nbsp;CAD 연동까지 — 열 개의 핵심 모듈이 설계의 전 과정을 함께합니다.</p>
