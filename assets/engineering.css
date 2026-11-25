@@ -771,7 +771,7 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
    blueprint grid fading out from the middle, one phrase of the title in light blue. Button keeps the cyan. ---- */
 .cta3 { background: #0B1120; }   /* the original glow (.radial-glow, top centre) is in the markup */
 .cta3::before { content: ''; position: absolute; inset: 0; pointer-events: none;
-  background-image: linear-gradient(rgba(124, 180, 255, .08) 1px, transparent 1px), linear-gradient(90deg, rgba(124, 180, 255, .08) 1px, transparent 1px); background-size: 40px 40px;
+  background-image: linear-gradient(rgba(124, 180, 255, .045) 1px, transparent 1px), linear-gradient(90deg, rgba(124, 180, 255, .045) 1px, transparent 1px); background-size: 40px 40px;
   -webkit-mask: radial-gradient(ellipse at 50% 60%, #000 20%, transparent 70%); mask: radial-gradient(ellipse at 50% 60%, #000 20%, transparent 70%); }
 .cta3 h2 em { font-style: normal; color: #7cb4ff; }
 .cta3-sub { margin: 0 auto; font-size: 16px; line-height: 1.65; color: #a9b7c4; text-wrap: balance; }
