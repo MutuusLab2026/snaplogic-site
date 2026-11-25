@@ -334,7 +334,7 @@ const Controller = {
     }, { passive: true });
   },
 
-  /* CTA email form (home, product, pricing, resources): a demo request with the email only */
+  /* CTA email form (home, product, pricing, resources): a product inquiry with the email only */
   initCtaForm() {
     const form = document.getElementById('ctaForm');
     if (!form) return;
@@ -344,10 +344,10 @@ const Controller = {
       errorKey: 'cta_error',
       payload: (f) => ({
         email: f.email.value,
-        _subject: 'VegaFencer Demo Request from ' + f.email.value,
-        message: 'New demo request from: ' + f.email.value,
+        _subject: 'VegaFencer Product Inquiry from ' + f.email.value,
+        message: 'New product inquiry from: ' + f.email.value,
       }),
-      done: () => { form.style.display = 'none'; },
+      done: () => { form.style.display = 'none'; const next = document.getElementById('ctaNext'); if (next) next.style.display = 'none'; },
     });
   },
 
@@ -752,7 +752,7 @@ const Controller = {
           _subject: 'VegaFencer Contact [' + type + '] from ' + f.name.value,
         };
       },
-      done: () => { form.style.display = 'none'; },
+      done: () => { form.style.display = 'none'; const next = document.getElementById('ctaNext'); if (next) next.style.display = 'none'; },
     });
   },
 

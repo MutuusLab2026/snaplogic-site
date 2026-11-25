@@ -152,8 +152,10 @@ const i18n = {
 
     // CTA
     cta_badge: "Enterprise Ready",
-    cta_title: 'E/E 설계 워크플로우를<br>혁신할 준비가 되셨나요?',
-    cta_subtitle: "VegaFencer 데모를 신청하고, 맞춤형 솔루션을 경험하세요. 전문 엔지니어가 귀사의 E/E 설계 프로세스를 분석하여 최적의 워크플로우를 제안합니다.",
+    cta_title: 'E/E 설계 워크플로우를<br><em>혁신할 준비</em>가 되셨나요?',
+    cta_subtitle: "VegaFencer 상담을 신청하고, 맞춤형 솔루션을 경험하세요.<br class=\"cta3-br\"> 전문 엔지니어가 귀사의 E/E 설계 프로세스를 분석하여<br class=\"cta3-br\"> 최적의 워크플로우를 제안합니다.",
+    cta_email_label: "업무 이메일",
+    cta_next: "담당 엔지니어가 영업일 기준 3일 안에 메일로 연락드립니다.",
     cta_placeholder: "업무 이메일을 입력하세요",
     cta_submit: '제품 문의 &rarr;',
     cta_success: "감사합니다! 곧 연락드리겠습니다.",
@@ -390,8 +392,10 @@ const i18n = {
 
     // CTA
     cta_badge: "Enterprise Ready",
-    cta_title: 'Ready to transform your<br>E/E design workflow?',
-    cta_subtitle: "Request a VegaFencer demo and experience a tailored solution. Our expert engineers will analyze your E/E design process and propose the optimal workflow.",
+    cta_title: 'Ready to <em>transform</em> your<br>E/E design workflow?',
+    cta_subtitle: "Request a VegaFencer consultation and experience a tailored solution.<br class=\"cta3-br\"> Our engineers will analyze your E/E design process<br class=\"cta3-br\"> and propose the optimal workflow.",
+    cta_email_label: "Work email",
+    cta_next: "An engineer will reply by email within 3 business days.",
     cta_placeholder: "Enter your work email",
     cta_submit: 'Ask about the product &rarr;',
     cta_success: "Thank you! We will contact you soon.",
@@ -628,8 +632,10 @@ const i18n = {
 
     // CTA
     cta_badge: "企业级就绪",
-    cta_title: '准备好革新您的<br>E/E设计工作流程了吗？',
-    cta_subtitle: "申请VegaFencer演示，体验定制化解决方案。我们的专业工程师将分析您的E/E设计流程，提出最佳工作流方案。",
+    cta_title: '准备好<em>革新</em>您的<br>E/E设计工作流程了吗？',
+    cta_subtitle: "申请VegaFencer咨询，体验定制化解决方案。<br class=\"cta3-br\"> 我们的专业工程师将分析您的E/E设计流程，<br class=\"cta3-br\"> 提出最佳工作流方案。",
+    cta_email_label: "工作邮箱",
+    cta_next: "工程师将在 3 个工作日内通过邮件与您联系。",
     cta_placeholder: "请输入工作邮箱",
     cta_submit: '产品咨询 &rarr;',
     cta_success: "谢谢！我们将尽快与您联系。",
@@ -867,9 +873,11 @@ const i18n = {
 
     // CTA
     cta_badge: "エンタープライズ対応",
-    cta_title: 'E/E設計ワークフローを<br>革新する準備はできていますか？',
-    cta_subtitle: "VegaFencerデモを申請して、カスタマイズされたソリューションを体験してください。専門エンジニアが貴社のE/E設計プロセスを分析し、最適なワークフローを提案します。",
-    cta_placeholder: "業務メールアドレスを入力してください",
+    cta_title: 'E/E設計ワークフローを<br><em>革新する準備</em>はできていますか？',
+    cta_subtitle: "VegaFencerにご相談いただき、最適なソリューションをご体験ください。<br class=\"cta3-br\"> 専門エンジニアが貴社のE/E設計プロセスを分析し、<br class=\"cta3-br\"> 最適なワークフローをご提案します。",
+    cta_email_label: "業務用メールアドレス",
+    cta_next: "担当エンジニアより 3 営業日以内にメールでご連絡します。",
+    cta_placeholder: "業務用メールアドレス",
     cta_submit: '製品のお問い合わせ &rarr;',
     cta_success: "ありがとうございます！まもなくご連絡いたします。",
     cta_sending: "送信中...",
