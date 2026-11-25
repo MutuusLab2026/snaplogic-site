@@ -670,6 +670,9 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 .hcta-link:hover svg { transform: translateX(3px); }
 .hcta-link:focus-visible { outline: 2px solid #1765cc; outline-offset: 3px; }
 /* CTA 2 (#plans, 2026-11-25): section template (no kicker) with a link on the left, two plan cards on the right; stacked below 1024px */
+#plans { padding: 80px 0; }
+@media (min-width: 768px) { #plans { padding: 120px 0; } }
+@media (min-width: 1101px) { #plans { padding: 136px 0; } }   /* more room than the .hcta default (56 / 88) */
 .pl-row { display: grid; gap: 32px; }
 @media (min-width: 1024px) { .pl-row { grid-template-columns: minmax(0, 380px) 1fr; gap: 64px; align-items: start; } }
 .pl-title { font-size: 28px; }   /* a step under the section names; the second line a step smaller again */
