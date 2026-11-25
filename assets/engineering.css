@@ -669,14 +669,15 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 .hcta-link svg { width: 14px; height: 14px; transition: transform .2s; }
 .hcta-link:hover svg { transform: translateX(3px); }
 .hcta-link:focus-visible { outline: 2px solid #1765cc; outline-offset: 3px; }
-/* CTA 2 (#plans, 2026-11-25): the section name and tagline centred over the two plan cards, the cards centred under it */
-.pl-row { display: flex; flex-direction: column; align-items: center; gap: 40px; }
-@media (min-width: 768px) { .pl-row { gap: 64px; } }
-.pl-head { text-align: center; }
-#plans { padding: 80px 0; }
-@media (min-width: 768px) { #plans { padding: 120px 0; } }
-@media (min-width: 1101px) { #plans { padding: 152px 0; } }   /* more room above and below, like The Impact */
-.pl-cards { width: 100%; max-width: 840px; }
+/* CTA 2 (#plans, 2026-11-25): section template (no kicker) with a link on the left, two plan cards on the right; stacked below 1024px */
+.pl-row { display: grid; gap: 32px; }
+@media (min-width: 1024px) { .pl-row { grid-template-columns: minmax(0, 380px) 1fr; gap: 64px; align-items: start; } }
+.pl-title { font-size: 28px; }   /* a step under the section names; the second line a step smaller again */
+.pl-title span { font-size: 22px; letter-spacing: -.035em; }
+@media (min-width: 768px) { .pl-title { font-size: 43px; } .pl-title span { font-size: 33px; } .pl-intro .lg-tagline { font-size: 21.5px; } .pl-intro .lg-lead, .pl-intro .hcta-link { font-size: 17px; } }
+@media (max-width: 767px) { .pl-br { display: none; } }   /* the tagline break is for the narrow left column only */
+.pl-intro .hcta-link { margin-top: 8px; min-height: 0; color: #1765cc; }   /* the link under the lead, in the kicker blue */
+@media (min-width: 1024px) { .pl-intro { padding-top: 34px; } }   /* cap tops of the title level with the plan names inside the cards (Professional, Enterprise), measured 2026-11-25 */
 .pl-cards { display: grid; gap: 16px; }
 @media (min-width: 640px) { .pl-cards { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
 .pl-card { display: flex; flex-direction: column; background: #fff; border: 1px solid #dfe5eb; border-radius: 20px; padding: 28px 24px; }

@@ -28,7 +28,7 @@ const i18n = {
     hcta1_lead: "VegaFencer의 2가지 플랜 (Professional & Enterprise)\u2060의 다양한 기능을 검토하고, 제품에 대해 궁금한 점을 문의해주세요.",
     hcta1_pricing: "요금제 보기",
     hcta1_contact: "제품 문의",
-    hcta2_title: "팀 규모에 맞는 최적의 요금제를 선택하세요.",
+    hcta2_title: "팀 규모에 맞는 최적의 요금제를<br class=\"pl-br\"> 선택하세요.",
     pl_help: "플랜 선택을 위한 상담이 필요하신가요?",
     pl_pro_for: "설계자 개인과 소규모 팀",
     pl_inc: "포함 기능",
