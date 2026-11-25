@@ -767,9 +767,9 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
   html[lang="ja"] .kf-bar { transform: translateX(3.0px); } html[lang="ja"] .kf > .kf-fig:nth-child(4) { transform: translateX(4.0px); } html[lang="ja"] .kf > .kf-fig:nth-child(5) { transform: translateX(3.0px); } html[lang="ja"] .kf > .kf-fig:nth-child(6) { transform: translateX(3.0px); }
 }
 
-/* ---- Last CTA (#cta, every page, 2026-11-25): navy with a blue glow top-left and a teal glow bottom-right, a faint
+/* ---- Last CTA (#cta, every page, 2026-11-25): navy with the original glow at the top centre, a faint
    blueprint grid fading out from the middle, one phrase of the title in light blue. Button keeps the cyan. ---- */
-.cta3 { background: radial-gradient(60% 80% at 15% 0%, rgba(23, 101, 204, .45), transparent 60%), radial-gradient(50% 70% at 90% 100%, rgba(0, 150, 170, .30), transparent 60%), #0B1120; }
+.cta3 { background: #0B1120; }   /* the original glow (.radial-glow, top centre) is in the markup */
 .cta3::before { content: ''; position: absolute; inset: 0; pointer-events: none;
   background-image: linear-gradient(rgba(124, 180, 255, .08) 1px, transparent 1px), linear-gradient(90deg, rgba(124, 180, 255, .08) 1px, transparent 1px); background-size: 40px 40px;
   -webkit-mask: radial-gradient(ellipse at 50% 60%, #000 20%, transparent 70%); mask: radial-gradient(ellipse at 50% 60%, #000 20%, transparent 70%); }

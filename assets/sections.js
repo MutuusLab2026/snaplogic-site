@@ -410,9 +410,10 @@
 </section>
 `,
   cta: () => `
-<!-- Last CTA (2026-11-25): navy band with a blue glow top-left, a teal glow bottom-right and a faint blueprint grid;
+<!-- Last CTA (2026-11-25): navy band with the original glow at the top and a faint blueprint grid;
      one line in the title in light blue; email + "ask about the product" and what happens next -->
 <section class="cta3 py-16 md:py-32 relative overflow-hidden" id="cta">
+  <div class="radial-glow" style="top:-200px;left:50%;transform:translateX(-50%)"></div>
   <div class="max-w-3xl mx-auto px-4 sm:px-6 md:px-8 text-center relative z-10">
     <h2 class="reveal font-headline font-black text-2xl sm:text-3xl md:text-5xl tracking-tight text-white leading-tight mb-4 md:mb-6" data-i18n-html="cta_title">
       E/E 설계 워크플로우를<br><em>혁신할 준비</em>가 되셨나요?
