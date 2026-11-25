@@ -782,7 +782,7 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 @media (max-width: 767px) { .cta3-br { display: none; } }   /* phones: the lines wrap on their own */
 .cta3-form { display: flex; flex-direction: column; gap: 12px; max-width: 560px; margin: 40px auto 0; }
 @media (min-width: 640px) { .cta3-form { flex-direction: row; } .cta3-input { flex: 1; } }
-.cta3-input { min-width: 0; height: 54px; padding: 0 18px; border-radius: 10.5px; border: 1px solid rgba(124, 180, 255, .35); background: rgba(255, 255, 255, .06); color: #fff; font: 400 16px Inter, 'Noto Sans KR', sans-serif; }
+.cta3-input { min-width: 0; height: 54px; padding: 0 18px; border-radius: 10.5px; border: 1px solid rgba(124, 180, 255, .35); background: #161f30; color: #fff;   /* solid, so the grid does not show through */ font: 400 16px Inter, 'Noto Sans KR', sans-serif; }
 .cta3-input::placeholder { color: #8a97a5; }
 .cta3-input:focus { outline: 2px solid #7cb4ff; outline-offset: 2px; }
 .cta3-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 54px; padding: 0 27px; border-radius: 10.5px; font: 700 16.5px Inter, 'Noto Sans KR', sans-serif; white-space: nowrap; }
