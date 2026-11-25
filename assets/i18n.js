@@ -10,7 +10,7 @@ const i18n = {
     nav_ai: "AI",
     nav_gallery: "갤러리",
     nav_integrations: "연동",
-    nav_demo: "데모 신청",
+    nav_demo: "도입 문의",
     skip_link: "메인 콘텐츠로 이동",
 
     // Hero
@@ -24,7 +24,6 @@ const i18n = {
     modules_title: "설계부터 검증, 협업까지 하나의 플랫폼에서 이어집니다.",
     modules_desc: "회로 설계부터 전원·규칙 검증, 팀 협업과 3D\u00a0CAD 연동까지 — 열 개의 핵심 모듈이 설계의 전 과정을 함께합니다.",
     hcta1_title: "E/E 설계의 새로운 기준, VegaFencer와 함께 시작하세요.",
-    hcta1_switch: "VegaFencer 스위치 (눌러서 켜고 끄기)",
     hcta1_lead: "VegaFencer의 2가지 플랜 (Professional & Enterprise)\u2060의 다양한 기능을 검토하고, 제품에 대해 궁금한 점을 문의해주세요.",
     hcta1_pricing: "요금제 보기",
     hcta1_contact: "제품 문의",
@@ -135,7 +134,7 @@ const i18n = {
     gallery_cap1: "Integrator — 토폴로지 & 라우팅",
     gallery_cap2: "Variant / Option / Configuration",
     gallery_cap3: "DRC / BOM Report",
-    gallery_cap4: "Harness Drawing — 하네스 도면",
+    gallery_cap4: "Harness — 하네스 도면",
     gallery_cap5: "AI Assistant — MCP 기반",
 
     // Integrations
@@ -250,7 +249,7 @@ const i18n = {
     nav_ai: "AI",
     nav_gallery: "Gallery",
     nav_integrations: "Integrations",
-    nav_demo: "Request Demo",
+    nav_demo: "Contact Sales",
     skip_link: "Skip to main content",
 
     // Hero
@@ -264,7 +263,6 @@ const i18n = {
     modules_title: "From design to verification and collaboration, it all connects on one platform.",
     modules_desc: "From circuit design to power and rule checks, team collaboration and 3D\u00a0CAD integration — ten core modules cover the entire design process.",
     hcta1_title: "Set a new standard for E/E design with VegaFencer.",
-    hcta1_switch: "VegaFencer switch (press to turn on and off)",
     hcta1_lead: "Compare the features of VegaFencer's two plans, Professional and Enterprise, and ask us anything about the product.",
     hcta1_pricing: "View plans",
     hcta1_contact: "Ask about the product",
@@ -375,7 +373,7 @@ const i18n = {
     gallery_cap1: "Integrator — Topology & routing",
     gallery_cap2: "Variant / Option / Configuration",
     gallery_cap3: "DRC / BOM Report",
-    gallery_cap4: "Harness Drawing — Harness diagram",
+    gallery_cap4: "Harness — Harness diagram",
     gallery_cap5: "AI Assistant — MCP-based",
 
     // Integrations
@@ -490,7 +488,7 @@ const i18n = {
     nav_ai: "AI",
     nav_gallery: "产品展示",
     nav_integrations: "集成",
-    nav_demo: "申请演示",
+    nav_demo: "联系销售",
     skip_link: "跳转到主要内容",
 
     // Hero
@@ -504,7 +502,6 @@ const i18n = {
     modules_title: "从设计到验证、协作，在同一个平台上贯通。",
     modules_desc: "从电路设计到电源与规则检查、团队协作和3D\u00a0CAD联动 — 十个核心模块贯穿设计全过程。",
     hcta1_title: "E/E 设计的新标准，与 VegaFencer 一起开启。",
-    hcta1_switch: "VegaFencer 开关（按下可开关）",
     hcta1_lead: "VegaFencer 两种方案（Professional 与 Enterprise）功能丰富，欢迎了解，如有产品相关问题，请随时咨询。",
     hcta1_pricing: "查看价格方案",
     hcta1_contact: "产品咨询",
@@ -615,7 +612,7 @@ const i18n = {
     gallery_cap1: "Integrator — 拓扑与布线",
     gallery_cap2: "Variant / Option / Configuration",
     gallery_cap3: "DRC / BOM Report",
-    gallery_cap4: "Harness Drawing — 线束图纸",
+    gallery_cap4: "Harness — 线束图纸",
     gallery_cap5: "AI Assistant — 基于MCP",
 
     // Integrations
@@ -731,7 +728,7 @@ const i18n = {
     nav_ai: "AI",
     nav_gallery: "ギャラリー",
     nav_integrations: "統合",
-    nav_demo: "デモを申請",
+    nav_demo: "導入のご相談",
     skip_link: "メインコンテンツへスキップ",
 
     // Hero
@@ -745,7 +742,6 @@ const i18n = {
     modules_title: "設計から検証、コラボレーションまで、一つのプラットフォームでつながります。",
     modules_desc: "回路設計から電源・ルール検証、チームコラボレーション、3D\u00a0CAD連携まで — 10のコアモジュールが設計の全工程をカバーします。",
     hcta1_title: "E/E 設計の新しい基準を、VegaFencer とともに。",
-    hcta1_switch: "VegaFencer スイッチ（押してオン・オフ）",
     hcta1_lead: "VegaFencer の 2 つのプラン（Professional と Enterprise）の多彩な機能をご確認いただき、製品についてのご質問はお気軽にお問い合わせください。",
     hcta1_pricing: "料金プランを見る",
     hcta1_contact: "製品のお問い合わせ",
@@ -856,7 +852,7 @@ const i18n = {
     gallery_cap1: "Integrator — トポロジーとルーティング",
     gallery_cap2: "Variant / Option / Configuration",
     gallery_cap3: "DRC / BOM Report",
-    gallery_cap4: "Harness Drawing — ハーネス図面",
+    gallery_cap4: "Harness — ハーネス図面",
     gallery_cap5: "AI Assistant — MCPベース",
 
     // Integrations
@@ -1063,7 +1059,7 @@ Object.assign(i18n.ko, {
   in_r3_t: "번들 직경과 길이 산출",
   in_r4_t: "회로도와 하네스 간 일관성 검증",
   hd_title: "상세 하네스 도면 자동 생성",
-  hd_lead: "Harness Drawing은 Logic과 Integrator의 데이터로 상세 도면을 만듭니다.<br>플러그 심볼, 번들 길이, 와이어 리스트를 한 장의 도면에 정리합니다.",
+  hd_lead: "Harness는 Logic과 Integrator의 데이터로 상세 도면을 만듭니다.<br>플러그 심볼, 번들 길이, 와이어 리스트를 한 장의 도면에 정리합니다.",
   hd_r1_t: "하네스 도면 생성과 시각화",
   hd_r2_t: "플러그 심볼과 와이어 리스트 테이블",
   hd_r3_t: "번들 직경 계산과 와이어 경로 추적",
@@ -1092,7 +1088,7 @@ Object.assign(i18n.en, {
   in_r3_t: "Bundle diameter and length calculation",
   in_r4_t: "Consistency checks between schematic and harness",
   hd_title: "Automatic detailed harness drawings",
-  hd_lead: "Harness Drawing creates detailed drawings from Logic and Integrator data.<br>Plug symbols, bundle lengths and wire lists share one drawing.",
+  hd_lead: "Harness creates detailed drawings from Logic and Integrator data.<br>Plug symbols, bundle lengths and wire lists share one drawing.",
   hd_r1_t: "Harness drawing creation and visualization",
   hd_r2_t: "Plug symbols and wire list tables",
   hd_r3_t: "Bundle diameter calculation and wire path tracing",
@@ -1121,7 +1117,7 @@ Object.assign(i18n.zh, {
   in_r3_t: "计算线束直径与长度",
   in_r4_t: "电路图与线束之间的一致性验证",
   hd_title: "自动生成详细线束图纸",
-  hd_lead: "Harness Drawing 根据 Logic 和 Integrator 的数据生成详细图纸。<br>插头符号、线束长度和导线清单汇总在同一张图纸上。",
+  hd_lead: "Harness 根据 Logic 和 Integrator 的数据生成详细图纸。<br>插头符号、线束长度和导线清单汇总在同一张图纸上。",
   hd_r1_t: "线束图纸生成与可视化",
   hd_r2_t: "插头符号与导线清单表",
   hd_r3_t: "线束直径计算与导线路径追踪",
@@ -1151,7 +1147,7 @@ Object.assign(i18n.ja, {
   in_r3_t: "バンドル径と長さの算出",
   in_r4_t: "回路図とハーネスの整合性検証",
   hd_title: "詳細ハーネス図面の自動生成",
-  hd_lead: "Harness Drawing\u2060は、Logic\u2060と Integrator\u2060のデータで詳細図面を作ります。<br>プラグシンボル、バンドル長、ワイヤリストを一枚にまとめます。",
+  hd_lead: "Harness\u2060は、Logic\u2060と Integrator\u2060のデータで詳細図面を作ります。<br>プラグシンボル、バンドル長、ワイヤリストを一枚にまとめます。",
   hd_r1_t: "ハーネス図面の生成と可視化",
   hd_r2_t: "プラグシンボルとワイヤリストテーブル",
   hd_r3_t: "バンドル径の計算とワイヤ経路の追跡",

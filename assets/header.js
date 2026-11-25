@@ -36,12 +36,12 @@ if (location.protocol === 'file:') {
   var menus = {
     product: [
       ['sub_modules', '핵심 모듈', '#product', [['', 'Logic', '#logic'], ['', 'Integrator', '#integrator'],
-        ['', 'Harness Drawing', '#harness'], ['', 'Variant · DRC · BOM', '#variant'], ['', 'Bridge', '#bridge']]],
+        ['', 'Harness', '#harness'], ['', 'Variant · DRC · BOM', '#variant'], ['', 'Bridge', '#bridge']]],
       ['sub_workflow', '워크플로우', '#workflow'], ['sub_ai', 'AI 어시스턴트', '#ai'],
       ['sub_integrations', 'CAD 연동', '#integrations'], ['sub_team', '팀 협업', '#enterprise']
     ],
     resources: [['sub_screens', '제품 화면', '#gallery'], ['sub_videos', '구동 영상', '#videos'], ['sub_docs', '문서', '#docs']],
-    pricing: [['pricing_title', '요금제', '#pricing'], ['nav_demo', '데모 신청', '#cta']]
+    pricing: [['pricing_title', '요금제', '#pricing'], ['nav_demo', '도입 문의', '#cta']]
   };
   var menuLink = function (name, item, cls, i) {
     return '<a class="' + cls + '" href="' + pageUrl(name, item[2]) + '"' + (i == null ? '' : ' style="--i:' + i + '"') +
@@ -92,14 +92,14 @@ if (location.protocol === 'file:') {
       ${tab('pricing', 'nav_pricing', 'Pricing')}
       ${tab('contact', 'nav_contact', 'Contact')}
       <!-- Phones only: the header's demo button is hidden below md, so the open menu ends with it -->
-      <a class="nav-demo-mobile md:hidden" href="${pageUrl('home', '#cta')}" id="navDemoMobile" data-i18n="nav_demo">Request Demo</a>
+      <a class="nav-demo-mobile md:hidden" href="${pageUrl('home', '#cta')}" id="navDemoMobile" data-i18n="nav_demo">도입 문의</a>
     </div>
     <!-- Language Switcher (Desktop) -->
     <div class="hidden md:flex items-center gap-1 font-label text-xs mr-4" id="langSwitcherDesktop" role="group" aria-label="Language">
       ${langButtons}
     </div>
     <!-- Demo request: scrolls to the form when the page has one, otherwise opens it on the home page -->
-    <a class="btn btn-primary" href="${pageUrl('home', '#cta')}" id="navDemo" data-i18n="nav_demo">Request Demo</a>
+    <a class="btn btn-primary" href="${pageUrl('home', '#cta')}" id="navDemo" data-i18n="nav_demo">도입 문의</a>
   </nav>
   <!-- Language Switcher (Mobile) -->
   <div class="flex md:hidden items-center justify-center gap-1 font-label text-xs pb-2" id="langSwitcherMobile" role="group" aria-label="Language">

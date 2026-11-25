@@ -8,7 +8,7 @@ const Model = {
     { img: "assets/img/integrator.jpg", caption: "Integrator — 토폴로지 & 라우팅" },
     { img: "assets/img/variant-config.jpg", caption: "Variant / Option / Configuration" },
     { img: "assets/img/drc-bom-report.jpg", caption: "DRC / BOM Report" },
-    { img: "assets/img/harness-drawing.jpg", caption: "Harness Drawing — 하네스 도면" },
+    { img: "assets/img/harness-drawing.jpg", caption: "Harness — 하네스 도면" },
     { img: "assets/img/ai-assistant.jpg", caption: "AI Assistant — MCP 기반" },
   ],
 };
@@ -486,7 +486,7 @@ const Controller = {
   initCtaSwitch() {
     const sw = document.querySelector('#cta-ask .hcta-switch');
     if (!sw) return;
-    const set = (on) => { sw.classList.toggle('is-on', on); sw.setAttribute('aria-pressed', String(on)); };
+    const set = (on) => sw.classList.toggle('is-on', on);
     sw.addEventListener('click', () => set(!sw.classList.contains('is-on')));
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     set(false);
@@ -595,7 +595,7 @@ const Controller = {
     const slides = Array.from(container.querySelectorAll('img'));
     const dots = Array.from(document.querySelectorAll('.hero-dot'));
     const title = document.getElementById('heroWindowTitle');
-    const titles = ['VegaFencer — Logic Editor', 'VegaFencer — Integrator', 'VegaFencer — Harness Drawing', 'VegaFencer — Variant Config', 'VegaFencer — AI Assistant'];
+    const titles = ['VegaFencer — Logic Editor', 'VegaFencer — Integrator', 'VegaFencer — Harness', 'VegaFencer — Variant Config', 'VegaFencer — AI Assistant'];
     const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
     let current = 0;
     let interval;

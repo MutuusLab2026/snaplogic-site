@@ -18,7 +18,7 @@ document.currentScript.insertAdjacentHTML('beforebegin', `
         <div class="flex flex-col gap-2.5">
           <a href="${pageUrl('product', '#logic')}" class="font-body text-on-surface-variant text-sm hover:text-primary-container transition-colors">Logic</a>
           <a href="${pageUrl('product', '#integrator')}" class="font-body text-on-surface-variant text-sm hover:text-primary-container transition-colors">Integrator</a>
-          <a href="${pageUrl('product', '#harness')}" class="font-body text-on-surface-variant text-sm hover:text-primary-container transition-colors">Harness Drawing</a>
+          <a href="${pageUrl('product', '#harness')}" class="font-body text-on-surface-variant text-sm hover:text-primary-container transition-colors">Harness</a>
           <a href="${pageUrl('product', '#ai')}" class="font-body text-on-surface-variant text-sm hover:text-primary-container transition-colors">AI Assistant</a>
         </div>
       </div>
