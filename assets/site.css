@@ -923,4 +923,8 @@ html[lang="zh"] .hero-sub, html[lang="ja"] .hero-sub { font-family: inherit; }
 #chatMessages.chat-static > div { animation: none !important; transition: none; opacity: 1; transform: none; }
 
 /* Key features 01-03 on phones: checklist a step smaller (15 -> 14px), under the 15px lead (2026-11-27) */
-@media (max-width: 767px) { :is(#integrator, #harness, #ai) ul li { font-size: 14px; } }
+@media (max-width: 767px) {
+  :is(#integrator, #harness, #ai) ul li { font-size: 14px; }
+  :is(#integrator, #harness, #ai) ul li .material-symbols-outlined { font-size: 18.5px !important; margin-top: 1px; }   /* the tick scales with the text (20 x 14/15) */
+  :is(#integrator, #harness, #ai) .lg-lead { margin-bottom: 14px !important; }   /* lead -> list = tagline -> lead (23.5px as the eye sees it; was 33.5) */
+}
