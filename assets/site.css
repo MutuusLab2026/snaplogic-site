@@ -835,7 +835,7 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
 @media (max-width: 767px) { .ga-stage { --ga-pad: 24px; } }
 @media (max-width: 639px) { .ga-stage { --ga-pad: 16px; } }
 @media (max-width: 767px) {
-  .ga-sec { --ga-pb: 120px; padding: 56px 0 var(--ga-pb); }
+  .ga-sec { --ga-pb: 22.5px; padding: 56px 0 var(--ga-pb); }   /* card bottom -> section end = section top -> kicker (57.5px), 2026-11-26 */
   .ga-arrows { display: none; }   /* nothing left in it on phones (no arrows, no counter) */
   .ga-head { flex-wrap: wrap; }
   .ga-head > header { flex: 1 1 100%; }   /* the counter goes under the tagline, so the title keeps one line */
