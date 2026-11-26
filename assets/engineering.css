@@ -812,11 +812,23 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
   .kf > .kf-bar { display: none; }
   .kf-lead::after { content: ''; display: block; height: 1px; margin: 17px 2px 0 1px; background: #a9b4bf; }   /* tagline ink -> rule = title T -> tagline F + .5px (22 + .5 at the 30 / 19px template sizes, measured) */
   .kf > .kf-title, .kf > .kf-lead { padding-left: 2px; }   /* ink lines up with Zero's (its Z sits a little inside its box), pixel-checked */
-  .kf-sec { padding: 53px 0 62px; }   /* bottom: 8px more than the 57.5 rhythm so the corner note keeps 24px under the labels */
+  .kf-sec { padding: 53.5px 0 54px; }   /* phone section rhythm: boundary -> title ink = last label ink -> boundary = 57.5px (the corner note sits inside the bottom space) */
   /* the note sits in the bottom-right corner against the screen edges, as on wide screens (2026-11-26) */
   .kf-note { position: absolute; right: 16px; bottom: 16px; max-width: calc(100% - 32px); margin: 0; text-align: right; font-size: 10px; }   /* phone section rhythm: boundary -> first ink = last ink -> boundary = 57.5px */
 }
 @media (min-width: 640px) and (max-width: 767px) { .kf { column-gap: 24px; } }   /* the container's padding is 24px here */
+/* Trial (2026-11-27): title, tagline, rule and figures share CTA 1's left edge (container + the card's 28px inner
+   padding), two equal columns with each figure starting at its column's left edge, figures much smaller (64 -> 44px).
+   The corner note keeps the screen edges. */
+@media (max-width: 767px) {
+  .kf { grid-template-columns: 1fr 1fr; column-gap: 16px; padding-inline: 28px; justify-items: start; text-align: left; }
+  .kf > .kf-title, .kf > .kf-lead { grid-column: 1 / -1; padding-left: 0; justify-self: stretch; }
+  .kf > .kf-fig:nth-of-type(odd), .kf > .kf-fig:nth-of-type(even) { grid-column: auto; }
+  .kf-fig { align-items: flex-start; }
+  .kf-n { font-size: 44px; }
+  .kf-l { margin-top: 8px !important; text-align: left; }
+  .kf-lead::after { margin: 17px 0 0; }
+}
 @media (min-width: 1101px) {
   .kf-sec { padding: 144px 0 152px; }
   .kf { flex-wrap: wrap; }
