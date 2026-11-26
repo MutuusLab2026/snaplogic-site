@@ -802,17 +802,17 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
   .kf-n { font-size: min(64px, 16.4vw); }
   .kf-l { margin-top: min(12px, 3.08vw) !important; font-size: min(16px, 4.1vw); }
   /* a step larger than the usual section header (30 / 19px), one line (2026-11-26; 40 / 22 -> 36 / 20) */
-  .kf-title { white-space: normal; font-size: 36px; }
-  .kf-lead { font-size: 20px; }
+  .kf-title { white-space: normal; font-size: 30px; }   /* the phone section template (.lg-name 30px), 2026-11-27 */
+  .kf-lead { font-size: 19px; }   /* .lg-tagline 19px */
   /* left-aligned header; the divider is a thin grey rule as wide as the figures below (2026-11-26) */
   .kf > .kf-title, .kf > .kf-lead, .kf > .kf-bar { grid-column: 2 / 5; }   /* same columns as the figures: left edge on Zero's, rule from Zero to −00% */
   .kf > .kf-title, .kf > .kf-lead { justify-self: start; text-align: left; }
   /* The divider: a thin grey rule drawn under the tagline (its own grid row would not move up reliably with a
      negative margin), from Zero's left edge to −00%'s right edge; the old short bar is hidden here. */
   .kf > .kf-bar { display: none; }
-  .kf-lead::after { content: ''; display: block; height: 1px; margin: 19.5px 2px 0 1px; background: #a9b4bf; }   /* tagline ink -> rule = title T -> tagline F (24px at 390, measured) + .5px */
+  .kf-lead::after { content: ''; display: block; height: 1px; margin: 17px 2px 0 1px; background: #a9b4bf; }   /* tagline ink -> rule = title T -> tagline F + .5px (22 + .5 at the 30 / 19px template sizes, measured) */
   .kf > .kf-title, .kf > .kf-lead { padding-left: 2px; }   /* ink lines up with Zero's (its Z sits a little inside its box), pixel-checked */
-  .kf-sec { padding: 52.5px 0 62px; }   /* bottom: 8px more than the 57.5 rhythm so the corner note keeps 24px under the labels */
+  .kf-sec { padding: 53px 0 62px; }   /* bottom: 8px more than the 57.5 rhythm so the corner note keeps 24px under the labels */
   /* the note sits in the bottom-right corner against the screen edges, as on wide screens (2026-11-26) */
   .kf-note { position: absolute; right: 16px; bottom: 16px; max-width: calc(100% - 32px); margin: 0; text-align: right; font-size: 10px; }   /* phone section rhythm: boundary -> first ink = last ink -> boundary = 57.5px */
 }
