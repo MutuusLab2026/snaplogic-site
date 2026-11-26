@@ -800,7 +800,7 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
   /* The divider: a thin grey rule drawn under the tagline (its own grid row would not move up reliably with a
      negative margin), from Zero's left edge to −00%'s right edge; the old short bar is hidden here. */
   .kf > .kf-bar { display: none; }
-  .kf-lead::after { content: ''; display: block; height: 1px; margin: 16px 2px 0 1px; background: #a9b4bf; }
+  .kf-lead::after { content: ''; display: block; height: 1px; margin: 19px 2px 0 1px; background: #a9b4bf; }   /* tagline ink -> rule = title T -> tagline F (24px at 390, measured) */
   .kf > .kf-title, .kf > .kf-lead { padding-left: 2px; }   /* ink lines up with Zero's (its Z sits a little inside its box), pixel-checked */
   .kf-sec { padding: 52.5px 0 54px; }   /* phone section rhythm: boundary -> first ink = last ink -> boundary = 57.5px */
 }
