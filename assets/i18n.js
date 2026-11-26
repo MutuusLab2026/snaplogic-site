@@ -42,12 +42,16 @@ const i18n = {
     hcta2_more: "요금제 자세히 보기",
     mod_logic_title: "Logic",
     mod_logic_desc: "핀 단위로 연결을 정의하고, 전기적 오류를 바로 검증합니다.",
+    mod_logic_sub: "핀 단위 연결 정의와 전기적 검증",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     mod_integrator_title: "Integrator",
     mod_integrator_desc: "회로도를 3D 번들 설계와 동기화하고, 토폴로지를 검증합니다.",
+    mod_integrator_sub: "회로도와 3D 번들 설계 동기화",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     mod_harness_title: "Harness",
     mod_harness_desc: "하네스 도면을 자동 생성하고, 와이어 리스트와 번들 직경을 계산합니다.",
+    mod_harness_sub: "하네스 도면 자동 생성",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     mod_variant_title: "Variant / Option Configuration",
     mod_variant_desc: "Variant, Option, Configuration 별로 원하는 구성을 표시합니다.",
+    mod_variant_sub: "사양·옵션별 구성 표시",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
 
     // Feature: Logic
     feat_logic_label: "VEGAFENCER LOGIC",
@@ -204,19 +208,25 @@ const i18n = {
     ag_res4: "이상 없음",
     mod_bridge_title: "3D CAD Bridge",
     mod_bridge_desc: "CATIA V5·NX와 와이어 리스트·번들 길이 데이터를 양방향으로 주고받습니다.",
+    mod_bridge_sub: "CATIA V5·NX와 데이터 교환",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     mod_library_title: "Library / Symbol Editor",
     mod_library_desc: "표준화된 라이브러리를 사용자화하고, 필드별 속성을 지정합니다.",
+    mod_library_sub: "표준 라이브러리 사용자화",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     mod_grp1: "설계",
     mod_grp2: "검증 · 관리",
     mod_grp3: "협업 · 연동",
     mod_power_title: "Power Check",
     mod_power_desc: "전원·퓨즈·부하·접지 역할과 전류값으로 회로의 전원 용량을 점검합니다.",
+    mod_power_sub: "전원·퓨즈·부하 용량 점검",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     mod_multiuser_title: "Multiuser Environment",
     mod_multiuser_desc: "Server/Client로 함께 설계합니다. 사용자별 권한, 편집 중 도면 자동 잠금.",
+    mod_multiuser_sub: "서버 기반 동시 설계와 권한",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     mod_ai_title: "AI Assistant",
     mod_ai_desc: "MCP 기반 AI 어시스턴트. 자연어로 설계 데이터를 조회·수정합니다.",
+    mod_ai_sub: "자연어로 설계 데이터 조회·수정",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     mod_drc_title: "DRC / BOM",
     mod_drc_desc: "24개 DRC 규칙으로 설계 오류를 찾고, 와이어·커넥터 BOM을 출력합니다.",
+    mod_drc_sub: "24개 규칙 검증과 BOM 출력",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     feat_bridge_label: "VEGAFENCER BRIDGE",
     feat_bridge_title: "3D CAD와의 양방향 상호운용성",
     feat_bridge_desc: "Dassault Systèmes CATIA V5와 Siemens NX와의 상호운용성을 지원하여, 서로 다른 설계 환경 간에도 일관된 데이터 흐름을 유지합니다.",
@@ -281,12 +291,16 @@ const i18n = {
     hcta2_more: "See plan details",
     mod_logic_title: "Logic",
     mod_logic_desc: "Define connections pin by pin and check for electrical errors right away.",
+    mod_logic_sub: "Pin-level connections and electrical checks",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     mod_integrator_title: "Integrator",
     mod_integrator_desc: "Sync schematics with the 3D bundle design and verify the topology.",
+    mod_integrator_sub: "Schematics synced with 3D bundle design",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     mod_harness_title: "Harness",
     mod_harness_desc: "Generate harness drawings automatically, with wire lists and bundle diameters.",
+    mod_harness_sub: "Automatic harness drawings",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     mod_variant_title: "Variant / Option Configuration",
     mod_variant_desc: "Show just the build you need by variant, option and configuration.",
+    mod_variant_sub: "Configurations by spec and option",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
 
     // Feature: Logic
     feat_logic_label: "VEGAFENCER LOGIC",
@@ -443,19 +457,25 @@ const i18n = {
     ag_res4: "No issues",
     mod_bridge_title: "3D CAD Bridge",
     mod_bridge_desc: "Exchange wire lists and bundle lengths both ways with CATIA V5 and NX.",
+    mod_bridge_sub: "Data exchange with CATIA V5 and NX",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     mod_library_title: "Library / Symbol Editor",
     mod_library_desc: "Customize the standard library for each user and set properties per field.",
+    mod_library_sub: "Customizable standard libraries",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     mod_grp1: "Design",
     mod_grp2: "Verification · Management",
     mod_grp3: "Collaboration · Integration",
     mod_power_title: "Power Check",
     mod_power_desc: "Check the circuit’s power capacity from source, fuse, load and ground roles and currents.",
+    mod_power_sub: "Power, fuse and load capacity checks",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     mod_multiuser_title: "Multiuser Environment",
     mod_multiuser_desc: "Design together on Server/Client, with per-user permissions and automatic locks on drawings in use.",
+    mod_multiuser_sub: "Server-based concurrent design and roles",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     mod_ai_title: "AI Assistant",
     mod_ai_desc: "An MCP-based assistant: query and edit design data in plain language.",
+    mod_ai_sub: "Query and edit design data in plain language",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     mod_drc_title: "DRC / BOM",
     mod_drc_desc: "Find design errors with 24 DRC rules and export wire and connector BOMs.",
+    mod_drc_sub: "24 rule checks and BOM output",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     feat_bridge_label: "VEGAFENCER BRIDGE",
     feat_bridge_title: "Bidirectional interoperability with 3D CAD",
     feat_bridge_desc: "Interoperability with Dassault Systèmes CATIA V5 and Siemens NX keeps data flowing consistently across different design environments.",
@@ -520,12 +540,16 @@ const i18n = {
     hcta2_more: "查看方案详情",
     mod_logic_title: "Logic",
     mod_logic_desc: "按引脚定义连接，并即时检查电气错误。",
+    mod_logic_sub: "引脚级连接定义与电气检查",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     mod_integrator_title: "Integrator",
     mod_integrator_desc: "将电路图与3D线束设计同步，并验证拓扑。",
+    mod_integrator_sub: "原理图与3D线束设计同步",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     mod_harness_title: "Harness",
     mod_harness_desc: "自动生成线束图纸，并计算导线清单与线束直径。",
+    mod_harness_sub: "自动生成线束图纸",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     mod_variant_title: "Variant / Option Configuration",
     mod_variant_desc: "按Variant、Option、Configuration显示所需配置。",
+    mod_variant_sub: "按规格与选项显示配置",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
 
     // Feature: Logic
     feat_logic_label: "VEGAFENCER LOGIC",
@@ -682,19 +706,25 @@ const i18n = {
     ag_res4: "无异常",
     mod_bridge_title: "3D CAD Bridge",
     mod_bridge_desc: "与CATIA V5、NX双向交换导线清单和线束长度数据。",
+    mod_bridge_sub: "与CATIA V5·NX交换数据",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     mod_library_title: "Library / Symbol Editor",
     mod_library_desc: "按用户定制标准化Library，并按字段指定属性。",
+    mod_library_sub: "标准库自定义",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     mod_grp1: "设计",
     mod_grp2: "验证 · 管理",
     mod_grp3: "协作 · 联动",
     mod_power_title: "Power Check",
     mod_power_desc: "根据电源、保险丝、负载、接地角色和电流值检查电路的电源容量。",
+    mod_power_sub: "电源·保险丝·负载容量检查",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     mod_multiuser_title: "Multiuser Environment",
     mod_multiuser_desc: "在Server/Client环境中协同设计，按用户管理权限，编辑中的图纸自动锁定。",
+    mod_multiuser_sub: "基于服务器的协同设计与权限",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     mod_ai_title: "AI Assistant",
     mod_ai_desc: "基于MCP的AI助手，用自然语言查询和修改设计数据。",
+    mod_ai_sub: "用自然语言查询·修改设计数据",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     mod_drc_title: "DRC / BOM",
     mod_drc_desc: "用24条DRC规则查找设计错误，并输出导线与连接器BOM。",
+    mod_drc_sub: "24条规则检查与BOM输出",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     feat_bridge_label: "VEGAFENCER BRIDGE",
     feat_bridge_title: "与3D CAD的双向互操作性",
     feat_bridge_desc: "支持与达索系统CATIA V5和西门子NX的互操作性，在不同设计环境之间保持数据流一致。",
@@ -760,12 +790,16 @@ const i18n = {
     hcta2_more: "プランの詳細を見る",
     mod_logic_title: "Logic",
     mod_logic_desc: "ピン単位で接続を定義し、電気的なエラーをその場で検証します。",
+    mod_logic_sub: "ピン単位の接続定義と電気的検証",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     mod_integrator_title: "Integrator",
     mod_integrator_desc: "回路図を3Dバンドル設計と同期し、トポロジーを検証します。",
+    mod_integrator_sub: "回路図と3Dバンドル設計の同期",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     mod_harness_title: "Harness",
     mod_harness_desc: "ハーネス図面を自動生成し、ワイヤーリストとバンドル径を計算します。",
+    mod_harness_sub: "ハーネス図面の自動生成",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     mod_variant_title: "Variant / Option Configuration",
     mod_variant_desc: "Variant、Option、Configurationごとに必要な構成を表示します。",
+    mod_variant_sub: "仕様・オプション別の構成表示",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
 
     // Feature: Logic
     feat_logic_label: "VEGAFENCER LOGIC",
@@ -922,19 +956,25 @@ const i18n = {
     ag_res4: "問題なし",
     mod_bridge_title: "3D CAD Bridge",
     mod_bridge_desc: "CATIA V5・NXとワイヤーリスト・バンドル長データを双方向でやり取りします。",
+    mod_bridge_sub: "CATIA V5・NX\u2060とのデータ交換",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     mod_library_title: "Library / Symbol Editor",
     mod_library_desc: "標準化されたLibraryをユーザーごとにカスタマイズし、フィールドごとに属性を指定します。",
+    mod_library_sub: "標準ライブラリのカスタマイズ",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     mod_grp1: "設計",
     mod_grp2: "検証 · 管理",
     mod_grp3: "コラボレーション · 連携",
     mod_power_title: "Power Check",
     mod_power_desc: "電源・ヒューズ・負荷・グランドの役割と電流値から、回路の電源容量を点検します。",
+    mod_power_sub: "電源・ヒューズ・負荷容量のチェック",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     mod_multiuser_title: "Multiuser Environment",
     mod_multiuser_desc: "Server/Client環境で共同設計。ユーザーごとの権限と、編集中の図面の自動ロック。",
+    mod_multiuser_sub: "サーバーベースの同時設計と権限",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     mod_ai_title: "AI Assistant",
     mod_ai_desc: "MCPベースのAIアシスタント。自然な言葉で設計データを照会・修正します。",
+    mod_ai_sub: "自然言語で設計データを照会・編集",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     mod_drc_title: "DRC / BOM",
     mod_drc_desc: "24のDRCルールで設計エラーを見つけ、ワイヤー・コネクタのBOMを出力します。",
+    mod_drc_sub: "24\u2060のルール検証とBOM出力",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
     feat_bridge_label: "VEGAFENCER BRIDGE",
     feat_bridge_title: "3D CAD\u2060との双方向相互運用性",
     feat_bridge_desc: "Dassault Systèmes CATIA V5およびSiemens NX\u2060との相互運用性をサポートし、異なる設計環境間でも一貫したデータフローを維持。",
