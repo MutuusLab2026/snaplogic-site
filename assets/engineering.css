@@ -687,12 +687,11 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 .hcta-band > div:first-child { flex: 1 1 360px; min-width: 0; }
 .hcta-btn { white-space: nowrap; }
 @media (max-width: 767px) { .hcta-actions { width: 100%; flex-direction: column; align-items: stretch; } }
-/* Phones (2026-11-26): the title breaks after the comma (ko) into two lines; the second line ("VegaFencer와 함께
-   시작하세요.", 13.6em wide) is kept on one line by scaling the title with the screen (24px from 430px wide). */
+/* Phones (2026-11-26): the title (ko) breaks by meaning into three lines: "E/E 설계의 새로운 기준," / "VegaFencer와" /
+   "함께 시작하세요." (a two-line version with a smaller title looked unbalanced). */
 .hcta-br { display: none; }
 @media (max-width: 767px) {
   .hcta-br { display: inline; }
-  .hcta-title { font-size: min(24px, calc((100vw - 80px) / 13.8)); }
 }
 @media (prefers-reduced-motion: reduce) { .hcta-btn svg { transition: none; } .hcta-btn:hover svg { transform: none; } }
 /* links used by CTA 2 */
