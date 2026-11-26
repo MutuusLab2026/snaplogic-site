@@ -465,27 +465,14 @@ html[lang="ko"] body { word-break: keep-all; overflow-wrap: break-word; }
   .engineering-pipeline svg { width: 17px; }
   .engineering-scroll { display: none; }
   .engineering-interface { padding: 40px 0; }
-  /* Phones (2026-11-26, draft A): a list grouped like a phone's settings screen. Each group gets a heading (the
-     .mod-gh tags in sections.js, hidden on wider screens) and one white box; each module is one row: symbol, name,
-     arrow. Descriptions, the trace and the "Learn more" words are left out (the whole row is the link). The
-     headings name the groups, so the colour legend above is not needed here. */
-  .modules-head + .mod-legend { display: none; }
-  #product > div > .grid { display: block; }
-  .mod-gh { display: flex; align-items: center; gap: 8px; margin: 24px 0 10px 2px;
-    font: 700 14px 'Noto Sans KR', Inter, sans-serif; color: #3d4a5c; }
-  .mod-gh:first-child { margin-top: 0; }
-  .mod-gh i { width: 9px; height: 9px; border-radius: 3px; background: var(--grp); }
-  #product > div > .grid > a { flex-direction: row; align-items: center; gap: 14px; min-height: 62px; box-sizing: border-box;
-    padding: 12px 16px; border-radius: 0; }
-  #product > div > .grid > a + a { border-top: 1px solid #e6ebf0; }
-  #product > div > .grid > .mod-gh + a { border-radius: 12px 12px 0 0; }
-  #product > div > .grid > a:has(+ .mod-gh), #product > div > .grid > a:last-child { border-radius: 0 0 12px 12px; }
-  #product > div > .grid > a > div:first-child { flex: none; width: 38px; height: 38px; margin: 0; }
-  #product .engineering-module-symbol svg { width: 22px; height: 22px; }
-  #product .engineering-module-trace, #product a[data-grp] > p, #product .mod-more > span { display: none; }
-  #product a[data-grp] h3 { flex: 1; margin: 0; font-size: 16px; line-height: 1.3; }
-  #product .mod-more svg { width: 16px; height: 16px; }
-  #product .grid > a[data-grp]:hover, #product .grid > a[data-grp]:focus-visible { translate: none; box-shadow: none; }
+  /* Phones (2026-11-26, draft B): the full cards (with descriptions) in one row that scrolls sideways; the next card
+     shows at the right edge. One swipe = one card, like Explore the Workspace above. (Draft A, a grouped list, is the
+     commit before this one.) */
+  #product > div > .grid { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+    overscroll-behavior-x: contain; margin: 0 -16px; padding: 4px 16px 12px; scroll-padding-left: 16px; }
+  #product > div > .grid::-webkit-scrollbar { display: none; }
+  #product > div > .grid > a { flex: 0 0 78%; scroll-snap-align: start; scroll-snap-stop: always; }
+  #product .grid > a[data-grp]:hover, #product .grid > a[data-grp]:focus-visible { translate: none; }
   .engineering-button { padding-inline: 16px; font-size: 12px; }
   .engineering-drawing .diagram-label, .engineering-drawing .diagram-callout, .engineering-drawing .dimension-line { display: none; }
   .eng-bridge .bridge-lane-text { letter-spacing: .2px; }
