@@ -792,7 +792,7 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
   /* the divider: a thin grey rule under the tagline, the full width of the content */
   .kf > .kf-bar { display: none; }
   .kf-lead::after { content: ''; display: block; height: 1px; margin-top: 19.5px; background: #a9b4bf; }
-  .kf-sec { padding: 52.5px 0 54px; }   /* phone section rhythm: boundary -> first ink = last ink -> boundary = 57.5px */
+  .kf-sec { padding: 52.5px 0 55.5px; }   /* phone section rhythm: boundary -> first ink = last ink -> boundary = 57.5px */
   .kf-note { margin: 32px 16px 0; text-align: left; font-size: 10px; }   /* under the figures, on the same left edge */
 }
 @media (min-width: 640px) and (max-width: 767px) { .kf-note { margin-inline: 24px; } }   /* the container's padding is 24px here */
