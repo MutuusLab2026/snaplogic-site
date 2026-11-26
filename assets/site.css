@@ -764,7 +764,7 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
 @media (min-width: 1101px) { .ga-track { scroll-snap-type: none; } }
 .ga-track::after { content: ''; flex: 0 0 calc(100% - var(--ga-left) - var(--ga-w)); }
 /* side screens: stronger blur, fainter and smaller, so only the current one reads */
-.ga-slide { flex: 0 0 var(--ga-w); margin: 0; scroll-snap-align: start; cursor: pointer; filter: blur(10px); opacity: .3; transform: scale(.85);
+.ga-slide { flex: 0 0 var(--ga-w); margin: 0; scroll-snap-align: start; scroll-snap-stop: always;   /* one swipe = one screen, however hard (2026-11-26) */ cursor: pointer; filter: blur(10px); opacity: .3; transform: scale(.85);
   transition: filter .45s, opacity .45s, transform .45s; }
 .ga-slide.is-on { filter: none; opacity: 1; transform: none; cursor: default; }
 /* Side screens (2026-11-18, from a sketch): the screens sit edge to edge and each side screen shrinks about its own
@@ -840,9 +840,12 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
   .ga-head { flex-wrap: wrap; }
   .ga-head > header { flex: 1 1 100%; }   /* the counter goes under the tagline, so the title keeps one line */
   .ga-count { text-align: left; }
-  /* Phones (2026-11-26): the current screen sits in the middle with the previous and next ones showing at both
-     sides. Narrower screen and a lighter shrink than wider windows, or the side screens would hide off the edges. */
-  .ga-stage { --ga-w: 80%; --ga-left: 10%; }
+  /* Phones (2026-11-26): the current screen sits in the middle (same centre as the caption card under it) with the
+     previous and next ones showing at both sides. Its width is the old one (84% of the row less the 16px edge),
+     written in vw because a % here would count from the row's left padding, which now depends on the width.
+     The side screens shrink less than on wider windows, or they would hide off the edges. */
+  .ga-stage { --ga-w: calc((100vw - 16px) * .84); --ga-left: calc((100vw - var(--ga-w)) / 2); }
+  .ga-info { margin: 18px var(--ga-pad) 0; }
   .ga-frame img, .ga-empty { aspect-ratio: 1.857; }
   .ga-slide { filter: blur(4px); opacity: .4; transform: scale(.9); }
   .ga-info { padding: 22px 22px 16px; }
