@@ -825,8 +825,8 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
   .kf > .kf-title, .kf > .kf-lead { grid-column: 1 / -1; padding-left: 0; justify-self: stretch; }
   .kf > .kf-fig:nth-of-type(odd), .kf > .kf-fig:nth-of-type(even) { grid-column: auto; }
   .kf-fig { align-items: flex-start; }
-  .kf-n { font-size: 44px; }
-  .kf-l { margin-top: 8px !important; text-align: left; }
+  .kf-n { font-size: min(55px, 14.7vw); }   /* 55px from 375px wide; narrower phones scale so "−00%" keeps one line in its column */
+  .kf-l { margin-top: 12px !important; text-align: left; }
   /* B (2026-11-27): a light rule across the whole card (header above, figures below), the same 42px above and below */
   .kf-lead::after { margin: 18px -28px 0; background: #e6ebf0; }
   /* tighter card (2026-11-27): rule gaps and the gap between the figure rows 42 -> 24px as the eye sees it; the
