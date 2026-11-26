@@ -614,7 +614,7 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 .hcta-btn svg { width: 15px; height: 15px; transition: transform .2s; }
 .hcta-btn1 { background: #081e30; color: #fff; }
 .hcta-btn1:hover { background: #17384d; }
-.hcta-btn1:hover svg { transform: translateX(3px); }
+.hcta-btn:hover svg { transform: translateX(3px); }   /* both styles (btn2 was missing it, 2026-11-26) */
 .hcta-btn2 { border: 1.5px solid #151b2b; color: #151b2b; background: #fff; }
 .hcta-btn2:hover { background: #eef1f4; }
 .hcta-btn:focus-visible { outline: 2px solid #1765cc; outline-offset: 3px; }
@@ -662,7 +662,7 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 .hcta-band > div:first-child { flex: 1 1 360px; min-width: 0; }
 .hcta-btn { white-space: nowrap; }
 @media (max-width: 767px) { .hcta-actions { width: 100%; flex-direction: column; align-items: stretch; } }
-@media (prefers-reduced-motion: reduce) { .hcta-btn svg { transition: none; } .hcta-btn1:hover svg { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .hcta-btn svg { transition: none; } .hcta-btn:hover svg { transform: none; } }
 /* links used by CTA 2 */
 .hcta-link { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; color: #1557b0; font-weight: 600; }
 .hcta-link:hover span { text-decoration: underline; text-underline-offset: 4px; }
