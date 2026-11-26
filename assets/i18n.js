@@ -23,7 +23,7 @@ const i18n = {
     modules_label: "CORE MODULES",
     modules_title: "설계부터 검증, 협업까지 하나의 플랫폼에서 이어집니다.",
     modules_desc: "회로 설계부터 전원·규칙 검증, 팀 협업과 3D\u00a0CAD 연동까지 — 설계의 전 과정이 연결됩니다.",
-    hcta1_title: "E/E 설계의 새로운 기준,<br class=\"hcta-br\"> VegaFencer와 함께 시작하세요.",
+    hcta1_title: "E/E 설계의 새로운 기준, VegaFencer와 함께 시작하세요.",
     hcta1_lead: "요금제 정보와 도입 상담을 통해, 현재 귀사의 설계\u00a0환경에 적합한 VegaFencer 구성을 확인하십시오.",
     hcta1_pricing: "요금제 보기",
     hcta1_contact: "제품 문의",
