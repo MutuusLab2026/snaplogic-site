@@ -783,14 +783,18 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
      gap + 1fr + gap, so both come out the same. Figure columns are as wide as their widest figure (labels wrap past 42vw). */
   .kf { display: grid; grid-template-columns: minmax(0, 1fr) max-content minmax(0, 1fr) max-content minmax(0, 1fr);
     column-gap: 16px; row-gap: 40px; justify-items: center; }
-  .kf-fig { max-width: 42vw; }
-  .kf-l { text-wrap: balance; }
+  .kf-n { white-space: nowrap; }
+  .kf-l { max-width: 42vw; text-wrap: balance; }   /* long labels (English) wrap; the figures never do */
   .kf > .kf-title, .kf > .kf-lead, .kf > .kf-bar { grid-column: 1 / -1; }
   .kf > .kf-fig:nth-of-type(odd) { grid-column: 2; }
   .kf > .kf-fig:nth-of-type(even) { grid-column: 4; }
-  .kf-n { font-size: 60px; }
-  .kf-l { margin-top: 11px !important; font-size: 15px; }
-  .kf-sec { padding: 54px 0 54.5px; }   /* phone section rhythm: boundary -> first ink = last ink -> boundary = 57.5px */
+  /* 64 / 16px at 390px wide and up; smaller phones scale all three down together (keeps the 4 : 1 ratio and the fit) */
+  .kf-n { font-size: min(64px, 16.4vw); }
+  .kf-l { margin-top: min(12px, 3.08vw) !important; font-size: min(16px, 4.1vw); }
+  /* a step larger than the usual section header (30 / 19px), one line (2026-11-26) */
+  .kf-title { white-space: normal; font-size: 40px; }
+  .kf-lead { font-size: 22px; }
+  .kf-sec { padding: 51.5px 0 54px; }   /* phone section rhythm: boundary -> first ink = last ink -> boundary = 57.5px */
 }
 @media (min-width: 640px) and (max-width: 767px) { .kf { column-gap: 24px; } }   /* the container's padding is 24px here */
 @media (min-width: 1101px) {
