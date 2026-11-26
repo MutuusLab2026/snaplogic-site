@@ -833,6 +833,7 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
      title -> tagline gap stays (its negative margin follows the smaller row gap) */
   .kf { row-gap: 28px; }
   .kf-lead { margin-top: -16px !important; }
+  .kf-tail { display: none; }   /* one-line tagline on phones: "VegaFencer가 만드는 변화" (the figures below say "in numbers") */
   /* the note follows the figures (bottom-right, 16px from the screen edges): bottom label -> note = rule -> top
      figures (42px as the eye sees it), whether the note takes one line or two */
   .kf-note { position: static; max-width: calc(100% - 32px); margin: 36px 16px 0 auto; }
