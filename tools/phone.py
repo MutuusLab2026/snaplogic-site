@@ -34,6 +34,12 @@ FRAME = """<!doctype html>
   .sb svg { display: block; fill: currentColor; }
   .phone.land .sb { display: none; }
   .size { opacity: .7; min-width: 90px; text-align: center; }
+  /* The page's own scrollbar is hidden (phones barely show one); this one sits outside the phone instead */
+  .wrap { display: flex; align-items: center; gap: 14px; }
+  .wrap > .pad { width: 10px; flex: none; }
+  .ext { position: relative; width: 10px; flex: none; border-radius: 5px; background: rgba(125,139,153,.22); cursor: pointer; touch-action: none; }
+  .ext i { position: absolute; left: 0; right: 0; top: 0; min-height: 28px; border-radius: 5px; background: #7d8b99; }
+  .ext:hover i, .ext.drag i { background: #5b6e7f; }
 </style></head>
 <body>
   <div class="bar" id="sizes"></div>
@@ -42,11 +48,11 @@ FRAME = """<!doctype html>
     <button type="button" id="reload">새로고침</button>
     <span class="size" id="label"></span>
   </div>
-  <div class="phone" id="phone"><div class="sb" id="sb" aria-hidden="true"><span id="clock">9:41</span><span class="island"></span><span class="icons">
+  <div class="wrap"><div class="pad"></div><div class="phone" id="phone"><div class="sb" id="sb" aria-hidden="true"><span id="clock">9:41</span><span class="island"></span><span class="icons">
     <svg width="18" height="12" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
     <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 2.2c2.4 0 4.6.9 6.2 2.5l1.3-1.3A10.6 10.6 0 0 0 8 .3 10.6 10.6 0 0 0 .5 3.4l1.3 1.3A8.7 8.7 0 0 1 8 2.2Zm0 3.7c1.4 0 2.7.5 3.6 1.4l1.3-1.3A7 7 0 0 0 8 4a7 7 0 0 0-4.9 2l1.3 1.3c.9-.9 2.2-1.4 3.6-1.4Zm0 3.6c-.5 0-1 .2-1.3.6L8 11.4l1.3-1.3c-.3-.4-.8-.6-1.3-.6Z"/></svg>
     <svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="23" height="12" rx="3.5" fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="20" height="9" rx="2"/><path d="M25 4.5v4c.8-.3 1.5-1.1 1.5-2s-.7-1.7-1.5-2Z" opacity=".4"/></svg>
-  </span></div><iframe id="f" src="index.html" title="Site preview"></iframe></div>
+  </span></div><iframe id="f" src="index.html" title="Site preview"></iframe></div><div class="ext" id="ext" aria-hidden="true"><i id="thumb"></i></div></div>
 <script>
   const sizes = [["작은 폰", 360, 780], ["iPhone 15", 390, 844], ["큰 폰", 430, 932], ["태블릿 세로", 768, 1024]];
   const f = document.getElementById('f'), label = document.getElementById('label'), box = document.getElementById('sizes');
@@ -59,6 +65,7 @@ FRAME = """<!doctype html>
     f.style.width = w + 'px'; f.style.height = Math.min(h, Math.max(400, maxH)) - bar + 'px';
     label.textContent = w + ' × ' + h;
     box.querySelectorAll('button').forEach((b, i) => b.setAttribute('aria-pressed', i === cur));
+    if (typeof sync === 'function') requestAnimationFrame(sync);
   }
   sizes.forEach(([name], i) => {
     const b = document.createElement('button'); b.type = 'button'; b.textContent = name;
@@ -83,9 +90,46 @@ FRAME = """<!doctype html>
       sb.style.color = (0.299 * r + 0.587 * g + 0.114 * b) > 150 ? '#000' : '#fff';
     } catch (e) {}
   }
+  // Outside scrollbar: mirrors the page's scroll; drag the thumb, click the track or use the wheel on it
+  const ext = document.getElementById('ext'), thumb = document.getElementById('thumb');
+  const se = () => f.contentDocument && f.contentDocument.scrollingElement;
+  function sync() {
+    const el = se(); if (!el) return;
+    ext.style.height = document.getElementById('phone').clientHeight + 'px';
+    const H = ext.clientHeight, ratio = el.clientHeight / el.scrollHeight;
+    const th = Math.max(28, H * ratio), max = el.scrollHeight - el.clientHeight;
+    thumb.style.height = th + 'px';
+    thumb.style.transform = 'translateY(' + (max > 0 ? (H - th) * el.scrollTop / max : 0) + 'px)';
+    ext.style.visibility = ratio >= 1 ? 'hidden' : 'visible';
+  }
+  function scrollToY(y, grab) {   // y: pointer position in the track; grab: where on the thumb it was taken
+    const el = se(); if (!el) return;
+    const H = ext.clientHeight, th = thumb.offsetHeight, max = el.scrollHeight - el.clientHeight;
+    el.scrollTop = Math.min(1, Math.max(0, (y - grab) / (H - th))) * max;
+  }
+  ext.addEventListener('pointerdown', (e) => {
+    const r = ext.getBoundingClientRect(), y = e.clientY - r.top;
+    const top = thumb.getBoundingClientRect().top - r.top, th = thumb.offsetHeight;
+    const grab = (y >= top && y <= top + th) ? y - top : th / 2;
+    if (grab === th / 2) scrollToY(y, grab);
+    ext.setPointerCapture(e.pointerId); ext.classList.add('drag');
+    const move = (ev) => scrollToY(ev.clientY - r.top, grab);
+    const up = () => { ext.classList.remove('drag'); ext.removeEventListener('pointermove', move); ext.removeEventListener('pointerup', up); };
+    ext.addEventListener('pointermove', move); ext.addEventListener('pointerup', up);
+    e.preventDefault();
+  });
+  ext.addEventListener('wheel', (e) => { const el = se(); if (el) { el.scrollTop += e.deltaY; e.preventDefault(); } }, { passive: false });
+  addEventListener('resize', sync);
   f.addEventListener('load', () => {
-    tint(); let t = 0;
-    f.contentWindow.addEventListener('scroll', () => { if (!t) t = setTimeout(() => { t = 0; tint(); }, 120); }, { passive: true });
+    try {
+      const st = f.contentDocument.createElement('style');
+      st.textContent = 'html { scrollbar-width: none; } html::-webkit-scrollbar { display: none; }';
+      f.contentDocument.head.appendChild(st);
+    } catch (e) {}
+    tint(); sync(); let t = 0;
+    f.contentWindow.addEventListener('scroll', () => { sync(); if (!t) t = setTimeout(() => { t = 0; tint(); }, 120); }, { passive: true });
+    f.contentWindow.addEventListener('resize', sync);
+    new ResizeObserver(sync).observe(f.contentDocument.documentElement);   // the page grows as images and sections load
   });
 </script>
 </body></html>
