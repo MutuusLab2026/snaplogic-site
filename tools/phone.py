@@ -23,6 +23,15 @@ FRAME = """<!doctype html>
   .phone { border: 10px solid #0d1117; border-radius: 34px; overflow: hidden; background: #fff;
            box-shadow: 0 18px 50px rgba(0,0,0,.25); flex: none; }
   iframe { display: block; border: 0; }
+  /* iPhone-like status bar: takes its colour from the top of the page, as Safari does */
+  .sb { height: 47px; display: flex; align-items: center; justify-content: space-between; padding: 0 26px 0 34px;
+        box-sizing: border-box; background: #0d1626; color: #fff; position: relative; transition: background .2s, color .2s;
+        font: 600 16px -apple-system, "SF Pro Text", system-ui, sans-serif; letter-spacing: -.2px; }
+  .sb .island { position: absolute; left: 50%; top: 11px; width: 120px; height: 34px; margin-left: -60px;
+                background: #000; border-radius: 20px; }
+  .sb .icons { display: flex; gap: 6px; align-items: center; }
+  .sb svg { display: block; fill: currentColor; }
+  .phone.land .sb { display: none; }
   .size { opacity: .7; min-width: 90px; text-align: center; }
 </style></head>
 <body>
@@ -32,7 +41,11 @@ FRAME = """<!doctype html>
     <button type="button" id="reload">새로고침</button>
     <span class="size" id="label"></span>
   </div>
-  <div class="phone" id="phone"><iframe id="f" src="index.html" title="Site preview"></iframe></div>
+  <div class="phone" id="phone"><div class="sb" id="sb" aria-hidden="true"><span id="clock">9:41</span><span class="island"></span><span class="icons">
+    <svg width="18" height="12" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+    <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 2.2c2.4 0 4.6.9 6.2 2.5l1.3-1.3A10.6 10.6 0 0 0 8 .3 10.6 10.6 0 0 0 .5 3.4l1.3 1.3A8.7 8.7 0 0 1 8 2.2Zm0 3.7c1.4 0 2.7.5 3.6 1.4l1.3-1.3A7 7 0 0 0 8 4a7 7 0 0 0-4.9 2l1.3 1.3c.9-.9 2.2-1.4 3.6-1.4Zm0 3.6c-.5 0-1 .2-1.3.6L8 11.4l1.3-1.3c-.3-.4-.8-.6-1.3-.6Z"/></svg>
+    <svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="23" height="12" rx="3.5" fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="20" height="9" rx="2"/><path d="M25 4.5v4c.8-.3 1.5-1.1 1.5-2s-.7-1.7-1.5-2Z" opacity=".4"/></svg>
+  </span></div><iframe id="f" src="index.html" title="Site preview"></iframe></div>
 <script>
   const sizes = [["작은 폰", 360, 780], ["iPhone 15", 390, 844], ["큰 폰", 430, 932], ["태블릿 세로", 768, 1024]];
   const f = document.getElementById('f'), label = document.getElementById('label'), box = document.getElementById('sizes');
@@ -40,7 +53,9 @@ FRAME = """<!doctype html>
   function apply() {
     let [, w, h] = sizes[cur]; if (land) [w, h] = [h, w];
     const maxH = window.innerHeight - 130;
-    f.style.width = w + 'px'; f.style.height = Math.min(h, Math.max(400, maxH)) + 'px';
+    document.getElementById('phone').classList.toggle('land', land);
+    const bar = land ? 0 : 47;   // the status bar is part of the screen height
+    f.style.width = w + 'px'; f.style.height = Math.min(h, Math.max(400, maxH)) - bar + 'px';
     label.textContent = w + ' × ' + h;
     box.querySelectorAll('button').forEach((b, i) => b.setAttribute('aria-pressed', i === cur));
   }
@@ -51,6 +66,26 @@ FRAME = """<!doctype html>
   document.getElementById('rotate').onclick = () => { land = !land; apply(); };
   document.getElementById('reload').onclick = () => f.contentWindow.location.reload();
   addEventListener('resize', apply); apply();
+  const clock = document.getElementById('clock');
+  const tick = () => { const d = new Date(); clock.textContent = d.getHours() + ':' + String(d.getMinutes()).padStart(2, '0'); };
+  tick(); setInterval(tick, 15000);
+  // Status bar colour = background at the top of the page (first non-transparent one under the top edge)
+  const sb = document.getElementById('sb');
+  function tint() {
+    try {
+      const doc = f.contentDocument; let el = doc.elementFromPoint(20, 1), bg = '';
+      while (el) { const c = getComputedStyle(el).backgroundColor;
+        if (c && c !== 'transparent' && !/rgba\(.*, 0\)$/.test(c)) { bg = c; break; } el = el.parentElement; }
+      if (!bg) bg = 'rgb(255, 255, 255)';
+      const [r, g, b] = bg.match(/[\d.]+/g).map(Number);
+      sb.style.background = `rgb(${r}, ${g}, ${b})`;
+      sb.style.color = (0.299 * r + 0.587 * g + 0.114 * b) > 150 ? '#000' : '#fff';
+    } catch (e) {}
+  }
+  f.addEventListener('load', () => {
+    tint(); let t = 0;
+    f.contentWindow.addEventListener('scroll', () => { if (!t) t = setTimeout(() => { t = 0; tint(); }, 120); }, { passive: true });
+  });
 </script>
 </body></html>
 """.encode("utf-8")
