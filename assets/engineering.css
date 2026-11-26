@@ -775,27 +775,38 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 .kf-note { margin: 32px 16px 0; text-align: center; text-wrap: balance; font: 500 11px/1.4 Inter, 'Noto Sans KR', sans-serif; color: #5b6e7f; }
 .kf-l { margin-top: 16px !important; font: 700 22px/1.3 Inter, 'Noto Sans KR', sans-serif; letter-spacing: -.02em; color: #151b2b; }
 @media (min-width: 768px) { .kf-sec { padding: 96px 0; } }
-/* Phones (2026-11-26): one left edge for everything (title, tagline, rule, figures, labels, note) and two equal
-   columns for the four figures, each figure and label starting at its column's left edge. Labels are lighter (500,
-   grey) so the blue figures carry the weight. Figure : label stays 4 : 1. */
+/* Phones (2026-11-26): the four figures in a 2 x 2 grid. Figure and label keep the phone's 4 : 1 ratio (was 88 / 22px),
+   scaled down to fit two columns; the gap between them scales with it (16 -> 11px). */
 @media (max-width: 767px) {
-  .kf { display: grid; grid-template-columns: 1fr 1fr; column-gap: 16px; row-gap: 40px; justify-items: start; text-align: left; }
-  .kf > .kf-title, .kf > .kf-lead { grid-column: 1 / -1; justify-self: stretch; text-align: left; }
-  .kf-fig { align-items: flex-start; }
+  /* The two columns of figures sit between three equal spaces (screen edge | figures | middle | figures | screen edge).
+     Spacer tracks of 1fr with a column gap equal to the container padding: outside = padding + 1fr + gap, middle =
+     gap + 1fr + gap, so both come out the same. Figure columns are as wide as their widest figure (labels wrap past 42vw). */
+  .kf { display: grid; grid-template-columns: minmax(0, 1fr) max-content minmax(0, 1fr) max-content minmax(0, 1fr);
+    column-gap: 16px; row-gap: 40px; justify-items: center; }
   .kf-n { white-space: nowrap; }
-  /* 64 / 16px at 390px wide and up; smaller phones scale them down together (keeps the 4 : 1 ratio and the fit) */
+  .kf-l { max-width: 42vw; text-wrap: balance; }   /* long labels (English) wrap; the figures never do */
+  .kf > .kf-title, .kf > .kf-lead, .kf > .kf-bar { grid-column: 1 / -1; }
+  .kf > .kf-fig:nth-of-type(odd) { grid-column: 2; }
+  .kf > .kf-fig:nth-of-type(even) { grid-column: 4; }
+  /* 64 / 16px at 390px wide and up; smaller phones scale all three down together (keeps the 4 : 1 ratio and the fit) */
   .kf-n { font-size: min(64px, 16.4vw); }
-  .kf-l { margin-top: min(12px, 3.08vw) !important; font-size: min(16px, 4.1vw); font-weight: 500; color: #5b6e7f; text-wrap: balance; }
-  /* a step larger than the usual section header (30 / 19px), one line */
+  .kf-l { margin-top: min(12px, 3.08vw) !important; font-size: min(16px, 4.1vw); }
+  /* a step larger than the usual section header (30 / 19px), one line (2026-11-26; 40 / 22 -> 36 / 20) */
   .kf-title { white-space: normal; font-size: 36px; }
   .kf-lead { font-size: 20px; }
-  /* the divider: a thin grey rule under the tagline, the full width of the content */
+  /* left-aligned header; the divider is a thin grey rule as wide as the figures below (2026-11-26) */
+  .kf > .kf-title, .kf > .kf-lead, .kf > .kf-bar { grid-column: 2 / 5; }   /* same columns as the figures: left edge on Zero's, rule from Zero to −00% */
+  .kf > .kf-title, .kf > .kf-lead { justify-self: start; text-align: left; }
+  /* The divider: a thin grey rule drawn under the tagline (its own grid row would not move up reliably with a
+     negative margin), from Zero's left edge to −00%'s right edge; the old short bar is hidden here. */
   .kf > .kf-bar { display: none; }
-  .kf-lead::after { content: ''; display: block; height: 1px; margin-top: 19.5px; background: #a9b4bf; }
-  .kf-sec { padding: 52.5px 0 54px; }   /* phone section rhythm: boundary -> first ink = last ink -> boundary = 57.5px */
-  .kf-note { margin: 32px 16px 0; text-align: left; font-size: 10px; }   /* under the figures, on the same left edge */
+  .kf-lead::after { content: ''; display: block; height: 1px; margin: 19.5px 2px 0 1px; background: #a9b4bf; }   /* tagline ink -> rule = title T -> tagline F (24px at 390, measured) + .5px */
+  .kf > .kf-title, .kf > .kf-lead { padding-left: 2px; }   /* ink lines up with Zero's (its Z sits a little inside its box), pixel-checked */
+  .kf-sec { padding: 52.5px 0 62px; }   /* bottom: 8px more than the 57.5 rhythm so the corner note keeps 24px under the labels */
+  /* the note sits in the bottom-right corner against the screen edges, as on wide screens (2026-11-26) */
+  .kf-note { position: absolute; right: 16px; bottom: 16px; max-width: calc(100% - 32px); margin: 0; text-align: right; font-size: 10px; }   /* phone section rhythm: boundary -> first ink = last ink -> boundary = 57.5px */
 }
-@media (min-width: 640px) and (max-width: 767px) { .kf-note { margin-inline: 24px; } }   /* the container's padding is 24px here */
+@media (min-width: 640px) and (max-width: 767px) { .kf { column-gap: 24px; } }   /* the container's padding is 24px here */
 @media (min-width: 1101px) {
   .kf-sec { padding: 144px 0 152px; }
   .kf { flex-wrap: wrap; }
