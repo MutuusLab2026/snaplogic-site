@@ -800,9 +800,11 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
   /* The divider: a thin grey rule drawn under the tagline (its own grid row would not move up reliably with a
      negative margin), from Zero's left edge to −00%'s right edge; the old short bar is hidden here. */
   .kf > .kf-bar { display: none; }
-  .kf-lead::after { content: ''; display: block; height: 1px; margin: 19px 2px 0 1px; background: #a9b4bf; }   /* tagline ink -> rule = title T -> tagline F (24px at 390, measured) */
+  .kf-lead::after { content: ''; display: block; height: 1px; margin: 19.5px 2px 0 1px; background: #a9b4bf; }   /* tagline ink -> rule = title T -> tagline F (24px at 390, measured) + .5px */
   .kf > .kf-title, .kf > .kf-lead { padding-left: 2px; }   /* ink lines up with Zero's (its Z sits a little inside its box), pixel-checked */
-  .kf-sec { padding: 52.5px 0 54px; }   /* phone section rhythm: boundary -> first ink = last ink -> boundary = 57.5px */
+  .kf-sec { padding: 52.5px 0 62px; }   /* bottom: 8px more than the 57.5 rhythm so the corner note keeps 24px under the labels */
+  /* the note sits in the bottom-right corner against the screen edges, as on wide screens (2026-11-26) */
+  .kf-note { position: absolute; right: 16px; bottom: 16px; max-width: calc(100% - 32px); margin: 0; text-align: right; font-size: 10px; }   /* phone section rhythm: boundary -> first ink = last ink -> boundary = 57.5px */
 }
 @media (min-width: 640px) and (max-width: 767px) { .kf { column-gap: 24px; } }   /* the container's padding is 24px here */
 @media (min-width: 1101px) {
