@@ -927,4 +927,5 @@ html[lang="zh"] .hero-sub, html[lang="ja"] .hero-sub { font-family: inherit; }
   :is(#integrator, #harness, #ai) ul li { font-size: 14px; }
   :is(#integrator, #harness, #ai) ul li .material-symbols-outlined { font-size: 18.5px !important; margin-top: 1px; }   /* the tick scales with the text (20 x 14/15) */
   :is(#integrator, #harness, #ai) .lg-lead { margin-bottom: 14px !important; }   /* lead -> list = tagline -> lead (23.5px as the eye sees it; was 33.5) */
+  #integrator .grid, #harness .grid, #ai .ai-row { row-gap: 19.5px; }   /* list -> screen window = the same 23.5px as the eye sees it (was 36) */
 }
