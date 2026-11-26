@@ -253,15 +253,19 @@
         <ul class="space-y-3">
           <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
             <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="ai_c1">사내 LLM 교체 지원 &mdash; OpenAI API를 기본으로 하며, 사내 LLM으로 교체 시 설계 데이터가 사내 환경에 유지됩니다</span>
+            <span data-i18n="ai_c1">와이어 정보 즉시 조회 &mdash; 굵기, 색상, 재질, 연결 경로</span>
           </li>
           <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
             <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="ai_c2">설계 작업 실행 &mdash; 자연어 지시만으로 와이어 연결과 DRC 검증을 수행합니다</span>
+            <span data-i18n="ai_c2">커넥터별 연결/미연결 와이어 자동 분석</span>
           </li>
           <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
             <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="ai_c3">설계 데이터 조회 &mdash; 와이어 사양·연결 경로, 커넥터별 미연결 와이어를 즉시 확인합니다</span>
+            <span data-i18n="ai_c3">설계 오류 사전 탐지 및 수정 제안</span>
+          </li>
+          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
+            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
+            <span data-i18n="ai_c4">OpenAI API 연동 &mdash; 사내 LLM 교체 가능</span>
           </li>
         </ul>
       </div>
