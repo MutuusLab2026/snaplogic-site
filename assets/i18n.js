@@ -107,7 +107,7 @@ const i18n = {
     // AI
     ai_label: "AI ASSISTANT",
     ai_title: "자연어로 설계를 탐색하다",
-    ai_desc: "MCP (Model Context Protocol) 기반 AI 어시스턴트가 설계 데이터에 직접 접근하여, 복잡한 쿼리도 즉시 답변합니다.",
+    ai_desc: "MCP<span class=\"ai-mcp\"> (Model Context Protocol)</span> 기반 AI\u00a0어시스턴트가 설계 데이터에 직접 접근하여, 복잡한 쿼리도 즉시 답변합니다.",
     ai_c1: "와이어 정보 즉시 조회 — 굵기, 색상, 재질, 연결 경로",
     ai_c2: "커넥터별 연결/미연결 와이어 자동 분석",
     ai_c3: "설계 오류 사전 탐지 및 수정 제안",
@@ -358,7 +358,7 @@ const i18n = {
     // AI
     ai_label: "AI ASSISTANT",
     ai_title: "Explore designs with natural language",
-    ai_desc: "An MCP (Model Context Protocol) based AI assistant directly accesses design data, instantly answering even complex queries.",
+    ai_desc: "An MCP<span class=\"ai-mcp\"> (Model Context Protocol)</span> based AI assistant directly accesses design data, instantly answering even complex queries.",
     ai_c1: "Instant wire information lookup — gauge, color, material, connection path",
     ai_c2: "Automatic analysis of connected/unconnected wires per connector",
     ai_c3: "Proactive design error detection and correction suggestions",
@@ -609,7 +609,7 @@ const i18n = {
     // AI
     ai_label: "AI 助手",
     ai_title: "用自然语言探索设计",
-    ai_desc: "基于MCP（Model Context Protocol）的AI助手直接访问设计数据，即时回答复杂查询。",
+    ai_desc: "基于MCP<span class=\"ai-mcp\">（Model Context Protocol）</span>的AI助手直接访问设计数据，即时回答复杂查询。",
     ai_c1: "即时查询线路信息 — 线径、颜色、材质、连接路径",
     ai_c2: "按连接器自动分析已连接/未连接的线路",
     ai_c3: "主动检测设计错误并建议修正",
@@ -861,7 +861,7 @@ const i18n = {
     // AI
     ai_label: "AIアシスタント",
     ai_title: "自然言語で設計を探索する",
-    ai_desc: "MCP（Model Context Protocol）ベースのAIアシスタントが設計データに直接アクセスし、複雑なクエリにも即座に回答します。",
+    ai_desc: "MCP<span class=\"ai-mcp\">（Model Context Protocol）</span>ベースのAIアシスタントが設計データに直接アクセスし、複雑なクエリにも即座に回答します。",
     ai_c1: "ワイヤー情報の即時照会 — 太さ、色、材質、接続経路",
     ai_c2: "コネクタ別の接続/未接続ワイヤー自動分析",
     ai_c3: "設計エラーの事前検出と修正提案",
@@ -1107,7 +1107,7 @@ Object.assign(i18n.ko, {
   in_r3_t: "번들 직경과 길이 산출",
   in_r4_t: "회로도와 하네스 간 일관성 검증",
   hd_title: "상세 하네스 도면 자동 생성",
-  hd_lead: "Harness는 Logic과 Integrator의 데이터로 상세 도면을 만듭니다. <br>플러그 심볼, 번들 길이, 와이어 리스트를 한 장의 도면에 정리합니다.",
+  hd_lead: "Harness는 Logic과 Integrator의 데이터로 상세\u00a0도면을 만듭니다. <br>플러그 심볼, 번들 길이, 와이어 리스트를 한 장의 도면에 정리합니다.",
   hd_r1_t: "하네스 도면 생성과 시각화",
   hd_r2_t: "플러그 심볼과 와이어 리스트 테이블",
   hd_r3_t: "번들 직경 계산과 와이어 경로 추적",

@@ -218,7 +218,7 @@
           <p class="lg-kicker" translate="no">${o.kicker || 'MODULE 03'}</p>
           <h2 class="lg-name" translate="no">Harness</h2>
           <p class="lg-tagline" data-i18n="hd_title">상세 하네스 도면 자동 생성</p>
-          <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead mb-6" data-i18n-html="hd_lead">Harness는 Logic과 Integrator의 데이터로 상세 도면을 만듭니다. <br>플러그 심볼, 번들 길이, 와이어 리스트를 한 장의 도면에 정리합니다.</p>
+          <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead mb-6" data-i18n-html="hd_lead">Harness는 Logic과 Integrator의 데이터로 상세&nbsp;도면을 만듭니다. <br>플러그 심볼, 번들 길이, 와이어 리스트를 한 장의 도면에 정리합니다.</p>
         </header>
         <ul class="space-y-3">
           <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
@@ -261,7 +261,7 @@
           <p class="lg-kicker" translate="no">${o.kicker || 'EXTENSIONS'}</p>
           <h2 class="lg-name" translate="no">AI Assistant</h2>
           <p class="lg-tagline" data-i18n="ai_title">자연어로 설계를 탐색하다</p>
-          <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead mb-6" data-i18n="ai_desc">MCP (Model Context Protocol) 기반 AI 어시스턴트가 설계 데이터에 직접 접근하여, 복잡한 쿼리도 즉시 답변합니다.</p>
+          <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead mb-6" data-i18n-html="ai_desc">MCP<span class="ai-mcp"> (Model Context Protocol)</span> 기반 AI&nbsp;어시스턴트가 설계 데이터에 직접 접근하여, 복잡한 쿼리도 즉시 답변합니다.</p>
         </header>
         <ul class="space-y-3">
           <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
@@ -329,8 +329,8 @@
                 <div class="bg-surface-container-high/60 text-on-surface px-4 py-3 rounded-2xl rounded-bl-sm max-w-[85%]">
                   <p class="font-body text-sm leading-relaxed mb-3" data-i18n-html="chat_ai2">UH_BOX 연결 와이어 <code class="bg-primary-container/10 px-1.5 py-0.5 rounded text-primary-container font-label text-xs">12개</code> 확인.<br>미연결 와이어 <code class="bg-error/10 px-1.5 py-0.5 rounded text-error font-label text-xs">3개</code> 발견<br>&mdash; BA95, BA97, BC01.</p>
                   <div class="flex gap-2 mt-3">
-                    <button class="px-3 py-1.5 rounded-lg bg-primary-container/10 text-primary-container text-xs font-label font-semibold hover:bg-primary-container/20 transition-colors" data-i18n="chat_btn_drc">DRC 리포트 반영</button>
-                    <button class="px-3 py-1.5 rounded-lg bg-surface-container text-on-surface-variant text-xs font-label font-semibold hover:bg-surface-container-high transition-colors" data-i18n="chat_btn_detail">상세 보기</button>
+                    <span class="inline-block px-3 py-1.5 rounded-lg bg-primary-container/10 text-primary-container text-xs font-label font-semibold" data-i18n="chat_btn_drc">DRC 리포트 반영</span>
+                    <span class="inline-block px-3 py-1.5 rounded-lg bg-surface-container text-on-surface-variant text-xs font-label font-semibold" data-i18n="chat_btn_detail">상세 보기</span>
                   </div>
                 </div>
               </div>

@@ -202,8 +202,8 @@
     #chatMessages .flex.justify-end > div { max-width: 92% !important; }
     #chatMessages .flex.justify-start > div { max-width: 96% !important; }
 
-    /* Chat action buttons — larger touch targets */
-    #chatMessages button {
+    /* Chat demo's action labels (plain labels since 2026-11-27, same look as before) */
+    #chatMessages [data-i18n^="chat_btn"] {
       padding: 8px 12px;
       font-size: 12px;
     }
@@ -928,4 +928,11 @@ html[lang="zh"] .hero-sub, html[lang="ja"] .hero-sub { font-family: inherit; }
   :is(#integrator, #harness, #ai) ul li .material-symbols-outlined { font-size: 18.5px !important; margin-top: 1px; }   /* the tick scales with the text (20 x 14/15) */
   :is(#integrator, #harness, #ai) .lg-lead { margin-bottom: 14px !important; }   /* lead -> list = tagline -> lead (23.5px as the eye sees it; was 33.5) */
   #integrator .grid, #harness .grid, #ai .ai-row { row-gap: 28px; }   /* list -> screen window 32px as the eye sees it (was 36; 23.5 felt cramped) */
+}
+
+/* AI Assistant on phones (2026-11-27): the lead drops "(Model Context Protocol)" (it took half the first line), and
+   the chat window's green dot becomes the three grey dots of the screen windows above (its title is hidden here) */
+@media (max-width: 767px) { .ai-mcp { display: none; } }
+@media (max-width: 639px) {
+  .ai-win-dot { width: 9px; height: 9px; background: #c3cbd4; box-shadow: 15px 0 0 #c3cbd4, 30px 0 0 #c3cbd4; margin-right: 30px; }
 }
