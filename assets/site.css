@@ -881,16 +881,8 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
 html[lang="zh"] .hero-sub, html[lang="ja"] .hero-sub { font-family: inherit; }
 /* Phones: the photo fills a box on top, the text follows under it */
 @media (max-width: 767px) {
-  /* Exactly one first screen (2026-11-26): svh = the height with the browser bars shown, so it never jumps while
-     they hide. The photo takes whatever height the text leaves; a short screen keeps it at 300px and the hero grows. */
-  .hero { --nav-h: 105px; height: auto; padding-bottom: 48px;
-    display: flex; flex-direction: column; min-height: 100vh; min-height: 100svh; }
-  .hero-photo { position: relative; top: 0; height: auto; flex: 1 0 300px; }
-  .hero-copy { height: auto; flex: none; }
-  /* The taller the box, the more the 2:1 photo is zoomed; keep the monitor's right edge (about 82% across the photo)
-     16px inside the box at any height: photo width = 2 × box height (200cqh). Older browsers keep 62%. */
-  .hero-photo { container-type: size; }
-  @supports (width: 1cqh) { .hero-bg { object-position: right calc(16px - 36cqh) center; } }
+  .hero { --nav-h: 105px; height: auto; padding-bottom: 48px; }
+  .hero-photo { position: relative; top: 0; height: 300px; }
   .hero-bg { opacity: 1; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% 50%;
     -webkit-mask-image: none; mask-image: none; }
   .hero-shade { background: linear-gradient(0deg, var(--hero-ink) 0%, rgba(15,26,36,0) 45%); }
