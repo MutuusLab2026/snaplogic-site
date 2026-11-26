@@ -25,6 +25,7 @@
     </ul>
 
     <div class="grid sm:grid-cols-2 gap-4 md:gap-6 reveal">   <!-- all ten cards rise together (2026-11-23; one by one was too busy) -->
+      <p class="mod-gh" data-grp="1"><i></i><span data-i18n="mod_grp1">설계</span></p>   <!-- group heading: phones only (engineering.css) -->
       <a href="${here('product', '#logic')}" data-mod="logic" data-grp="1" class="group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
         <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5"></div>
         <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-primary-container transition-colors" translate="no" data-i18n="mod_logic_title">Logic</h3>
@@ -46,6 +47,7 @@
         <span class="mod-more" aria-hidden="true"><span data-i18n="gal_more">자세히 보기</span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
       </a>
 
+      <p class="mod-gh" data-grp="2"><i></i><span data-i18n="mod_grp2">검증 · 관리</span></p>   <!-- group heading: phones only (engineering.css) -->
       <a href="${here('product', '#main')}" data-mod="power" data-grp="2" class="group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
         <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5"></div>
         <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-primary-container transition-colors" translate="no" data-i18n="mod_power_title">Power Check</h3>
@@ -74,6 +76,7 @@
         <span class="mod-more" aria-hidden="true"><span data-i18n="gal_more">자세히 보기</span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
       </a>
 
+      <p class="mod-gh" data-grp="3"><i></i><span data-i18n="mod_grp3">협업 · 연동</span></p>   <!-- group heading: phones only (engineering.css) -->
       <a href="${here('product', '#enterprise')}" data-mod="multiuser" data-grp="3" class="group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
         <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5"></div>
         <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-primary-container transition-colors" translate="no" data-i18n="mod_multiuser_title">Multiuser Environment</h3>
