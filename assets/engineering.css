@@ -692,6 +692,10 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
   .hcta-switch { display: none; }
   .hcta-band { padding: 36px 28px; row-gap: 32px; }   /* more room inside now that the switch is gone (was 28 / 24, gap 24) */
   #cta-ask { padding: 57.5px 0; }   /* phone section rhythm: boundary -> card edge = 57.5px */
+  /* the two buttons side by side, equal widths; when a language's labels do not fit on one row (en, ja) they wrap
+     and each takes the full width, as before (flex-basis 0 with a max-content floor decides the wrap) */
+  #cta-ask .hcta-actions { flex-direction: row; flex-wrap: wrap; }
+  #cta-ask .hcta-btn { flex: 1 1 0; min-width: max-content; padding: 0 16px; }
 }
 @media (prefers-reduced-motion: reduce) { .hcta-btn svg { transition: none; } .hcta-btn:hover svg { transform: none; } }
 /* links used by CTA 2 */
