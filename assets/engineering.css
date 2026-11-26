@@ -860,6 +860,12 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
    short orphan lines), and the sections keep the 57.5px phone rhythm (boundary -> kicker ink, last box -> boundary). */
 @media (max-width: 767px) {
   #integrator .lg-lead br, #harness .lg-lead br { display: none; }
+}
+/* Section leads on phones (2026-11-27): a step under the tagline and the checklist so the hierarchy reads title ->
+   tagline -> lead (15px grey) -> list (15px ink); shared by Explore, Core Modules and key features 01-03. */
+@media (max-width: 767px) {
+  .lg-lead { font-size: 15px !important; line-height: 1.6 !important; color: #5b6e7f !important;
+    max-width: 21.4em; }   /* ~321px: Integrator's first line ends at "실제 차량의" (305px) rather than "번들" (336px), same at 360 */
   #integrator, #harness, #ai { padding-top: 56px; padding-bottom: 53px; }
   #ai { padding-bottom: 57.5px; }   /* its chat window sits 4.5px lower in the box than the screens above */
 }

@@ -914,3 +914,6 @@ html[lang="zh"] .hero-sub, html[lang="ja"] .hero-sub { font-family: inherit; }
   #lightbox.lb-single #lightboxImg { flex: none; width: auto; max-width: none; height: min(70vh, 600px); max-height: none; }
   #lightbox.lb-single [data-lightbox="close"] { position: fixed; }
 }
+
+/* phones: the AI chat is already there, no fade-in per message (site.js initChatAnimation, 2026-11-27) */
+#chatMessages.chat-static > div { animation: none !important; transition: none; opacity: 1; transform: none; }

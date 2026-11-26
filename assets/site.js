@@ -581,6 +581,19 @@ const Controller = {
       pane.scrollTop = 0;
     };
     const win = pane && pane.closest('#aiWindow');
+    // Phones (2026-11-27): no playback. The whole conversation is there from the start, scrolled to the latest
+    // message, so a reader only scrolls up to see the earlier ones.
+    if (win && window.matchMedia('(max-width: 767px)').matches) {
+      container.classList.add('chat-static');
+      messages.forEach((m) => m.classList.add('chat-visible'));
+      const toEnd = () => requestAnimationFrame(() => { pane.scrollTop = pane.scrollHeight; });
+      toEnd();
+      window.addEventListener('load', toEnd, { once: true });
+      const chatTab = win.querySelector('[data-ai-tab="chat"]');
+      if (chatTab) chatTab.addEventListener('click', toEnd);   // the pane loses its scroll position while hidden
+      new IntersectionObserver((entries) => { if (entries[0].isIntersecting) toEnd(); }, { threshold: 0 }).observe(win);
+      return;
+    }
     if (win) {
       let inView = false;
       new IntersectionObserver((entries) => {
