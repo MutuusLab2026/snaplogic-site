@@ -840,12 +840,17 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
   .ga-head { flex-wrap: wrap; }
   .ga-head > header { flex: 1 1 100%; }   /* the counter goes under the tagline, so the title keeps one line */
   .ga-count { text-align: left; }
-  /* Phones (2026-11-26): the screen lines up with the caption card under it (same 16px edges, same width; the
-     row's % counts from after its 16px left padding, hence 100% - 16px). The side screens keep their full size
-     so the previous and next ones show in the 16px edges. */
-  .ga-stage { --ga-w: calc(100% - var(--ga-pad)); }
+  /* Phones (2026-11-26): the screen keeps its old size (84% of the row less the 16px edge) and only moves to the
+     middle, with the previous and next ones showing at both sides; the caption card under it stays at the 16px
+     edges. Written in cqw (the stage's own width): a % here would count from the row's left padding, which now
+     depends on the width, and vw would count a desktop scrollbar too. */
+  .ga-stage { --ga-w: calc((100vw - 16px) * .84); --ga-left: calc((100vw - var(--ga-w)) / 2); }
+  @supports (width: 1cqw) {
+    .ga-stage { container-type: inline-size; --ga-w: calc((100cqw - 16px) * .84); --ga-left: calc((100cqw - var(--ga-w)) / 2); }
+  }
+  .ga-info { margin: 18px var(--ga-pad) 0; }
   .ga-frame img, .ga-empty { aspect-ratio: 1.857; }
-  .ga-slide { filter: blur(4px); opacity: .4; transform: none; }
+  .ga-slide { filter: blur(4px); opacity: .4; transform: scale(.9); }
   .ga-info { padding: 22px 22px 16px; }
   .ga-info b { font-size: 24px; }
 }
