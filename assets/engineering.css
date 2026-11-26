@@ -688,7 +688,11 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 .hcta-btn { white-space: nowrap; }
 @media (max-width: 767px) { .hcta-actions { width: 100%; flex-direction: column; align-items: stretch; } }
 /* Phones (2026-11-26): no switch. Alone above the title it read as a real on/off setting that did nothing when tapped. */
-@media (max-width: 767px) { .hcta-switch { display: none; } }
+@media (max-width: 767px) {
+  .hcta-switch { display: none; }
+  .hcta-band { padding: 36px 28px; row-gap: 32px; }   /* more room inside now that the switch is gone (was 28 / 24, gap 24) */
+  #cta-ask { padding: 57.5px 0; }   /* phone section rhythm: boundary -> card edge = 57.5px */
+}
 @media (prefers-reduced-motion: reduce) { .hcta-btn svg { transition: none; } .hcta-btn:hover svg { transform: none; } }
 /* links used by CTA 2 */
 .hcta-link { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; color: #1557b0; font-weight: 600; }
