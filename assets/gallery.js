@@ -43,7 +43,14 @@
   function realIndex(p) { return ((p - COPIES) % n + n) % n; }
   // scroll-padding-left reads back as an unresolved max()/calc() string, so take the same length from padding-left,
   // which reads back in px (both are --ga-left)
-  function target(p) { return slides[p].offsetLeft - (parseFloat(getComputedStyle(track).paddingLeft) || 0); }
+  // Phones centre the screen and snap to its centre (site.css): the same position, worked out the same way, so the row
+  // never stops at one place and then glides to another (2026-11-27).
+  var centred = window.matchMedia('(max-width: 767px)');
+  function target(p) {
+    var s = slides[p];
+    if (centred.matches) return s.offsetLeft - (track.clientWidth - s.offsetWidth) / 2;
+    return s.offsetLeft - (parseFloat(getComputedStyle(track).paddingLeft) || 0);
+  }
   function jump(p) {                           // move without animation (wrapping, resizing, first paint)
     track.classList.add('ga-instant');         // the real screen takes the copy's look at once (no grow/sharpen)
     track.style.scrollSnapType = 'none';
@@ -113,7 +120,7 @@
     pos = nearest();
     if (pos < COPIES || pos >= COPIES + n) jump(COPIES + realIndex(pos));
     // Wide screens have no scroll snap (see site.css), so a swipe that stops between screens glides to the nearest one.
-    else if (Math.abs(track.scrollLeft - target(pos)) > 1) {
+    else if (Math.abs(track.scrollLeft - target(pos)) > (centred.matches ? 3 : 1)) {   // phones: snap rounding is not a miss
       track.scrollTo({ left: target(pos), behavior: reduce ? 'auto' : 'smooth' });
       return;
     }

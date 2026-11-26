@@ -849,6 +849,10 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
     .ga-stage { container-type: inline-size; --ga-w: calc((100cqw - 16px) * .84); --ga-left: calc((100cqw - var(--ga-w)) / 2); }
   }
   .ga-info { margin: 18px var(--ga-pad) 0; }
+  /* snap to the screen's centre, not to a start edge set by scroll-padding (that landed left first, then gallery.js
+     glided it to the middle and the caption came late) */
+  .ga-track { scroll-padding-left: 0; }
+  .ga-slide { scroll-snap-align: center; }
   .ga-frame img, .ga-empty { aspect-ratio: 1.857; }
   .ga-slide { filter: blur(4px); opacity: .4; transform: scale(.9); }
   .ga-info { padding: 22px 22px 16px; }
@@ -917,3 +921,6 @@ html[lang="zh"] .hero-sub, html[lang="ja"] .hero-sub { font-family: inherit; }
 
 /* phones: the AI chat is already there, no fade-in per message (site.js initChatAnimation, 2026-11-27) */
 #chatMessages.chat-static > div { animation: none !important; transition: none; opacity: 1; transform: none; }
+
+/* Key features 01-03 on phones: checklist a step smaller (15 -> 14px), under the 15px lead (2026-11-27) */
+@media (max-width: 767px) { :is(#integrator, #harness, #ai) ul li { font-size: 14px; } }
