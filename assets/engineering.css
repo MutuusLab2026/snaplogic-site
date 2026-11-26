@@ -833,10 +833,11 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
   .kf-note { position: static; max-width: calc(100% - 32px); margin: 36px 16px 0 auto; }
   .kf-sec { padding-bottom: 16px; }
 }
-/* Trial (2026-11-27): The Impact as a card, CTA 1 turned inside out - a paper-coloured card on the white section (CTA 1
-   is a white card on paper), same radius and inner padding (36 / 28px). The note stays under the card, right-aligned. */
+/* Trial (2026-11-27): The Impact as a white card on the paper band, like CTA 1 (same radius, inner padding 36 / 28px,
+   shadow). The note stays under the card, right-aligned. */
 @media (max-width: 767px) {
-  .kf { background: var(--eng-paper, #f3f7fa); border-radius: 20px; padding: 36px 28px; }
+  .kf { background: #fff; border-radius: 20px; padding: 36px 28px; box-shadow: 0 20px 50px -30px rgba(8,30,48,.25); }   /* like CTA 1's card */
+  body[data-page="home"] #stats { background: var(--eng-paper); }   /* phones: paper band with a white card (the paper card on white looked dark) */
   .kf-sec { padding: 57.5px 0 16px; }
   .kf-note { margin-top: 12px; }
 }
