@@ -43,6 +43,8 @@ const i18n = {
     mod_logic_title: "Logic",
     mod_logic_desc: "핀 단위로 연결을 정의하고, 전기적 오류를 바로 검증합니다.",
     mod_logic_sub: "핀 단위 연결 정의와 전기적 검증",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
+    zoom_int: "Integrator 화면 크게 보기",   // key feature screen: opens the lightbox (site.js initShotZoom)
+    zoom_hd: "Harness 화면 크게 보기",
     mod_integrator_title: "Integrator",
     mod_integrator_desc: "회로도를 3D 번들 설계와 동기화하고, 토폴로지를 검증합니다.",
     mod_integrator_sub: "회로도와 3D 번들 설계 동기화",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
@@ -292,6 +294,8 @@ const i18n = {
     mod_logic_title: "Logic",
     mod_logic_desc: "Define connections pin by pin and check for electrical errors right away.",
     mod_logic_sub: "Pin-level connections and electrical checks",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
+    zoom_int: "View the Integrator screen larger",   // key feature screen: opens the lightbox (site.js initShotZoom)
+    zoom_hd: "View the Harness screen larger",
     mod_integrator_title: "Integrator",
     mod_integrator_desc: "Sync schematics with the 3D bundle design and verify the topology.",
     mod_integrator_sub: "Schematics synced with 3D bundle design",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
@@ -541,6 +545,8 @@ const i18n = {
     mod_logic_title: "Logic",
     mod_logic_desc: "按引脚定义连接，并即时检查电气错误。",
     mod_logic_sub: "引脚级连接定义与电气检查",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
+    zoom_int: "放大查看 Integrator 界面",   // key feature screen: opens the lightbox (site.js initShotZoom)
+    zoom_hd: "放大查看 Harness 界面",
     mod_integrator_title: "Integrator",
     mod_integrator_desc: "将电路图与3D线束设计同步，并验证拓扑。",
     mod_integrator_sub: "原理图与3D线束设计同步",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
@@ -791,6 +797,8 @@ const i18n = {
     mod_logic_title: "Logic",
     mod_logic_desc: "ピン単位で接続を定義し、電気的なエラーをその場で検証します。",
     mod_logic_sub: "ピン単位の接続定義と電気的検証",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
+    zoom_int: "Integrator\u2060の画面を拡大",   // key feature screen: opens the lightbox (site.js initShotZoom)
+    zoom_hd: "Harness\u2060の画面を拡大",
     mod_integrator_title: "Integrator",
     mod_integrator_desc: "回路図を3Dバンドル設計と同期し、トポロジーを検証します。",
     mod_integrator_sub: "回路図と3Dバンドル設計の同期",   // phones only, short line under the name (2026-11-26, wording to be confirmed)
@@ -1093,13 +1101,13 @@ Object.assign(i18n.ko, {
   lg_a5_t: "메시지", lg_a5_d: "DRC 결과, 찾기 결과, AI 대화를 보여 줍니다",
   lg_a6_t: "속성 창", lg_a6_d: "선택한 오브젝트의 파트 번호, 공급사, 하네스 등 속성을 편집합니다",
   in_title: "논리 설계와 3D 번들의 동기화",
-  in_lead: "Integrator는 회로도의 논리적 연결을 실제 차량의 번들 경로와 연결합니다.<br>두 설계 사이의 데이터 일관성을 유지하고, 변경 사항을 서로 반영합니다.",
+  in_lead: "Integrator는 회로도의 논리적 연결을 실제 차량의 번들 경로와 연결합니다. <br>두 설계 사이의 데이터 일관성을 유지하고, 변경 사항을 서로 반영합니다.",
   in_r1_t: "논리 설계 데이터 통합",
   in_r2_t: "와이어 라우팅과 번들 구성",
   in_r3_t: "번들 직경과 길이 산출",
   in_r4_t: "회로도와 하네스 간 일관성 검증",
   hd_title: "상세 하네스 도면 자동 생성",
-  hd_lead: "Harness는 Logic과 Integrator의 데이터로 상세 도면을 만듭니다.<br>플러그 심볼, 번들 길이, 와이어 리스트를 한 장의 도면에 정리합니다.",
+  hd_lead: "Harness는 Logic과 Integrator의 데이터로 상세 도면을 만듭니다. <br>플러그 심볼, 번들 길이, 와이어 리스트를 한 장의 도면에 정리합니다.",
   hd_r1_t: "하네스 도면 생성과 시각화",
   hd_r2_t: "플러그 심볼과 와이어 리스트 테이블",
   hd_r3_t: "번들 직경 계산과 와이어 경로 추적",
@@ -1122,13 +1130,13 @@ Object.assign(i18n.en, {
   lg_a5_t: "Messages", lg_a5_d: "Shows DRC results, search results and AI conversations",
   lg_a6_t: "Property window", lg_a6_d: "Edit the part number, vendor, harness and other properties of the selected object",
   in_title: "Logical design and 3D bundles, in sync",
-  in_lead: "Integrator links schematic connections to the vehicle's bundle routes.<br>It keeps both designs consistent and syncs changes between them.",
+  in_lead: "Integrator links schematic connections to the vehicle's bundle routes. <br>It keeps both designs consistent and syncs changes between them.",
   in_r1_t: "Logical design data integration",
   in_r2_t: "Wire routing and bundle configuration",
   in_r3_t: "Bundle diameter and length calculation",
   in_r4_t: "Consistency checks between schematic and harness",
   hd_title: "Automatic detailed harness drawings",
-  hd_lead: "Harness creates detailed drawings from Logic and Integrator data.<br>Plug symbols, bundle lengths and wire lists share one drawing.",
+  hd_lead: "Harness creates detailed drawings from Logic and Integrator data. <br>Plug symbols, bundle lengths and wire lists share one drawing.",
   hd_r1_t: "Harness drawing creation and visualization",
   hd_r2_t: "Plug symbols and wire list tables",
   hd_r3_t: "Bundle diameter calculation and wire path tracing",

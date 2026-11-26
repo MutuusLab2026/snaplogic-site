@@ -105,6 +105,7 @@ const Controller = {
       'initMobileMenu',
       'initGalleryEvents',
       'initLightbox',
+      'initShotZoom',
       'initCtaForm',
       'initScrollToTop',
       'initLanguage',
@@ -285,6 +286,26 @@ const Controller = {
           openLightbox(parseInt(item.dataset.galleryIndex));
         }
       }
+    });
+  },
+
+  /* Key feature screens (Integrator, Harness): the screen becomes a button that opens it large in the lightbox, one
+     image with no previous / next. On portrait phones it opens at the screen's height and pans sideways (2026-11-27). */
+  initShotZoom() {
+    const keys = { integrator: 'zoom_int', harness: 'zoom_hd' };
+    const t = i18n[savedLang()] || i18n.ko;
+    Object.keys(keys).forEach((id) => {
+      const sec = document.getElementById(id);
+      const img = sec && sec.querySelector('img[src*="-ws."]');
+      if (!img) return;
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'shot-zoom';
+      btn.setAttribute('data-i18n-aria', keys[id]);
+      btn.setAttribute('aria-label', t[keys[id]] || i18n.ko[keys[id]]);
+      img.replaceWith(btn);
+      btn.appendChild(img);
+      btn.addEventListener('click', () => openLightboxSrc(img.currentSrc || img.src, btn.getAttribute('aria-label')));
     });
   },
 
@@ -793,15 +814,33 @@ function openLightbox(index) {
   lb.querySelectorAll('button')[0].focus();
 }
 
+/* One image, no previous / next (key feature screens). Portrait phones: the image fills the height and the overlay
+   scrolls sideways, starting from the middle. */
+function openLightboxSrc(src, alt) {
+  Controller.previousFocus = document.activeElement;
+  const lb = document.getElementById('lightbox');
+  const im = document.getElementById('lightboxImg');
+  lb.classList.add('lb-single');
+  im.src = src;
+  im.alt = alt || '';
+  lb.style.display = 'flex';
+  lb.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  const centre = () => { lb.scrollLeft = (lb.scrollWidth - lb.clientWidth) / 2; };
+  if (im.complete) requestAnimationFrame(centre); else im.addEventListener('load', centre, { once: true });
+  lb.querySelector('[data-lightbox="close"]').focus();
+}
+
 function closeLightbox() {
   const lb = document.getElementById('lightbox');
   lb.classList.remove('active');
-  setTimeout(() => { lb.style.display = 'none'; }, 300);
+  setTimeout(() => { lb.style.display = 'none'; lb.classList.remove('lb-single'); lb.scrollLeft = 0; }, 300);
   document.body.style.overflow = '';
   if (Controller.previousFocus) Controller.previousFocus.focus();
 }
 
 function navigateLightbox(dir) {
+  if (document.getElementById('lightbox').classList.contains('lb-single')) return;   // one image only
   const len = Model.gallery.length;
   Controller.currentLightboxIndex = (Controller.currentLightboxIndex + dir + len) % len;
   const item = Model.gallery[Controller.currentLightboxIndex];

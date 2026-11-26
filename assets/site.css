@@ -901,3 +901,16 @@ html[lang="zh"] .hero-sub, html[lang="ja"] .hero-sub { font-family: inherit; }
 
 .hero-bg.is-placed { opacity: 1; }
 @media (prefers-reduced-motion: reduce) { .hero-bg { transition: none; } }
+
+/* ---- Key feature screens open large (site.js initShotZoom, 2026-11-27) ---- */
+.shot-zoom { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
+.shot-zoom img { display: block; width: 100%; height: auto; }
+.shot-zoom:focus-visible { outline: 2px solid #1765cc; outline-offset: 3px; }
+#lightbox.lb-single [data-lightbox="-1"], #lightbox.lb-single [data-lightbox="1"] { display: none; }
+/* portrait phones: a wide screen shown at the overlay's width would be no larger than on the page, so it takes the
+   height instead and the overlay pans sideways; the close button stays put */
+@media (max-width: 767px) and (orientation: portrait) {
+  #lightbox.lb-single { justify-content: flex-start; overflow-x: auto; overscroll-behavior: contain; }
+  #lightbox.lb-single #lightboxImg { flex: none; width: auto; max-width: none; height: min(70vh, 600px); max-height: none; }
+  #lightbox.lb-single [data-lightbox="close"] { position: fixed; }
+}

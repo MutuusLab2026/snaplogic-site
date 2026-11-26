@@ -175,7 +175,7 @@
           <p class="lg-kicker" translate="no">${o.kicker || 'MODULE 02'}</p>
           <h2 class="lg-name" translate="no">Integrator</h2>
           <p class="lg-tagline" data-i18n="in_title">논리 설계와 3D 번들의 동기화</p>
-          <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead mb-6" data-i18n-html="in_lead">Integrator는 회로도의 논리적 연결을 실제 차량의 번들 경로와 연결합니다.<br>두 설계 사이의 데이터 일관성을 유지하고, 변경 사항을 서로 반영합니다.</p>
+          <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead mb-6" data-i18n-html="in_lead">Integrator는 회로도의 논리적 연결을 실제 차량의 번들 경로와 연결합니다. <br>두 설계 사이의 데이터 일관성을 유지하고, 변경 사항을 서로 반영합니다.</p>
         </header>
         <ul class="space-y-3">
           <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
@@ -218,7 +218,7 @@
           <p class="lg-kicker" translate="no">${o.kicker || 'MODULE 03'}</p>
           <h2 class="lg-name" translate="no">Harness</h2>
           <p class="lg-tagline" data-i18n="hd_title">상세 하네스 도면 자동 생성</p>
-          <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead mb-6" data-i18n-html="hd_lead">Harness는 Logic과 Integrator의 데이터로 상세 도면을 만듭니다.<br>플러그 심볼, 번들 길이, 와이어 리스트를 한 장의 도면에 정리합니다.</p>
+          <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead mb-6" data-i18n-html="hd_lead">Harness는 Logic과 Integrator의 데이터로 상세 도면을 만듭니다. <br>플러그 심볼, 번들 길이, 와이어 리스트를 한 장의 도면에 정리합니다.</p>
         </header>
         <ul class="space-y-3">
           <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
