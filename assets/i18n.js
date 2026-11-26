@@ -22,7 +22,7 @@ const i18n = {
     // Core Modules
     modules_label: "CORE MODULES",
     modules_title: "설계부터 검증, 협업까지 하나의 플랫폼에서 이어집니다.",
-    modules_desc: "회로 설계부터 전원·규칙 검증, 팀 협업과 3D\u00a0CAD 연동까지 — 설계의 전 과정이 이어집니다.",
+    modules_desc: "회로 설계부터 전원·규칙 검증, 팀 협업과 3D\u00a0CAD 연동까지 — 설계의 전 과정이 연결됩니다.",
     hcta1_title: "E/E 설계의 새로운 기준, VegaFencer와 함께 시작하세요.",
     hcta1_lead: "요금제 정보와 도입 상담을 통해, 현재 귀사의 설계\u00a0환경에 적합한 VegaFencer 구성을 확인하십시오.",
     hcta1_pricing: "요금제 보기",
@@ -261,7 +261,7 @@ const i18n = {
     // Core Modules
     modules_label: "CORE MODULES",
     modules_title: "From design to verification and collaboration, it all connects on one platform.",
-    modules_desc: "From circuit design to power and rule checks, team collaboration and 3D\u00a0CAD integration — ten core modules cover the entire design process.",
+    modules_desc: "Circuit design, power and rule checks, collaboration and 3D\u00a0CAD — all connected.",
     hcta1_title: "Set a new standard for E/E design with VegaFencer.",
     hcta1_lead: "Through our pricing information and a consultation, find the VegaFencer setup that fits your current design environment.",
     hcta1_pricing: "View plans",
@@ -500,7 +500,7 @@ const i18n = {
     // Core Modules
     modules_label: "核心模块",
     modules_title: "从设计到验证、协作，在同一个平台上贯通。",
-    modules_desc: "从电路设计到电源与规则检查、团队协作和3D\u00a0CAD联动 — 十个核心模块贯穿设计全过程。",
+    modules_desc: "从电路设计到电源与规则检查、团队协作和3D\u00a0CAD联动 — 设计全过程紧密相连。",
     hcta1_title: "E/E 设计的新标准，与 VegaFencer 一起开启。",
     hcta1_lead: "通过价格信息与导入咨询，确认适合贵司当前设计环境的 VegaFencer 配置。",
     hcta1_pricing: "查看价格方案",
@@ -740,7 +740,7 @@ const i18n = {
     // Core Modules
     modules_label: "コアモジュール",
     modules_title: "設計から検証、コラボレーションまで、一つのプラットフォームでつながります。",
-    modules_desc: "回路設計から電源・ルール検証、チームコラボレーション、3D\u00a0CAD連携まで — 10のコアモジュールが設計の全工程をカバーします。",
+    modules_desc: "回路設計から電源・ルール検証、協業、3D\u00a0CAD連携まで — 設計全体が連携します。",
     hcta1_title: "E/E 設計の新しい基準を、VegaFencer とともに。",
     hcta1_lead: "料金情報と導入相談を通じて、貴社の現在の設計環境に適した VegaFencer の構成をご確認ください。",
     hcta1_pricing: "料金プランを見る",
