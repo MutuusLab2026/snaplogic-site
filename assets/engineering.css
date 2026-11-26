@@ -778,12 +778,21 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 /* Phones (2026-11-26): the four figures in a 2 x 2 grid. Figure and label keep the phone's 4 : 1 ratio (was 88 / 22px),
    scaled down to fit two columns; the gap between them scales with it (16 -> 11px). */
 @media (max-width: 767px) {
-  .kf { display: grid; grid-template-columns: 1fr 1fr; column-gap: 16px; row-gap: 40px; justify-items: center; }
+  /* The two columns of figures sit between three equal spaces (screen edge | figures | middle | figures | screen edge).
+     Spacer tracks of 1fr with a column gap equal to the container padding: outside = padding + 1fr + gap, middle =
+     gap + 1fr + gap, so both come out the same. Figure columns are as wide as their widest figure (labels wrap past 42vw). */
+  .kf { display: grid; grid-template-columns: minmax(0, 1fr) max-content minmax(0, 1fr) max-content minmax(0, 1fr);
+    column-gap: 16px; row-gap: 40px; justify-items: center; }
+  .kf-fig { max-width: 42vw; }
+  .kf-l { text-wrap: balance; }
   .kf > .kf-title, .kf > .kf-lead, .kf > .kf-bar { grid-column: 1 / -1; }
+  .kf > .kf-fig:nth-of-type(odd) { grid-column: 2; }
+  .kf > .kf-fig:nth-of-type(even) { grid-column: 4; }
   .kf-n { font-size: 60px; }
   .kf-l { margin-top: 11px !important; font-size: 15px; }
   .kf-sec { padding: 54px 0 54.5px; }   /* phone section rhythm: boundary -> first ink = last ink -> boundary = 57.5px */
 }
+@media (min-width: 640px) and (max-width: 767px) { .kf { column-gap: 24px; } }   /* the container's padding is 24px here */
 @media (min-width: 1101px) {
   .kf-sec { padding: 144px 0 152px; }
   .kf { flex-wrap: wrap; }
