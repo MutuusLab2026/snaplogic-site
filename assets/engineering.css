@@ -838,13 +838,13 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 @media (max-width: 767px) {
   .kf { background: #fff; border-radius: 20px; padding: 36px 28px; box-shadow: 0 20px 50px -30px rgba(8,30,48,.25); }   /* like CTA 1's card */
   body[data-page="home"] #stats { background: var(--eng-paper); }   /* phones: paper band with a white card (the paper card on white looked dark) */
-  .kf-sec { padding: 24px 0 0; }
-  /* the note: 9px, always two lines tall so the gap below the card is the same in every language/width */
-  .kf-note { margin-top: 10px; font-size: 9px; line-height: 1.4; min-height: 2.8em; }
-  /* Core Modules -> The Impact -> CTA 1 read as one paper band on phones, so the cards sit 48px apart:
-     Core Modules' last box -> card = 24 + 24, card -> note -> CTA 1's card = 10 + 25.2 + 12.8 */
-  body[data-page="home"] #product { padding-bottom: 24px; }   /* home only: the product page has no band here */
-  #cta-ask { padding-top: 12.8px; }
+  .kf-sec { padding: 28px 0 0; }
+  /* the note: 9px, wrapping where it did at 10px (its width scaled by the same 0.9) */
+  .kf-note { margin-top: 10px; font-size: 9px; line-height: 1.4; max-width: calc((100% - 32px) * .9); }
+  /* Core Modules -> The Impact -> CTA 1 read as one paper band on phones, so the cards sit 56px apart; the note counts
+     as part of The Impact's card: Core Modules' last box -> card = 28 + 28, note -> CTA 1's card = 56 */
+  body[data-page="home"] #product { padding-bottom: 28px; }   /* home only: the product page has no band here */
+  #cta-ask { padding-top: 54px; }   /* + the note's 2px line space below its letters = 56 */
 }
 @media (min-width: 1101px) {
   .kf-sec { padding: 144px 0 152px; }
