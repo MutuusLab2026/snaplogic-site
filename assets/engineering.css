@@ -842,7 +842,7 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 /* Trial (2026-11-27): The Impact as a white card on the paper band, like CTA 1 (same radius, inner padding 36 / 28px,
    shadow). The note stays under the card, right-aligned. */
 @media (max-width: 767px) {
-  .kf { background: #fff; border-radius: 20px; padding: 36px 28px; box-shadow: 0 20px 50px -30px rgba(8,30,48,.25); }   /* like CTA 1's card */
+  .kf { background: #fff; border-radius: 20px; padding: 28px 28px; box-shadow: 0 20px 50px -30px rgba(8,30,48,.25); }   /* like CTA 1's card */
   body[data-page="home"] #stats { background: var(--eng-paper); }   /* phones: paper band with a white card (the paper card on white looked dark) */
   .kf-sec { padding: 28px 0 0; }
   /* the note: 9px, wrapping where it did at 10px (its width scaled by the same 0.9) */
