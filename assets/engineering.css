@@ -471,7 +471,7 @@ html[lang="ko"] body { word-break: keep-all; overflow-wrap: break-word; }
      The headings name the groups, so the colour legend above is not needed here. (Tried and set aside the same day:
      a 2 x 5 grid of small cards, and full cards in a sideways row.) */
   .modules-head + .mod-legend { display: none; }
-  #product { padding-bottom: 49.5px; }   /* last box -> section end = section top -> kicker ink (49.5px) */
+  #product { padding-top: 56px; padding-bottom: 57.5px; }   /* phone section rhythm: boundary -> first ink and last box -> boundary are both 57.5px, as in Explore */
   #product > div > .grid { display: block; }
   .mod-gh { display: flex; align-items: center; gap: 8px; margin: 28px 0 10px 2px;
     font: 700 14px 'Noto Sans KR', Inter, sans-serif; color: #3d4a5c; }
