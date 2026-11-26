@@ -6,6 +6,7 @@ The frame only sets the width: touch, the phone's browser bars and device fonts 
 """
 import os, sys
 
+sys.dont_write_bytecode = True   # no tools/__pycache__ in the repo
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import serve  # noqa: E402
 
