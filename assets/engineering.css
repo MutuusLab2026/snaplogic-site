@@ -464,8 +464,18 @@ html[lang="ko"] body { word-break: keep-all; overflow-wrap: break-word; }
   .engineering-pipeline svg { width: 17px; }
   .engineering-scroll { display: none; }
   .engineering-interface { padding: 40px 0; }
-  #product > div > .grid { grid-template-columns: 1fr; }
+  /* Phones (2026-11-26): two columns of compact cards (symbol, name, arrow), five rows; the descriptions, the
+     trace and the "Learn more" words are left out (the whole card is the link; the arrow stays as its sign). */
+  #product > div > .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   #product > div > .grid > a:last-child { grid-column: auto; }
+  #product > div > .grid > a { padding: 16px 14px 16px 16px; }
+  #product > div > .grid > a > div:first-child { width: 40px; height: 40px; margin-bottom: 12px; }
+  #product .engineering-module-symbol svg { width: 24px; height: 24px; }
+  #product .engineering-module-trace, #product a[data-grp] > p { display: none; }
+  #product a[data-grp] h3 { margin: 0; font-size: 15.5px; line-height: 1.3; }
+  #product .mod-more { position: absolute; top: 18px; right: 14px; }
+  #product .mod-more > span { display: none; }
+  #product .mod-more svg { width: 16px; height: 16px; }
   .engineering-button { padding-inline: 16px; font-size: 12px; }
   .engineering-drawing .diagram-label, .engineering-drawing .diagram-callout, .engineering-drawing .dimension-line { display: none; }
   .eng-bridge .bridge-lane-text { letter-spacing: .2px; }
