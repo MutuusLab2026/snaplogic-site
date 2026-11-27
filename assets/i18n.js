@@ -35,7 +35,7 @@ const i18n = {
     pl_pro_2: "검증 · 관리 모듈",
     pl_pro_3: "AI Assistant",
     pl_ent_for: "조직 전체 · 서버 설치형",
-    pl_ent_inc: "Professional 전체 +",
+    pl_ent_inc: "Professional 기능 전체 +",
     pl_ent_1: "Multiuser Environment",
     pl_ent_2: "권한 · 핀 단위 잠금",
     pl_ent_3: "사내 LLM · Data Migration",

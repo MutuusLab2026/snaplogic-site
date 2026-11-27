@@ -723,11 +723,20 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 @media (min-width: 768px) { .pl-card { padding: 36px; } }
 .pl-name { margin: 0; font: 800 28px/1.1 Inter, sans-serif; letter-spacing: -.03em; color: #151b2b; }
 .pl-for { margin: 8px 0 0; font-size: 15px; color: #45525f; }
-.pl-inc { margin: 24px 0 12px; font: 700 12px Inter, 'Noto Sans KR', sans-serif; letter-spacing: .08em; text-transform: uppercase; color: #1765cc; }
+.pl-inc { margin: 24px 0 12px; font: 700 12px Inter, 'Noto Sans KR', sans-serif; letter-spacing: .04em; color: #1765cc; }   /* as written, no capitals forced: "포함 기능" and "Professional 기능 전체 +" look alike (2026-11-27) */
 .pl-list { display: grid; gap: 10px; margin: 0 0 28px; padding: 0; list-style: none; }
 .pl-list li { display: flex; gap: 10px; font-size: 15px; line-height: 1.45; color: #151b2b; }
 .pl-list .material-symbols-outlined { flex: 0 0 20px; font-size: 20px; line-height: 1; margin-top: 0; color: #006a5c; }
 .pl-card .hcta-btn { margin-top: auto; width: 100%; }
+/* Phones (2026-11-27): plan names a step under the section title, cards like The Impact / CTA 1 (shadow, no border,
+   28px sides), the checklist like the key features (14px, 18.5px tick), and the 57.5px phone section rhythm */
+@media (max-width: 767px) {
+  #plans { padding: 52.5px 0 56.5px; }
+  .pl-name { font-size: 22px; }
+  .pl-card { border: 0; padding: 28px; box-shadow: 0 20px 50px -30px rgba(8,30,48,.25); }
+  .pl-list li { font-size: 14px; }
+  .pl-list .material-symbols-outlined { flex-basis: 18.5px; font-size: 18.5px; margin-top: 1px; }
+}
 /* Pointing at a plan (or tabbing into it) brings it forward: it lifts a little with a darker edge and the other plan
    fades back. Only with a mouse (hover: hover); reduced motion: no lift, no fade timing. */
 .pl-card { transition: opacity .35s, transform .35s cubic-bezier(.2, .8, .2, 1), box-shadow .35s, border-color .35s; }
