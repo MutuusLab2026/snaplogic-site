@@ -107,11 +107,15 @@
   /* ---------- framing ----------
      The picture follows the box's shape: at 1.8 : 1 (narrow screens) it keeps the photo's top and loses a little at
      the bottom; on wide screens the box is one window tall (site.css), and a box narrower than 1.8 : 1 loses the
-     photo's sides instead (rigging and sky), so the compass and Vega always stay in. */
-  var VW = 1672, VH = 929, x0 = 0, y0 = 0;
+     photo's sides instead (rigging and sky), so the compass and Vega always stay in. Phones (a box about as tall as
+     wide): the photo is cropped to a column that keeps Vega and the compass (x about 190-1090) instead of its middle. */
+  var VW = 1672, VH = 929, x0 = 0, y0 = 0, PORT = false;
+  var PHONE_PX = 11.5;   // the Vega label never goes below this size
   function fit() {
     var w = box.offsetWidth, h = box.offsetHeight, r = w && h ? w / h : 1.8;
     VW = Math.min(1672, Math.round(940 * r)); VH = Math.min(940, Math.round(1672 / r)); x0 = 836 - VW / 2;
+    PORT = r < 1.3;
+    if (PORT) x0 = Math.max(0, Math.min(1672 - VW, 640 - VW / 2));
     y0 = Math.max(0, 929 - VH);   // wider than 1.8 : 1 (up to 1.92 : 1, site.css): a little of the sky goes, not the compass
     svg.setAttribute('viewBox', x0 + ' ' + y0 + ' ' + VW + ' ' + VH);
     /* The label is page text laid over the picture: placed and sized in picture units (k = CSS px per unit, offsetWidth
@@ -119,9 +123,14 @@
        width. The leader line runs level with Vega (387, 210) out to (610, 210), seen at (603.2, 202.2) after the 3% zoom; the label starts 18.4
        units to its right, and its first line (1.9em tall) is centred on it. */
     var k = w / VW, em = 20.9;
-    label.style.fontSize = (em * k) + 'px';
-    label.style.left = ((603.2 + 18.4 - x0) * k) + 'px';
-    label.style.top = ((202.2 - 0.95 * 1.9 * em - y0) * k) + 'px';
+    var fpx = Math.max(em * k, PHONE_PX);
+    label.style.fontSize = fpx + 'px';
+    var lx = (603.2 + 18.4 - x0) * k;
+    label.style.left = lx + 'px';
+    label.style.top = ((202.2 - y0) * k - 0.95 * 1.9 * fpx) + 'px';
+    // phone: the longer lines (English, Japanese) wrap inside the picture instead of running off its edge
+    label.style.whiteSpace = PORT ? 'normal' : '';
+    label.style.maxWidth = PORT ? Math.max(120, w - lx - 12) + 'px' : '';
   }
   fit();
   /* Where the logo zooms to (SC) and where the four logos end (ROW). Without a card beside the animation: centred
@@ -137,7 +146,8 @@
       var tf = getComputedStyle(card).transform, m = tf && tf !== 'none' ? new DOMMatrixReadOnly(tf) : null;
       if (m) c = { left: c.left - m.e, right: c.right - m.e, top: c.top - m.f, bottom: c.bottom - m.f, width: c.width, height: c.height };
     }
-    if (c && c.width && c.left - b.left > b.width / 2 && c.top < b.bottom) {
+    var beside = c && c.width && c.left - b.left > b.width / 2 && c.top < b.bottom;
+    if (beside) {
       var k = b.width / VW;
       /* Across: centred between the left edge of the header's "VegaFencer" and the card's left edge (the page's
          content column), with 96px kept clear at each end (so the row sits apart from the card and in proportion to its smaller type). The row's ink runs from the first star tip (126s left of
@@ -156,6 +166,12 @@
          the whole drawing with the star tip (centre y 123): with the star counted the circle looked low. SC is where
          logo y 123 lands, so it is 10 logo units (x 2.2) above the card's middle. Across: centred on the column. */
       sy = mid - 10 * 2.2;
+    }
+    if (PORT && !beside) {   // phone (no card beside): the row and the merged logo are centred on the picture
+      var vk = Math.min(380, VW * 0.22), vs = vk / 304, M2 = x0 + VW / 2, vcy = y0 + VH / 2;
+      gap = vk; fs = Math.max(24, Math.min(36, gap * 0.15));
+      cx = M2 + 9 * vs; sx = M2 + 9 * 2.2;
+      cy = vcy + 4 * vs - 1.08 * fs; sy = vcy - 10 * 2.2;
     }
     SC = [sx, sy];
     ROW = { gap: gap, s: gap / 304, cx: cx, cy: cy, ny: cy + 123 * gap / 304 + 1.94 * fs };
