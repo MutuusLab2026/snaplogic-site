@@ -833,7 +833,7 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
   .kf > .kf-fig { align-items: center; margin: 0; padding: 35px 0; }   /* figure + label centred in the cell as the eye sees it (39px above and below) */
   .kf > .kf-fig:nth-of-type(odd) { border-right: 1px solid #e6ebf0; }
   .kf > .kf-fig:nth-of-type(-n+2) { border-bottom: 1px solid #e6ebf0; }
-  .kf-n { white-space: nowrap; font-size: min(48px, 12.8vw); }   /* 48px from 375px wide; "−00%" keeps one line in its cell */
+  .kf-n { white-space: nowrap; font-size: min(56px, 15.2vw); }   /* 56px from 369px wide; "−00%" keeps clear of its cell's edges */
   .kf-l { margin-top: 12px !important; text-align: center; }
   .kf-l .kf-br { display: inline; }   /* ko labels in two lines by meaning ("설계 시간 / 단축"), phones only */
   /* the note: under the card, right-aligned, 16px from the screen edge */
