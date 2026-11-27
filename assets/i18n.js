@@ -160,7 +160,7 @@ const i18n = {
     cta_title: 'E/E 설계 워크플로우를<br><em>혁신할 준비</em>가 되셨나요?',
     cta_subtitle: "<span class=\"cta3-lead1\">VegaFencer 상담을 신청하고, 맞춤형 솔루션을 경험하세요.<br class=\"cta3-br\"> </span>전문 엔지니어가 귀사의 E/E 설계 프로세스를 분석하여<br class=\"cta3-br\"> 최적의 워크플로우를 제안합니다.",
     cta_email_label: "업무 이메일",
-    cta_next: "담당 엔지니어가 영업일 기준\u00a03일 안에<br> 메일로 연락드립니다.",
+    cta_next: "담당 엔지니어가 영업일 기준\u00a03일 안에<br class=\"cta3-nbr\"> 메일로 연락드립니다.",
     cta_placeholder: "업무 이메일을 입력하세요",
     cta_submit: '제품 문의 &rarr;',
     cta_success: "감사합니다! 곧 연락드리겠습니다.",

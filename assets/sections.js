@@ -441,7 +441,7 @@
         <input class="cta3-input" id="ctaEmail" type="email" name="email" autocomplete="email" data-i18n-placeholder="cta_placeholder" placeholder="업무 이메일을 입력하세요" required>
         <button class="cta3-btn btn-primary-dark" type="submit"><span data-i18n="hcta1_contact">제품 문의</span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></button>
       </form>
-      <p class="cta3-next" id="ctaNext" data-i18n-html="cta_next">담당 엔지니어가 영업일 기준&nbsp;3일 안에<br> 메일로 연락드립니다.</p>
+      <p class="cta3-next" id="ctaNext" data-i18n-html="cta_next">담당 엔지니어가 영업일 기준&nbsp;3일 안에<br class="cta3-nbr"> 메일로 연락드립니다.</p>
       <p class="hidden mt-6 text-secondary-container font-body font-semibold" id="ctaSuccess" data-i18n="cta_success">감사합니다! 곧 연락드리겠습니다.</p>
       <p class="hidden mt-6 text-red-400 font-body font-semibold" id="ctaError" data-i18n="cta_error"></p>
     </div>
