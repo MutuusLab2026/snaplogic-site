@@ -901,9 +901,8 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 
 /* ---- Last CTA (#cta, every page, 2026-11-25): navy with the original glow at the top centre, a faint
    blueprint grid fading out from the middle, one phrase of the title in light blue. Button keeps the cyan. ---- */
-.cta3 { background: #0B1120; }   /* the original glow (.radial-glow, top centre) is in the markup */
-body[data-page="about"] .cta3 { background: #0f1a24; }   /* the About page is the hero's blue-gray all the way down, so the CTA matches it (2026-11-28) */
-/* ...and its glow fades in from the section's top edge (the glow box is cut off there, which showed as a faint line against the dark section above) */
+.cta3 { background: var(--hero-ink); }   /* the hero's blue-gray (#0f1a24, site.css), on every page since 2026-11-28; the original glow (.radial-glow, top centre) is in the markup */
+/* On the About page (dark all the way down) the glow fades in from the section's top edge (the glow box is cut off there, which showed as a faint line against the dark section above) */
 body[data-page="about"] .cta3 .radial-glow { -webkit-mask-image: linear-gradient(180deg, transparent 200px, #000 330px); mask-image: linear-gradient(180deg, transparent 200px, #000 330px); }
 .cta3::before { content: ''; position: absolute; inset: 0; pointer-events: none;
   background-image: linear-gradient(rgba(124, 180, 255, .045) 1px, transparent 1px), linear-gradient(90deg, rgba(124, 180, 255, .045) 1px, transparent 1px); background-size: 40px 40px;
