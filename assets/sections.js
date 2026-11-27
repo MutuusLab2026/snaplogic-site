@@ -440,6 +440,7 @@
         <label class="sr-only" for="ctaEmail" data-i18n="cta_email_label">업무 이메일</label>
         <input class="cta3-input" id="ctaEmail" type="email" name="email" autocomplete="email" data-i18n-placeholder="cta_placeholder" placeholder="업무 이메일을 입력하세요" required>
         <button class="cta3-btn btn-primary-dark" type="submit"><span data-i18n="hcta1_contact">제품 문의</span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></button>
+        <label class="consent"><input type="checkbox" name="consent" required><span><b data-i18n="consent_label">개인정보 수집·이용에 동의합니다. (필수)</b><small data-i18n="consent_detail_email">상담 연락을 위해 입력하신 이메일을 수집하며, 이 정보는 해외 서버(Formspree, 미국)를 거쳐 전달됩니다.</small></span></label>
       </form>
       <p class="cta3-next" id="ctaNext" data-i18n-html="cta_next">담당 엔지니어가 영업일 기준&nbsp;3일 안에<br class="cta3-nbr"> 메일로 연락드립니다.</p>
       <p class="hidden mt-6 text-secondary-container font-body font-semibold" id="ctaSuccess" data-i18n="cta_success">감사합니다! 곧 연락드리겠습니다.</p>

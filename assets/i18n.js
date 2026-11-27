@@ -167,6 +167,10 @@ const i18n = {
     cta_sending: "전송 중...",
     cta_error: "전송에 실패했습니다. 다시 시도해주세요.",
     cta_business_only: "업무용 이메일을 입력해주세요. (Gmail 등 개인 이메일 불가)",
+    consent_label: "개인정보 수집·이용에 동의합니다. (필수)",
+    consent_detail: "문의 응대를 위해 입력하신 이름, 회사명, 이메일, 전화번호(선택), 문의 내용을 수집하며, 이 정보는 해외 서버(Formspree, 미국)를 거쳐 전달됩니다.",
+    consent_detail_email: "상담 연락을 위해 입력하신 이메일을 수집하며, 이 정보는 해외 서버(Formspree, 미국)를 거쳐 전달됩니다.",
+    consent_required: "개인정보 수집·이용에 동의해 주세요.",
 
     // Footer
     footer_tagline: "아키텍처 설계에서 양산까지.<br>차량 E/E 아키텍처·와이어링 하네스 설계 소프트웨어.",
@@ -418,6 +422,10 @@ const i18n = {
     cta_sending: "Sending...",
     cta_error: "Failed to send. Please try again.",
     cta_business_only: "Please enter a business email. (No personal email like Gmail)",
+    consent_label: "I agree to the collection and use of my personal information. (Required)",
+    consent_detail: "We collect the name, company, email, phone number (optional) and message you enter in order to reply to your inquiry. This information is passed through servers abroad (Formspree, USA).",
+    consent_detail_email: "We collect the email address you enter in order to contact you about your inquiry. This information is passed through servers abroad (Formspree, USA).",
+    consent_required: "Please agree to the collection and use of your personal information.",
 
     // Footer
     footer_tagline: "From architecture design to series production.<br>Vehicle E/E architecture and wiring harness design software.",
@@ -669,6 +677,10 @@ const i18n = {
     cta_sending: "发送中...",
     cta_error: "发送失败，请重试。",
     cta_business_only: "请输入企业邮箱（不支持Gmail等个人邮箱）",
+    consent_label: "我同意收集和使用我的个人信息。（必填）",
+    consent_detail: "为答复您的咨询，我们将收集您填写的姓名、公司名称、电子邮箱、电话号码（选填）和咨询内容，这些信息将经由境外服务器（Formspree，美国）传送。",
+    consent_detail_email: "为就您的咨询与您联系，我们将收集您填写的电子邮箱，该信息将经由境外服务器（Formspree，美国）传送。",
+    consent_required: "请同意收集和使用个人信息。",
 
     // Footer
     footer_tagline: "从架构设计到量产。<br>车辆 E/E 架构与线束设计软件。",
@@ -921,6 +933,10 @@ const i18n = {
     cta_sending: "送信中...",
     cta_error: "送信に失敗しました。もう一度お試しください。",
     cta_business_only: "業務用メールアドレスを入力してください（Gmail等の個人メール不可）",
+    consent_label: "個人情報の収集・利用に同意します。（必須）",
+    consent_detail: "お問い合わせへの対応のため、入力いただいたお名前、会社名、メールアドレス、電話番号（任意）、お問い合わせ内容を収集します。これらの情報は海外のサーバー（Formspree、米国）を経由して送信されます。",
+    consent_detail_email: "ご連絡のため、入力いただいたメールアドレスを収集します。この情報は海外のサーバー（Formspree、米国）を経由して送信されます。",
+    consent_required: "個人情報の収集・利用に同意してください。",
 
     // Footer
     footer_tagline: "アーキテクチャ設計から量産まで。<br>車両 E/E アーキテクチャ・ワイヤーハーネス設計ソフトウェア。",

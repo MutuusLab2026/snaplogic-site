@@ -51,13 +51,19 @@ function showFormFailure(el, text) {
 /* One sender for every form. Checks the fields (required, email format) and that the address is a business one,
    shows "Sending..." on the button, posts the form's fields plus the honeypot to Formspree, then either runs done()
    and shows the thank-you line, or restores the button and shows the failure note with the fallback email.
+   A form with a consent box (input[name="consent"]) cannot be sent unticked.
    opts: success, error (elements), errorKey (i18n key of the failure text), payload(form.elements) → object, done() */
 function wireForm(form, opts) {
   const button = form.querySelector('button[type="submit"]');
   const label = button.innerHTML;
   const text = (key, fallback) => { const t = i18n[savedLang()] || i18n.ko; return t[key] || fallback; };
+  /* The consent box (name="consent"): its own message when unticked, and the tick is sent along with the time, so a
+     message arrives with the record that the sender agreed. */
+  const consent = form.querySelector('input[name="consent"]');
+  if (consent) consent.addEventListener('change', () => consent.setCustomValidity(''));
   form.addEventListener('submit', (e) => {
     e.preventDefault();
+    if (consent) consent.setCustomValidity(consent.checked ? '' : text('consent_required', 'Please agree to the collection and use of your personal information.'));
     if (!form.checkValidity()) { form.reportValidity(); return; }
     if (!isBusinessEmail(form.elements.email.value)) {
       opts.error.textContent = text('cta_business_only', 'Please enter a business email.');
@@ -71,7 +77,7 @@ function wireForm(form, opts) {
     fetch(FORM_ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(Object.assign(opts.payload(form.elements), { _gotcha: honeypot(form) })),
+      body: JSON.stringify(Object.assign(opts.payload(form.elements), { _gotcha: honeypot(form) }, consent ? { consent: 'agreed', consent_at: new Date().toISOString() } : {})),
     }).then(r => r.json().then(body => r.ok && body.ok !== false)).then((ok) => {
       if (!ok) throw new Error();
       opts.done();
