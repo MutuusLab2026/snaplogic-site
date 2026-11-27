@@ -836,9 +836,9 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
      for screen readers, visually hidden (2026-11-27) */
   .kf > .kf-title { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .kf-lead { text-wrap: balance; }
-  .kf-lead::after { margin: 18px -28px 0; background: #d5dbe2; }   /* the header / figures line across the whole card, a step darker than the cell lines */
+  .kf-lead::after { display: none; }   /* minimal (2026-11-27): no line between the heading and the figures */
   .kf > .kf-fig:nth-of-type(odd), .kf > .kf-fig:nth-of-type(even) { grid-column: auto; }
-  .kf > .kf-fig { align-items: center; margin: 0; padding: 26px 0 24px; }
+  .kf > .kf-fig { align-items: center; margin: 0; padding: 20px 0 28px; }
   .kf-n { white-space: nowrap; font-size: min(30px, 7.7vw); }   /* four in a row: 30px from 390px wide, "−00%" fits its quarter */
   .kf-l { margin-top: 8px !important; text-align: center; font-size: 12px; line-height: 1.35; }
   .kf-l .kf-br { display: inline; }   /* ko labels in two lines by meaning ("설계 시간 / 단축"), phones only */
