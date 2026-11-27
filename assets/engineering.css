@@ -829,12 +829,11 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
   .kf { padding-inline: 0 !important; }
   .kf > .kf-title, .kf > .kf-lead { padding-inline: 28px !important; }
   /* the header set like CTA 1's title (800 24px / 1.3): "The Impact" and the tagline read as one three-line heading */
-  .kf > .kf-title, .kf > .kf-lead { font: 800 min(24px, calc((100vw - 88px) / 13))/1.3 Inter, 'Noto Sans KR', sans-serif; letter-spacing: -.025em; }   /* two lines: the longer one ("만드는 변화, 숫자로 확인하세요.", 12.8em) fits the card (screen - 88px); 24px from 400px wide */
+  .kf > .kf-title, .kf > .kf-lead { font: 800 min(24px, calc((100vw - 88px) / 12))/1.3 Inter, 'Noto Sans KR', sans-serif; letter-spacing: -.025em; }   /* two lines: the longer one ("VegaFencer가 만드는 변화,", 11.8em) fits the card (screen - 88px); 24px from 376px wide */
   .kf-lead { margin-top: 0 !important; }
-  /* "The Impact; VegaFencer가 만드는 변화, 숫자로 확인하세요." as one two-line heading: the h2 stays for screen readers
-     (visually hidden) and its words lead the tagline (the generated text is silent: alt text "") */
+  /* the visible heading is the tagline alone ("VegaFencer가 만드는 변화, / 숫자로 확인하세요."); the "The Impact" h2 stays
+     for screen readers, visually hidden (2026-11-27) */
   .kf > .kf-title { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-  .kf-lead::before { content: 'The Impact; ' / ''; }
   .kf-lead { text-wrap: balance; }
   .kf-lead::after { margin: 18px -28px 0; background: #d5dbe2; }   /* the header / figures line across the whole card, a step darker than the cell lines */
   .kf > .kf-fig:nth-of-type(odd), .kf > .kf-fig:nth-of-type(even) { grid-column: auto; }
