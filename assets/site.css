@@ -774,7 +774,7 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
 /* ---- About page: company details card (same card as the contact page), kept to a readable width, dark like the page ---- */
 /* Company details (2026-11-27): IDENTITY / "Company Profile" and the four items as tiles in a row (label small, value large).
    Same column as the header's logo and the footer. Values are placeholders until the company data arrives. */
-.about-night #company { padding-top: 72px; }
+.about-night #company { padding-top: 72px; padding-bottom: 3.5px; }   /* the gap tiles -> CTA title (this + the CTA's own top padding) equals the gap CTA note -> section bottom: measured 129.2 vs 132.6 without it, 2026-11-28 */
 .about-company .lg-kicker { color: #7be4ee; }
 .about-company-title { margin: 0 0 32px; font: 900 39px/1.05 Inter, sans-serif; letter-spacing: -.04em; color: #fff; }
 .about-tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin: 0; }
@@ -784,7 +784,7 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
 .about-tiles dd.has-value { color: #eef4fa; }   /* a real value, brighter than the 준비 중 placeholders */
 @media (max-width: 1023px) { .about-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 767px) {   /* phones: two by two, a step tighter */
-  .about-night #company { padding-top: 57.5px; padding-bottom: 57.5px; }   /* the phone section rhythm */
+  .about-night #company { padding-top: 57.5px; padding-bottom: .5px; }   /* phone: 58.2 vs 58.8 without it */
   .about-company-title { font-size: 30px; }
   .about-tiles { gap: 12px; }
   .about-tiles > div { padding: 16px 16px 18px; }
