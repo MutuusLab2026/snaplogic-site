@@ -737,6 +737,7 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
   .pl-list li { font-size: 14px; }
   .pl-list .material-symbols-outlined { flex-basis: 18.5px; font-size: 18.5px; margin-top: 1px; }
   .pl-inc { margin-top: 16px; }   /* who it is for -> "포함 기능" 24 -> 16px */
+  .pl-list { margin-bottom: 16px; }   /* last feature -> button 28 -> 16px */
   .pl-card .hcta-btn { min-height: 48px; font-size: 15px; }   /* the buttons a step smaller (16 / 52 -> 15 / 48px) */
 }
 /* Pointing at a plan (or tabbing into it) brings it forward: it lifts a little with a darker edge and the other plan
