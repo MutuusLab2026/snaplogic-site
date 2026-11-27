@@ -763,9 +763,10 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
 }
 
 /* ---- About page: company details card (same card as the contact page), kept to a readable width, dark like the page ---- */
-/* Company details (2026-11-27): "About RoisCompany" and the four items as tiles in a row (label small, value large).
+/* Company details (2026-11-27): IDENTITY / "Company Profile" and the four items as tiles in a row (label small, value large).
    Same column as the header's logo and the footer. Values are placeholders until the company data arrives. */
 .about-night #company { padding-top: 72px; }
+.about-company .lg-kicker { color: #7be4ee; }
 .about-company-title { margin: 0 0 32px; font: 900 39px/1.05 Inter, sans-serif; letter-spacing: -.04em; color: #fff; }
 .about-tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin: 0; }
 .about-tiles > div { padding: 24px 24px 28px; border-radius: 16px; background: rgba(255, 255, 255, .03); border: 1px solid rgba(150, 189, 212, .16); }
