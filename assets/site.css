@@ -677,7 +677,15 @@ body[data-page="about"] { background: #0f1a24; }
 }
 .about-story-card .lg-kicker { color: #7be4ee; }
 .about-story-card .lg-name, .about-story-card .lg-tagline { color: #fff; }
-.story-body { display: flex; flex-direction: column; gap: 14px; margin-top: 14px; color: #b6c6d8; }
+/* A step smaller than the shared header template (13 / 44 / 22 / 16), in proportion, so the card sits lighter over the
+   picture (2026-11-27). Phones keep the template sizes for now. */
+@media (min-width: 768px) {
+  .about-story-card .lg-kicker { font-size: 12px; }
+  .about-story-card .lg-name { font-size: 39px; }
+  .about-story-card .lg-tagline { font-size: 19.5px; }
+  .about-story-card .story-body { font-size: 14px; }
+}
+.story-body { display: flex; flex-direction: column; gap: 14px; margin-top: 14px; color: #a4bdcd; }   /* body text on the dark workflow section */
 .story-body p { margin: 0; text-wrap: pretty; }
 .story-br { display: none; }   /* the card is too narrow for one sentence per line */
 .story-card { position: relative; aspect-ratio: 1.8; }

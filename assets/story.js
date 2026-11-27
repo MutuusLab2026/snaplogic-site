@@ -140,11 +140,11 @@
     if (c && c.width && c.left - b.left > b.width / 2 && c.top < b.bottom) {
       var k = b.width / VW;
       /* Across: centred between the left edge of the header's "VegaFencer" and the card's left edge (the page's
-         content column), with 40px kept clear at each end. The row's ink runs from the first star tip (126s left of
+         content column), with 96px kept clear at each end (so the row sits apart from the card and in proportion to its smaller type). The row's ink runs from the first star tip (126s left of
          the first logo's centre) to the last logo's ring (108s right of the fourth), so it is moved 9s right. */
       var home = document.querySelector('#nav nav > a'), hr = home && home.getBoundingClientRect();
       var lo = hr && hr.width ? hr.left - b.left : b.right - c.right, hi = c.left - b.left;
-      gap = Math.min(380, (hi - lo - 80) / k / 3.84);
+      gap = Math.min(380, (hi - lo - 2 * 96) / k / 3.84);
       var s = gap / 304;
       var M = x0 + (lo + hi) / 2 / k;   // the column's middle, in picture units
       cx = M + 9 * s;
