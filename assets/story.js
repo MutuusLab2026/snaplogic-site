@@ -127,11 +127,11 @@
   /* Where the logo zooms to (SC) and where the four logos end (ROW). Without a card beside the animation: centred
      across it. With the card on the right (wide screens): in the space to its left, the row (logos and names)
      centred on the card's middle. Picture units = card pixels / k. */
-  var card = document.getElementById('storyText');
+  var card = document.getElementById('storyText'), art = box.parentNode;
   var SC, ROW;
   function layout() {
     fit();
-    var gap = Math.min(380, VW * 0.235), cx = 836, cy = 430, fs = 36, sy = 470;
+    var gap = Math.min(380, VW * 0.235), cx = 836, cy = 430, fs = 36, sx = 836, sy = 470;
     var b = box.getBoundingClientRect(), c = card && card.getBoundingClientRect();
     if (c) {   // without the card's own fade-in shift (.reveal), which may still be running
       var tf = getComputedStyle(card).transform, m = tf && tf !== 'none' ? new DOMMatrixReadOnly(tf) : null;
@@ -139,15 +139,22 @@
     }
     if (c && c.width && c.left - b.left > b.width / 2 && c.top < b.bottom) {
       var k = b.width / VW;
-      var lo = Math.max(b.right - c.right + 24, b.width * 0.15 + 8), hi = c.left - b.left - 40;   // the card's margin, but clear of the faded edge (15%, site.css); a gap before the card
-      gap = Math.min(380, (hi - lo) / k / 3.95);
-      cx = x0 + (lo + hi) / 2 / k;
+      /* Across: centred between the left edge of the header's "VegaFencer" and the card's left edge (the page's
+         content column), with 40px kept clear at each end. The row's ink runs from the first star tip (126s left of
+         the first logo's centre) to the last logo's ring (108s right of the fourth), so it is moved 9s right. */
+      var home = document.querySelector('#nav nav > a'), hr = home && home.getBoundingClientRect();
+      var lo = hr && hr.width ? hr.left - b.left : b.right - c.right, hi = c.left - b.left;
+      gap = Math.min(380, (hi - lo - 80) / k / 3.84);
+      var s = gap / 304;
+      var M = x0 + (lo + hi) / 2 / k;   // the column's middle, in picture units
+      cx = M + 9 * s;
+      sx = M + 9 * 2.2;   // the merged logo (2.2x) has the same lean: its ink runs from x 2 to 236.5 around 128
       fs = Math.max(24, Math.min(36, gap * 0.15));
-      var s = gap / 304, mid = y0 + (c.top + c.height / 2 - b.top) / k;
+      var mid = y0 + (c.top + c.height / 2 - b.top) / k;
       cy = mid + 4 * s - 1.08 * fs;   // the row runs from the star tip (cy - 131s) to under the names (ny + .22fs)
-      sy = mid;   // the logo made from the star and the compass is centred on the card too
+      sy = mid;   // the logo made from the star and the compass is centred on the card too (down), and on the column (across)
     }
-    SC = [cx, sy];
+    SC = [sx, sy];
     ROW = { gap: gap, s: gap / 304, cx: cx, cy: cy, ny: cy + 123 * gap / 304 + 1.94 * fs };
     $('names').setAttribute('font-size', fs);
     for (var i = 0; i < 4; i++) { $('n' + i).setAttribute('x', cx + (i - 1.5) * gap); $('n' + i).setAttribute('y', ROW.ny); }
@@ -185,6 +192,7 @@
     label.style.opacity = (P(t, 6.2, 6.8) * out).toFixed(3);
     set($('dim'), 'opacity', (0.85 * P(u, 2.4, 3.4)).toFixed(3));
     set($('photo'), 'opacity', (1 - P(u, 4.3, 5.3)).toFixed(3));
+    if (art) art.classList.toggle('story-clear', u >= 5.4);   // photo gone: drop the edge fade (the ground is the page colour)
     var pose = { x: L(PH.x, C1.x, pm), y: L(PH.y, C1.y, pm), sx: L(PH.sx, C1.sx, pm), sy: L(PH.sy, C1.sy, pm), rot: L(PH.rot, 0, pm) };
     var cT = 'translate(' + pose.x + ' ' + pose.y + ') scale(' + pose.sx + ' ' + pose.sy + ') translate(-128 -133)';
     set($('cLine'), 'transform', cT); set($('cColor'), 'transform', cT);

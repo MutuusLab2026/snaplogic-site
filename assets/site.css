@@ -650,6 +650,8 @@ body[data-page="about"] { background: #0f1a24; }
   -webkit-mask-composite: source-in;
   mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent), linear-gradient(180deg, transparent, #000 6%, #000 85%, transparent);
   mask-composite: intersect; }
+/* Once the photo has faded out (story.js), the logos may reach into the faded edges: the fade is dropped. */
+.about-stage-art.story-clear { -webkit-mask-image: none; mask-image: none; }
 @supports (height: 100svh) { .about-stage-art { max-width: min(1672px, calc((100svh - var(--page-nav-h)) * 1.92)); } }
 /* Wide screens: <main> is zoomed by --hero-s (engineering.css), which scales this width too, so divide it back. */
 @media (min-width: 1101px) { .about-stage-art { max-width: calc(min(1672px, (100svh - var(--page-nav-h)) * 1.92) / var(--hero-s, 1)); } }
