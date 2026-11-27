@@ -28,7 +28,7 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 
 <link rel="stylesheet" href="assets/tailwind.css?v=2b20e8e2">
-<link rel="stylesheet" href="assets/site.css?v=17a7522b">
+<link rel="stylesheet" href="assets/site.css?v=1e807a73">
 <link rel="stylesheet" href="assets/engineering.css?v=0db33473">
 </head>
 <body class="bg-surface antialiased" data-page="about">
@@ -63,17 +63,15 @@
 <!-- ============================================================
      COMPANY (details to be filled in; same items as the contact page)
      ============================================================ -->
-<section class="pb-16 md:pb-24" id="company">
+<section class="pb-16 md:pb-24" id="company" aria-labelledby="companyTitle">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 about-company">
-        <div class="contact-card">
-          <h2 data-i18n="ct_company">회사 정보</h2>
-          <dl class="info-list">
-            <div><dt data-i18n="ct_name">상호</dt><dd class="tbd" data-i18n="ct_tbd">준비 중</dd></div>
-            <div><dt data-i18n="ct_ceo">대표자</dt><dd class="tbd" data-i18n="ct_tbd">준비 중</dd></div>
-            <div><dt data-i18n="ct_bizno">사업자등록번호</dt><dd class="tbd" data-i18n="ct_tbd">준비 중</dd></div>
-            <div><dt data-i18n="ct_ecom">통신판매업 신고번호</dt><dd class="tbd" data-i18n="ct_tbd">준비 중</dd></div>
-          </dl>
-        </div>
+    <h2 class="about-company-title" id="companyTitle" translate="no">About RoisCompany</h2>
+    <dl class="about-tiles">
+      <div><dt data-i18n="ct_name">상호</dt><dd data-i18n="ct_tbd">준비 중</dd></div>
+      <div><dt data-i18n="ct_ceo">대표자</dt><dd data-i18n="ct_tbd">준비 중</dd></div>
+      <div><dt data-i18n="ct_bizno">사업자등록번호</dt><dd data-i18n="ct_tbd">준비 중</dd></div>
+      <div><dt data-i18n="ct_ecom">통신판매업 신고번호</dt><dd data-i18n="ct_tbd">준비 중</dd></div>
+    </dl>
   </div>
 </section>
 </main>
