@@ -55,7 +55,7 @@
     '<g id="vs-scene">' +
       '<g id="vs-photo"><image href="assets/img/brand-story-night.webp" width="1672" height="940"/>' +
         '<rect id="vs-dim" width="1672" height="940" fill="#03060d" opacity="0" mask="url(#vs-spot)"/></g>' +
-      '<path id="vs-label" d="M410 188L470 128L560 128" pathLength="1" fill="none" stroke="rgba(207,224,255,.85)" stroke-width="2" opacity="0"/>' +
+      '<path id="vs-label" d="M412 196L440 172L600 172" pathLength="1" fill="none" stroke="rgba(207,224,255,.85)" stroke-width="2" opacity="0"/>' +
       '<g id="vs-cLine" fill="none" stroke="#e6eeff" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" opacity="0">' +
         '<circle class="vs-dr" cx="128" cy="133" r="113" pathLength="1"/>' +
         '<circle class="vs-dr" cx="128" cy="133" r="80" pathLength="1"/>' +
@@ -108,19 +108,20 @@
      The picture follows the box's shape: at 1.8 : 1 (narrow screens) it keeps the photo's top and loses a little at
      the bottom; on wide screens the box is one window tall (site.css), and a box narrower than 1.8 : 1 loses the
      photo's sides instead (rigging and sky), so the compass and Vega always stay in. */
-  var VW = 1672, VH = 929, x0 = 0;
+  var VW = 1672, VH = 929, x0 = 0, y0 = 0;
   function fit() {
     var w = box.offsetWidth, h = box.offsetHeight, r = w && h ? w / h : 1.8;
     VW = Math.min(1672, Math.round(940 * r)); VH = Math.min(940, Math.round(1672 / r)); x0 = 836 - VW / 2;
-    svg.setAttribute('viewBox', x0 + ' 0 ' + VW + ' ' + VH);
+    y0 = Math.max(0, 929 - VH);   // wider than 1.8 : 1 (up to 1.92 : 1, site.css): a little of the sky goes, not the compass
+    svg.setAttribute('viewBox', x0 + ' ' + y0 + ' ' + VW + ' ' + VH);
     /* The label is page text laid over the picture: placed and sized in picture units (k = CSS px per unit, offsetWidth
        is in CSS pixels, so this also holds when the page is zoomed). 20.9 units per em = 1.25/100 of the full photo
-       width. The leader line ends at (560, 128), seen at (551.7, 117.7) after the 3% zoom; the label starts 18.4
+       width. The leader line ends at (600, 172), seen at (592.9, 163.1) after the 3% zoom; the label starts 18.4
        units to its right, and its first line (1.9em tall) is centred on it. */
     var k = w / VW, em = 20.9;
     label.style.fontSize = (em * k) + 'px';
-    label.style.left = ((551.7 + 18.4 - x0) * k) + 'px';
-    label.style.top = ((117.7 - 0.95 * 1.9 * em) * k) + 'px';
+    label.style.left = ((592.9 + 18.4 - x0) * k) + 'px';
+    label.style.top = ((163.1 - 0.95 * 1.9 * em - y0) * k) + 'px';
   }
   fit();
   /* Where the logo zooms to (SC) and where the four logos end (ROW). Without a card beside the animation: centred
@@ -138,11 +139,11 @@
     }
     if (c && c.width && c.left - b.left > b.width / 2 && c.top < b.bottom) {
       var k = b.width / VW;
-      var lo = Math.max(b.right - c.right + 24, b.width * 0.08 + 8), hi = c.left - b.left - 40;   // the card's margin, but clear of the faded edge (8%, site.css); a gap before the card
+      var lo = Math.max(b.right - c.right + 24, b.width * 0.15 + 8), hi = c.left - b.left - 40;   // the card's margin, but clear of the faded edge (15%, site.css); a gap before the card
       gap = Math.min(380, (hi - lo) / k / 3.95);
       cx = x0 + (lo + hi) / 2 / k;
       fs = Math.max(24, Math.min(36, gap * 0.15));
-      var s = gap / 304, mid = (c.top + c.height / 2 - b.top) / k;
+      var s = gap / 304, mid = y0 + (c.top + c.height / 2 - b.top) / k;
       cy = mid + 4 * s - 1.08 * fs;   // the row runs from the star tip (cy - 131s) to under the names (ny + .22fs)
       sy = mid;   // the logo made from the star and the compass is centred on the card too
     }

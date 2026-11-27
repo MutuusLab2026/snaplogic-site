@@ -645,14 +645,14 @@ body[data-page="about"] { background: #0f1a24; }
 .about-stage { position: relative; display: grid; }
 /* At most one window tall under the header, so the whole picture is seen at once (narrower than the page on wide,
    short windows; its sides fade into the page colour anyway). */
-.about-stage-art { position: relative; width: 100%; max-width: min(1672px, calc((100vh - var(--page-nav-h)) * 1.8)); margin: 0 auto;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent), linear-gradient(180deg, transparent, #000 6%, #000 85%, transparent);
+.about-stage-art { position: relative; width: 100%; max-width: min(1672px, calc((100vh - var(--page-nav-h)) * 1.92)); margin: 0 auto;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent), linear-gradient(180deg, transparent, #000 6%, #000 85%, transparent);
   -webkit-mask-composite: source-in;
-  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent), linear-gradient(180deg, transparent, #000 6%, #000 85%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent), linear-gradient(180deg, transparent, #000 6%, #000 85%, transparent);
   mask-composite: intersect; }
-@supports (height: 100svh) { .about-stage-art { max-width: min(1672px, calc((100svh - var(--page-nav-h)) * 1.8)); } }
+@supports (height: 100svh) { .about-stage-art { max-width: min(1672px, calc((100svh - var(--page-nav-h)) * 1.92)); } }
 /* Wide screens: <main> is zoomed by --hero-s (engineering.css), which scales this width too, so divide it back. */
-@media (min-width: 1101px) { .about-stage-art { max-width: calc(min(1672px, (100svh - var(--page-nav-h)) * 1.8) / var(--hero-s, 1)); } }
+@media (min-width: 1101px) { .about-stage-art { max-width: calc(min(1672px, (100svh - var(--page-nav-h)) * 1.92) / var(--hero-s, 1)); } }
 /* Wide screens with the card beside: the animation fills the window down to its bottom edge (like the home hero),
    at any window shape; story.js crops the photo's sides when the box is narrower than 1.8 : 1. */
 @media (min-width: 1200px) {
@@ -663,12 +663,10 @@ body[data-page="about"] { background: #0f1a24; }
 .about-stage-over { width: 100%; max-width: 80rem; margin: 0 auto; padding: 0 16px; }
 @media (min-width: 640px) { .about-stage-over { padding: 0 24px; } }
 @media (min-width: 768px) { .about-stage-over { padding: 0 32px; } }
-/* Frosted glass, mostly opaque: a lighter blue-gray at the top-left, a thin light rim and a soft shadow. */
+/* Plain translucent card: the picture shows faintly through it (a light blur, no sheen or shine). */
 .about-story-card { position: relative; max-width: 640px; padding: 28px 24px; border-radius: 16px;
-  background: linear-gradient(160deg, rgba(40, 57, 74, .80), rgba(15, 26, 36, .86) 60%);
-  border: 1px solid rgba(255, 255, 255, .12);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .10), 0 24px 60px -24px rgba(0, 0, 0, .7);
-  -webkit-backdrop-filter: blur(20px) saturate(150%); backdrop-filter: blur(20px) saturate(150%); }
+  background: rgba(15, 26, 36, .78); border: 1px solid rgba(150, 189, 212, .14);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
 @media (min-width: 768px) { .about-story-card { padding: 36px 32px; } }
 @media (min-width: 1200px) {
   .about-stage > * { grid-area: 1 / 1; }
