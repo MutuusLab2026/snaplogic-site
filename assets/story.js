@@ -102,22 +102,34 @@
     svg.setAttribute('aria-label', T.story_aria);
   }
   setLabel();
-  // 1.25/100 of the animation's width (offsetWidth is in CSS pixels, so this also holds when the page is zoomed).
-  var sizeLabel = function () { label.style.fontSize = (box.offsetWidth * 1.25 / 100) + 'px'; };
-  sizeLabel();
-  if ('ResizeObserver' in window) new ResizeObserver(sizeLabel).observe(box); else window.addEventListener('resize', sizeLabel);
   new MutationObserver(setLabel).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
 
-  /* ---------- framing: the card is 1.8 : 1, so the photo keeps its top and loses a little at the bottom ---------- */
-  var RATIO = 1.8;
-  var VW = Math.min(1672, Math.round(940 * RATIO)), VH = Math.min(940, Math.round(1672 / RATIO));
-  svg.setAttribute('viewBox', (836 - VW / 2) + ' 0 ' + VW + ' ' + VH);
+  /* ---------- framing ----------
+     The picture follows the box's shape: at 1.8 : 1 (narrow screens) it keeps the photo's top and loses a little at
+     the bottom; on wide screens the box is one window tall (site.css), and a box narrower than 1.8 : 1 loses the
+     photo's sides instead (rigging and sky), so the compass and Vega always stay in. */
+  var VW = 1672, VH = 929, x0 = 0;
+  function fit() {
+    var w = box.offsetWidth, h = box.offsetHeight, r = w && h ? w / h : 1.8;
+    VW = Math.min(1672, Math.round(940 * r)); VH = Math.min(940, Math.round(1672 / r)); x0 = 836 - VW / 2;
+    svg.setAttribute('viewBox', x0 + ' 0 ' + VW + ' ' + VH);
+    /* The label is page text laid over the picture: placed and sized in picture units (k = CSS px per unit, offsetWidth
+       is in CSS pixels, so this also holds when the page is zoomed). 20.9 units per em = 1.25/100 of the full photo
+       width. The leader line ends at (560, 128), seen at (551.7, 117.7) after the 3% zoom; the label starts 18.4
+       units to its right, and its first line (1.9em tall) is centred on it. */
+    var k = w / VW, em = 20.9;
+    label.style.fontSize = (em * k) + 'px';
+    label.style.left = ((551.7 + 18.4 - x0) * k) + 'px';
+    label.style.top = ((117.7 - 0.95 * 1.9 * em) * k) + 'px';
+  }
+  fit();
   /* Where the logo zooms to (SC) and where the four logos end (ROW). Without a card beside the animation: centred
      across it. With the card on the right (wide screens): in the space to its left, the row (logos and names)
      centred on the card's middle. Picture units = card pixels / k. */
   var card = document.getElementById('storyText');
   var SC, ROW;
   function layout() {
+    fit();
     var gap = Math.min(380, VW * 0.235), cx = 836, cy = 430, fs = 36, sy = 470;
     var b = box.getBoundingClientRect(), c = card && card.getBoundingClientRect();
     if (c) {   // without the card's own fade-in shift (.reveal), which may still be running
@@ -125,7 +137,7 @@
       if (m) c = { left: c.left - m.e, right: c.right - m.e, top: c.top - m.f, bottom: c.bottom - m.f, width: c.width, height: c.height };
     }
     if (c && c.width && c.left - b.left > b.width / 2 && c.top < b.bottom) {
-      var k = b.width / VW, x0 = 836 - VW / 2;
+      var k = b.width / VW;
       var lo = Math.max(b.right - c.right + 24, b.width * 0.08 + 8), hi = c.left - b.left - 40;   // the card's margin, but clear of the faded edge (8%, site.css); a gap before the card
       gap = Math.min(380, (hi - lo) / k / 3.95);
       cx = x0 + (lo + hi) / 2 / k;
