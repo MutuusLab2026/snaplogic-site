@@ -431,7 +431,7 @@
     <h2 class="reveal font-headline font-black text-2xl sm:text-3xl md:text-5xl tracking-tight text-white leading-tight mb-4 md:mb-6" data-i18n-html="cta_title">
       E/E 설계 워크플로우를<br><em>혁신할 준비</em>가 되셨나요?
     </h2>
-    <p class="cta3-sub reveal reveal-delay-1" data-i18n-html="cta_subtitle">VegaFencer 상담을 신청하고, 맞춤형 솔루션을 경험하세요.<br class="cta3-br"> 전문 엔지니어가 귀사의 E/E 설계 프로세스를 분석하여<br class="cta3-br"> 최적의 워크플로우를 제안합니다.</p>
+    <p class="cta3-sub reveal reveal-delay-1" data-i18n-html="cta_subtitle"><span class="cta3-lead1">VegaFencer 상담을 신청하고, 맞춤형 솔루션을 경험하세요.<br class="cta3-br"> </span>전문 엔지니어가 귀사의 E/E 설계 프로세스를 분석하여<br class="cta3-br"> 최적의 워크플로우를 제안합니다.</p>
 
     <!-- Email Form -->
     <div class="reveal reveal-delay-2">
@@ -441,7 +441,7 @@
         <input class="cta3-input" id="ctaEmail" type="email" name="email" autocomplete="email" data-i18n-placeholder="cta_placeholder" placeholder="업무 이메일을 입력하세요" required>
         <button class="cta3-btn btn-primary-dark" type="submit"><span data-i18n="hcta1_contact">제품 문의</span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></button>
       </form>
-      <p class="cta3-next" id="ctaNext" data-i18n="cta_next">담당 엔지니어가 영업일 기준 3일 안에 메일로 연락드립니다.</p>
+      <p class="cta3-next" id="ctaNext" data-i18n="cta_next">담당 엔지니어가 영업일 기준&nbsp;3일 안에 메일로 연락드립니다.</p>
       <p class="hidden mt-6 text-secondary-container font-body font-semibold" id="ctaSuccess" data-i18n="cta_success">감사합니다! 곧 연락드리겠습니다.</p>
       <p class="hidden mt-6 text-red-400 font-body font-semibold" id="ctaError" data-i18n="cta_error"></p>
     </div>

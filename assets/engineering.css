@@ -913,6 +913,14 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 .cta3-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 54px; padding: 0 27px; border-radius: 10.5px; font: 700 16.5px Inter, 'Noto Sans KR', sans-serif; white-space: nowrap; }
 .cta3-btn svg { width: 15px; height: 15px; }
 .cta3-next { margin: 16px 0 0; font-size: 14px; color: #8a97a5; text-wrap: balance; }
+/* Phones (2026-11-27): the lead keeps only its second sentence (the button already says "contact"), the form sits
+   as close to it as the lead to the title, the note under the button a step smaller, and the 57.5px section rhythm */
+@media (max-width: 767px) {
+  .cta3-lead1 { display: none; }
+  .cta3-form { margin-top: 19px; }   /* lead -> input = title -> lead (26px as the eye sees it) */
+  .cta3-next { font-size: 13px; }
+  #cta { padding-top: 54px !important; padding-bottom: 53px !important; }   /* boundary -> title ink = note ink -> boundary = 57.5px */
+}
 
 /* Key features 01-03 on phones (2026-11-27): the two-sentence lead flows as one paragraph (its desktop line break left
    short orphan lines), and the sections keep the 57.5px phone rhythm (boundary -> kicker ink, last box -> boundary). */
