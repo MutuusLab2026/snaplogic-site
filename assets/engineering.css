@@ -823,6 +823,10 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 @media (max-width: 767px) {
   .kf { grid-template-columns: 1fr 1fr; column-gap: 0; row-gap: 0; padding-inline: 28px; justify-items: stretch; text-align: center; }
   .kf > .kf-title, .kf > .kf-lead { grid-column: 1 / -1; padding-left: 0; justify-self: stretch; text-align: center; }
+  /* the cells take the card's full width, so every line (header rule, middle line, centre line) meets the card's
+     edges; only the header keeps the 28px inner padding */
+  .kf { padding-inline: 0 !important; }
+  .kf > .kf-title, .kf > .kf-lead { padding-inline: 28px !important; }
   .kf-lead { margin-top: 12px !important; }   /* title -> tagline (there is no row gap now) */
   .kf-lead::after { margin: 18px -28px 0; background: #e6ebf0; }   /* the header / figures line across the whole card */
   .kf > .kf-fig:nth-of-type(odd), .kf > .kf-fig:nth-of-type(even) { grid-column: auto; }
