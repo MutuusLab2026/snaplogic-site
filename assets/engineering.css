@@ -817,33 +817,27 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
   .kf-note { position: absolute; right: 16px; bottom: 16px; max-width: calc(100% - 32px); margin: 0; text-align: right; font-size: 10px; }   /* phone section rhythm: boundary -> first ink = last ink -> boundary = 57.5px */
 }
 @media (min-width: 640px) and (max-width: 767px) { .kf { column-gap: 24px; } }   /* the container's padding is 24px here */
-/* Trial (2026-11-27): title, tagline, rule and figures share CTA 1's left edge (container + the card's 28px inner
-   padding), two equal columns with each figure starting at its column's left edge, figures much smaller (64 -> 44px).
-   The corner note keeps the screen edges. */
+/* Phones (2026-11-27, layout 1 of three drafts): the four figures in a 2 x 2 grid of cells split by thin lines, each
+   figure and its label centred in its cell; the header is centred too. Cells 36 / 34px tall inside. */
 @media (max-width: 767px) {
-  .kf { grid-template-columns: 1fr 1fr; column-gap: 16px; padding-inline: 28px; justify-items: start; text-align: left; }
-  .kf > .kf-title, .kf > .kf-lead { grid-column: 1 / -1; padding-left: 0; justify-self: stretch; }
+  .kf { grid-template-columns: 1fr 1fr; column-gap: 0; row-gap: 0; padding-inline: 28px; justify-items: stretch; text-align: center; }
+  .kf > .kf-title, .kf > .kf-lead { grid-column: 1 / -1; padding-left: 0; justify-self: stretch; text-align: center; }
+  .kf-lead { margin-top: 12px !important; }   /* title -> tagline (there is no row gap now) */
+  .kf-lead::after { margin: 18px -28px 0; background: #e6ebf0; }   /* the header / figures line across the whole card */
   .kf > .kf-fig:nth-of-type(odd), .kf > .kf-fig:nth-of-type(even) { grid-column: auto; }
-  .kf-fig { align-items: flex-start; }
-  .kf-n { font-size: min(55px, 14.7vw); }   /* 55px from 375px wide; narrower phones scale so "−00%" keeps one line in its column */
-  .kf-l { margin-top: 12px !important; text-align: left; }
-  /* B (2026-11-27): a light rule across the whole card (header above, figures below), the same 42px above and below */
-  .kf-lead::after { margin: 18px -28px 0; background: #e6ebf0; }
-  /* tighter card (2026-11-27): rule gaps and the gap between the figure rows 42 -> 24px as the eye sees it; the
-     title -> tagline gap stays (its negative margin follows the smaller row gap) */
-  .kf { row-gap: 22px; }
-  .kf-lead { margin-top: -10px !important; }
-  .kf > .kf-fig:nth-of-type(n+3) { margin-top: 11px; }   /* the second row of figures a little further down: label -> figure 40px */
-  .kf > .kf-fig:nth-of-type(-n+2) { margin-top: 16px; }   /* rule -> first figures 24 -> 40px, the same as between the rows */
-  /* the note follows the figures (bottom-right, 16px from the screen edges): bottom label -> note = rule -> top
-     figures (42px as the eye sees it), whether the note takes one line or two */
+  .kf > .kf-fig { align-items: center; margin: 0; padding: 36px 0 34px; }
+  .kf > .kf-fig:nth-of-type(odd) { border-right: 1px solid #e6ebf0; }
+  .kf > .kf-fig:nth-of-type(-n+2) { border-bottom: 1px solid #e6ebf0; }
+  .kf-n { white-space: nowrap; font-size: min(48px, 12.8vw); }   /* 48px from 375px wide; "−00%" keeps one line in its cell */
+  .kf-l { margin-top: 12px !important; text-align: center; }
+  /* the note: under the card, right-aligned, 16px from the screen edge */
   .kf-note { position: static; max-width: calc(100% - 32px); margin: 36px 16px 0 auto; }
   .kf-sec { padding-bottom: 16px; }
 }
-/* Trial (2026-11-27): The Impact as a white card on the paper band, like CTA 1 (same radius, inner padding 36 / 28px,
-   shadow). The note stays under the card, right-aligned. */
+/* Phones (2026-11-27): The Impact as a white card on the paper band, like CTA 1 (same radius and shadow; the cells
+   above carry their own padding, so the card's bottom padding is small). The note stays under the card, right-aligned. */
 @media (max-width: 767px) {
-  .kf { background: #fff; border-radius: 20px; padding: 28px 28px 36px; box-shadow: 0 20px 50px -30px rgba(8,30,48,.25); }   /* like CTA 1's card */
+  .kf { background: #fff; border-radius: 20px; padding: 28px 28px 6px; box-shadow: 0 20px 50px -30px rgba(8,30,48,.25); }   /* like CTA 1's card */
   body[data-page="home"] #stats { background: var(--eng-paper); }   /* phones: paper band with a white card (the paper card on white looked dark) */
   .kf-sec { padding: 28px 0 0; }
   /* the note: 9px, wrapping where it did at 10px (its width scaled by the same 0.9) */
