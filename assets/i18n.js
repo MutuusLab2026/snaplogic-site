@@ -126,10 +126,10 @@ const i18n = {
     // Stats
     stats_label: "IMPACT",
     stats_lead: "<b class=\"kf-name\">VegaFencer</b>가 <span class=\"kf-hl\">만드는 변화</span>, 숫자로 확인하세요.",
-    stat1: "설계 시간 단축",
-    stat3: "논리-하네스 일관성",
-    stat4: "수동 데이터 변환",
-    stat5: "라이선스 비용 절감",
+    stat1: "설계 시간<br class=\"kf-br\"> 단축",
+    stat3: "논리-하네스<br class=\"kf-br\"> 일관성",
+    stat4: "수동 데이터<br class=\"kf-br\"> 변환",
+    stat5: "라이선스<br class=\"kf-br\"> 비용 절감",
     stats_note: "*2026년 ○월 기준, 동급 E/E 설계 툴 3종의 사용자 1인당 연간 라이선스 공개 가격 평균과 비교",
 
     // Gallery

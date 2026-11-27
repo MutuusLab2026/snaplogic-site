@@ -771,6 +771,7 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 .kf-strip { transition-delay: .4s; }
 /* Yellow highlighter on the tagline's first phrase (from the start of the line; chosen for its look, 2026-11-24), the full height of the letters, drawn left to right once the row
    has slid in (2026-11-24; still under review, TODO). Dark text on #fff3a3 keeps its contrast. */
+.kf-br { display: none; }   /* label line breaks: phones only (below) */
 .kf-hl { white-space: nowrap; background: linear-gradient(#fff3a3, #fff3a3) no-repeat 0 55% / 0% 1.08em; padding: 0 .1em; margin: 0 -.1em;   /* band reaches .1em past the letters on both sides without moving them */
  
   -webkit-box-decoration-break: clone; box-decoration-break: clone; transition: background-size .8s cubic-bezier(.6, .1, .2, 1) .5s; }
@@ -818,18 +819,19 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 }
 @media (min-width: 640px) and (max-width: 767px) { .kf { column-gap: 24px; } }   /* the container's padding is 24px here */
 /* Phones (2026-11-27, layout 1 of three drafts): the four figures in a 2 x 2 grid of cells split by thin lines, each
-   figure and its label centred in its cell; the header is centred too. Cells 36 / 34px tall inside. */
+   figure and its label centred in its cell; the header is centred too. Figures centred in their cells. */
 @media (max-width: 767px) {
   .kf { grid-template-columns: 1fr 1fr; column-gap: 0; row-gap: 0; padding-inline: 28px; justify-items: stretch; text-align: center; }
   .kf > .kf-title, .kf > .kf-lead { grid-column: 1 / -1; padding-left: 0; justify-self: stretch; text-align: center; }
   .kf-lead { margin-top: 12px !important; }   /* title -> tagline (there is no row gap now) */
   .kf-lead::after { margin: 18px -28px 0; background: #e6ebf0; }   /* the header / figures line across the whole card */
   .kf > .kf-fig:nth-of-type(odd), .kf > .kf-fig:nth-of-type(even) { grid-column: auto; }
-  .kf > .kf-fig { align-items: center; margin: 0; padding: 36px 0 34px; }
+  .kf > .kf-fig { align-items: center; margin: 0; padding: 35px 0; }   /* figure + label centred in the cell as the eye sees it (39px above and below) */
   .kf > .kf-fig:nth-of-type(odd) { border-right: 1px solid #e6ebf0; }
   .kf > .kf-fig:nth-of-type(-n+2) { border-bottom: 1px solid #e6ebf0; }
   .kf-n { white-space: nowrap; font-size: min(48px, 12.8vw); }   /* 48px from 375px wide; "−00%" keeps one line in its cell */
   .kf-l { margin-top: 12px !important; text-align: center; }
+  .kf-l .kf-br { display: inline; }   /* ko labels in two lines by meaning ("설계 시간 / 단축"), phones only */
   /* the note: under the card, right-aligned, 16px from the screen edge */
   .kf-note { position: static; max-width: calc(100% - 32px); margin: 36px 16px 0 auto; }
   .kf-sec { padding-bottom: 16px; }
@@ -837,7 +839,7 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 /* Phones (2026-11-27): The Impact as a white card on the paper band, like CTA 1 (same radius and shadow; the cells
    above carry their own padding, so the card's bottom padding is small). The note stays under the card, right-aligned. */
 @media (max-width: 767px) {
-  .kf { background: #fff; border-radius: 20px; padding: 28px 28px 6px; box-shadow: 0 20px 50px -30px rgba(8,30,48,.25); }   /* like CTA 1's card */
+  .kf { background: #fff; border-radius: 20px; padding: 28px 28px 0; box-shadow: 0 20px 50px -30px rgba(8,30,48,.25); }   /* like CTA 1's card */
   body[data-page="home"] #stats { background: var(--eng-paper); }   /* phones: paper band with a white card (the paper card on white looked dark) */
   .kf-sec { padding: 28px 0 0; }
   /* the note: 9px, wrapping where it did at 10px (its width scaled by the same 0.9) */
