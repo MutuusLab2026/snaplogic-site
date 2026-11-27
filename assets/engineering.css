@@ -711,7 +711,8 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
 .pl-row { display: grid; gap: 32px; }
 @media (min-width: 1024px) { .pl-row { grid-template-columns: minmax(0, 380px) 1fr; gap: 64px; align-items: start; } }
 .pl-title { font-size: 28px; }   /* a step under the section names; the second line a step smaller again */
-.pl-title span { font-size: 1em; }   /* phones: the same size as "VegaFencer" (2026-11-27; was 22px); wider screens keep their own step below */
+.pl-title span { font-size: 1em; }
+@media (max-width: 767px) { .pl-title { line-height: 1.18; } }   /* the two equal lines a little apart (was 1.05) */   /* phones: the same size as "VegaFencer" (2026-11-27; was 22px); wider screens keep their own step below */
 @media (min-width: 768px) { .pl-title { font-size: 43px; } .pl-title span { font-size: 33px; } .pl-intro .lg-tagline { font-size: 21.5px; } .pl-intro .lg-lead, .pl-intro .hcta-link { font-size: 17px; } }
 @media (max-width: 767px) { .pl-br { display: none; } }   /* the tagline break is for the narrow left column only */
 .pl-intro .hcta-link { margin-top: 8px; min-height: 0; color: #1765cc; font-weight: 500; }   /* the link under the lead, in the kicker blue */
