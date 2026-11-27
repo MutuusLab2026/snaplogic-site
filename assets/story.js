@@ -229,7 +229,7 @@
     set($('names'), 'opacity', P(u, 9.3, 10.0).toFixed(3));
   }
 
-  /* ---------- player: from the start each time it comes into view ---------- */
+  /* ---------- player: from the start each time it comes into view (and again after the text card has scrolled away) ---------- */
   var relayout = function () { layout(); render(lastT); };
   if ('ResizeObserver' in window) { var ro = new ResizeObserver(relayout); ro.observe(box); if (card) ro.observe(card); }
   else window.addEventListener('resize', relayout);
@@ -244,10 +244,23 @@
   function stop() { if (raf) cancelAnimationFrame(raf); raf = 0; }
   render(0);
   if (!('IntersectionObserver' in window)) { start(); return; }
-  var inView = false;
+  var inView = false, boxRatio = 0;
+  var restart = function () { inView = true; start(); };
+  var reset = function () { inView = false; stop(); render(0); };
   new IntersectionObserver(function (es) {
     var e = es[es.length - 1];
-    if (e.intersectionRatio >= 0.35 && !inView) { inView = true; start(); }
-    else if (!e.isIntersecting && inView) { inView = false; stop(); render(0); }
+    boxRatio = e.intersectionRatio;
+    if (e.intersectionRatio >= 0.35 && !inView) restart();
+    else if (!e.isIntersecting && inView) reset();
   }, { threshold: [0, 0.35] }).observe(box);
+  /* The text card scrolled up out of sight (behind the header counts as out): back to the first frame, and it plays
+     again when the card (and the picture) come back into view. */
+  if (card) {
+    var nav = document.getElementById('nav'), navH = nav ? nav.offsetHeight : 0;
+    new IntersectionObserver(function (es) {
+      var e = es[es.length - 1];
+      if (!e.isIntersecting && e.boundingClientRect.bottom <= navH + 1 && inView) reset();
+      else if (e.isIntersecting && !inView && boxRatio >= 0.35) restart();
+    }, { rootMargin: '-' + navH + 'px 0px 0px 0px', threshold: [0] }).observe(card);
+  }
 })();
