@@ -1,6 +1,6 @@
 /* About page, Brand Story: the photo of a navigator's compass pointing at Vega turns into the VegaFencer logo,
    which then fans out into the four product logos (Install, Logic, Library, Symbol) and stops.
-   Order (2026-11-27): a slow zoom into the photo, a pause, the leader line draws out of Vega, the Vega label appears,
+   Order (2026-11-27): a zoom into the photo (3 s), a pause, the leader line draws out of Vega, the Vega label appears,
    then the compass becomes the logo. It stays on the night-sky colour to the end (the page is dark), and on wide
    screens the logos land to the left of the text card (#storyText), centred on it.
    It starts from the beginning every time the card scrolls into view and pauses while it is off screen.
@@ -55,7 +55,7 @@
     '<g id="vs-scene">' +
       '<g id="vs-photo"><image href="assets/img/brand-story-night.webp" width="1672" height="940"/>' +
         '<rect id="vs-dim" width="1672" height="940" fill="#03060d" opacity="0" mask="url(#vs-spot)"/></g>' +
-      '<path id="vs-label" d="M412 196L440 172L600 172" pathLength="1" fill="none" stroke="rgba(207,224,255,.85)" stroke-width="2" opacity="0"/>' +
+      '<path id="vs-label" d="M428 210L610 210" pathLength="1" fill="none" stroke="rgba(207,224,255,.85)" stroke-width="2" opacity="0"/>' +
       '<g id="vs-cLine" fill="none" stroke="#e6eeff" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" opacity="0">' +
         '<circle class="vs-dr" cx="128" cy="133" r="113" pathLength="1"/>' +
         '<circle class="vs-dr" cx="128" cy="133" r="80" pathLength="1"/>' +
@@ -116,12 +116,12 @@
     svg.setAttribute('viewBox', x0 + ' ' + y0 + ' ' + VW + ' ' + VH);
     /* The label is page text laid over the picture: placed and sized in picture units (k = CSS px per unit, offsetWidth
        is in CSS pixels, so this also holds when the page is zoomed). 20.9 units per em = 1.25/100 of the full photo
-       width. The leader line ends at (600, 172), seen at (592.9, 163.1) after the 3% zoom; the label starts 18.4
+       width. The leader line runs level with Vega (387, 210) out to (610, 210), seen at (603.2, 202.2) after the 3% zoom; the label starts 18.4
        units to its right, and its first line (1.9em tall) is centred on it. */
     var k = w / VW, em = 20.9;
     label.style.fontSize = (em * k) + 'px';
-    label.style.left = ((592.9 + 18.4 - x0) * k) + 'px';
-    label.style.top = ((163.1 - 0.95 * 1.9 * em - y0) * k) + 'px';
+    label.style.left = ((603.2 + 18.4 - x0) * k) + 'px';
+    label.style.top = ((202.2 - 0.95 * 1.9 * em - y0) * k) + 'px';
   }
   fit();
   /* Where the logo zooms to (SC) and where the four logos end (ROW). Without a card beside the animation: centred
@@ -172,7 +172,7 @@
   var STAR1 = onLine(0.5);   // star and compass meet halfway along the red line
   var C1 = { x: STAR1[0] - starOff[0], y: STAR1[1] - starOff[1], sx: Ss, sy: Ss };
   var LOGOC = [C1.x, C1.y - 10 * Ss], ZEND = 2.2 / Ss;
-  var SHIFT = 5.6;            // everything after the label starts this much later than before (slower opening)
+  var SHIFT = 4.9;            // everything after the label starts this much later than the original timeline
   var END = 10 + SHIFT;
   var set = function (el, k, v) { el.setAttribute(k, v); };
 
@@ -181,15 +181,15 @@
     lastT = t;
     var u = t - SHIFT;   // the old timeline from the dimming on
     var pm = P(u, 4.2, 6.0);
-    var z = L(L(1, 1.03, P(t, 0, 5)), ZEND, pm);   // slow zoom over 5 s, then it holds
+    var z = L(L(1, 1.03, P(t, 0, 3)), ZEND, pm);   // zoom over 3 s (the original speed), then it holds
     // the opening zoom pivots on the picture's centre (the label's place is set for that); the logo then travels to SC
     var A = [L(836, SC[0], pm), L(470, SC[1], pm)], F = [L(836, LOGOC[0], pm), L(470, LOGOC[1], pm)];
     set($('scene'), 'transform', 'translate(' + A[0] + ' ' + A[1] + ') scale(' + z + ') translate(' + (-F[0]) + ' ' + (-F[1]) + ')');
-    // the leader line draws out of Vega (5.2-6.2 s), then the label appears (6.2-6.8 s); both go as the photo dims
+    // the leader line draws out of Vega (3.2-4.2 s), then the label appears (4.2-4.8 s) and stays about 2.5 s; both go as the photo dims
     var out = 1 - P(u, 2.6, 3.0);
-    set($('label'), 'opacity', (t >= 5.2 ? out : 0).toFixed(3));
-    $('label').style.strokeDasharray = '1 1'; $('label').style.strokeDashoffset = 1 - P(t, 5.2, 6.2);
-    label.style.opacity = (P(t, 6.2, 6.8) * out).toFixed(3);
+    set($('label'), 'opacity', (t >= 3.2 ? out : 0).toFixed(3));
+    $('label').style.strokeDasharray = '1 1'; $('label').style.strokeDashoffset = 1 - P(t, 3.2, 4.2);
+    label.style.opacity = (P(t, 4.2, 4.8) * out).toFixed(3);
     set($('dim'), 'opacity', (0.85 * P(u, 2.4, 3.4)).toFixed(3));
     set($('photo'), 'opacity', (1 - P(u, 4.3, 5.3)).toFixed(3));
     if (art) art.classList.toggle('story-clear', u >= 5.4);   // photo gone: drop the edge fade (the ground is the page colour)
