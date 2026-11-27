@@ -641,21 +641,32 @@ body #cta :is(input, textarea, select):focus-visible { outline-color: #7be4ee; }
    Narrower screens: the card goes under the animation (phone layout still to be designed). */
 body[data-page="about"] { background: #0f1a24; }
 .about-night { color: #eef4fa; }
-.about-stage { position: relative; }
-.about-stage-art { position: relative; max-width: 1672px; margin: 0 auto;
+/* The art and the card share one grid cell, so the section is as tall as the taller of the two (short windows). */
+.about-stage { position: relative; display: grid; }
+/* At most one window tall under the header, so the whole picture is seen at once (narrower than the page on wide,
+   short windows; its sides fade into the page colour anyway). */
+.about-stage-art { position: relative; width: 100%; max-width: min(1672px, calc((100vh - var(--page-nav-h)) * 1.8)); margin: 0 auto;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent), linear-gradient(180deg, transparent, #000 6%, #000 85%, transparent);
   -webkit-mask-composite: source-in;
   mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent), linear-gradient(180deg, transparent, #000 6%, #000 85%, transparent);
   mask-composite: intersect; }
-.about-stage-over { max-width: 80rem; margin: 0 auto; padding: 0 16px; }
+@supports (height: 100svh) { .about-stage-art { max-width: min(1672px, calc((100svh - var(--page-nav-h)) * 1.8)); } }
+/* Wide screens: <main> is zoomed by --hero-s (engineering.css), which scales this width too, so divide it back. */
+@media (min-width: 1101px) { .about-stage-art { max-width: calc(min(1672px, (100svh - var(--page-nav-h)) * 1.8) / var(--hero-s, 1)); } }
+.about-stage-over { width: 100%; max-width: 80rem; margin: 0 auto; padding: 0 16px; }
 @media (min-width: 640px) { .about-stage-over { padding: 0 24px; } }
 @media (min-width: 768px) { .about-stage-over { padding: 0 32px; } }
-.about-story-card { position: relative; max-width: 640px; padding: 28px 24px; border-radius: 16px; background: rgba(15, 26, 36, .74);
-  border: 1px solid rgba(150, 189, 212, .16); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+/* Frosted glass, mostly opaque: a lighter blue-gray at the top-left, a thin light rim and a soft shadow. */
+.about-story-card { position: relative; max-width: 640px; padding: 28px 24px; border-radius: 16px;
+  background: linear-gradient(160deg, rgba(40, 57, 74, .80), rgba(15, 26, 36, .86) 60%);
+  border: 1px solid rgba(255, 255, 255, .12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .10), 0 24px 60px -24px rgba(0, 0, 0, .7);
+  -webkit-backdrop-filter: blur(20px) saturate(150%); backdrop-filter: blur(20px) saturate(150%); }
 @media (min-width: 768px) { .about-story-card { padding: 36px 32px; } }
 @media (min-width: 1200px) {
-  .about-stage-over { position: absolute; inset: 0; pointer-events: none; }
-  .about-story-card { position: absolute; top: 12%; right: 32px; width: 470px; pointer-events: auto; }
+  .about-stage > * { grid-area: 1 / 1; }
+  .about-stage-over { display: flex; align-items: center; justify-content: flex-end; padding-top: 32px; padding-bottom: 32px; pointer-events: none; }
+  .about-story-card { width: 470px; pointer-events: auto; }
 }
 .about-story-card .lg-kicker { color: #7be4ee; }
 .about-story-card .lg-name, .about-story-card .lg-tagline { color: #fff; }
@@ -665,13 +676,14 @@ body[data-page="about"] { background: #0f1a24; }
 .story-card { position: relative; aspect-ratio: 1.8; }
 .story-card svg { display: block; width: 100%; height: 100%; }
 .story-card svg text { text-rendering: geometricPrecision; }
-/* Vega label over the photo (story.js). story.js sets the label's font-size to 1.25/100 of the animation's width
-   (a step up from the old card, 2026-11-27), so these em sizes are photo pixels / 1672 x 100 (Vega 36, sub 21, line 23). */
-.story-label { position: absolute; left: 28.9%; top: 12.7%; display: flex; flex-direction: column; gap: .21em; pointer-events: none;
+/* Vega label over the photo (story.js), set like the card: "Vega" like the tagline (Inter bold, white), the rest like
+   the body text (Manrope, #b6c6d8), tagline : body = 1.375 as in the card. story.js sets the font-size to 1.25/100 of
+   the animation's width. The leader line ends at photo (560, 128); the first line's middle sits on it. */
+.story-label { position: absolute; left: 34.1%; top: 10.5%; display: flex; flex-direction: column; gap: .3em; pointer-events: none;
   line-height: 1; white-space: nowrap; text-shadow: 0 1px 4px rgba(0, 0, 0, .7); }
-.story-label-1 b { font: 700 2.153em Inter, 'Noto Sans KR', sans-serif; color: #fff; }
-.story-label-1 span { margin-left: .5em; font: 500 1.256em Manrope, 'Noto Sans KR', sans-serif; color: #b9c8e6; }
-.story-label-2 { font: 500 1.376em Manrope, 'Noto Sans KR', sans-serif; color: #dbe5f7; }
+.story-label-1 b { font: 700 1.9em Inter, 'Noto Sans KR', sans-serif; letter-spacing: -.02em; color: #fff; }
+.story-label-1 span { margin-left: .5em; font: 400 1.38em Manrope, 'Noto Sans KR', sans-serif; color: #b6c6d8; }
+.story-label-2 { font: 400 1.38em Manrope, 'Noto Sans KR', sans-serif; color: #b6c6d8; }
 html[lang="ja"] .story-label span, html[lang="zh"] .story-label span { font-family: Manrope, sans-serif; }   /* glyphs follow the zoom smoothly instead of snapping to pixels */
 
 /* ---- Product page: User Interface (shared screen layout) and the Logic, Integrator and Harness modules ----

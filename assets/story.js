@@ -55,7 +55,7 @@
     '<g id="vs-scene">' +
       '<g id="vs-photo"><image href="assets/img/brand-story-night.webp" width="1672" height="940"/>' +
         '<rect id="vs-dim" width="1672" height="940" fill="#03060d" opacity="0" mask="url(#vs-spot)"/></g>' +
-      '<path id="vs-label" d="M410 188L446 150L476 150" pathLength="1" fill="none" stroke="rgba(207,224,255,.85)" stroke-width="2" opacity="0"/>' +
+      '<path id="vs-label" d="M410 188L470 128L560 128" pathLength="1" fill="none" stroke="rgba(207,224,255,.85)" stroke-width="2" opacity="0"/>' +
       '<g id="vs-cLine" fill="none" stroke="#e6eeff" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" opacity="0">' +
         '<circle class="vs-dr" cx="128" cy="133" r="113" pathLength="1"/>' +
         '<circle class="vs-dr" cx="128" cy="133" r="80" pathLength="1"/>' +
@@ -118,7 +118,7 @@
   var card = document.getElementById('storyText');
   var SC, ROW;
   function layout() {
-    var gap = Math.min(380, VW * 0.235), cx = 836, cy = 430, fs = 36;
+    var gap = Math.min(380, VW * 0.235), cx = 836, cy = 430, fs = 36, sy = 470;
     var b = box.getBoundingClientRect(), c = card && card.getBoundingClientRect();
     if (c) {   // without the card's own fade-in shift (.reveal), which may still be running
       var tf = getComputedStyle(card).transform, m = tf && tf !== 'none' ? new DOMMatrixReadOnly(tf) : null;
@@ -126,14 +126,15 @@
     }
     if (c && c.width && c.left - b.left > b.width / 2 && c.top < b.bottom) {
       var k = b.width / VW, x0 = 836 - VW / 2;
-      var lo = b.right - c.right + 24, hi = c.left - b.left - 40;   // same margin as the card's on the right, and a gap before the card
+      var lo = Math.max(b.right - c.right + 24, b.width * 0.08 + 8), hi = c.left - b.left - 40;   // the card's margin, but clear of the faded edge (8%, site.css); a gap before the card
       gap = Math.min(380, (hi - lo) / k / 3.95);
       cx = x0 + (lo + hi) / 2 / k;
       fs = Math.max(24, Math.min(36, gap * 0.15));
       var s = gap / 304, mid = (c.top + c.height / 2 - b.top) / k;
       cy = mid + 4 * s - 1.08 * fs;   // the row runs from the star tip (cy - 131s) to under the names (ny + .22fs)
+      sy = mid;   // the logo made from the star and the compass is centred on the card too
     }
-    SC = [cx, 470];
+    SC = [cx, sy];
     ROW = { gap: gap, s: gap / 304, cx: cx, cy: cy, ny: cy + 123 * gap / 304 + 1.94 * fs };
     $('names').setAttribute('font-size', fs);
     for (var i = 0; i < 4; i++) { $('n' + i).setAttribute('x', cx + (i - 1.5) * gap); $('n' + i).setAttribute('y', ROW.ny); }
@@ -164,11 +165,11 @@
     // the opening zoom pivots on the picture's centre (the label's place is set for that); the logo then travels to SC
     var A = [L(836, SC[0], pm), L(470, SC[1], pm)], F = [L(836, LOGOC[0], pm), L(470, LOGOC[1], pm)];
     set($('scene'), 'transform', 'translate(' + A[0] + ' ' + A[1] + ') scale(' + z + ') translate(' + (-F[0]) + ' ' + (-F[1]) + ')');
-    // the leader line draws out of Vega (5.2-6.0 s), then the label appears (6.0-6.6 s); both go as the photo dims
+    // the leader line draws out of Vega (5.2-6.2 s), then the label appears (6.2-6.8 s); both go as the photo dims
     var out = 1 - P(u, 2.6, 3.0);
     set($('label'), 'opacity', (t >= 5.2 ? out : 0).toFixed(3));
-    $('label').style.strokeDasharray = '1 1'; $('label').style.strokeDashoffset = 1 - P(t, 5.2, 6.0);
-    label.style.opacity = (P(t, 6.0, 6.6) * out).toFixed(3);
+    $('label').style.strokeDasharray = '1 1'; $('label').style.strokeDashoffset = 1 - P(t, 5.2, 6.2);
+    label.style.opacity = (P(t, 6.2, 6.8) * out).toFixed(3);
     set($('dim'), 'opacity', (0.85 * P(u, 2.4, 3.4)).toFixed(3));
     set($('photo'), 'opacity', (1 - P(u, 4.3, 5.3)).toFixed(3));
     var pose = { x: L(PH.x, C1.x, pm), y: L(PH.y, C1.y, pm), sx: L(PH.sx, C1.sx, pm), sy: L(PH.sy, C1.sy, pm), rot: L(PH.rot, 0, pm) };
