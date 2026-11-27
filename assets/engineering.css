@@ -917,7 +917,7 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
    as close to it as the lead to the title, the note under the button a step smaller, and the 57.5px section rhythm */
 @media (max-width: 767px) {
   .cta3-lead1 { display: none; }
-  .cta3-form { margin-top: 19px; }   /* lead -> input = title -> lead (26px as the eye sees it) */
+  .cta3-form { margin-top: 30px; max-width: 265px; }   /* lead -> input about 37px as the eye sees it; as wide as the title's second line "혁신할 준비가 되셨나요?" (265px at the phone's 24px title) */
   .cta3-next { font-size: 13px; }
   #cta { padding-top: 54px !important; padding-bottom: 53px !important; }   /* boundary -> title ink = note ink -> boundary = 57.5px */
 }
