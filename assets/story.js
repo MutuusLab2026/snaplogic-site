@@ -152,7 +152,10 @@
       fs = Math.max(24, Math.min(36, gap * 0.15));
       var mid = y0 + (c.top + c.height / 2 - b.top) / k;
       cy = mid + 4 * s - 1.08 * fs;   // the row runs from the star tip (cy - 131s) to under the names (ny + .22fs)
-      sy = mid;   // the logo made from the star and the compass is centred on the card too (down), and on the column (across)
+      /* The merged logo: its compass circle (the big round mass, centre at logo y 133) sits on the card's middle, not
+         the whole drawing with the star tip (centre y 123): with the star counted the circle looked low. SC is where
+         logo y 123 lands, so it is 10 logo units (x 2.2) above the card's middle. Across: centred on the column. */
+      sy = mid - 10 * 2.2;
     }
     SC = [sx, sy];
     ROW = { gap: gap, s: gap / 304, cx: cx, cy: cy, ny: cy + 123 * gap / 304 + 1.94 * fs };
