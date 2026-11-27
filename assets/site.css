@@ -665,9 +665,9 @@ body[data-page="about"] { background: #0f1a24; }
 .about-stage-over { width: 100%; max-width: 80rem; margin: 0 auto; padding: 0 16px; }
 @media (min-width: 640px) { .about-stage-over { padding: 0 24px; } }
 @media (min-width: 768px) { .about-stage-over { padding: 0 32px; } }
-/* Plain translucent card: the picture shows faintly through it (a light blur, no sheen or shine). */
+/* Plain translucent card (86%): the picture shows faintly through it (a light blur, no sheen or shine). */
 .about-story-card { position: relative; max-width: 640px; padding: 28px 24px; border-radius: 16px;
-  background: rgba(15, 26, 36, .78); border: 1px solid rgba(150, 189, 212, .14);
+  background: rgba(15, 26, 36, .86); border: 1px solid rgba(150, 189, 212, .14);
   -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
 @media (min-width: 768px) { .about-story-card { padding: 36px 32px; } }
 @media (min-width: 1200px) {
