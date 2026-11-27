@@ -921,6 +921,7 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
   .cta3-next { font-size: 13px; }
   .cta3-input { height: 46px; }   /* 54 -> 46px; its text stays 16px (smaller makes iPhones zoom in on focus) */
   .cta3-btn { min-height: 46px; font-size: 15px; }
+  .cta3-input::placeholder { font-size: 15px; }   /* the hint the same size as the lead above (15px); typed text stays 16px */
   #cta { padding-top: 54px !important; padding-bottom: 53px !important; }   /* boundary -> title ink = note ink -> boundary = 57.5px */
 }
 
