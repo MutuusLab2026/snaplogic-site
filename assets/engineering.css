@@ -842,6 +842,10 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
   /* labels centred under their figures without widening the column (the figures alone set the edges): no size of their
      own, and room past both sides so a label wider than its figure overflows evenly */
   .kf > .kf-fig .kf-l { text-align: center !important; contain: inline-size; white-space: nowrap; margin-inline: -40px; }
+  /* English and Japanese labels are much wider than their figures: a step smaller, and they size their own columns so
+     neighbours never touch (the first figure may then sit a little in from the heading's line) */
+  html:is([lang="en"], [lang="ja"]) .kf > .kf-fig .kf-l { contain: none; margin-inline: 0; font-size: 11px; }
+  html[lang="ja"] .kf-n { font-size: min(31px, 7.4vw); }   /* Japanese uses the device font, whose figures are wider: a little smaller under 420px */
   .kf { padding-inline: 28px !important; grid-template-columns: repeat(4, auto) !important; justify-content: space-between; }   /* the four figures from edge to edge of the heading's width, equal gaps between them: the first one's left edge and the last one's right edge sit the same 28px in from the card's edges */
   .kf > .kf-title, .kf > .kf-lead { padding-inline: 0 !important; contain: inline-size; }   /* the heading spans the row but does not widen its columns */
   /* the header set like CTA 1's title (800 24px / 1.3): "The Impact" and the tagline read as one three-line heading */

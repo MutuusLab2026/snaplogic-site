@@ -377,10 +377,10 @@ const i18n = {
     // Stats
     stats_label: "IMPACT",
     stats_lead: "See the <span class=\"kf-hl\">difference</span> <b class=\"kf-name\">VegaFencer</b> makes, in numbers.",
-    stat1: "Design time reduction",
-    stat3: "Logic-harness consistency",
-    stat4: "Manual data conversion",
-    stat5: "License cost savings",
+    stat1: "Design time<br class=\"kf-br\"> reduction",
+    stat3: "Logic-harness<br class=\"kf-br\"> consistency",
+    stat4: "Manual data<br class=\"kf-br\"> conversion",
+    stat5: "License cost<br class=\"kf-br\"> savings",
     stats_note: "*Compared with the average published annual per-seat price of three comparable E/E design tools, as of ○ 2026.",
 
     // Gallery
@@ -628,10 +628,10 @@ const i18n = {
     // Stats
     stats_label: "影响力",
     stats_lead: "<b class=\"kf-name\">VegaFencer</b> <span class=\"kf-hl\">带来的改变</span>，用数字来见证。",
-    stat1: "设计时间缩短",
-    stat3: "逻辑-线束一致性",
-    stat4: "手动数据转换",
-    stat5: "许可费用节省",
+    stat1: "设计时间<br class=\"kf-br\">缩短",
+    stat3: "逻辑-线束<br class=\"kf-br\">一致性",
+    stat4: "手动数据<br class=\"kf-br\">转换",
+    stat5: "许可费用<br class=\"kf-br\">节省",
     stats_note: "*以 2026 年 ○ 月为准，与 3 款同类 E/E 设计工具的每用户年度许可公开价格平均值相比。",
 
     // Gallery
@@ -880,10 +880,10 @@ const i18n = {
     // Stats
     stats_label: "インパクト",
     stats_lead: "<b class=\"kf-name\">VegaFencer</b> が<span class=\"kf-hl\">もたらす変化</span>を、数字でご確認ください。",
-    stat1: "設計時間の短縮",
-    stat3: "ロジック-ハーネス一貫性",
-    stat4: "手動データ変換",
-    stat5: "ライセンス費用の削減",
+    stat1: "設計時間の<br class=\"kf-br\">短縮",
+    stat3: "ロジック-<br class=\"kf-br\">ハーネス一貫性",
+    stat4: "手動データ<br class=\"kf-br\">変換",
+    stat5: "ライセンス<br class=\"kf-br\">費用の削減",
     stats_note: "*2026年○月時点、同等クラスの E/E 設計ツール3製品の1ユーザーあたり年間ライセンス公開価格の平均と比較。",
 
     // Gallery
