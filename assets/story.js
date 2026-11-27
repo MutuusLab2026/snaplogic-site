@@ -1,5 +1,8 @@
-/* Home page, Brand Story: the photo of a navigator's compass pointing at Vega turns into the VegaFencer logo,
+/* About page, Brand Story: the photo of a navigator's compass pointing at Vega turns into the VegaFencer logo,
    which then fans out into the four product logos (Install, Logic, Library, Symbol) and stops.
+   Order (2026-11-27): a slow zoom into the photo, a pause, the leader line draws out of Vega, the Vega label appears,
+   then the compass becomes the logo. It stays on the night-sky colour to the end (the page is dark), and on wide
+   screens the logos land to the left of the text card (#storyText), centred on it.
    It starts from the beginning every time the card scrolls into view and pauses while it is off screen.
    Visitors who ask for reduced motion see the last frame (the four logos) without the animation.
    All ids are prefixed with "vs-" so they never clash with the At a Glance animation on the same page. */
@@ -48,12 +51,11 @@
         '<line x1="387" y1="210" x2="760" y2="747" stroke="#000" stroke-width="34" stroke-linecap="round"/><circle cx="387" cy="210" r="40" fill="#000"/></g></mask>' +
       '<g id="vs-logo">' + LOGO + WORDMARK() + '<path d="M61,2 L78,45 L120,62 L78,79 L61,122 L44,79 L2,62 L44,45 Z" fill="currentColor" stroke="#6b8da6" stroke-width="1.2" stroke-linejoin="round"/></g>' +
     '</defs>' +
-    '<rect x="-40" y="-40" width="1752" height="1020" fill="#0a1324"/>' +   // night-sky blue behind the photo, so the white line art shows once the photo fades
-    '<rect id="vs-light" x="-40" y="-40" width="1752" height="1020" fill="#f4f6fb" opacity="0"/>' +
+    '<rect x="-40" y="-40" width="1752" height="1020" fill="#0f1a24"/>' +   // the page colour behind the photo, so the white line art shows once the photo fades
     '<g id="vs-scene">' +
-      '<g id="vs-photo"><image href="assets/img/brand-story.webp" width="1672" height="940"/>' +
+      '<g id="vs-photo"><image href="assets/img/brand-story-night.webp" width="1672" height="940"/>' +
         '<rect id="vs-dim" width="1672" height="940" fill="#03060d" opacity="0" mask="url(#vs-spot)"/></g>' +
-      '<path id="vs-label" d="M410 188L446 150L476 150" fill="none" stroke="rgba(207,224,255,.85)" stroke-width="2" opacity="0"/>' +
+      '<path id="vs-label" d="M410 188L446 150L476 150" pathLength="1" fill="none" stroke="rgba(207,224,255,.85)" stroke-width="2" opacity="0"/>' +
       '<g id="vs-cLine" fill="none" stroke="#e6eeff" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" opacity="0">' +
         '<circle class="vs-dr" cx="128" cy="133" r="113" pathLength="1"/>' +
         '<circle class="vs-dr" cx="128" cy="133" r="80" pathLength="1"/>' +
@@ -74,7 +76,7 @@
     '<g id="vs-four" opacity="0">' +
       '<use id="vs-u0" href="#vs-logo" style="color:#00b050"/><use id="vs-u1" href="#vs-logo" style="color:#ff0000"/>' +
       '<use id="vs-u2" href="#vs-logo" style="color:#7030a0"/><use id="vs-u3" href="#vs-logo" style="color:#ffff00"/>' +
-      '<g id="vs-names" opacity="0" font-family="Manrope,\'Noto Sans KR\',sans-serif" font-weight="700" font-size="36" fill="#1d2330" text-anchor="middle" translate="no">' +
+      '<g id="vs-names" opacity="0" font-family="Manrope,\'Noto Sans KR\',sans-serif" font-weight="700" font-size="36" fill="#e6eef6" text-anchor="middle" translate="no">' +
         '<text id="vs-n0">Install</text><text id="vs-n1">Logic</text><text id="vs-n2">Library</text><text id="vs-n3">Symbol</text></g>' +
     '</g></svg>';
 
@@ -100,8 +102,8 @@
     svg.setAttribute('aria-label', T.story_aria);
   }
   setLabel();
-  // 1/100 of the card width (offsetWidth is in CSS pixels, so this also holds when the page is zoomed).
-  var sizeLabel = function () { label.style.fontSize = (box.offsetWidth / 100) + 'px'; };
+  // 1.25/100 of the animation's width (offsetWidth is in CSS pixels, so this also holds when the page is zoomed).
+  var sizeLabel = function () { label.style.fontSize = (box.offsetWidth * 1.25 / 100) + 'px'; };
   sizeLabel();
   if ('ResizeObserver' in window) new ResizeObserver(sizeLabel).observe(box); else window.addEventListener('resize', sizeLabel);
   new MutationObserver(setLabel).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
@@ -109,10 +111,34 @@
   /* ---------- framing: the card is 1.8 : 1, so the photo keeps its top and loses a little at the bottom ---------- */
   var RATIO = 1.8;
   var VW = Math.min(1672, Math.round(940 * RATIO)), VH = Math.min(940, Math.round(1672 / RATIO));
-  var GAP = Math.min(380, VW * 0.235);
-  var ROW = { gap: GAP, s: GAP / 304, cy: 430, ny: 430 + 123 * GAP / 304 + 70 };
   svg.setAttribute('viewBox', (836 - VW / 2) + ' 0 ' + VW + ' ' + VH);
-  for (var i = 0; i < 4; i++) { $('n' + i).setAttribute('x', 836 + (i - 1.5) * ROW.gap); $('n' + i).setAttribute('y', ROW.ny); }
+  /* Where the logo zooms to (SC) and where the four logos end (ROW). Without a card beside the animation: centred
+     across it. With the card on the right (wide screens): in the space to its left, the row (logos and names)
+     centred on the card's middle. Picture units = card pixels / k. */
+  var card = document.getElementById('storyText');
+  var SC, ROW;
+  function layout() {
+    var gap = Math.min(380, VW * 0.235), cx = 836, cy = 430, fs = 36;
+    var b = box.getBoundingClientRect(), c = card && card.getBoundingClientRect();
+    if (c) {   // without the card's own fade-in shift (.reveal), which may still be running
+      var tf = getComputedStyle(card).transform, m = tf && tf !== 'none' ? new DOMMatrixReadOnly(tf) : null;
+      if (m) c = { left: c.left - m.e, right: c.right - m.e, top: c.top - m.f, bottom: c.bottom - m.f, width: c.width, height: c.height };
+    }
+    if (c && c.width && c.left - b.left > b.width / 2 && c.top < b.bottom) {
+      var k = b.width / VW, x0 = 836 - VW / 2;
+      var lo = b.right - c.right + 24, hi = c.left - b.left - 40;   // same margin as the card's on the right, and a gap before the card
+      gap = Math.min(380, (hi - lo) / k / 3.95);
+      cx = x0 + (lo + hi) / 2 / k;
+      fs = Math.max(24, Math.min(36, gap * 0.15));
+      var s = gap / 304, mid = (c.top + c.height / 2 - b.top) / k;
+      cy = mid + 4 * s - 1.08 * fs;   // the row runs from the star tip (cy - 131s) to under the names (ny + .22fs)
+    }
+    SC = [cx, 470];
+    ROW = { gap: gap, s: gap / 304, cx: cx, cy: cy, ny: cy + 123 * gap / 304 + 1.94 * fs };
+    $('names').setAttribute('font-size', fs);
+    for (var i = 0; i < 4; i++) { $('n' + i).setAttribute('x', cx + (i - 1.5) * gap); $('n' + i).setAttribute('y', ROW.ny); }
+  }
+  layout();
 
   /* ---------- timeline (seconds) ---------- */
   var ease = function (x) { return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
@@ -124,53 +150,64 @@
   var Ss = 1.6, starOff = [(61 - 128) * Ss, (62 - 133) * Ss];
   var STAR1 = onLine(0.5);   // star and compass meet halfway along the red line
   var C1 = { x: STAR1[0] - starOff[0], y: STAR1[1] - starOff[1], sx: Ss, sy: Ss };
-  var LOGOC = [C1.x, C1.y - 10 * Ss], ZEND = 2.2 / Ss, SC = [836, 470];
-  var END = 10;
+  var LOGOC = [C1.x, C1.y - 10 * Ss], ZEND = 2.2 / Ss;
+  var SHIFT = 5.6;            // everything after the label starts this much later than before (slower opening)
+  var END = 10 + SHIFT;
   var set = function (el, k, v) { el.setAttribute(k, v); };
 
+  var lastT = 0;
   function render(t) {
-    var pm = P(t, 4.2, 6.0);
-    var z = L(L(1, 1.03, P(t, 0, 3)), ZEND, pm);
-    var F = [L(SC[0], LOGOC[0], pm), L(SC[1], LOGOC[1], pm)];
-    set($('scene'), 'transform', 'translate(' + SC[0] + ' ' + SC[1] + ') scale(' + z + ') translate(' + (-F[0]) + ' ' + (-F[1]) + ')');
-    var lo = (P(t, 0.5, 1.1) * (1 - P(t, 2.6, 3.0))).toFixed(3); set($('label'), 'opacity', lo); label.style.opacity = lo;
-    set($('dim'), 'opacity', (0.85 * P(t, 2.4, 3.4)).toFixed(3));
-    set($('photo'), 'opacity', (1 - P(t, 4.3, 5.3)).toFixed(3));
+    lastT = t;
+    var u = t - SHIFT;   // the old timeline from the dimming on
+    var pm = P(u, 4.2, 6.0);
+    var z = L(L(1, 1.03, P(t, 0, 5)), ZEND, pm);   // slow zoom over 5 s, then it holds
+    // the opening zoom pivots on the picture's centre (the label's place is set for that); the logo then travels to SC
+    var A = [L(836, SC[0], pm), L(470, SC[1], pm)], F = [L(836, LOGOC[0], pm), L(470, LOGOC[1], pm)];
+    set($('scene'), 'transform', 'translate(' + A[0] + ' ' + A[1] + ') scale(' + z + ') translate(' + (-F[0]) + ' ' + (-F[1]) + ')');
+    // the leader line draws out of Vega (5.2-6.0 s), then the label appears (6.0-6.6 s); both go as the photo dims
+    var out = 1 - P(u, 2.6, 3.0);
+    set($('label'), 'opacity', (t >= 5.2 ? out : 0).toFixed(3));
+    $('label').style.strokeDasharray = '1 1'; $('label').style.strokeDashoffset = 1 - P(t, 5.2, 6.0);
+    label.style.opacity = (P(t, 6.0, 6.6) * out).toFixed(3);
+    set($('dim'), 'opacity', (0.85 * P(u, 2.4, 3.4)).toFixed(3));
+    set($('photo'), 'opacity', (1 - P(u, 4.3, 5.3)).toFixed(3));
     var pose = { x: L(PH.x, C1.x, pm), y: L(PH.y, C1.y, pm), sx: L(PH.sx, C1.sx, pm), sy: L(PH.sy, C1.sy, pm), rot: L(PH.rot, 0, pm) };
     var cT = 'translate(' + pose.x + ' ' + pose.y + ') scale(' + pose.sx + ' ' + pose.sy + ') translate(-128 -133)';
     set($('cLine'), 'transform', cT); set($('cColor'), 'transform', cT);
     set($('needle'), 'transform', 'rotate(' + pose.rot + ' 128 133)');
     var sp = onLine(L(1, 0.5, pm));
     set($('vega'), 'transform', 'translate(' + sp[0] + ' ' + sp[1] + ')');
-    set($('glow'), 'opacity', (P(t, 2.4, 2.8) * (1 - P(t, 3.6, 4.3))).toFixed(3));
-    set($('glow'), 'r', L(40, 18, P(t, 3.4, 4.2)));
-    var ks = L((PH.sx + PH.sy) / 2 * 0.8, Ss, pm) * P(t, 3.5, 4.2);
+    set($('glow'), 'opacity', (P(u, 2.4, 2.8) * (1 - P(u, 3.6, 4.3))).toFixed(3));
+    set($('glow'), 'r', L(40, 18, P(u, 3.4, 4.2)));
+    var ks = L((PH.sx + PH.sy) / 2 * 0.8, Ss, pm) * P(u, 3.5, 4.2);
     set($('starG'), 'transform', 'scale(' + Math.max(ks, 0.001) + ')');
-    set($('starLine'), 'opacity', (P(t, 3.5, 3.8) * (1 - P(t, 6.4, 7.2))).toFixed(3));
-    set($('starColor'), 'opacity', P(t, 6.0, 7.0).toFixed(3));
-    set($('cLine'), 'opacity', (P(t, 3.1, 3.3) * (1 - P(t, 6.4, 7.2))).toFixed(3));
-    var pd = P(t, 3.2, 4.2);
+    set($('starLine'), 'opacity', (P(u, 3.5, 3.8) * (1 - P(u, 6.4, 7.2))).toFixed(3));
+    set($('starColor'), 'opacity', P(u, 6.0, 7.0).toFixed(3));
+    set($('cLine'), 'opacity', (P(u, 3.1, 3.3) * (1 - P(u, 6.4, 7.2))).toFixed(3));
+    var pd = P(u, 3.2, 4.2);
     dr.forEach(function (e) { e.style.strokeDasharray = '1 1'; e.style.strokeDashoffset = 1 - pd; });
-    var lp = $('loop'); lp.style.strokeDasharray = '1 1'; lp.style.strokeDashoffset = 1 - P(t, 5.0, 6.0);
-    set($('ticks'), 'opacity', (P(t, 3.6, 4.2) * 0.9).toFixed(3));
-    set($('light'), 'opacity', P(t, 6.0, 7.0).toFixed(3));
-    set($('cColor'), 'opacity', P(t, 6.0, 7.0).toFixed(3));
-    set($('word'), 'opacity', P(t, 7.0, 8.0).toFixed(3));
-    set($('word'), 'transform', 'translate(0 ' + L(6, 0, P(t, 7.0, 8.0)) + ')');
+    var lp = $('loop'); lp.style.strokeDasharray = '1 1'; lp.style.strokeDashoffset = 1 - P(u, 5.0, 6.0);
+    set($('ticks'), 'opacity', (P(u, 3.6, 4.2) * 0.9).toFixed(3));
+    set($('cColor'), 'opacity', P(u, 6.0, 7.0).toFixed(3));
+    set($('word'), 'opacity', P(u, 7.0, 8.0).toFixed(3));
+    set($('word'), 'transform', 'translate(0 ' + L(6, 0, P(u, 7.0, 8.0)) + ')');
     // hand-off: four identical static logos replace the animated one, then fan out
-    var on = t >= 8.05;
+    var on = u >= 8.05;
     $('scene').style.visibility = on ? 'hidden' : 'visible';
     set($('four'), 'opacity', on ? 1 : 0);
-    var ps = P(t, 8.3, 9.5);
+    var ps = P(u, 8.3, 9.5);
     for (var i = 0; i < 4; i++) {
-      var s1 = ROW.s, cx = 836 + (i - 1.5) * ROW.gap, x1 = cx - 128 * s1, y1 = ROW.cy - 123 * s1;
-      set($('u' + i), 'transform', 'translate(' + L(554.4, x1, ps) + ' ' + L(199.4, y1, ps) + ') scale(' + L(2.2, s1, ps) + ')');
-      if (i < 3) set($('u' + i), 'opacity', P(t, 8.3, 8.6).toFixed(3));
+      var s1 = ROW.s, cx = ROW.cx + (i - 1.5) * ROW.gap, x1 = cx - 128 * s1, y1 = ROW.cy - 123 * s1;
+      set($('u' + i), 'transform', 'translate(' + L(SC[0] - 128 * 2.2, x1, ps) + ' ' + L(SC[1] - 123 * 2.2, y1, ps) + ') scale(' + L(2.2, s1, ps) + ')');
+      if (i < 3) set($('u' + i), 'opacity', P(u, 8.3, 8.6).toFixed(3));
     }
-    set($('names'), 'opacity', P(t, 9.3, 10.0).toFixed(3));
+    set($('names'), 'opacity', P(u, 9.3, 10.0).toFixed(3));
   }
 
   /* ---------- player: from the start each time it comes into view ---------- */
+  var relayout = function () { layout(); render(lastT); };
+  if ('ResizeObserver' in window) { var ro = new ResizeObserver(relayout); ro.observe(box); if (card) ro.observe(card); }
+  else window.addEventListener('resize', relayout);
   if (REDUCE) { render(END); return; }
   var raf = 0, t0 = 0;
   function frame(now) {

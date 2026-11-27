@@ -633,29 +633,46 @@ body #cta :is(input, textarea, select):focus-visible { outline-color: #7be4ee; }
 }
 @media (prefers-reduced-motion: reduce) { .nav-chevron { transition: none !important; } }
 
-/* ---- Home brand story: text on the left, the photo-to-logo animation (assets/story.js) on the right ----
-   On wide screens the card's top edge lines up with the top of the "Brand Story" letters and its bottom edge with
-   the last line of the Korean text, so the card ratio (1.8 : 1) and the 25px drop below are fixed numbers.
-   The body text is as wide as the longest line of the Logic text on the product page (544px). Each sentence starts
-   on a new line on wide screens only (.story-br); on narrow screens the text flows. */
-.story-grid { display: grid; gap: 32px; }
-@media (min-width: 1024px) { .story-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 64px; align-items: start; } }
-.story-body { display: flex; flex-direction: column; gap: 14px; margin-top: 10px; max-width: 544px; }
-.story-body p { margin: 0; }
-.story-card { aspect-ratio: 1.8; }
+/* ---- About page (2026-11-27): the whole page is the hero's blue-gray (#0f1a24, same as the dark header). The Brand
+   Story animation (assets/story.js) runs the width of the page, its edges fading into that colour; the photo is a
+   copy whose night sky was darkened toward it (assets/img/brand-story-night.webp; brand-story.webp is the original).
+   On wide screens (1200px+) the text sits on a translucent card on the right, over the rigging, and the animation
+   ends with the four logos in the space to its left, centred on the card (story.js reads the card's position).
+   Narrower screens: the card goes under the animation (phone layout still to be designed). */
+body[data-page="about"] { background: #0f1a24; }
+.about-night { color: #eef4fa; }
+.about-stage { position: relative; }
+.about-stage-art { position: relative; max-width: 1672px; margin: 0 auto;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent), linear-gradient(180deg, transparent, #000 6%, #000 85%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent), linear-gradient(180deg, transparent, #000 6%, #000 85%, transparent);
+  mask-composite: intersect; }
+.about-stage-over { max-width: 80rem; margin: 0 auto; padding: 0 16px; }
+@media (min-width: 640px) { .about-stage-over { padding: 0 24px; } }
+@media (min-width: 768px) { .about-stage-over { padding: 0 32px; } }
+.about-story-card { position: relative; max-width: 640px; padding: 28px 24px; border-radius: 16px; background: rgba(15, 26, 36, .74);
+  border: 1px solid rgba(150, 189, 212, .16); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+@media (min-width: 768px) { .about-story-card { padding: 36px 32px; } }
+@media (min-width: 1200px) {
+  .about-stage-over { position: absolute; inset: 0; pointer-events: none; }
+  .about-story-card { position: absolute; top: 12%; right: 32px; width: 470px; pointer-events: auto; }
+}
+.about-story-card .lg-kicker { color: #7be4ee; }
+.about-story-card .lg-name, .about-story-card .lg-tagline { color: #fff; }
+.story-body { display: flex; flex-direction: column; gap: 14px; margin-top: 14px; color: #b6c6d8; }
+.story-body p { margin: 0; text-wrap: pretty; }
+.story-br { display: none; }   /* the card is too narrow for one sentence per line */
+.story-card { position: relative; aspect-ratio: 1.8; }
 .story-card svg { display: block; width: 100%; height: 100%; }
 .story-card svg text { text-rendering: geometricPrecision; }
-/* Vega label over the photo (story.js). story.js sets the label's font-size to 1/100 of the card width, so these em
-   sizes are photo pixels / 1672 x 100 (Vega 36, sub 21, line 23) and follow the card at any size or page zoom. */
-.story-card { position: relative; }
-.story-label { position: absolute; left: 28.9%; top: 13.45%; display: flex; flex-direction: column; gap: .21em; pointer-events: none;
+/* Vega label over the photo (story.js). story.js sets the label's font-size to 1.25/100 of the animation's width
+   (a step up from the old card, 2026-11-27), so these em sizes are photo pixels / 1672 x 100 (Vega 36, sub 21, line 23). */
+.story-label { position: absolute; left: 28.9%; top: 12.7%; display: flex; flex-direction: column; gap: .21em; pointer-events: none;
   line-height: 1; white-space: nowrap; text-shadow: 0 1px 4px rgba(0, 0, 0, .7); }
 .story-label-1 b { font: 700 2.153em Inter, 'Noto Sans KR', sans-serif; color: #fff; }
 .story-label-1 span { margin-left: .5em; font: 500 1.256em Manrope, 'Noto Sans KR', sans-serif; color: #b9c8e6; }
 .story-label-2 { font: 500 1.376em Manrope, 'Noto Sans KR', sans-serif; color: #dbe5f7; }
 html[lang="ja"] .story-label span, html[lang="zh"] .story-label span { font-family: Manrope, sans-serif; }   /* glyphs follow the zoom smoothly instead of snapping to pixels */
-@media (min-width: 1024px) { .story-media { margin-top: 25px; } }
-@media (max-width: 1023px) { .story-br { display: none; } }
 
 /* ---- Product page: User Interface (shared screen layout) and the Logic, Integrator and Harness modules ----
    Built from the 2026-11 product deck. In the interface tour, hovering an area of the screenshot or an item in the
@@ -718,8 +735,12 @@ input.hp-field, .contact-form input.hp-field { position: absolute !important; le
   #nav.engineering-nav-dark #navLinks.nav-open a.nav-demo-mobile { background: #7be4ee; color: #081e30; }
 }
 
-/* ---- About page: company details card (same card as the contact page), kept to a readable width ---- */
-.about-company .contact-card { max-width: 640px; }
+/* ---- About page: company details card (same card as the contact page), kept to a readable width, dark like the page ---- */
+.about-night #company { padding-top: 48px; }
+.about-company .contact-card { max-width: 640px; background: rgba(255, 255, 255, .03); border-color: rgba(150, 189, 212, .16); }
+.about-company .contact-card h2 { color: #fff; }
+.about-company .info-list dt, .about-company .info-list .tbd { color: #a3b4c6; }
+.about-company .info-list dd { color: #eef4fa; }
 
 /* ---- Home "Explore the Workspace" (#gallery, assets/gallery.js), right under the hero: white section, real screens in a
    sideways row that wraps. The current screen lines up with the heading on the left and is sized to the window height

@@ -28,38 +28,33 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 
 <link rel="stylesheet" href="assets/tailwind.css?v=2b20e8e2">
-<link rel="stylesheet" href="assets/site.css?v=cd0761ef">
+<link rel="stylesheet" href="assets/site.css?v=883663ce">
 <link rel="stylesheet" href="assets/engineering.css?v=0db33473">
 </head>
 <body class="bg-surface antialiased" data-page="about">
-<script src="assets/header.js?v=9d4263ab"></script>
-<main id="main" class="page-top">
-<header class="page-intro">
-<p class="font-label text-xs font-bold tracking-[0.2em] uppercase text-primary-container mb-3">ABOUT</p>
-<h1 class="font-headline font-black text-3xl md:text-5xl tracking-tight text-on-surface mb-4" data-i18n="about_title">회사 소개</h1>
-<p class="font-body text-on-surface-variant text-lg" data-i18n="about_desc">VegaFencer라는 이름에 담긴 이야기와 회사 정보를 소개합니다.</p>
-</header>
+<script src="assets/header.js?v=7dcbf50d"></script>
+<main id="main" class="page-top about-night">
+<h1 class="sr-only" data-i18n="about_title">회사 소개</h1>
 
 <!-- ============================================================
-     BRAND STORY
+     BRAND STORY: the animation fills the width of the page (assets/story.js), the text sits on a card over it
+     (on the right on wide screens, under it on narrow ones)
      ============================================================ -->
-<section class="pt-4 md:pt-8 pb-12 md:pb-16" id="story">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-    <div class="story-grid">
-      <div class="reveal">
-        <header class="lg-head">
-          <p class="lg-kicker" translate="no">ORIGIN</p>
-          <h2 class="lg-name" translate="no">Brand Story</h2>
-          <p class="lg-tagline" data-i18n="story_tagline">Vega; 별의 밝기에 대한 기준.</p>
-        </header>
-        <div class="story-body font-body text-on-surface-variant text-base leading-relaxed">
-          <p data-i18n-html="story_body1">VegaFencer는 거문고자리의 Vega(직녀성)에서 이름을 따왔습니다. <br class="story-br">천문학에서는 Vega의 밝기를 기준으로 삼아 다른 별들의 밝기를 재 왔습니다.</p>
-          <p data-i18n-html="story_body2">VegaFencer는 E/E 설계에서 그 기준점이 되고자 합니다. <br class="story-br">회로도의 전기적 의도부터 하네스 도면의 물리적 형상까지, <br class="story-br">모든 설계 데이터가 하나의 기준 아래에서 연결되고 검증됩니다.</p>
-          <p data-i18n-html="story_body3">흔들리지 않는 기준이 있을 때 방향도 분명해집니다. <br class="story-br">VegaFencer는 당신의 설계가 그 기준에서 벗어나지 않도록 돕는 나침반입니다.</p>
-        </div>
-      </div>
-      <div class="story-media reveal reveal-delay-2">
-        <div class="story-card bg-white rounded-2xl shadow-lg shadow-on-surface/5 overflow-hidden border border-outline-variant/15" id="storyAnim"></div>
+<section class="about-stage" id="story">
+  <div class="about-stage-art">
+    <div class="story-card" id="storyAnim"></div>
+  </div>
+  <div class="about-stage-over">
+    <div class="about-story-card reveal" id="storyText">
+      <header class="lg-head">
+        <p class="lg-kicker" translate="no">ORIGIN</p>
+        <h2 class="lg-name" translate="no">Brand Story</h2>
+        <p class="lg-tagline" data-i18n="story_tagline">Vega; 별의 밝기에 대한 기준.</p>
+      </header>
+      <div class="story-body font-body text-base leading-relaxed">
+        <p data-i18n-html="story_body1">VegaFencer는 거문고자리의 Vega(직녀성)에서 이름을 따왔습니다. <br class="story-br">천문학에서는 Vega의 밝기를 기준으로 삼아 다른 별들의 밝기를 재 왔습니다.</p>
+        <p data-i18n-html="story_body2">VegaFencer는 E/E 설계에서 그 기준점이 되고자 합니다. <br class="story-br">회로도의 전기적 의도부터 하네스 도면의 물리적 형상까지, <br class="story-br">모든 설계 데이터가 하나의 기준 아래에서 연결되고 검증됩니다.</p>
+        <p data-i18n-html="story_body3">흔들리지 않는 기준이 있을 때 방향도 분명해집니다. <br class="story-br">VegaFencer는 당신의 설계가 그 기준에서 벗어나지 않도록 돕는 나침반입니다.</p>
       </div>
     </div>
   </div>
@@ -88,6 +83,6 @@
 <script src="assets/i18n.js?v=15156462"></script>
 <script src="assets/site.js?v=490070f1"></script>
 <script src="assets/engineering.js?v=e3dfa836"></script>
-<script src="assets/story.js?v=06f46999"></script>
+<script src="assets/story.js?v=5e2ba494"></script>
 </body>
 </html>

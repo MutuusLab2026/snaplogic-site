@@ -1,8 +1,8 @@
 /* Shared header for every page (skip link, navigation, language switcher, scroll progress bar): edit it here once.
    The <script> tag that loads this file is replaced by the markup synchronously, so the page renders with it from the
    first paint. Each page says who it is on <body>:
-     data-page="home|product|resources|pricing|about|contact"  -> marks the current menu item; "home" also starts the header dark
-                                                 (it sits on the navy hero)
+     data-page="home|product|resources|pricing|about|contact"  -> marks the current menu item; "home" and "about" start the header dark
+                                                 (home: it sits on the navy hero; about: the whole page is dark)
      data-skip="<id>"                          -> where "Skip to main content" jumps (default: main) */
 /* Page addresses without ".html" (roiscompany.com/product): GitHub Pages serves product.html for them. A page opened
    straight from the disk (file://) cannot do that, so there the links keep ".html". Used by footer.js too. */
@@ -76,7 +76,7 @@ if (location.protocol === 'file:') {
 <!-- ============================================================
      NAV
      ============================================================ -->
-<header class="fixed top-0 w-full z-50 glass-nav transition-all${page === 'home' ? ' engineering-nav-dark' : ''}" id="nav">
+<header class="fixed top-0 w-full z-50 glass-nav transition-all${page === 'home' || page === 'about' ? ' engineering-nav-dark' : ''}" id="nav">
   <nav class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto" aria-label="Main navigation">
     <a class="text-2xl font-black text-slate-900 font-headline tracking-tighter" href="${pageUrl('home')}">VegaFencer</a>
     <!-- Mobile toggle -->
