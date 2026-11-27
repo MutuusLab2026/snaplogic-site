@@ -268,13 +268,13 @@
 
   /* Hamburger Animation */
   .hamburger-open #bar1 {
-    transform: translateY(4px) rotate(45deg);
+    transform: translateY(8px) rotate(45deg);   /* bars are 8px apart (6px gap + 2px bar): the outer two meet in the middle */
   }
   .hamburger-open #bar2 {
     opacity: 0;
   }
   .hamburger-open #bar3 {
-    transform: translateY(-4px) rotate(-45deg);
+    transform: translateY(-8px) rotate(-45deg);
   }
 
   /* Smooth scroll */
@@ -964,3 +964,11 @@ html[lang="zh"] .hero-sub, html[lang="ja"] .hero-sub { font-family: inherit; }
 /* the open menu on light pages: solid white. Its 98% white let the page show through on phones and tablets (inside the
    blurred header the panel's own blur does not apply), 2026-11-27 */
 @media (max-width: 1023px) { #nav:not(.engineering-nav-dark) #navLinks.nav-open { background: #fff; } }
+
+/* the open menu's dividers go under each item, not under each link: an item without a sub-menu ("회사 소개") has its link
+   as last child, which the old "no line under the last link" rule left without a divider (2026-11-27) */
+@media (max-width: 1023px) {
+  #navLinks.nav-open .nav-item > a { border-bottom: 0 !important; }
+  #navLinks.nav-open .nav-item { border-bottom: 1px solid rgba(193, 198, 214, .1); }
+  #navLinks.nav-open .nav-item:has(+ .nav-demo-mobile), #navLinks.nav-open .nav-item:last-of-type { border-bottom: 0; }
+}
