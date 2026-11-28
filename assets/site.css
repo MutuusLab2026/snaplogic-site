@@ -650,7 +650,7 @@ body #cta :is(input, textarea, select):focus-visible { outline-color: #7be4ee; }
    (or tabbing into it) opens the names on a white card. Wide screens only: narrower, the page content reaches the edge. */
 .sidenav { display: none; }
 @media (min-width: 1360px) and (min-height: 680px) {
-  .sidenav { display: block; position: fixed; left: 24px; top: 50%; transform: translateY(-50%); z-index: 40;
+  .sidenav { display: block; position: fixed; left: 24px;   /* site.js initSideNav sets the real value: always 32px from the content */ top: 50%; transform: translateY(-50%); z-index: 40;
     opacity: 0; visibility: hidden; transition: opacity .25s, visibility 0s .25s; }
   .sidenav.is-shown { opacity: 1; visibility: visible; transition: opacity .25s; }
   /* the dots sit on a block (always there; it grows into the name card), a wider gap where the group changes */
@@ -669,6 +669,9 @@ body #cta :is(input, textarea, select):focus-visible { outline-color: #7be4ee; }
   .sidenav a.is-current i { transform: scale(1.5); box-shadow: 0 0 0 3px var(--grp-bg); }
   .sidenav span { max-width: 0; margin-left: 0; opacity: 0; overflow: hidden; line-height: 1.5;   /* room for the tails of g, y, p (overflow clips them at 1) */ transition: max-width .25s, margin-left .25s, opacity .2s; }
   .sidenav:hover span, .sidenav:focus-within span { max-width: 260px; margin-left: 12px; opacity: 1; }
+  /* just chosen: back to the dots until the pointer leaves */
+  .sidenav.is-closed:hover ol, .sidenav.is-closed:focus-within ol { background: rgba(255, 255, 255, .6); box-shadow: 0 8px 22px -12px rgba(15, 30, 60, .3); }
+  .sidenav.is-closed:hover span, .sidenav.is-closed:focus-within span { max-width: 0; margin-left: 0; opacity: 0; }
   .sidenav a.is-current { color: var(--grp); font-weight: 700; }
   .sidenav a:hover { background: var(--grp-bg); }
   .sidenav a:focus-visible { outline: 2px solid #1765cc; outline-offset: -2px; }

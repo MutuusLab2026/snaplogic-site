@@ -153,11 +153,25 @@ const Controller = {
     }).join('') + '</ol>';
     document.body.appendChild(nav);
     const links = [...nav.querySelectorAll('a')];
+    // Choosing a section folds the card back into the dots, even with the pointer still on it; it opens again once the
+    // pointer has left and come back (or when the keyboard moves into it).
+    nav.addEventListener('click', (e) => {
+      if (!e.target.closest('a')) return;
+      nav.classList.add('is-closed');
+      document.activeElement.blur();
+    });
+    nav.addEventListener('mouseleave', () => nav.classList.remove('is-closed'));
+    nav.addEventListener('focusin', () => nav.classList.remove('is-closed'));
     const sections = items.map((it) => document.getElementById(it.id));
     const plans = document.getElementById('plans');
     let queued = false;
+    // The block sits a fixed 32px (40px wide itself) to the left of the content, wherever that begins: wide screens scale
+    // the page, so its left edge moves in with them and a fixed number would end up on top of the text.
+    const edge = document.querySelector('#interface .lg-kicker');
+    const place = () => { if (edge) nav.style.left = Math.max(12, edge.getBoundingClientRect().left - 32 - 40) + 'px'; };
     const update = () => {
       queued = false;
+      place();
       const vh = window.innerHeight;
       let cur = -1;
       sections.forEach((s, k) => { if (s.getBoundingClientRect().top <= vh * 0.4) cur = k; });

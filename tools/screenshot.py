@@ -74,6 +74,8 @@ async def run(port, page, w, h, out, target, mobile, devtools):
         await js("document.querySelectorAll('img[loading=lazy]').forEach(i => { i.loading = 'eager'; })")   # off-screen pictures too
         await asyncio.sleep(0.9)                   # let the fade-ins finish
 
+        if os.environ.get("SHOT_PRE"):            # SHOT_PRE=file.js: run first (e.g. scroll somewhere), before SHOT_HOVER
+            await js(open(os.environ["SHOT_PRE"]).read())
         if os.environ.get("SHOT_HOVER"):          # SHOT_HOVER=css-selector [SHOT_WAIT=ms]: put the mouse on it, wait, then capture
             pt = await js(f"""(() => {{ const e = document.querySelector({json.dumps(os.environ['SHOT_HOVER'])}); if (!e) return null;
                 const r = e.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; }})()""")
