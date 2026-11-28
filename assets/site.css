@@ -643,9 +643,11 @@ body #cta :is(input, textarea, select):focus-visible { outline-color: #7be4ee; }
     opacity: 0; visibility: hidden; transition: opacity .25s, visibility 0s .25s; }
   .sidenav.is-shown { opacity: 1; visibility: visible; transition: opacity .25s; }
   /* the dots sit on a white block (always there; it grows into the name card), evenly spaced */
-  .sidenav ol { margin: 0; padding: 10px 6px; list-style: none; border-radius: 14px; background: #fff; border: 1px solid rgba(193, 198, 214, .55);
-    box-shadow: 0 8px 22px -12px rgba(15, 30, 60, .3); transition: box-shadow .2s; }
-  .sidenav:hover ol, .sidenav:focus-within ol { box-shadow: 0 18px 40px -16px rgba(15, 30, 60, .35); }
+  .sidenav ol { margin: 0; padding: 10px 6px; list-style: none; border-radius: 14px; border: 1px solid rgba(193, 198, 214, .55);
+    background: rgba(255, 255, 255, .6); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    box-shadow: 0 8px 22px -12px rgba(15, 30, 60, .3); transition: background-color .2s, box-shadow .2s; }
+  /* resting: see-through; opened into the name card: almost solid, so the names stay readable over the text behind */
+  .sidenav:hover ol, .sidenav:focus-within ol { background: rgba(255, 255, 255, .96); box-shadow: 0 18px 40px -16px rgba(15, 30, 60, .35); }
   .sidenav a { --grp: #5b6e7f; --grp-bg: #e6ebf1; display: flex; align-items: center; min-height: 38px; padding: 0 9px; border-radius: 8px;
     font: 600 13.5px/1 Inter, 'Noto Sans KR', sans-serif; color: #151b2b; white-space: nowrap; text-decoration: none; transition: background-color .15s; }
   .sidenav a[data-grp="1"] { --grp: #1f5fbf; --grp-bg: #e4eefb; }
@@ -653,7 +655,7 @@ body #cta :is(input, textarea, select):focus-visible { outline-color: #7be4ee; }
   .sidenav a[data-grp="3"] { --grp: #b45309; --grp-bg: #fbeddd; }
   .sidenav i { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--grp); transition: transform .2s, box-shadow .2s; }
   .sidenav a.is-current i { transform: scale(1.5); box-shadow: 0 0 0 3px var(--grp-bg); }
-  .sidenav span { max-width: 0; margin-left: 0; opacity: 0; overflow: hidden; transition: max-width .25s, margin-left .25s, opacity .2s; }
+  .sidenav span { max-width: 0; margin-left: 0; opacity: 0; overflow: hidden; line-height: 1.5;   /* room for the tails of g, y, p (overflow clips them at 1) */ transition: max-width .25s, margin-left .25s, opacity .2s; }
   .sidenav:hover span, .sidenav:focus-within span { max-width: 260px; margin-left: 12px; opacity: 1; }
   .sidenav a.is-current { color: var(--grp); font-weight: 700; }
   .sidenav a:hover { background: var(--grp-bg); }
