@@ -153,6 +153,7 @@ const Controller = {
     }).join('') + '</ol>';
     document.body.appendChild(nav);
     const links = [...nav.querySelectorAll('a')];
+    const list = nav.querySelector('ol'), rows = [...list.children];
     // Choosing a section folds the card back into the dots, even with the pointer still on it; it opens again once the
     // pointer has left and come back (or when the keyboard moves into it).
     nav.addEventListener('click', (e) => {
@@ -172,8 +173,17 @@ const Controller = {
       sections.forEach((s, k) => { if (s.getBoundingClientRect().top <= vh * 0.4) cur = k; });
       links.forEach((a, k) => {
         a.classList.toggle('is-current', k === cur);
+        a.classList.toggle('is-done', k < cur);
         if (k === cur) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
       });
+      // the rail's coloured part: from the first ring to the one in view, and on towards the next in step with the scroll
+      const mid = (k) => rows[k].offsetTop + rows[k].offsetHeight / 2;
+      let end = mid(Math.max(cur, 0));
+      if (cur >= 0 && cur < sections.length - 1) {
+        const t0 = sections[cur].getBoundingClientRect().top, t1 = sections[cur + 1].getBoundingClientRect().top;
+        end += Math.min(1, Math.max(0, (vh * 0.4 - t0) / (t1 - t0))) * (mid(cur + 1) - mid(cur));
+      }
+      list.style.setProperty('--fill', Math.max(0, end - mid(0)) + 'px');
       const show = sections[0].getBoundingClientRect().top < vh * 0.6 && !(plans && plans.getBoundingClientRect().top < vh * 0.6);
       nav.classList.toggle('is-shown', show);
     };

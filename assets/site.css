@@ -645,38 +645,51 @@ body #cta :is(input, textarea, select):focus-visible { outline-color: #7be4ee; }
 #nav #navLinks .nav-menu-col a.nav-menu-link { font-weight: 500; font-size: 14px; }
 #nav #navLinks .nav-menu-col a.nav-menu-link:hover, #nav #navLinks .nav-menu-col a.nav-menu-link:focus-visible { background: var(--grp-bg); color: var(--grp); }
 
-/* Floating section menu on the product page (site.js initSideNav; the list is productNav in header.js). A thin column of
-   dots at the left edge, one per section in the Core Modules colours; the section in view is the large one. Pointing at it
-   (or tabbing into it) opens the names on a white card. Wide screens only: narrower, the page content reaches the edge. */
+/* Floating section menu on the product page (site.js initSideNav; the list is productNav in header.js). Design C
+   (2026-11-28, chosen from four sketches): a thin progress rail at the left edge, no block. The line fills with colour as the
+   page scrolls, one ring per section in the Core Modules colours (filled once passed), the section in view larger with its
+   name always beside it. Pointing at it (or tabbing into it) opens every name over an edge-less white fade. Wide screens only. */
 .sidenav { display: none; }
 @media (min-width: 1360px) and (min-height: 680px) {
-  .sidenav { display: block; position: fixed; left: 36px;   /* fixed distance from the screen's left edge (draft 14, then 24); the page content never comes closer than ~70px at 1360px */ top: 50%; transform: translateY(-50%); z-index: 40;
+  .sidenav { display: block; position: fixed; left: 36px;   /* fixed distance from the screen's left edge (draft 14, then 24) */ top: 50%; transform: translateY(-50%); z-index: 40;
     opacity: 0; visibility: hidden; transition: opacity .25s, visibility 0s .25s; }
   .sidenav.is-shown { opacity: 1; visibility: visible; transition: opacity .25s; }
-  /* the dots sit on a block (always there; it grows into the name card), a wider gap where the group changes */
-  .sidenav ol { margin: 0; padding: 10px 6px; list-style: none; border-radius: 14px; border: 1px solid rgba(193, 198, 214, .55);
-    background: rgba(255, 255, 255, .6); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
-    box-shadow: 0 8px 22px -12px rgba(15, 30, 60, .3); transition: background-color .2s, box-shadow .2s; }
-  /* resting: see-through; opened into the name card: almost solid, so the names stay readable over the text behind */
-  .sidenav:hover ol, .sidenav:focus-within ol { background: rgba(255, 255, 255, .96); box-shadow: 0 18px 40px -16px rgba(15, 30, 60, .35); }
+  .sidenav ol { position: relative; margin: 0; padding: 6px 0; list-style: none; --fill: 0px; }
+  /* the rail: from the first ring's centre to the last one's; the coloured part (--fill, set by site.js) follows the scroll */
+  .sidenav ol::before, .sidenav ol::after { content: ''; position: absolute; left: 5px; top: 25px; bottom: 25px; width: 2px; border-radius: 1px; background: #cdd6e0; }
+  .sidenav ol::after { bottom: auto; height: var(--fill); background: linear-gradient(#1f5fbf, #0f766e 55%, #b45309); transition: height .15s linear; }
+  /* the white fade behind the names: only while open, no edge (on the nav itself, so it covers the whole list) */
+  .sidenav::before { content: ''; position: absolute; z-index: -1; inset: -70px -120px -70px -60px; pointer-events: none;
+    background: radial-gradient(ellipse at 30% 50%, rgba(255, 255, 255, .97) 0, rgba(255, 255, 255, .94) 46%, rgba(255, 255, 255, 0) 72%); opacity: 0; transition: opacity .25s; }
+  .sidenav:hover::before, .sidenav:focus-within::before { opacity: 1; }
+  .sidenav li { position: relative; }
   .sidenav li.gap { margin-top: 10px; }
-  .sidenav a { --grp: #5b6e7f; --grp-bg: #e6ebf1; display: flex; align-items: center; min-height: 38px; padding: 0 9px; border-radius: 8px;
-    font: 600 13.5px/1 Inter, 'Noto Sans KR', sans-serif; color: #151b2b; white-space: nowrap; text-decoration: none; transition: background-color .15s; }
+  .sidenav a { --grp: #5b6e7f; --grp-bg: #e6ebf1; position: relative; z-index: 1; display: flex; align-items: center; min-height: 38px; padding: 0;
+    font: 600 13.5px/1 Inter, 'Noto Sans KR', sans-serif; color: #151b2b; white-space: nowrap; text-decoration: none; }
   .sidenav a[data-grp="1"] { --grp: #1f5fbf; --grp-bg: #e4eefb; }
   .sidenav a[data-grp="2"] { --grp: #0f766e; --grp-bg: #ddf1ee; }
   .sidenav a[data-grp="3"] { --grp: #b45309; --grp-bg: #fbeddd; }
-  .sidenav i { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--grp); transition: transform .2s, box-shadow .2s; }
-  .sidenav a.is-current i { transform: scale(1.5); box-shadow: 0 0 0 3px var(--grp-bg); }
-  .sidenav span { max-width: 0; margin-left: 0; opacity: 0; overflow: hidden; line-height: 1.5;   /* room for the tails of g, y, p (overflow clips them at 1) */ transition: max-width .25s, margin-left .25s, opacity .2s; }
-  .sidenav:hover span, .sidenav:focus-within span { max-width: 260px; margin-left: 12px; opacity: 1; }
-  /* just chosen: back to the dots until the pointer leaves */
-  .sidenav.is-closed:hover ol, .sidenav.is-closed:focus-within ol { background: rgba(255, 255, 255, .6); box-shadow: 0 8px 22px -12px rgba(15, 30, 60, .3); }
-  .sidenav.is-closed:hover span, .sidenav.is-closed:focus-within span { max-width: 0; margin-left: 0; opacity: 0; }
-  .sidenav a.is-current { color: var(--grp); font-weight: 700; }
-  .sidenav a:hover { background: var(--grp-bg); }
-  .sidenav a:focus-visible { outline: 2px solid #1765cc; outline-offset: -2px; }
+  /* rings: hollow ahead, filled once passed, larger with a halo for the one in view */
+  .sidenav i { flex: none; width: 12px; height: 12px; box-sizing: border-box; border-radius: 50%; background: #fff; border: 2px solid var(--grp);
+    transition: transform .2s, box-shadow .2s, background-color .2s; }
+  .sidenav a.is-done i { background: var(--grp); }
+  .sidenav a.is-current i { background: #fff; border-width: 3px; transform: scale(1.25); box-shadow: 0 0 0 4px var(--grp-bg); }
+  /* names: hidden, except the current one (a soft chip so it reads over the page); all of them while open */
+  .sidenav span { max-width: 0; margin-left: 0; padding: 3px 0; opacity: 0; overflow: hidden; line-height: 1.5;   /* room for the tails of g, y, p (overflow clips them at 1) */
+    border-radius: 999px; transition: max-width .25s, margin-left .25s, padding .25s, opacity .2s, background-color .2s, box-shadow .2s; }
+  .sidenav a.is-current span { max-width: 260px; margin-left: 8px; padding: 3px 11px; opacity: 1; color: var(--grp); font-weight: 700;
+    background: rgba(255, 255, 255, .92); box-shadow: 0 4px 14px -6px rgba(15, 30, 60, .3), 0 0 0 1px rgba(193, 198, 214, .5); }
+  .sidenav:hover span, .sidenav:focus-within span,
+  .sidenav:hover a.is-current span, .sidenav:focus-within a.is-current span { max-width: 260px; margin-left: 14px; padding: 3px 0; opacity: 1; background: none; box-shadow: none; }
+  .sidenav a:hover span { color: var(--grp); }
+  /* just chosen: back to the rail until the pointer leaves */
+  .sidenav.is-closed:hover::before, .sidenav.is-closed:focus-within::before { opacity: 0; }
+  .sidenav.is-closed:hover span, .sidenav.is-closed:focus-within span { max-width: 0; margin-left: 0; padding: 3px 0; opacity: 0; }
+  .sidenav.is-closed:hover a.is-current span, .sidenav.is-closed:focus-within a.is-current span { max-width: 260px; margin-left: 8px; padding: 3px 11px; opacity: 1;
+    background: rgba(255, 255, 255, .92); box-shadow: 0 4px 14px -6px rgba(15, 30, 60, .3), 0 0 0 1px rgba(193, 198, 214, .5); }
+  .sidenav a:focus-visible { outline: 2px solid #1765cc; outline-offset: 3px; border-radius: 8px; }
 }
-@media (prefers-reduced-motion: reduce) { .sidenav, .sidenav ol, .sidenav i, .sidenav span { transition: none !important; } }
+@media (prefers-reduced-motion: reduce) { .sidenav, .sidenav ol::after, .sidenav i, .sidenav span, .sidenav::before { transition: none !important; } }
 /* mobile menu: the tab links stay full-width rows inside their wrappers */
 @media (max-width: 767px) { #navLinks.nav-open .nav-item > a { display: block; width: 100%; } }
 
