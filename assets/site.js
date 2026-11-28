@@ -114,6 +114,7 @@ const Controller = {
       'initShotZoom',
       'initCtaForm',
       'initScrollToTop',
+      'initSideNav',
       'initLanguage',
       'initNavActiveState',
       'initCounters',
@@ -130,6 +131,47 @@ const Controller = {
     ].forEach((step) => {
       try { this[step](); } catch (err) { console.error('VegaFencer: ' + step + ' failed', err); }
     });
+  },
+
+  /* Product page: floating section menu on the left (CSS "Floating section menu"). Built from productNav (header.js), the
+     same list as the product tab's card. It appears once the page has passed Core Modules and goes away at Plans; the
+     link of the section in view is marked (aria-current). */
+  initSideNav() {
+    if (document.body.getAttribute('data-page') !== 'product' || !window.productNav) return;
+    const t = i18n[savedLang()] || i18n.ko;
+    const items = productNav.filter((it) => it.float && document.getElementById(it.id));
+    const nav = document.createElement('nav');
+    nav.className = 'sidenav';
+    nav.setAttribute('data-i18n-aria', 'sidenav_label');
+    nav.setAttribute('aria-label', t.sidenav_label || i18n.ko.sidenav_label);
+    let last = null;
+    nav.innerHTML = '<ol>' + items.map((it) => {
+      const gap = last !== null && it.grp !== last ? ' class="gap"' : '';
+      last = it.grp;
+      return '<li' + gap + '><a href="#' + it.id + '"' + (it.grp ? ' data-grp="' + it.grp + '"' : '') + '><i aria-hidden="true"></i><span' +
+        (it.key ? ' data-i18n="' + it.key + '">' + (t[it.key] || it.label) : ' translate="no">' + it.label) + '</span></a></li>';
+    }).join('') + '</ol>';
+    document.body.appendChild(nav);
+    const links = [...nav.querySelectorAll('a')];
+    const sections = items.map((it) => document.getElementById(it.id));
+    const plans = document.getElementById('plans');
+    let queued = false;
+    const update = () => {
+      queued = false;
+      const vh = window.innerHeight;
+      let cur = -1;
+      sections.forEach((s, k) => { if (s.getBoundingClientRect().top <= vh * 0.4) cur = k; });
+      links.forEach((a, k) => {
+        a.classList.toggle('is-current', k === cur);
+        if (k === cur) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
+      });
+      const show = sections[0].getBoundingClientRect().top < vh * 0.6 && !(plans && plans.getBoundingClientRect().top < vh * 0.6);
+      nav.classList.toggle('is-shown', show);
+    };
+    const queue = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
+    addEventListener('scroll', queue, { passive: true });
+    addEventListener('resize', queue);
+    update();
   },
 
   /* Product page. Interface tour: hovering an area of the screenshot, or hovering/focusing its item in the list,

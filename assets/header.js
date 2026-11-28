@@ -34,14 +34,44 @@ if (location.protocol === 'file:') {
   // An item is [i18n key or '', label, '#section', optional sub-items]; items without a key are names that stay the
   // same in every language. Sub-items hang below their item on a thin line and unfold one by one when the card opens.
   var menus = {
-    product: [
-      ['sub_modules', '핵심 모듈', '#product', [['', 'Logic', '#logic'], ['', 'Integrator', '#integrator'],
-        ['', 'Harness', '#harness'], ['', 'Variant · DRC · BOM', '#variant'], ['', 'Bridge', '#bridge']]],
-      ['sub_workflow', '워크플로우', '#workflow'], ['sub_ai', 'AI 어시스턴트', '#ai'],
-      ['sub_integrations', 'CAD 연동', '#integrations'], ['sub_team', '팀 협업', '#enterprise']
-    ],
+    product: [],   // built from productNav below (three columns)
     resources: [['sub_screens', '제품 화면', '#gallery'], ['sub_videos', '구동 영상', '#videos'], ['sub_docs', '문서', '#docs']],
     pricing: [['pricing_title', '요금제', '#pricing'], ['nav_demo', '도입 문의', '#cta']]
+  };
+  // The product page's sections, in page order: ONE list for the tab's card (below) and the floating menu on the left
+  // of the page (site.js initSideNav). grp: 0 = no group, 1-3 = the Core Modules groups (design / verification and
+  // management / collaboration and integration); float: 0 = left out of the floating menu. Edit the page's sections here.
+  window.productNav = [
+    { id: 'product',   key: 'sub_modules',    label: '핵심 모듈',                       grp: 0, float: 0 },
+    { id: 'interface', key: '',               label: 'User Interface',                  grp: 0, float: 1 },
+    { id: 'logic',     key: '',               label: 'Logic',                           grp: 1, float: 1 },
+    { id: 'integrator',key: '',               label: 'Integrator',                      grp: 1, float: 1 },
+    { id: 'harness',   key: '',               label: 'Harness',                         grp: 1, float: 1 },
+    { id: 'drc',       key: '',               label: 'DRC / BOM',                       grp: 2, float: 1 },
+    { id: 'workflow',  key: 'sub_workflow',   label: '워크플로우',                      grp: 0, float: 1, after: 1 },
+    { id: 'power',     key: '',               label: 'Power Check',                     grp: 2, float: 1 },
+    { id: 'variant',   key: '',               label: 'Variant / Option Configuration',  grp: 2, float: 1 },
+    { id: 'library',   key: '',               label: 'Library / Symbol Editor',         grp: 2, float: 1 },
+    { id: 'ai',        key: '',               label: 'AI Assistant',                    grp: 3, float: 1 },
+    { id: 'multiuser', key: '',               label: 'Multiuser Environment',           grp: 3, float: 1 },
+    { id: 'bridge',    key: '',               label: '3D CAD Bridge',                   grp: 3, float: 1 },
+    { id: 'plans',     key: 'pricing_title',  label: '요금제',                          grp: 0, float: 0, after: 1 }
+  ];
+  var groupKeys = { 1: ['mod_grp1', '설계'], 2: ['mod_grp2', '검증 · 관리'], 3: ['mod_grp3', '협업 · 연동'] };
+  // The product tab's card: the page's own sections on top, the three module groups side by side, Workflow and Plans below.
+  var productMenu = function () {
+    var one = function (it) {
+      return menuLink('product', [it.key, it.label, '#' + it.id], 'nav-menu-link');
+    };
+    var row = function (list) { return '<div class="nav-menu-row">' + list.map(one).join('') + '</div>'; };
+    var cols = [1, 2, 3].map(function (g) {
+      return '<div class="nav-menu-col" data-grp="' + g + '"><p class="nav-menu-gh"><i></i><span data-i18n="' + groupKeys[g][0] + '">' + groupKeys[g][1] + '</span></p>' +
+        productNav.filter(function (it) { return it.grp === g; }).map(one).join('') + '</div>';
+    }).join('');
+    return '<div class="nav-menu"><div class="nav-menu-card nav-menu-wide">' +
+      row(productNav.filter(function (it) { return !it.grp && !it.after; })) +
+      '<div class="nav-menu-cols">' + cols + '</div>' +
+      row(productNav.filter(function (it) { return !it.grp && it.after; })) + '</div></div>';
   };
   var menuLink = function (name, item, cls, i) {
     return '<a class="' + cls + '" href="' + pageUrl(name, item[2]) + '"' + (i == null ? '' : ' style="--i:' + i + '"') +
@@ -50,6 +80,7 @@ if (location.protocol === 'file:') {
   var menu = function (name) {
     var items = menus[name];
     if (!items) return '';
+    if (name === 'product') return productMenu();
     return '<div class="nav-menu"><div class="nav-menu-card">' + items.map(function (item) {
       var link = menuLink(name, item, 'nav-menu-link');
       if (!item[3]) return link;

@@ -610,6 +610,46 @@ body #cta :is(input, textarea, select):focus-visible { outline-color: #7be4ee; }
   .nav-menu-sub::before { transform: none !important; }
   #nav #navLinks .nav-menu a.nav-menu-sublink { clip-path: none !important; opacity: 1 !important; transform: none !important; }
 }
+/* Product tab (2026-11-28): a wide card. The page's own sections on top, the three module groups side by side (a dot in
+   the Core Modules colours over each name), Workflow and Plans below. The list lives in header.js (productNav). */
+.nav-menu-wide { display: block; min-width: 0; padding: 8px; }
+.nav-menu-row { display: flex; gap: 4px; }
+.nav-menu-cols { display: grid; grid-template-columns: repeat(3, auto); column-gap: 10px; margin: 6px 0; padding: 10px 0;
+  border-top: 1px solid #e6ebf1; border-bottom: 1px solid #e6ebf1; }
+.nav-menu-col[data-grp="1"] { --grp: #1f5fbf; --grp-bg: #e4eefb; }
+.nav-menu-col[data-grp="2"] { --grp: #0f766e; --grp-bg: #ddf1ee; }
+.nav-menu-col[data-grp="3"] { --grp: #b45309; --grp-bg: #fbeddd; }
+.nav-menu-gh { display: flex; align-items: center; gap: 8px; margin: 0 0 4px; padding: 2px 12px; font: 700 12px/1.4 Inter, 'Noto Sans KR', sans-serif; letter-spacing: .02em; color: var(--grp); }
+.nav-menu-gh i { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--grp); }
+#nav #navLinks .nav-menu-col a.nav-menu-link { font-weight: 500; font-size: 14px; }
+#nav #navLinks .nav-menu-col a.nav-menu-link:hover, #nav #navLinks .nav-menu-col a.nav-menu-link:focus-visible { background: var(--grp-bg); color: var(--grp); }
+
+/* Floating section menu on the product page (site.js initSideNav; the list is productNav in header.js). A thin column of
+   dots at the left edge, one per section in the Core Modules colours; the section in view is the large one. Pointing at it
+   (or tabbing into it) opens the names on a white card. Wide screens only: narrower, the page content reaches the edge. */
+.sidenav { display: none; }
+@media (min-width: 1360px) and (min-height: 560px) {
+  .sidenav { display: block; position: fixed; left: 14px; top: 50%; transform: translateY(-50%); z-index: 40;
+    opacity: 0; visibility: hidden; transition: opacity .25s, visibility 0s .25s; }
+  .sidenav.is-shown { opacity: 1; visibility: visible; transition: opacity .25s; }
+  .sidenav ol { margin: 0; padding: 8px 6px; list-style: none; border-radius: 14px; border: 1px solid transparent;
+    transition: background-color .2s, border-color .2s, box-shadow .2s; }
+  .sidenav:hover ol, .sidenav:focus-within ol { background: #fff; border-color: rgba(193, 198, 214, .5); box-shadow: 0 18px 40px -16px rgba(15, 30, 60, .3); }
+  .sidenav li.gap { margin-top: 10px; }
+  .sidenav a { --grp: #5b6e7f; --grp-bg: #e6ebf1; display: flex; align-items: center; min-height: 26px; padding: 0 9px; border-radius: 8px;
+    font: 600 13.5px/1 Inter, 'Noto Sans KR', sans-serif; color: #151b2b; white-space: nowrap; text-decoration: none; transition: background-color .15s; }
+  .sidenav a[data-grp="1"] { --grp: #1f5fbf; --grp-bg: #e4eefb; }
+  .sidenav a[data-grp="2"] { --grp: #0f766e; --grp-bg: #ddf1ee; }
+  .sidenav a[data-grp="3"] { --grp: #b45309; --grp-bg: #fbeddd; }
+  .sidenav i { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--grp); transition: transform .2s, box-shadow .2s; }
+  .sidenav a.is-current i { transform: scale(1.5); box-shadow: 0 0 0 3px var(--grp-bg); }
+  .sidenav span { max-width: 0; margin-left: 0; opacity: 0; overflow: hidden; transition: max-width .25s, margin-left .25s, opacity .2s; }
+  .sidenav:hover span, .sidenav:focus-within span { max-width: 260px; margin-left: 12px; opacity: 1; }
+  .sidenav a.is-current { color: var(--grp); font-weight: 700; }
+  .sidenav a:hover { background: var(--grp-bg); }
+  .sidenav a:focus-visible { outline: 2px solid #1765cc; outline-offset: -2px; }
+}
+@media (prefers-reduced-motion: reduce) { .sidenav, .sidenav ol, .sidenav i, .sidenav span { transition: none !important; } }
 /* mobile menu: the tab links stay full-width rows inside their wrappers */
 @media (max-width: 767px) { #navLinks.nav-open .nav-item > a { display: block; width: 100%; } }
 

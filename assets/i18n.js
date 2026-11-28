@@ -1569,3 +1569,9 @@ Object.assign(i18n.ja, {
   zoom_bridge: "3D CAD Bridge\u2060の画面を拡大",
   zoom_drc: "DRC / BOM\u2060の画面を拡大",
 });
+
+/* Product page: floating section menu (site.js initSideNav) */
+i18n.ko.sidenav_label = "제품 페이지 섹션";
+i18n.en.sidenav_label = "Product page sections";
+i18n.zh.sidenav_label = "产品页面章节";
+i18n.ja.sidenav_label = "製品ページのセクション";
