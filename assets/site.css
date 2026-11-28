@@ -1058,10 +1058,12 @@ html[lang="zh"] .hero-sub, html[lang="ja"] .hero-sub { font-family: inherit; }
 
 /* Product page hero (2026-11-28): the home hero without the photo: one statement, then the name and a line about the product.
    It sits inside the zoomed <main> on wide screens, so it cancels that zoom (its copy re-applies --hero-s like the home hero's). */
-.phero h1 { font-size: 56px; line-height: 1.06; max-width: 900px; }
+.phero h1 { font-size: clamp(46px, 4.5vw, 64px); line-height: 1.06; max-width: 1000px; }
+/* shorter than the home hero (which has a photo to show): about 50% of the screen instead of 65%, so there is no empty band above and below the text */
+@media (min-width: 768px) { .phero { height: calc(var(--nav-h) + clamp(400px, (100svh - var(--nav-h)) * .5, 560px)); } }
 .phero h1 em { font-style: normal; color: #7cb4ff; }
-.phero-name { margin: 30px 0 0; font: 700 22px/1.35 Inter, sans-serif; letter-spacing: -.01em; color: #dce7ef; }
-.phero-sub { margin: 10px 0 0; max-width: 640px; font-size: 16px; text-wrap: balance; }   /* two even lines: no orphan word or character on the second */
+.phero-name { margin: 32px 0 0; font: 700 24px/1.35 Inter, sans-serif; letter-spacing: -.01em; color: #dce7ef; }
+.phero-sub { margin: 10px 0 0; max-width: 640px; font-size: 17px; text-wrap: balance; }   /* two even lines: no orphan word or character on the second */
 .phero-brm { display: none; }   /* phones only: "Every connection / engineered / with intent." (no lone "intent." on a third line) */
 /* the same faint blueprint grid and blue glow as the last CTA (.cta3), fading out from the empty right side, so the hero
    is not a bare block of navy next to the text */
