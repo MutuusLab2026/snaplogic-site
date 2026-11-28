@@ -614,8 +614,8 @@ body #cta :is(input, textarea, select):focus-visible { outline-color: #7be4ee; }
    the Core Modules colours over each name), Workflow and Plans below. The list lives in header.js (productNav). */
 .nav-menu-wide { display: block; min-width: 0; padding: 8px; }
 .nav-menu-row { display: flex; gap: 4px; }
-.nav-menu-cols { display: grid; grid-template-columns: repeat(3, auto); column-gap: 10px; margin: 6px 0; padding: 10px 0;
-  border-top: 1px solid #e6ebf1; border-bottom: 1px solid #e6ebf1; }
+.nav-menu-cols { display: grid; grid-template-columns: repeat(3, auto); column-gap: 10px; margin: 6px 0 0; padding: 10px 0 0;
+  border-top: 1px solid #e6ebf1; }
 .nav-menu-col[data-grp="1"] { --grp: #1f5fbf; --grp-bg: #e4eefb; }
 .nav-menu-col[data-grp="2"] { --grp: #0f766e; --grp-bg: #ddf1ee; }
 .nav-menu-col[data-grp="3"] { --grp: #b45309; --grp-bg: #fbeddd; }
@@ -629,13 +629,13 @@ body #cta :is(input, textarea, select):focus-visible { outline-color: #7be4ee; }
    (or tabbing into it) opens the names on a white card. Wide screens only: narrower, the page content reaches the edge. */
 .sidenav { display: none; }
 @media (min-width: 1360px) and (min-height: 560px) {
-  .sidenav { display: block; position: fixed; left: 14px; top: 50%; transform: translateY(-50%); z-index: 40;
+  .sidenav { display: block; position: fixed; left: 24px; top: 50%; transform: translateY(-50%); z-index: 40;
     opacity: 0; visibility: hidden; transition: opacity .25s, visibility 0s .25s; }
   .sidenav.is-shown { opacity: 1; visibility: visible; transition: opacity .25s; }
-  .sidenav ol { margin: 0; padding: 8px 6px; list-style: none; border-radius: 14px; border: 1px solid transparent;
-    transition: background-color .2s, border-color .2s, box-shadow .2s; }
-  .sidenav:hover ol, .sidenav:focus-within ol { background: #fff; border-color: rgba(193, 198, 214, .5); box-shadow: 0 18px 40px -16px rgba(15, 30, 60, .3); }
-  .sidenav li.gap { margin-top: 10px; }
+  /* the dots sit on a white block (always there; it grows into the name card), evenly spaced */
+  .sidenav ol { margin: 0; padding: 8px 6px; list-style: none; border-radius: 14px; background: #fff; border: 1px solid rgba(193, 198, 214, .55);
+    box-shadow: 0 8px 22px -12px rgba(15, 30, 60, .3); transition: box-shadow .2s; }
+  .sidenav:hover ol, .sidenav:focus-within ol { box-shadow: 0 18px 40px -16px rgba(15, 30, 60, .35); }
   .sidenav a { --grp: #5b6e7f; --grp-bg: #e6ebf1; display: flex; align-items: center; min-height: 26px; padding: 0 9px; border-radius: 8px;
     font: 600 13.5px/1 Inter, 'Noto Sans KR', sans-serif; color: #151b2b; white-space: nowrap; text-decoration: none; transition: background-color .15s; }
   .sidenav a[data-grp="1"] { --grp: #1f5fbf; --grp-bg: #e4eefb; }

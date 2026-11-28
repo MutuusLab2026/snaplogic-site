@@ -144,13 +144,8 @@ const Controller = {
     nav.className = 'sidenav';
     nav.setAttribute('data-i18n-aria', 'sidenav_label');
     nav.setAttribute('aria-label', t.sidenav_label || i18n.ko.sidenav_label);
-    let last = null;
-    nav.innerHTML = '<ol>' + items.map((it) => {
-      const gap = last !== null && it.grp !== last ? ' class="gap"' : '';
-      last = it.grp;
-      return '<li' + gap + '><a href="#' + it.id + '"' + (it.grp ? ' data-grp="' + it.grp + '"' : '') + '><i aria-hidden="true"></i><span' +
-        (it.key ? ' data-i18n="' + it.key + '">' + (t[it.key] || it.label) : ' translate="no">' + it.label) + '</span></a></li>';
-    }).join('') + '</ol>';
+    nav.innerHTML = '<ol>' + items.map((it) => '<li><a href="#' + it.id + '"' + (it.grp ? ' data-grp="' + it.grp + '"' : '') + '><i aria-hidden="true"></i><span' +
+      (it.key ? ' data-i18n="' + it.key + '">' + (t[it.key] || it.label) : ' translate="no">' + it.label) + '</span></a></li>').join('') + '</ol>';
     document.body.appendChild(nav);
     const links = [...nav.querySelectorAll('a')];
     const sections = items.map((it) => document.getElementById(it.id));

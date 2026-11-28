@@ -48,30 +48,28 @@ if (location.protocol === 'file:') {
     { id: 'integrator',key: '',               label: 'Integrator',                      grp: 1, float: 1 },
     { id: 'harness',   key: '',               label: 'Harness',                         grp: 1, float: 1 },
     { id: 'drc',       key: '',               label: 'DRC / BOM',                       grp: 2, float: 1 },
-    { id: 'workflow',  key: 'sub_workflow',   label: '워크플로우',                      grp: 0, float: 1, after: 1 },
+    { id: 'workflow',  key: 'sub_workflow',   label: '워크플로우',                      grp: 0, float: 1 },
     { id: 'power',     key: '',               label: 'Power Check',                     grp: 2, float: 1 },
     { id: 'variant',   key: '',               label: 'Variant / Option Configuration',  grp: 2, float: 1 },
     { id: 'library',   key: '',               label: 'Library / Symbol Editor',         grp: 2, float: 1 },
     { id: 'ai',        key: '',               label: 'AI Assistant',                    grp: 3, float: 1 },
     { id: 'multiuser', key: '',               label: 'Multiuser Environment',           grp: 3, float: 1 },
-    { id: 'bridge',    key: '',               label: '3D CAD Bridge',                   grp: 3, float: 1 },
-    { id: 'plans',     key: 'pricing_title',  label: '요금제',                          grp: 0, float: 0, after: 1 }
+    { id: 'bridge',    key: '',               label: '3D CAD Bridge',                   grp: 3, float: 1 }
   ];
   var groupKeys = { 1: ['mod_grp1', '설계'], 2: ['mod_grp2', '검증 · 관리'], 3: ['mod_grp3', '협업 · 연동'] };
-  // The product tab's card: the page's own sections on top, the three module groups side by side, Workflow and Plans below.
+  // The product tab's card: the page's own sections on top (Core Modules, User Interface, Workflow), the three module
+  // groups side by side below (a dot in the Core Modules colours over each name).
   var productMenu = function () {
     var one = function (it) {
       return menuLink('product', [it.key, it.label, '#' + it.id], 'nav-menu-link');
     };
-    var row = function (list) { return '<div class="nav-menu-row">' + list.map(one).join('') + '</div>'; };
     var cols = [1, 2, 3].map(function (g) {
       return '<div class="nav-menu-col" data-grp="' + g + '"><p class="nav-menu-gh"><i></i><span data-i18n="' + groupKeys[g][0] + '">' + groupKeys[g][1] + '</span></p>' +
         productNav.filter(function (it) { return it.grp === g; }).map(one).join('') + '</div>';
     }).join('');
     return '<div class="nav-menu"><div class="nav-menu-card nav-menu-wide">' +
-      row(productNav.filter(function (it) { return !it.grp && !it.after; })) +
-      '<div class="nav-menu-cols">' + cols + '</div>' +
-      row(productNav.filter(function (it) { return !it.grp && it.after; })) + '</div></div>';
+      '<div class="nav-menu-row">' + productNav.filter(function (it) { return !it.grp; }).map(one).join('') + '</div>' +
+      '<div class="nav-menu-cols">' + cols + '</div></div></div>';
   };
   var menuLink = function (name, item, cls, i) {
     return '<a class="' + cls + '" href="' + pageUrl(name, item[2]) + '"' + (i == null ? '' : ' style="--i:' + i + '"') +
