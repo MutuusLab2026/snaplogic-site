@@ -169,17 +169,27 @@
          logo y 123 lands, so it is 10 logo units (x 2.2) above the card's middle. Across: centred on the column. */
       sy = mid - 10 * 2.2;
     }
-    if (PORT && !beside) {   // phone (no card beside): the row and the merged logo are centred on the picture
-      var vk = Math.min(380, VW * 0.22), vs = vk / 304, M2 = x0 + VW / 2, vcy = y0 + VH / 2;
-      gap = vk; fs = Math.max(24, Math.min(36, gap * 0.15));
-      cx = M2 + 9 * vs; sx = M2 + 9 * 2.2;
-      cy = vcy + 4 * vs - 1.08 * fs; sy = vcy - 10 * 2.2;
+    var grid = null;   // the four logos' places when they are not in one row (phone: two by two)
+    if (PORT && !beside) {   // phone (no card beside): the merged logo is centred on the picture, the four logos two by two
+      var M2 = x0 + VW / 2, vcy = y0 + VH / 2;
+      sx = M2 + 9 * 2.2; sy = vcy - 10 * 2.2;
+      /* Two by two: each block (star tip to the bottom of the name) is 254s + 2.16fs tall; the two blocks and a gap of 60
+         fill 87% of the picture's height. Across, the two columns are gx apart, the ink (126s left of a logo's centre to
+         108s right) moved 9s right to centre it. */
+      fs = 32;
+      var s2 = Math.min(1.25, ((VH * 0.87 - 60) / 2 - 2.16 * fs) / 254), gx = Math.min(VW * 0.42, 380), blk = 254 * s2 + 2.16 * fs, top0 = vcy - (2 * blk + 60) / 2;
+      grid = { s: s2, p: [] };
+      for (var q = 0; q < 4; q++) {
+        var gcy = top0 + (q >> 1) * (blk + 60) + 131 * s2;
+        grid.p.push({ cx: M2 + ((q % 2) - 0.5) * gx + 9 * s2, cy: gcy, ny: gcy + 123 * s2 + 1.94 * fs });
+      }
     }
     AXISX = beside ? (lo + hi) / 2 : b.width / 2;   // visual px from the box's left: where the progress bar is centred (the logos' axis)
     SC = [sx, sy];
-    ROW = { gap: gap, s: gap / 304, cx: cx, cy: cy, ny: cy + 123 * gap / 304 + 1.94 * fs };
+    ROW = grid || { s: gap / 304, p: [] };
+    if (!grid) for (var j = 0; j < 4; j++) ROW.p.push({ cx: cx + (j - 1.5) * gap, cy: cy, ny: cy + 123 * gap / 304 + 1.94 * fs });
     $('names').setAttribute('font-size', fs);
-    for (var i = 0; i < 4; i++) { $('n' + i).setAttribute('x', cx + (i - 1.5) * gap); $('n' + i).setAttribute('y', ROW.ny); }
+    for (var i = 0; i < 4; i++) { $('n' + i).setAttribute('x', ROW.p[i].cx); $('n' + i).setAttribute('y', ROW.p[i].ny); }
     placeCtl();
   }
   /* The progress bar sits at the picture's bottom, centred on the logos' axis (the buttons hang to its right) (the middle of the column
@@ -190,7 +200,7 @@
     if (!ctl) return;
     var b = box.getBoundingClientRect(), st = ctl.parentNode.getBoundingClientRect(), z = b.width / box.offsetWidth || 1, art = box.parentNode;
     ctl.style.left = ((b.left - st.left + AXISX) / z) + 'px';
-    ctl.style.top = (art.offsetTop + art.offsetHeight - 31.5) + 'px';   // the bar's middle 30px above the picture's bottom
+    ctl.style.top = (art.offsetTop + art.offsetHeight - 30 - ctl.offsetHeight / 2) + 'px';   // the bar's middle 30px above the picture's bottom
   }
   layout();
 
@@ -252,7 +262,7 @@
     set($('four'), 'opacity', on ? 1 : 0);
     var ps = P(u, 8.3, 9.5);
     for (var i = 0; i < 4; i++) {
-      var s1 = ROW.s, cx = ROW.cx + (i - 1.5) * ROW.gap, x1 = cx - 128 * s1, y1 = ROW.cy - 123 * s1;
+      var s1 = ROW.s, x1 = ROW.p[i].cx - 128 * s1, y1 = ROW.p[i].cy - 123 * s1;
       set($('u' + i), 'transform', 'translate(' + L(SC[0] - 128 * 2.2, x1, ps) + ' ' + L(SC[1] - 123 * 2.2, y1, ps) + ') scale(' + L(2.2, s1, ps) + ')');
       if (i < 3) set($('u' + i), 'opacity', P(u, 8.3, 8.6).toFixed(3));
     }
