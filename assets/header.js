@@ -106,7 +106,7 @@ if (location.protocol === 'file:') {
 <!-- ============================================================
      NAV
      ============================================================ -->
-<header class="fixed top-0 w-full z-50 glass-nav transition-all${page === 'home' || page === 'about' ? ' engineering-nav-dark' : ''}" id="nav">
+<header class="fixed top-0 w-full z-50 glass-nav transition-all${page === 'home' || page === 'about' || page === 'product' ? ' engineering-nav-dark' : ''}" id="nav">
   <nav class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto" aria-label="Main navigation">
     <a class="text-2xl font-black text-slate-900 font-headline tracking-tighter" href="${pageUrl('home')}">VegaFencer</a>
     <!-- Mobile toggle -->

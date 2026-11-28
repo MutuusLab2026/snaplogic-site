@@ -115,6 +115,7 @@ const Controller = {
       'initCtaForm',
       'initScrollToTop',
       'initSideNav',
+      'initHeroNav',
       'initLanguage',
       'initNavActiveState',
       'initCounters',
@@ -131,6 +132,22 @@ const Controller = {
     ].forEach((step) => {
       try { this[step](); } catch (err) { console.error('VegaFencer: ' + step + ' failed', err); }
     });
+  },
+
+  /* Product page: the header stays dark while the navy hero is under it and turns light once it has scrolled away (the home
+     page does the same in hero.js). header.js starts it dark. */
+  initHeroNav() {
+    const hero = document.getElementById('hero'), nav = document.getElementById('nav');
+    if (document.body.getAttribute('data-page') !== 'product' || !hero || !nav) return;
+    let watch = null;
+    const start = () => {
+      if (watch) watch.disconnect();
+      watch = new IntersectionObserver((es) => nav.classList.toggle('engineering-nav-dark', es[0].isIntersecting),
+        { rootMargin: '-' + (nav.offsetHeight - 1) + 'px 0px 0px 0px' });
+      watch.observe(hero);
+    };
+    start();
+    window.matchMedia('(max-width: 767px)').addEventListener('change', start);   // the header is taller on phones
   },
 
   /* Product page: floating section menu on the left (CSS "Floating section menu"). Built from productNav (header.js), the

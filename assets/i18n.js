@@ -1575,3 +1575,9 @@ i18n.ko.sidenav_label = "제품 페이지 섹션";
 i18n.en.sidenav_label = "Product page sections";
 i18n.zh.sidenav_label = "产品页面章节";
 i18n.ja.sidenav_label = "製品ページのセクション";
+
+/* Product page hero: the line about the product under the name (2026-11-28) */
+i18n.ko.phero_desc = "회로 설계부터 3D 번들, 하네스 도면, 검증과 협업까지 — 10개 모듈이 하나의 플랫폼에서 이어집니다.";
+i18n.en.phero_desc = "From circuit design to 3D bundles, harness drawings, verification and collaboration — ten modules connected on one platform.";
+i18n.zh.phero_desc = "从电路设计到 3D 线束、线束图纸、验证与协作 — 10 个模块在同一平台上连为一体。";
+i18n.ja.phero_desc = "回路設計から 3D バンドル、ハーネス図面、検証、コラボレーションまで — 10 のモジュールが一つのプラットフォームでつながります。";

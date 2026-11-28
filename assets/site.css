@@ -1056,6 +1056,20 @@ html[lang="zh"] .hero-sub, html[lang="ja"] .hero-sub { font-family: inherit; }
   .hero-cat { font-size: 19px; white-space: normal; }   /* same steps as the section tagline (22 / 19px) */
 }
 
+/* Product page hero (2026-11-28): the home hero without the photo: one statement, then the name and a line about the product.
+   It sits inside the zoomed <main> on wide screens, so it cancels that zoom (its copy re-applies --hero-s like the home hero's). */
+.phero h1 { font-size: 56px; line-height: 1.06; max-width: 900px; }
+.phero h1 em { font-style: normal; color: #7cb4ff; }
+.phero-name { margin: 30px 0 0; font: 700 22px/1.35 Inter, sans-serif; letter-spacing: -.01em; color: #dce7ef; }
+.phero-sub { margin: 10px 0 0; max-width: 560px; font-size: 16px; }
+@media (min-width: 1101px) { body[data-page="product"] .phero { zoom: calc(1 / var(--hero-s, 1)); } }
+@media (max-width: 767px) {
+  .phero .hero-copy { margin-top: 0; padding-top: 36px; }
+  .phero h1 { font-size: 34px; }
+  .phero-br { display: none; }   /* the statement wraps on its own on phones */
+  .phero-name { margin-top: 22px; font-size: 19px; }
+  .phero-sub { font-size: 15px; }
+}
 .hero-bg.is-placed { opacity: 1; }
 @media (prefers-reduced-motion: reduce) { .hero-bg { transition: none; } }
 
