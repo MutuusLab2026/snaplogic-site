@@ -645,51 +645,44 @@ body #cta :is(input, textarea, select):focus-visible { outline-color: #7be4ee; }
 #nav #navLinks .nav-menu-col a.nav-menu-link { font-weight: 500; font-size: 14px; }
 #nav #navLinks .nav-menu-col a.nav-menu-link:hover, #nav #navLinks .nav-menu-col a.nav-menu-link:focus-visible { background: var(--grp-bg); color: var(--grp); }
 
-/* Floating section menu on the product page (site.js initSideNav; the list is productNav in header.js). Design C
-   (2026-11-28, chosen from four sketches): a thin progress rail at the left edge, no block. The line fills with colour as the
-   page scrolls, one ring per section in the Core Modules colours (filled once passed), the section in view larger with its
-   name always beside it. Pointing at it (or tabbing into it) opens every name over an edge-less white fade. Wide screens only. */
+/* Floating section menu on the product page (site.js initSideNav; the list is productNav in header.js). Design B
+   (sketch on branch sidenav-b): short dashes at the left edge, no block and no rail; the section in view is the long, thick
+   one. Pointing at it (or tabbing into it) opens a thin frosted-glass panel with the names, a hairline between the groups.
+   Wide screens only. */
 .sidenav { display: none; }
 @media (min-width: 1360px) and (min-height: 680px) {
-  .sidenav { display: block; position: fixed; left: 36px;   /* fixed distance from the screen's left edge (draft 14, then 24) */ top: 50%; transform: translateY(-50%); z-index: 40;
+  .sidenav { display: block; position: fixed; left: 36px; top: 50%; transform: translateY(-50%); z-index: 40;
     opacity: 0; visibility: hidden; transition: opacity .25s, visibility 0s .25s; }
   .sidenav.is-shown { opacity: 1; visibility: visible; transition: opacity .25s; }
-  .sidenav ol { position: relative; margin: 0; padding: 6px 0; list-style: none; --fill: 0px; }
-  /* the rail: from the first ring's centre to the last one's; the coloured part (--fill, set by site.js) follows the scroll */
-  .sidenav ol::before, .sidenav ol::after { content: ''; position: absolute; left: 5px; top: 25px; bottom: 25px; width: 2px; border-radius: 1px; background: #cdd6e0; }
-  .sidenav ol::after { bottom: auto; height: var(--fill); background: linear-gradient(#1f5fbf, #0f766e 55%, #b45309); transition: height .15s linear; }
-  /* the white fade behind the names: only while open, no edge (on the nav itself, so it covers the whole list) */
-  .sidenav::before { content: ''; position: absolute; z-index: -1; inset: -70px -120px -70px -60px; pointer-events: none;
-    background: radial-gradient(ellipse at 30% 50%, rgba(255, 255, 255, .97) 0, rgba(255, 255, 255, .94) 46%, rgba(255, 255, 255, 0) 72%); opacity: 0; transition: opacity .25s; }
-  .sidenav:hover::before, .sidenav:focus-within::before { opacity: 1; }
-  .sidenav li { position: relative; }
-  .sidenav li.gap { margin-top: 10px; }
-  .sidenav a { --grp: #5b6e7f; --grp-bg: #e6ebf1; position: relative; z-index: 1; display: flex; align-items: center; min-height: 38px; padding: 0;
+  .sidenav ol { margin: 0; padding: 8px 4px; list-style: none; border-radius: 16px; background: rgba(255, 255, 255, 0);
+    transition: background-color .2s, box-shadow .2s, backdrop-filter .2s; }
+  .sidenav:hover ol, .sidenav:focus-within ol { background: rgba(255, 255, 255, .78); -webkit-backdrop-filter: blur(14px) saturate(1.3); backdrop-filter: blur(14px) saturate(1.3);
+    box-shadow: 0 18px 44px -18px rgba(15, 30, 60, .35), 0 0 0 1px rgba(255, 255, 255, .7) inset; }
+  .sidenav li.gap { margin-top: 5px; padding-top: 5px; border-top: 1px solid transparent; margin-inline: 14px; transition: border-color .2s; }
+  .sidenav li.gap a { margin-inline: -14px; }
+  .sidenav:hover li.gap, .sidenav:focus-within li.gap { border-top-color: rgba(193, 198, 214, .6); }
+  .sidenav a { --grp: #5b6e7f; --grp-bg: #e6ebf1; display: flex; align-items: center; min-height: 34px; padding: 0 14px; border-radius: 8px;
     font: 600 13.5px/1 Inter, 'Noto Sans KR', sans-serif; color: #151b2b; white-space: nowrap; text-decoration: none; }
   .sidenav a[data-grp="1"] { --grp: #1f5fbf; --grp-bg: #e4eefb; }
   .sidenav a[data-grp="2"] { --grp: #0f766e; --grp-bg: #ddf1ee; }
   .sidenav a[data-grp="3"] { --grp: #b45309; --grp-bg: #fbeddd; }
-  /* rings: hollow ahead, filled once passed, larger with a halo for the one in view */
-  .sidenav i { flex: none; width: 12px; height: 12px; box-sizing: border-box; border-radius: 50%; background: #fff; border: 2px solid var(--grp);
-    transition: transform .2s, box-shadow .2s, background-color .2s; }
-  .sidenav a.is-done i { background: var(--grp); }
-  .sidenav a.is-current i { background: #fff; border-width: 3px; transform: scale(1.25); box-shadow: 0 0 0 4px var(--grp-bg); }
-  /* names: hidden, except the current one (a soft chip so it reads over the page); all of them while open */
-  .sidenav span { max-width: 0; margin-left: 0; padding: 3px 0; opacity: 0; overflow: hidden; line-height: 1.5;   /* room for the tails of g, y, p (overflow clips them at 1) */
-    border-radius: 999px; transition: max-width .25s, margin-left .25s, padding .25s, opacity .2s, background-color .2s, box-shadow .2s; }
-  .sidenav a.is-current span { max-width: 260px; margin-left: 8px; padding: 3px 11px; opacity: 1; color: var(--grp); font-weight: 700;
-    background: rgba(255, 255, 255, .92); box-shadow: 0 4px 14px -6px rgba(15, 30, 60, .3), 0 0 0 1px rgba(193, 198, 214, .5); }
-  .sidenav:hover span, .sidenav:focus-within span,
-  .sidenav:hover a.is-current span, .sidenav:focus-within a.is-current span { max-width: 260px; margin-left: 14px; padding: 3px 0; opacity: 1; background: none; box-shadow: none; }
-  .sidenav a:hover span { color: var(--grp); }
-  /* just chosen: back to the rail until the pointer leaves */
-  .sidenav.is-closed:hover::before, .sidenav.is-closed:focus-within::before { opacity: 0; }
-  .sidenav.is-closed:hover span, .sidenav.is-closed:focus-within span { max-width: 0; margin-left: 0; padding: 3px 0; opacity: 0; }
-  .sidenav.is-closed:hover a.is-current span, .sidenav.is-closed:focus-within a.is-current span { max-width: 260px; margin-left: 8px; padding: 3px 11px; opacity: 1;
-    background: rgba(255, 255, 255, .92); box-shadow: 0 4px 14px -6px rgba(15, 30, 60, .3), 0 0 0 1px rgba(193, 198, 214, .5); }
-  .sidenav a:focus-visible { outline: 2px solid #1765cc; outline-offset: 3px; border-radius: 8px; }
+  .sidenav i { flex: none; width: 14px; height: 3px; border-radius: 2px; background: var(--grp); opacity: .85; transition: width .2s, height .2s, opacity .2s; }
+  .sidenav a.is-current i { width: 28px; height: 4px; opacity: 1; }
+  .sidenav span { max-width: 0; margin-left: 0; opacity: 0; overflow: hidden; line-height: 1.5;   /* room for the tails of g, y, p (overflow clips them at 1) */
+    transition: max-width .25s, margin-left .25s, opacity .2s; }
+  .sidenav:hover span, .sidenav:focus-within span { max-width: 260px; margin-left: 14px; opacity: 1; }
+  .sidenav:hover a.is-current i, .sidenav:focus-within a.is-current i { width: 14px; }
+  .sidenav a.is-current span { color: var(--grp); font-weight: 700; }
+  .sidenav a:hover { background: var(--grp-bg); }
+  /* just chosen: back to the dashes until the pointer leaves */
+  .sidenav.is-closed:hover ol, .sidenav.is-closed:focus-within ol { background: rgba(255, 255, 255, 0); box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .sidenav.is-closed:hover span, .sidenav.is-closed:focus-within span { max-width: 0; margin-left: 0; opacity: 0; }
+  .sidenav.is-closed:hover a.is-current i, .sidenav.is-closed:focus-within a.is-current i { width: 28px; }
+  .sidenav.is-closed:hover li.gap, .sidenav.is-closed:focus-within li.gap { border-top-color: transparent; }
+  .sidenav.is-closed:hover a:hover, .sidenav.is-closed:focus-within a:hover { background: none; }
+  .sidenav a:focus-visible { outline: 2px solid #1765cc; outline-offset: -2px; }
 }
-@media (prefers-reduced-motion: reduce) { .sidenav, .sidenav ol::after, .sidenav i, .sidenav span, .sidenav::before { transition: none !important; } }
+@media (prefers-reduced-motion: reduce) { .sidenav, .sidenav ol, .sidenav i, .sidenav span, .sidenav li { transition: none !important; } }
 /* mobile menu: the tab links stay full-width rows inside their wrappers */
 @media (max-width: 767px) { #navLinks.nav-open .nav-item > a { display: block; width: 100%; } }
 
