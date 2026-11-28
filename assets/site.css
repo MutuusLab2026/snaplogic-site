@@ -1056,15 +1056,17 @@ html[lang="zh"] .hero-sub, html[lang="ja"] .hero-sub { font-family: inherit; }
   .hero-cat { font-size: 19px; white-space: normal; }   /* same steps as the section tagline (22 / 19px) */
 }
 
-/* Product page hero (2026-11-28): the home hero without the photo: one statement, then the name and a line about the product.
-   It sits inside the zoomed <main> on wide screens, so it cancels that zoom (its copy re-applies --hero-s like the home hero's). */
-.phero h1 { font-size: clamp(46px, 4.5vw, 64px); line-height: 1.06; max-width: 1000px; }
-/* shorter than the home hero (which has a photo to show): about 50% of the screen instead of 65%, so there is no empty band above and below the text */
-@media (min-width: 768px) { .phero { height: calc(var(--nav-h) + clamp(400px, (100svh - var(--nav-h)) * .5, 560px)); } }
+/* Product page hero (2026-11-28): the home hero without the photo: the statement, then one line with the name and what it is
+   (the home hero's category line, larger). It sits inside the zoomed <main> on wide screens, so it cancels that zoom (its
+   copy re-applies --hero-s like the home hero's). */
+.phero h1 { font-size: clamp(38px, 3.6vw, 52px); line-height: 1.08; max-width: 1000px; }
 .phero h1 em { font-style: normal; color: #7cb4ff; }
-.phero-name { margin: 32px 0 0; font: 700 24px/1.35 Inter, sans-serif; letter-spacing: -.01em; color: #dce7ef; }
-.phero-sub { margin: 10px 0 0; max-width: 640px; font-size: 17px; text-wrap: balance; }   /* two even lines: no orphan word or character on the second */
+.phero-name { margin: 26px 0 0; font: 500 clamp(18px, 1.8vw, 26px)/1.4 Inter, sans-serif; letter-spacing: -.015em; color: #bfd0dd; text-wrap: balance; }
+.phero-name b { font-weight: 700; color: #fff; }
 .phero-brm { display: none; }   /* phones only: "Every connection / engineered / with intent." (no lone "intent." on a third line) */
+/* no photo to show, so no height tied to the window: the text plus the same air above and below on every screen (72px at
+   scale 1, growing with the copy on wide screens) */
+@media (min-width: 768px) { .phero { height: auto; padding-top: calc(var(--nav-h) + 72px * var(--hero-s, 1)); padding-bottom: calc(72px * var(--hero-s, 1)); } }
 /* the same faint blueprint grid and blue glow as the last CTA (.cta3), fading out from the empty right side, so the hero
    is not a bare block of navy next to the text */
 .phero::before { content: ''; position: absolute; inset: 0; pointer-events: none;
@@ -1075,13 +1077,11 @@ html[lang="zh"] .hero-sub, html[lang="ja"] .hero-sub { font-family: inherit; }
 @media (min-width: 1101px) { body[data-page="product"] .phero { zoom: calc(1 / var(--hero-s, 1)); } }
 @media (max-width: 767px) {
   .phero .hero-copy { margin-top: 0; padding-top: 36px; }
-  .phero h1 { font-size: 34px; }
+  .phero h1 { font-size: 30px; }
   .phero-br { display: none; }
   .phero-brm { display: inline; }
-  .phero-brs { display: none; }   /* the two sentences just flow on phones */
   .phero::after { right: -30%; width: 420px; height: 420px; }
-  .phero-name { margin-top: 22px; font-size: 19px; }
-  .phero-sub { font-size: 15px; }
+  .phero-name { margin-top: 20px; font-size: 18px; }
 }
 .hero-bg.is-placed { opacity: 1; }
 @media (prefers-reduced-motion: reduce) { .hero-bg { transition: none; } }
