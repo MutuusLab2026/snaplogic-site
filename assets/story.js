@@ -100,7 +100,9 @@
     label.querySelector('.story-label-1 span').textContent = T.story_vega_sub;
     label.querySelector('.story-label-2').textContent = T.story_vega_line;
     svg.setAttribute('aria-label', T.story_aria);
+    updateCtl();
   }
+  var ctl = null, bar = null, bPause = null, bReplay = null, paused = false, ended = false;   // the progress bar and its two buttons (made below)
   setLabel();
   new MutationObserver(setLabel).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
 
@@ -146,14 +148,14 @@
       var tf = getComputedStyle(card).transform, m = tf && tf !== 'none' ? new DOMMatrixReadOnly(tf) : null;
       if (m) c = { left: c.left - m.e, right: c.right - m.e, top: c.top - m.f, bottom: c.bottom - m.f, width: c.width, height: c.height };
     }
-    var beside = c && c.width && c.left - b.left > b.width / 2 && c.top < b.bottom;
+    var beside = c && c.width && c.left - b.left > b.width / 2 && c.top < b.bottom, lo = 0, hi = 0;
     if (beside) {
       var k = b.width / VW;
       /* Across: centred between the left edge of the header's "VegaFencer" and the card's left edge (the page's
          content column), with 96px kept clear at each end (so the row sits apart from the card and in proportion to its smaller type). The row's ink runs from the first star tip (126s left of
          the first logo's centre) to the last logo's ring (108s right of the fourth), so it is moved 9s right. */
       var home = document.querySelector('#nav nav > a'), hr = home && home.getBoundingClientRect();
-      var lo = hr && hr.width ? hr.left - b.left : b.right - c.right, hi = c.left - b.left;
+      lo = hr && hr.width ? hr.left - b.left : b.right - c.right; hi = c.left - b.left;
       gap = Math.min(380, (hi - lo - 2 * 96) / k / 3.84);
       var s = gap / 304;
       var M = x0 + (lo + hi) / 2 / k;   // the column's middle, in picture units
@@ -173,10 +175,22 @@
       cx = M2 + 9 * vs; sx = M2 + 9 * 2.2;
       cy = vcy + 4 * vs - 1.08 * fs; sy = vcy - 10 * 2.2;
     }
+    AXISX = beside ? (lo + hi) / 2 : b.width / 2;   // visual px from the box's left: where the progress bar is centred (the logos' axis)
     SC = [sx, sy];
     ROW = { gap: gap, s: gap / 304, cx: cx, cy: cy, ny: cy + 123 * gap / 304 + 1.94 * fs };
     $('names').setAttribute('font-size', fs);
     for (var i = 0; i < 4; i++) { $('n' + i).setAttribute('x', cx + (i - 1.5) * gap); $('n' + i).setAttribute('y', ROW.ny); }
+    placeCtl();
+  }
+  /* The progress bar and its buttons sit at the picture's bottom, centred on the logos' axis (the middle of the column
+     left of the text card on wide screens, the picture's middle on narrow ones). Offsets are layout px, so the page's
+     zoom on wide screens is divided out. */
+  var AXISX = 0;
+  function placeCtl() {
+    if (!ctl) return;
+    var b = box.getBoundingClientRect(), st = ctl.parentNode.getBoundingClientRect(), z = b.width / box.offsetWidth || 1, art = box.parentNode;
+    ctl.style.left = ((b.left - st.left + AXISX) / z) + 'px';
+    ctl.style.top = (art.offsetTop + art.offsetHeight - 45) + 'px';
   }
   layout();
 
@@ -246,23 +260,56 @@
   }
 
   /* ---------- player: from the start each time it comes into view (and again after the text card has scrolled away) ---------- */
-  var relayout = function () { layout(); render(lastT); };
+  var relayout = function () { layout(); render(lastT); };   // layout() also places the progress bar
   if ('ResizeObserver' in window) { var ro = new ResizeObserver(relayout); ro.observe(box); if (card) ro.observe(card); }
   else window.addEventListener('resize', relayout);
   if (REDUCE) { render(END); return; }
-  var raf = 0, t0 = 0;
+  /* The progress bar (fills with the time), a pause / play button and a replay button, at the picture's bottom. Made only
+     when the animation plays (not for reduced motion). It shows while playing and stays full at the end; when the
+     text card has scrolled away and the animation goes back to its first frame, it hides until it plays again. */
+  var ICON = {
+    pause: '<svg viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="1" width="3" height="10" rx="1"/><rect x="7" y="1" width="3" height="10" rx="1"/></svg>',
+    play: '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.4v9.2L10.6 6z"/></svg>',
+    replay: '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1.2A4.8 4.8 0 1 0 10.6 7.4H9.2A3.5 3.5 0 1 1 6 2.5c.9 0 1.7.3 2.3.9L6.6 5.1H11V.7L9.6 2.1A4.8 4.8 0 0 0 6 1.2z"/></svg>'
+  };
+  ctl = document.createElement('div');
+  ctl.className = 'story-ctl off';
+  ctl.innerHTML = '<div class="story-bar" aria-hidden="true"><i></i></div><button type="button" class="story-btn"></button><button type="button" class="story-btn"></button>';
+  (document.getElementById('story') || box.parentNode.parentNode).appendChild(ctl);
+  bar = ctl.querySelector('.story-bar i'); bPause = ctl.querySelectorAll('.story-btn')[0]; bReplay = ctl.querySelectorAll('.story-btn')[1];
+  function updateCtl() {
+    if (!ctl) return;
+    var T = i18n[document.documentElement.lang] || i18n.ko;
+    var lp = paused ? (T.story_play || 'Play') : (T.story_pause || 'Pause'), lr = T.story_replay || 'Replay';
+    bPause.innerHTML = paused ? ICON.play : ICON.pause; bPause.setAttribute('aria-label', lp); bPause.title = lp; bPause.disabled = ended;
+    bReplay.innerHTML = ICON.replay; bReplay.setAttribute('aria-label', lr); bReplay.title = lr;
+  }
+  var setBar = function (t) { bar.style.transform = 'scaleX(' + (t / END).toFixed(4) + ')'; };
+  var raf = 0, t0 = 0, tPlay = 0;
   function frame(now) {
     var t = Math.min(END, (now - t0) / 1000);
-    render(t);
-    raf = t < END ? requestAnimationFrame(frame) : 0;
+    tPlay = t; render(t); setBar(t);
+    if (t < END) raf = requestAnimationFrame(frame);
+    else { raf = 0; ended = true; updateCtl(); }
   }
-  function start() { stop(); render(0); raf = requestAnimationFrame(function (now) { t0 = now; frame(now); }); }
+  function start() {
+    stop(); paused = false; ended = false; ctl.classList.remove('off'); updateCtl();
+    render(0); setBar(0); placeCtl();
+    raf = requestAnimationFrame(function (now) { t0 = now; frame(now); });
+  }
   function stop() { if (raf) cancelAnimationFrame(raf); raf = 0; }
+  bPause.addEventListener('click', function () {
+    if (paused) { paused = false; raf = requestAnimationFrame(function (now) { t0 = now - tPlay * 1000; frame(now); }); }
+    else if (raf) { stop(); paused = true; }
+    updateCtl();
+  });
+  bReplay.addEventListener('click', start);
+  placeCtl(); updateCtl();
   render(0);
   if (!('IntersectionObserver' in window)) { start(); return; }
   var inView = false, boxRatio = 0;
   var restart = function () { inView = true; start(); };
-  var reset = function () { inView = false; stop(); render(0); };
+  var reset = function () { inView = false; stop(); paused = false; ended = false; render(0); setBar(0); ctl.classList.add('off'); updateCtl(); };
   new IntersectionObserver(function (es) {
     var e = es[es.length - 1];
     boxRatio = e.intersectionRatio;

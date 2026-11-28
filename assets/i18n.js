@@ -1290,18 +1290,22 @@ Object.assign(i18n.ja, {
 Object.assign(i18n.ko, {
   story_vega_sub: '직녀성 · α Lyrae', story_vega_line: '별의 밝기에 대한 기준',
   story_aria: '항해사의 나침반이 가리키는 별 Vega가 VegaFencer 로고로 바뀌고, Install · Logic · Library · Symbol 네 로고로 펼쳐지는 애니메이션',
+  story_pause: "일시정지", story_play: "재생", story_replay: "다시 보기",
 });
 Object.assign(i18n.en, {
   story_vega_sub: 'α Lyrae', story_vega_line: 'The reference for the brightness of stars',
   story_aria: 'Animation: Vega, the star a navigator’s compass points to, becomes the VegaFencer logo and opens into the four logos Install, Logic, Library and Symbol',
+  story_pause: "Pause", story_play: "Play", story_replay: "Replay",
 });
 Object.assign(i18n.zh, {
   story_vega_sub: '织女星 · α Lyrae', story_vega_line: '星星亮度的基准',
   story_aria: '动画：航海者罗盘所指的织女星（Vega）变成VegaFencer标志，并展开为Install、Logic、Library、Symbol四个标志',
+  story_pause: "暂停", story_play: "播放", story_replay: "重播",
 });
 Object.assign(i18n.ja, {
   story_vega_sub: 'ベガ（織女星）· α Lyrae', story_vega_line: '星の明るさの基準',
   story_aria: 'アニメーション：航海士のコンパスが指す星ベガがVegaFencerのロゴに変わり、Install・Logic・Library・Symbolの4つのロゴに広がります',
+  story_pause: "一時停止", story_play: "再生", story_replay: "もう一度見る",
 });
 
 /* About page (about.html) and its menu tab. */
