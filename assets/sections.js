@@ -51,19 +51,19 @@
       </a>
 
       <p class="mod-gh" data-grp="2"><i></i><span data-i18n="mod_grp2">검증 · 관리</span></p>   <!-- group heading: phones only (engineering.css) -->
-      <a href="${here('product', '#power')}" data-mod="power" data-grp="2" class="group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
-        <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5"></div>
-        <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-primary-container transition-colors" translate="no" data-i18n="mod_power_title">Power Check</h3>
-        <span class="mod-sub" data-i18n="mod_power_sub">전원·퓨즈·부하 용량 점검</span>
-        <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n="mod_power_desc">전원·퓨즈·부하·접지 역할과 전류값으로 회로의 전원 용량을 점검합니다.</p>
-        <span class="mod-more" aria-hidden="true"><span data-i18n="gal_more">자세히 보기</span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
-      </a>
-
       <a href="${here('product', '#drc')}" data-mod="drc" data-grp="2" class="group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
         <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5"></div>
         <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-primary-container transition-colors" translate="no" data-i18n="mod_drc_title">DRC / BOM</h3>
         <span class="mod-sub" data-i18n="mod_drc_sub">24개 규칙 검증과 BOM 출력</span>
         <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n="mod_drc_desc">24개 DRC 규칙으로 설계 오류를 찾고, 와이어·커넥터 BOM을 출력합니다.</p>
+        <span class="mod-more" aria-hidden="true"><span data-i18n="gal_more">자세히 보기</span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
+      </a>
+
+      <a href="${here('product', '#power')}" data-mod="power" data-grp="2" class="group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5"></div>
+        <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-primary-container transition-colors" translate="no" data-i18n="mod_power_title">Power Check</h3>
+        <span class="mod-sub" data-i18n="mod_power_sub">전원·퓨즈·부하 용량 점검</span>
+        <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n="mod_power_desc">전원·퓨즈·부하·접지 역할과 전류값으로 회로의 전원 용량을 점검합니다.</p>
         <span class="mod-more" aria-hidden="true"><span data-i18n="gal_more">자세히 보기</span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
       </a>
 
@@ -84,19 +84,19 @@
       </a>
 
       <p class="mod-gh" data-grp="3"><i></i><span data-i18n="mod_grp3">협업 · 연동</span></p>   <!-- group heading: phones only (engineering.css) -->
-      <a href="${here('product', '#multiuser')}" data-mod="multiuser" data-grp="3" class="group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
-        <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5"></div>
-        <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-primary-container transition-colors" translate="no" data-i18n="mod_multiuser_title">Multiuser Environment</h3>
-        <span class="mod-sub" data-i18n="mod_multiuser_sub">서버 기반 동시 설계와 권한</span>
-        <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n="mod_multiuser_desc">Server/Client로 함께 설계합니다. 사용자별 권한, 편집 중 도면 자동 잠금.</p>
-        <span class="mod-more" aria-hidden="true"><span data-i18n="gal_more">자세히 보기</span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
-      </a>
-
       <a href="${here('product', '#ai')}" data-mod="ai" data-grp="3" class="group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
         <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5"></div>
         <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-primary-container transition-colors" translate="no" data-i18n="mod_ai_title">AI Assistant</h3>
         <span class="mod-sub" data-i18n="mod_ai_sub">자연어로 설계 데이터 조회·수정</span>
         <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n="mod_ai_desc">MCP 기반 AI 어시스턴트. 자연어로 설계 데이터를 조회·수정합니다.</p>
+        <span class="mod-more" aria-hidden="true"><span data-i18n="gal_more">자세히 보기</span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
+      </a>
+
+      <a href="${here('product', '#multiuser')}" data-mod="multiuser" data-grp="3" class="group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5"></div>
+        <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-primary-container transition-colors" translate="no" data-i18n="mod_multiuser_title">Multiuser Environment</h3>
+        <span class="mod-sub" data-i18n="mod_multiuser_sub">서버 기반 동시 설계와 권한</span>
+        <p class="font-body text-on-surface-variant text-[15px] leading-relaxed mb-4" data-i18n="mod_multiuser_desc">Server/Client로 함께 설계합니다. 사용자별 권한, 편집 중 도면 자동 잠금.</p>
         <span class="mod-more" aria-hidden="true"><span data-i18n="gal_more">자세히 보기</span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
       </a>
 
