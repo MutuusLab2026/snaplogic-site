@@ -173,14 +173,15 @@
     if (PORT && !beside) {   // phone (no card beside): the merged logo is centred on the picture, the four logos two by two
       var M2 = x0 + VW / 2, vcy = y0 + VH / 2;
       sx = M2 + 9 * 2.2; sy = vcy - 10 * 2.2;
-      /* Two by two: each block (star tip to the bottom of the name) is 254s + 2.16fs tall; the two blocks and a gap of 60
-         fill 87% of the picture's height. Across, the two columns are gx apart, the ink (126s left of a logo's centre to
-         108s right) moved 9s right to centre it. */
+      /* Two by two, close together and clear of the progress bar at the bottom: each block (star tip to the bottom of the
+         name) is 254s + 2.16fs tall; the two blocks and a gap of 40 fill at most 80% of the picture's height, and the
+         whole sits 20 units above the middle. Across, the two columns are gx apart, the ink (126s left of a logo's
+         centre to 108s right) moved 9s right to centre it. */
       fs = 32;
-      var s2 = Math.min(1.25, ((VH * 0.87 - 60) / 2 - 2.16 * fs) / 254), gx = Math.min(VW * 0.42, 380), blk = 254 * s2 + 2.16 * fs, top0 = vcy - (2 * blk + 60) / 2;
+      var s2 = Math.min(1.0, ((VH * 0.80 - 40) / 2 - 2.16 * fs) / 254), gx = Math.min(VW * 0.34, 330), blk = 254 * s2 + 2.16 * fs, top0 = vcy - 20 - (2 * blk + 40) / 2;
       grid = { s: s2, p: [] };
       for (var q = 0; q < 4; q++) {
-        var gcy = top0 + (q >> 1) * (blk + 60) + 131 * s2;
+        var gcy = top0 + (q >> 1) * (blk + 40) + 131 * s2;
         grid.p.push({ cx: M2 + ((q % 2) - 0.5) * gx + 9 * s2, cy: gcy, ny: gcy + 123 * s2 + 1.94 * fs });
       }
     }
