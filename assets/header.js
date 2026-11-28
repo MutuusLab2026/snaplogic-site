@@ -36,7 +36,7 @@ if (location.protocol === 'file:') {
   var menus = {
     product: [],   // built from productNav below (three columns)
     resources: [['sub_screens', '제품 화면', '#gallery'], ['sub_videos', '구동 영상', '#videos'], ['sub_docs', '문서', '#docs']],
-    pricing: [['pricing_title', '요금제', '#pricing'], ['nav_demo', '도입 문의', '#cta']]
+    pricing: [['pricing_title', '요금제', '#plans'], ['nav_demo', '도입 문의', '#cta']]
   };
   // The product page's sections, in page order: ONE list for the tab's card (below) and the floating menu on the left
   // of the page (site.js initSideNav). grp: 0 = no group, 1-3 = the Core Modules groups (design / verification and

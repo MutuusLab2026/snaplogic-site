@@ -545,6 +545,8 @@ body[data-page="product"] :is(#interface, #integrator, #drc, #power, #library, #
 body[data-page="product"] #product > div > .grid > a { background: #fff; }
 /* Notice on personal information: the site's paper tone (the template colour is a lavender tint) */
 body[data-page="privacy"] #privacy { background: var(--eng-paper); }
+/* Pricing page: the plans section on the paper tone, the navy CTA under it (as on the home page) */
+body[data-page="pricing"] #plans { background: var(--eng-paper); }
 /* Home, wide desktop: everything below the hero grows with the screen by the same factor as the hero and header
    (--hero-s, 1x at 1440 x 790), so on a big monitor the sections keep the proportions designed at 1440 instead of
    sitting small in the middle. zoom (not transform) so the page length grows with it. */
