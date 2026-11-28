@@ -17,7 +17,7 @@ if (location.protocol === 'file:') {
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[href]');
     if (!a) return;
-    var m = a.getAttribute('href').match(/^(product|resources|pricing|about|contact)(#.*)?$/);
+    var m = a.getAttribute('href').match(/^(product|resources|pricing|about|contact|privacy)(#.*)?$/);
     if (m) a.setAttribute('href', m[1] + '.html' + (m[2] || ''));
   }, true);
 }

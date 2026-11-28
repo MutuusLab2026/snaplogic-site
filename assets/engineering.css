@@ -339,7 +339,7 @@ html[lang="ko"] body { word-break: keep-all; overflow-wrap: break-word; }
   .lang-btn::after { content: ''; position: absolute; inset: -10px 0; } /* height by hit area: the header stays as thin */
   footer div.flex.flex-col.gap-2\.5 { gap: 0; }
   footer div.flex.flex-col.gap-2\.5 > a { min-height: 44px; display: flex; align-items: center; }
-  footer #contactForm input:not(.hp-field) { min-height: 44px; }
+  footer #contactForm input:not(.hp-field):not([type="checkbox"]) { min-height: 44px; }   /* the checkbox is the size of its text; its whole line is the tap target */
 }
 /* Module tags carry inline colours; darker ink keeps the same hue at ≥ 4.5:1 on their tints. */
 [data-i18n="mod_logic_tag"] { color: #1557b0 !important; }
@@ -543,6 +543,8 @@ body[data-page="home"] #integrator, body[data-page="home"] #ai, body[data-page="
 body[data-page="product"] :is(#product, #logic, #harness, #variant, #cta-ask, #multiuser, #plans) { background: var(--eng-paper); }
 body[data-page="product"] :is(#interface, #integrator, #drc, #power, #library, #ai, #bridge) { background: #fff; }
 body[data-page="product"] #product > div > .grid > a { background: #fff; }
+/* Notice on personal information: the site's paper tone (the template colour is a lavender tint) */
+body[data-page="privacy"] #privacy { background: var(--eng-paper); }
 /* Home, wide desktop: everything below the hero grows with the screen by the same factor as the hero and header
    (--hero-s, 1x at 1440 x 790), so on a big monitor the sections keep the proportions designed at 1440 instead of
    sitting small in the middle. zoom (not transform) so the page length grows with it. */
@@ -924,7 +926,7 @@ body[data-page="about"] .cta3 .radial-glow { -webkit-mask-image: linear-gradient
 .cta3-form .consent input { accent-color: #7be4ee; }
 .cta3-form .consent input:focus-visible { outline-color: #7cb4ff; }
 .cta3-form .consent b { color: #e6eef6; }
-.cta3-form .consent small { color: #a9b7c4; }
+.cta3-form .consent-more { color: #7cb4ff; }
 .cta3-input { min-width: 0; height: 54px; padding: 0 18px; border-radius: 10.5px; border: 1px solid rgba(124, 180, 255, .35); background: rgba(255, 255, 255, .06); color: #fff; font: 400 16px Inter, 'Noto Sans KR', sans-serif; }
 .cta3-input::placeholder { color: #8a97a5; }
 .cta3-input:focus { outline: 2px solid #7cb4ff; outline-offset: 2px; }

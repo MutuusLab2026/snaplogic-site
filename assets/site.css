@@ -1160,15 +1160,30 @@ html[lang="zh"] .hero-sub, html[lang="ja"] .hero-sub { font-family: inherit; }
 /* ---- Consent box under every form (2026-11-27): "I agree to the collection and use of my personal information" with
    what is collected and that it passes through a server abroad (Formspree). Light by default; the footer's form is
    small, the last CTA (navy) has its own colours in engineering.css. ---- */
-.consent { display: flex; gap: 10px; align-items: flex-start; text-align: left; cursor: pointer; }
-.consent input { flex: none; width: 18px; height: 18px; margin: 2px 0 0; padding: 0; accent-color: #1a73e8; cursor: pointer; }
+/* Consent line (2026-11-28): the checkbox is as big as the text (1.1em) and sits level with its first line; the small print under it is
+   gone (the notice is on /privacy, linked at the end of the line). 3px above and below the one-line text make a 24px target (WCAG 2.2). */
+.consent { display: flex; gap: 10px; align-items: flex-start; text-align: left; cursor: pointer; padding-block: 3px; min-height: 24px; font: 400 13px/1.4 'Manrope', 'Noto Sans KR', sans-serif; }
+.consent input { flex: none; width: 1.1em; height: 1.1em; margin: calc((1.4em - 1.1em) / 2) 0 0; padding: 0; font-size: inherit; accent-color: #1a73e8; cursor: pointer; }
 .consent input:focus-visible { outline: 2px solid #1a73e8; outline-offset: 2px; box-shadow: none; }
-.consent b { display: block; font: 600 13px/1.4 'Manrope', 'Noto Sans KR', sans-serif; color: #151b2b; }
-.consent small { display: block; margin-top: 3px; font: 400 12px/1.55 'Manrope', 'Noto Sans KR', sans-serif; color: #5b6572; }
+.consent b { display: inline; font-weight: 600; color: #151b2b; }
+.consent-more { margin-left: 8px; font-weight: 500; color: #1765cc; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+.consent-more:hover { color: #0f4fa3; }
+.consent-more:focus-visible { outline: 2px solid #1765cc; outline-offset: 2px; border-radius: 2px; }
 .contact-form label.consent { display: flex; gap: 10px; font-weight: inherit; }   /* beats the form's grid labels */
-.contact-form .consent input { width: 18px; padding: 0; border-radius: 4px; }
-.footer-contact .consent b { font-size: 12.5px; }
-.footer-contact .consent small { font-size: 12px; }
+.contact-form .consent input { width: 1.1em; padding: 0; border-radius: 4px; }
+.footer-contact .consent { font-size: 12.5px; }
+#contactForm .consent input { width: 1.1em; height: 1.1em; padding: 0; font-size: inherit; }   /* not the phone rule that enlarges the form's text fields (#contactForm input) */
+
+footer [data-i18n-html="footer_legal"] a { text-decoration: underline; text-underline-offset: 3px; }
+footer [data-i18n-html="footer_legal"] a:hover { color: #1765cc; }
+footer [data-i18n-html="footer_legal"] a:focus-visible { outline: 2px solid #1765cc; outline-offset: 2px; border-radius: 2px; }
+
+/* Notice on personal information (privacy.html) */
+.priv-list { margin: 36px 0 0; display: grid; gap: 14px; }
+.priv-list > div { background: #fff; border: 1px solid #dfe5eb; border-radius: 14px; padding: 22px 26px; }
+.priv-list dt { font: 700 16px/1.4 Inter, 'Noto Sans KR', sans-serif; color: #151b2b; }
+.priv-list dd { margin: 8px 0 0; font: 400 15px/1.7 Manrope, 'Noto Sans KR', sans-serif; color: #414754; }
+@media (max-width: 767px) { .priv-list > div { padding: 18px 20px; } .priv-list dd { font-size: 14px; } }
 
 /* ---- About page: progress bar under the Brand Story animation (story.js), with pause / play and replay buttons ---- */
 .story-ctl { position: absolute; z-index: 3; width: 180px; transform: translateX(-50%); transition: opacity .35s, visibility 0s; }   /* only the bar is centred; the buttons hang to its right */

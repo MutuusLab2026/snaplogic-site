@@ -168,8 +168,6 @@ const i18n = {
     cta_error: "전송에 실패했습니다. 다시 시도해주세요.",
     cta_business_only: "업무용 이메일을 입력해주세요. (Gmail 등 개인 이메일 불가)",
     consent_label: "개인정보 수집·이용에 동의합니다. (필수)",
-    consent_detail: "문의 응대를 위해 입력하신 이름, 회사명, 이메일, 전화번호(선택), 문의 내용을 수집하며, 이 정보는 해외 서버(Formspree, 미국)를 거쳐 전달됩니다.",
-    consent_detail_email: "상담 연락을 위해 입력하신 이메일을 수집하며, 이 정보는 해외 서버(Formspree, 미국)를 거쳐 전달됩니다.",
     consent_required: "개인정보 수집·이용에 동의해 주세요.",
 
     // Footer
@@ -191,7 +189,7 @@ const i18n = {
     contact_success: "감사합니다! 곧 답변드리겠습니다.",
     contact_error: "전송에 실패했습니다. 다시 시도해주세요.",
     footer_copy: "&copy; 2026 VegaFencer. All rights reserved.",
-    footer_legal: "Privacy &middot; Terms &middot; Security",
+    footer_legal: "<a href=\"privacy\">Privacy</a> &middot; Terms &middot; Security",
     ai_tab_chat: "AI Chat — 설계 질의",
     ai_tab_agent: "AI Agent — 설계 자동화",
     ai_tab_shot: "실제 화면",
@@ -423,8 +421,6 @@ const i18n = {
     cta_error: "Failed to send. Please try again.",
     cta_business_only: "Please enter a business email. (No personal email like Gmail)",
     consent_label: "I agree to the collection and use of my personal information. (Required)",
-    consent_detail: "We collect the name, company, email, phone number (optional) and message you enter in order to reply to your inquiry. This information is passed through servers abroad (Formspree, USA).",
-    consent_detail_email: "We collect the email address you enter in order to contact you about your inquiry. This information is passed through servers abroad (Formspree, USA).",
     consent_required: "Please agree to the collection and use of your personal information.",
 
     // Footer
@@ -446,7 +442,7 @@ const i18n = {
     contact_success: "Thank you! We'll get back to you soon.",
     contact_error: "Failed to send. Please try again.",
     footer_copy: "&copy; 2026 VegaFencer. All rights reserved.",
-    footer_legal: "Privacy &middot; Terms &middot; Security",
+    footer_legal: "<a href=\"privacy\">Privacy</a> &middot; Terms &middot; Security",
     ai_tab_chat: "AI Chat — Design Q&A",
     ai_tab_agent: "AI Agent — Design Automation",
     ai_tab_shot: "Screenshot",
@@ -678,8 +674,6 @@ const i18n = {
     cta_error: "发送失败，请重试。",
     cta_business_only: "请输入企业邮箱（不支持Gmail等个人邮箱）",
     consent_label: "我同意收集和使用我的个人信息。（必填）",
-    consent_detail: "为答复您的咨询，我们将收集您填写的姓名、公司名称、电子邮箱、电话号码（选填）和咨询内容，这些信息将经由境外服务器（Formspree，美国）传送。",
-    consent_detail_email: "为就您的咨询与您联系，我们将收集您填写的电子邮箱，该信息将经由境外服务器（Formspree，美国）传送。",
     consent_required: "请同意收集和使用个人信息。",
 
     // Footer
@@ -701,7 +695,7 @@ const i18n = {
     contact_success: "谢谢！我们会尽快回复。",
     contact_error: "发送失败，请重试。",
     footer_copy: "&copy; 2026 VegaFencer. All rights reserved.",
-    footer_legal: "隐私政策 &middot; 条款 &middot; 安全",
+    footer_legal: "<a href=\"privacy\">隐私政策</a> &middot; 条款 &middot; 安全",
     ai_tab_chat: "AI Chat — 设计问答",
     ai_tab_agent: "AI Agent — 设计自动化",
     ai_tab_shot: "实际画面",
@@ -934,8 +928,6 @@ const i18n = {
     cta_error: "送信に失敗しました。もう一度お試しください。",
     cta_business_only: "業務用メールアドレスを入力してください（Gmail等の個人メール不可）",
     consent_label: "個人情報の収集・利用に同意します。（必須）",
-    consent_detail: "お問い合わせへの対応のため、入力いただいたお名前、会社名、メールアドレス、電話番号（任意）、お問い合わせ内容を収集します。これらの情報は海外のサーバー（Formspree、米国）を経由して送信されます。",
-    consent_detail_email: "ご連絡のため、入力いただいたメールアドレスを収集します。この情報は海外のサーバー（Formspree、米国）を経由して送信されます。",
     consent_required: "個人情報の収集・利用に同意してください。",
 
     // Footer
@@ -957,7 +949,7 @@ const i18n = {
     contact_success: "ありがとうございます！折り返しご連絡いたします。",
     contact_error: "送信に失敗しました。もう一度お試しください。",
     footer_copy: "&copy; 2026 VegaFencer. All rights reserved.",
-    footer_legal: "プライバシー &middot; 利用規約 &middot; セキュリティ",
+    footer_legal: "<a href=\"privacy\">プライバシー</a> &middot; 利用規約 &middot; セキュリティ",
     ai_tab_chat: "AI Chat — 設計クエリ",
     ai_tab_agent: "AI Agent — 設計自動化",
     ai_tab_shot: "実際の画面",
@@ -1575,3 +1567,41 @@ i18n.ko.sidenav_label = "제품 페이지 섹션";
 i18n.en.sidenav_label = "Product page sections";
 i18n.zh.sidenav_label = "产品页面章节";
 i18n.ja.sidenav_label = "製品ページのセクション";
+
+/* Notice on personal information (privacy.html) and the consent line's link to it, 2026-11-28 */
+Object.assign(i18n.ko, {
+  consent_more: "안내 보기",
+  priv_title: "개인정보 수집·이용 안내",
+  priv_lead: "VegaFencer 웹사이트의 문의 양식에 입력하신 정보는 아래와 같이 수집·이용되며, 해외 서버를 거쳐 전달됩니다.",
+  priv_s1_t: "수집 항목", priv_s1_d: "문의 양식: 이름, 회사명, 이메일, 전화번호(선택), 문의 내용. 상담 신청(이메일 입력): 이메일.",
+  priv_s2_t: "이용 목적", priv_s2_d: "문의 응대와 상담 연락.",
+  priv_s3_t: "해외 서버를 통한 전달", priv_s3_d: "입력하신 정보는 양식 전송 서비스 Formspree(미국)의 서버를 거쳐 담당자에게 전달됩니다.",
+  priv_s4_t: "동의", priv_s4_d: "동의는 문의 접수에 필요합니다. 동의하지 않으시면 양식을 보내실 수 없습니다.",
+});
+Object.assign(i18n.en, {
+  consent_more: "Details",
+  priv_title: "Notice on personal information",
+  priv_lead: "The information you enter in the contact forms on the VegaFencer website is collected and used as described below, and is passed through a server abroad.",
+  priv_s1_t: "What we collect", priv_s1_d: "Contact form: name, company, email, phone number (optional) and message. Consultation request (email field): email address.",
+  priv_s2_t: "What we use it for", priv_s2_d: "Replying to your inquiry and contacting you about it.",
+  priv_s3_t: "Passed through a server abroad", priv_s3_d: "The information you enter is passed to our team through the servers of the form service Formspree (USA).",
+  priv_s4_t: "Consent", priv_s4_d: "Consent is needed to receive your inquiry. Without it the form cannot be sent.",
+});
+Object.assign(i18n.zh, {
+  consent_more: "查看说明",
+  priv_title: "个人信息收集与使用说明",
+  priv_lead: "您在 VegaFencer 网站咨询表单中填写的信息将按下列方式收集和使用，并经由境外服务器传送。",
+  priv_s1_t: "收集项目", priv_s1_d: "咨询表单：姓名、公司名称、电子邮箱、电话号码（选填）、咨询内容。咨询申请（填写邮箱）：电子邮箱。",
+  priv_s2_t: "使用目的", priv_s2_d: "答复咨询并就咨询与您联系。",
+  priv_s3_t: "经由境外服务器传送", priv_s3_d: "您填写的信息将经由表单发送服务 Formspree（美国）的服务器传送给负责人。",
+  priv_s4_t: "同意", priv_s4_d: "接收咨询需要您的同意。未同意则无法发送表单。",
+});
+Object.assign(i18n.ja, {
+  consent_more: "詳細を見る",
+  priv_title: "個人情報の収集・利用について",
+  priv_lead: "VegaFencer\u2060ウェブサイトのお問い合わせフォームに入力された情報は、以下のとおり収集・利用され、海外のサーバーを経由して送信されます。",
+  priv_s1_t: "収集する項目", priv_s1_d: "お問い合わせフォーム：お名前、会社名、メールアドレス、電話番号（任意）、お問い合わせ内容。ご相談のお申し込み（メール入力）：メールアドレス。",
+  priv_s2_t: "利用目的", priv_s2_d: "お問い合わせへの対応とご連絡。",
+  priv_s3_t: "海外サーバーを経由した送信", priv_s3_d: "入力された情報は、フォーム送信サービス Formspree（米国）のサーバーを経由して担当者に届けられます。",
+  priv_s4_t: "同意", priv_s4_d: "お問い合わせの受け付けには同意が必要です。同意いただけない場合、フォームは送信できません。",
+});
