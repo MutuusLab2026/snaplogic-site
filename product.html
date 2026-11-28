@@ -27,14 +27,14 @@
 <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 
-<link rel="stylesheet" href="assets/tailwind.css?v=2b20e8e2">
-<link rel="stylesheet" href="assets/site.css?v=bb27ff31">
-<link rel="stylesheet" href="assets/engineering.css?v=d2f1b10d">
+<link rel="stylesheet" href="assets/tailwind.css?v=8238d403">
+<link rel="stylesheet" href="assets/site.css?v=c56e70a5">
+<link rel="stylesheet" href="assets/engineering.css?v=36b99b9d">
 </head>
 <body class="bg-surface antialiased" data-page="product">
 
 <script src="assets/header.js?v=7dcbf50d"></script>
-<script src="assets/sections.js?v=bce551ad"></script>
+<script src="assets/sections.js?v=536dc9dc"></script>
 
 <main id="main" class="page-top">
 <!-- Sections of this page -->
@@ -43,8 +43,8 @@
     <a href="#product" data-i18n="sub_modules">핵심 모듈</a>
     <a href="#workflow" data-i18n="sub_workflow">워크플로우</a>
     <a href="#ai" data-i18n="sub_ai">AI 어시스턴트</a>
-    <a href="#integrations" data-i18n="sub_integrations">CAD 연동</a>
-    <a href="#enterprise" data-i18n="sub_team">팀 협업</a>
+    <a href="#multiuser" data-i18n="sub_team">팀 협업</a>
+    <a href="#bridge" data-i18n="sub_integrations">CAD 연동</a>
   </div>
 </nav>
 
@@ -57,7 +57,7 @@
 <!-- ============================================================
      USER INTERFACE (the screen layout every module shares)
      ============================================================ -->
-<section class="py-12 md:py-24 bg-surface-container-low" id="interface">
+<section class="py-12 md:py-24" id="interface">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
     <header class="reveal lg-head">
       <p class="lg-kicker">OVERVIEW</p>
@@ -65,7 +65,7 @@
       <p class="lg-tagline" data-i18n="ui_title">세 가지의 모듈, 한 가지의 화면 구성</p>
       <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead" data-i18n-html="ui_desc">VegaFencer의 Logic, Integrator, Harness 모듈은 E/E 엔지니어에게 최적화된 화면구성을 제공합니다.<br>화면에 마우스를 올려 각 영역을 직접 살펴보세요.</p>
     </header>
-    <div class="reveal reveal-delay-1">
+    <div class="reveal reveal-delay-1 lg-tour-row">
       <figure class="lg-tour" id="logicTour">
         <img src="assets/img/logic-editor-ui.webp" width="1894" height="1020" loading="lazy" decoding="async" alt="VegaFencer Logic editor">
         <span class="lg-area" data-area="1" style="left:0;top:6.6%;width:100%;height:10.4%"></span>
@@ -88,19 +88,17 @@
 </section>
 
 <!-- ============================================================
-     FEATURE: LOGIC
+     MODULE 01 — LOGIC
      ============================================================ -->
-<section class="py-12 md:py-24" id="logic">
+<section class="mod-sec py-12 md:py-24" id="logic">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-
-    <!-- Module header and checklist (left), the module's screen (right): same layout as Integrator and Harness -->
     <div class="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
       <div class="reveal">
-        <header class="lg-head" id="logicHead">
-          <p class="lg-kicker">MODULE 01</p>
+        <header class="lg-head">
+          <p class="lg-kicker" translate="no">MODULE 01</p>
           <h2 class="lg-name" translate="no">Logic</h2>
           <p class="lg-tagline" data-i18n="lg_title">전기적 설계 의도의 Source of Truth</p>
-          <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead mb-6" data-i18n-html="lg_lead">Logic은 시스템의 구성 요소들이 서로 어떤 관계로 연결되어야 하는지를 정의합니다.<br>하네스 설계의 기준이 되는 전기적 의도를 한곳에서 관리합니다.</p>
+          <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead mb-6" data-i18n-html="lg_lead">Logic은 시스템의 구성 요소들이 서로 어떤 관계로 연결되어야 하는지를 정의합니다. <br>하네스 설계의 기준이 되는 전기적 의도를 한곳에서 관리합니다.</p>
         </header>
         <ul class="space-y-3">
           <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
@@ -122,46 +120,112 @@
         </ul>
       </div>
       <div class="reveal reveal-delay-2">
-        <!-- engineering.js adds FIG. 01 under the first .rounded-2xl card in #logic -->
-        <div class="bg-white rounded-2xl shadow-lg shadow-on-surface/5 overflow-hidden border border-outline-variant/15">
-          <img src="assets/img/logic-editor-ui.webp" width="1894" height="1020" alt="VegaFencer Logic screen" loading="lazy" class="w-full block">
-        </div>
+        <div class="ga-frame"><div class="ga-bar" aria-hidden="true"><i></i><i></i><i></i><span translate="no">VegaFencer — Logic</span></div><img src="assets/img/logic-editor-ui.webp" width="1894" height="1020" alt="" loading="lazy" decoding="async"></div>
       </div>
     </div>
-
   </div>
 </section>
+<!-- ============================================================
+     MODULE 02–03 — INTEGRATOR, HARNESS (shared with the home page: edit in assets/sections.js)
+     ============================================================ -->
+<script src="assets/section.js?v=75b55412" data-section="integrator" data-frame></script>
+<script src="assets/section.js?v=75b55412" data-section="harness" data-frame></script>
 
 <!-- ============================================================
-     FEATURE: INTEGRATOR
+     MODULE 04 — DRC / BOM
      ============================================================ -->
-<!-- shared with the other page: edit in assets/sections.js -->
-<script src="assets/section.js?v=75b55412" data-section="integrator"></script>
-
-<!-- ============================================================
-     FEATURE: HARNESS DRAWING
-     ============================================================ -->
-<!-- shared with the other page: edit in assets/sections.js -->
-<script src="assets/section.js?v=75b55412" data-section="harness"></script>
-
-<!-- ============================================================
-     FEATURE: VARIANT / DRC / BOM
-     ============================================================ -->
-<section class="py-12 md:py-24 bg-surface-container-low" id="variant">
+<section class="mod-sec py-12 md:py-24" id="drc">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
     <div class="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
-      <div class="reveal reveal-delay-2 order-2 lg:order-1 flex flex-col gap-4">
-        <div class="bg-white rounded-2xl shadow-lg shadow-on-surface/5 overflow-hidden border border-outline-variant/15">
-          <img src="assets/img/variant-config.jpg" alt="VegaFencer Variant Configuration" width="1280" height="720" loading="lazy" class="w-full block">
-        </div>
-        <div class="bg-white rounded-2xl shadow-lg shadow-on-surface/5 overflow-hidden border border-outline-variant/15">
-          <img src="assets/img/drc-bom-report.jpg" alt="VegaFencer DRC/BOM Report" width="1280" height="720" loading="lazy" class="w-full block">
-        </div>
+      <div class="reveal">
+        <header class="lg-head">
+          <p class="lg-kicker" translate="no">MODULE 04</p>
+          <h2 class="lg-name" translate="no">DRC / BOM</h2>
+          <p class="lg-tagline" data-i18n="drc_title">설계 규칙 검증과 BOM 리포트</p>
+          <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead mb-6" data-i18n-html="drc_lead">DRC는 24개 설계 규칙으로 연결 누락과 데이터 불일치를 찾아냅니다. <br>BOM 리포트는 Variant·Option·Configuration별 와이어 리스트와 커넥터 리스트를 출력합니다.</p>
+        </header>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
+            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
+            <span data-i18n="drc_r1">Connectivity — 끊긴 연결과 미연결 오브젝트 검사</span>
+          </li>
+          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
+            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
+            <span data-i18n="drc_r2">Consistency — 부품 번호·하네스 코드·옵션 일관성 검사</span>
+          </li>
+          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
+            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
+            <span data-i18n="drc_r3">Naming — 이름 없는 와이어·커넥터·디바이스 검사</span>
+          </li>
+          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
+            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
+            <span data-i18n="drc_r4">Variant·Option·Configuration별 와이어·커넥터 리스트</span>
+          </li>
+        </ul>
       </div>
-      <div class="reveal order-1 lg:order-2">
-        <p class="font-label text-xs font-bold tracking-[0.2em] uppercase text-tertiary mb-3" data-i18n="feat_variant_label">VARIANT / DRC / BOM</p>
-        <h2 class="font-headline font-black text-2xl sm:text-3xl md:text-4xl tracking-tight text-on-surface mb-5" data-i18n="feat_variant_title">구성 관리와 품질 검증</h2>
-        <p class="font-body text-on-surface-variant text-base leading-relaxed mb-6" data-i18n="feat_variant_desc">Variant, Option, Vehicle Configuration별 다이어그램 필터링과 24개 DRC 규칙으로 설계 품질을 보장합니다.</p>
+      <div class="reveal reveal-delay-2">
+        <!-- screen to come: the old DRC/BOM slide shows the program's former name -->
+        <div class="ga-frame"><div class="ga-bar" aria-hidden="true"><i></i><i></i><i></i><span translate="no">VegaFencer — DRC / BOM</span></div><div class="ga-empty"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ============================================================
+     WORKFLOW (shared: edit in assets/sections.js)
+     ============================================================ -->
+<script src="assets/section.js?v=75b55412" data-section="workflow"></script>
+
+<!-- ============================================================
+     MODULE 05 — POWER CHECK
+     ============================================================ -->
+<section class="mod-sec py-12 md:py-24" id="power">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+    <div class="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
+      <div class="reveal">
+        <header class="lg-head">
+          <p class="lg-kicker" translate="no">MODULE 05</p>
+          <h2 class="lg-name" translate="no">Power Check</h2>
+          <p class="lg-tagline" data-i18n="pw_title">퓨즈 적합성과 전압 강하 검증</p>
+          <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead mb-6" data-i18n-html="pw_lead">Power Check는 전원에서 접지까지 회로 연결을 추적해 전원 분배를 검증합니다. <br>번들 길이와 허용 전류를 반영해 퓨즈 적합성과 전압 강하를 확인합니다.</p>
+        </header>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
+            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
+            <span data-i18n="pw_r1">와이어 리스트·넷 리스트로 전원에서 접지까지 회로 추적</span>
+          </li>
+          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
+            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
+            <span data-i18n="pw_r2">부하 타입과 전류값 일괄 설정</span>
+          </li>
+          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
+            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
+            <span data-i18n="pw_r3">번들 내 와이어 수에 따른 허용 전류(Ampacity) 반영</span>
+          </li>
+          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
+            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
+            <span data-i18n="pw_r4">DRC 메시지 창에서 검증 근거와 회로 추적</span>
+          </li>
+        </ul>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="ga-frame"><div class="ga-bar" aria-hidden="true"><i></i><i></i><i></i><span translate="no">VegaFencer — Power Check</span></div><img src="assets/img/power-check-ws.webp" width="1017" height="548" alt="" loading="lazy" decoding="async"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ============================================================
+     MODULE 06 — VARIANT / OPTION CONFIGURATION
+     ============================================================ -->
+<section class="mod-sec py-12 md:py-24" id="variant">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+    <div class="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
+      <div class="reveal">
+        <header class="lg-head">
+          <p class="lg-kicker" translate="no">MODULE 06</p>
+          <h2 class="lg-name" translate="no">Variant / Option Configuration</h2>
+          <p class="lg-tagline" data-i18n="va_title">사양·옵션별 구성 관리</p>
+          <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead mb-6" data-i18n-html="va_lead">하네스 레벨마다 Variant·Option을 구성하고, 하네스 조합으로 차량 구성을 정의합니다. <br>Worst-case 설계 안에서 선택한 구성에 해당하는 내용만 화면에 표시합니다.</p>
+        </header>
         <ul class="space-y-3">
           <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
             <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
@@ -173,28 +237,120 @@
           </li>
           <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
             <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="feat_variant_c3">DRC — Connectivity(6), Consistency(13), Naming(5)</span>
+            <span data-i18n="va_r3">선택한 구성으로 다이어그램과 토폴로지 필터링</span>
           </li>
           <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
             <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="feat_variant_c4">BOM Report — Wire list, Connector list</span>
+            <span data-i18n="va_r4">구성별 BOM 리포트와 Power Check 적용</span>
           </li>
         </ul>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <!-- far from 2:1, so its own aspect-ratio (shown whole, not cropped) -->
+        <div class="ga-frame"><div class="ga-bar" aria-hidden="true"><i></i><i></i><i></i><span translate="no">VegaFencer — Variant / Option Configuration</span></div><img style="aspect-ratio: 1920 / 827" src="assets/img/variant-ws.webp" width="1920" height="827" alt="" loading="lazy" decoding="async"></div>
       </div>
     </div>
   </div>
 </section>
-
 <!-- ============================================================
-     FEATURE: BRIDGE
+     MODULE 07 — LIBRARY SYMBOL EDITOR
      ============================================================ -->
-<section class="py-12 md:py-24 bg-surface-container-low" id="bridge">
+<section class="mod-sec py-12 md:py-24" id="library">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
     <div class="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
       <div class="reveal">
-        <p class="font-label text-xs font-bold tracking-[0.2em] uppercase text-primary-container mb-3" data-i18n="feat_bridge_label">VEGAFENCER BRIDGE</p>
-        <h2 class="font-headline font-black text-2xl sm:text-3xl md:text-4xl tracking-tight text-on-surface mb-5" data-i18n="feat_bridge_title">3D CAD와의 양방향 상호운용성</h2>
-        <p class="font-body text-on-surface-variant text-base leading-relaxed mb-6" data-i18n="feat_bridge_desc">Dassault Syst&egrave;mes CATIA V5와 Siemens NX와의 상호운용성을 지원하여, 서로 다른 설계 환경 간에도 일관된 데이터 흐름을 유지합니다.</p>
+        <header class="lg-head">
+          <p class="lg-kicker" translate="no">MODULE 07</p>
+          <h2 class="lg-name" translate="no">Library Symbol Editor</h2>
+          <p class="lg-tagline" data-i18n="lb_title">표준 라이브러리와 심볼 공유</p>
+          <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead mb-6" data-i18n-html="lb_lead">Library Symbol Editor는 서버에 접속한 모든 사용자에게 표준화된 라이브러리와 심볼을 공유합니다. <br>수정과 변경은 Librarian 권한을 가진 사용자만 할 수 있습니다.</p>
+        </header>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
+            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
+            <span data-i18n="lb_r1">핀·캐비티 속성 지정</span>
+          </li>
+          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
+            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
+            <span data-i18n="lb_r2">DXF/DWG 포맷 가져오기</span>
+          </li>
+          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
+            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
+            <span data-i18n="lb_r3">서버에서 심볼 검색</span>
+          </li>
+          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
+            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
+            <span data-i18n="lb_r4">기존 라이브러리에 파트 추가 마이그레이션</span>
+          </li>
+        </ul>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="ga-frame"><div class="ga-bar" aria-hidden="true"><i></i><i></i><i></i><span translate="no">VegaFencer — Library Symbol Editor</span></div><img src="assets/img/library-ws.webp" width="984" height="514" alt="" loading="lazy" decoding="async"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ============================================================
+     CTA 1 — the switch card (shared with the home page: edit in assets/sections.js)
+     ============================================================ -->
+<script src="assets/section.js?v=75b55412" data-section="ask"></script>
+
+<!-- ============================================================
+     MODULE 08 — AI ASSISTANT (shared with the home page: edit in assets/sections.js)
+     ============================================================ -->
+<script src="assets/section.js?v=75b55412" data-section="ai" data-kicker="MODULE 08"></script>
+
+<!-- ============================================================
+     MODULE 09 — MULTIUSER ENVIRONMENT
+     ============================================================ -->
+<section class="mod-sec py-12 md:py-24" id="multiuser">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+    <div class="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
+      <div class="reveal">
+        <header class="lg-head">
+          <p class="lg-kicker" translate="no">MODULE 09</p>
+          <h2 class="lg-name" translate="no">Multiuser Environment</h2>
+          <p class="lg-tagline" data-i18n="ent_title">팀 전체가 함께 설계하는 환경</p>
+          <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead mb-6" data-i18n-html="mu_lead">Server/Client 환경에서 여러 사용자가 한 프로젝트를 동시에 설계합니다. <br>편집 중인 도면과 공유 커넥터의 핀 정보는 실시간으로 잠기고 공유됩니다.</p>
+        </header>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
+            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
+            <span data-i18n="ent_c1">역할 & 설정 — Project 단위의 권한 부여 및 강제</span>
+          </li>
+          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
+            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
+            <span data-i18n="ent_c2">실시간 Diagram lock/unlock, Offpage Wire, 연계 작업 시간 공유</span>
+          </li>
+          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
+            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
+            <span data-i18n="ent_c3">Shared Connector의 Pin Level Lock — 중복 사용 원천 방지</span>
+          </li>
+          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
+            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
+            <span data-i18n="ent_c4">Enterprise급 PostgreSQL + ASP.NET Core (Kestrel) — Windows/Linux, Docker 배포</span>
+          </li>
+        </ul>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="ga-frame"><div class="ga-bar" aria-hidden="true"><i></i><i></i><i></i><span translate="no">VegaFencer — Multiuser Environment</span></div><img src="assets/img/multiuser-ws.webp" width="1562" height="816" alt="" loading="lazy" decoding="async"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ============================================================
+     MODULE 10 — 3D CAD BRIDGE
+     ============================================================ -->
+<section class="mod-sec py-12 md:py-24" id="bridge">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+    <div class="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
+      <div class="reveal">
+        <header class="lg-head">
+          <p class="lg-kicker" translate="no">MODULE 10</p>
+          <h2 class="lg-name" translate="no">3D CAD Bridge</h2>
+          <p class="lg-tagline" data-i18n="feat_bridge_title">3D CAD와의 양방향 상호운용성</p>
+          <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead mb-6" data-i18n-html="feat_bridge_desc">Dassault Systèmes CATIA V5와 Siemens NX와의 상호운용성을 지원하여, 서로 다른 설계 환경 간에도 일관된 데이터 흐름을 유지합니다.</p>
+        </header>
         <ul class="space-y-3">
           <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
             <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
@@ -215,124 +371,16 @@
         </ul>
       </div>
       <div class="reveal reveal-delay-2">
-        <div class="bg-white rounded-2xl shadow-lg shadow-on-surface/5 overflow-hidden border border-outline-variant/15 p-6 md:p-8">
-          <div class="flex items-center justify-center gap-3 md:gap-4">
-            <div class="flex-1 rounded-xl border border-outline-variant/20 p-5 text-center">
-              <p class="font-label font-bold text-on-surface-variant text-xs mb-1">CATIA V5</p>
-              <p class="font-label text-[11px] text-on-surface-variant mb-2">Dassault Syst&egrave;mes</p>
-              <span class="material-symbols-outlined text-primary-container" style="font-size:28px">view_in_ar</span>
-            </div>
-            <div class="flex flex-col items-center gap-1 text-secondary">
-              <span class="material-symbols-outlined" style="font-size:28px">swap_horiz</span>
-            </div>
-            <div class="flex-1 rounded-xl border border-outline-variant/20 p-5 text-center">
-              <p class="font-label font-bold text-on-surface-variant text-xs mb-1">Siemens NX</p>
-              <p class="font-label text-[11px] text-on-surface-variant mb-2">Siemens</p>
-              <span class="material-symbols-outlined text-primary-container" style="font-size:28px">view_in_ar</span>
-            </div>
-          </div>
-          <div class="mt-4 text-center">
-            <span class="inline-block px-3 py-1 rounded-full text-[11px] font-label font-semibold" style="background:#CFFAFE;color:#0E7490">Wire List &middot; Bundle &middot; Length</span>
-          </div>
-        </div>
+        <!-- far from 2:1, so its own aspect-ratio (shown whole, not cropped) -->
+        <div class="ga-frame"><div class="ga-bar" aria-hidden="true"><i></i><i></i><i></i><span translate="no">VegaFencer — 3D CAD Bridge</span></div><img style="aspect-ratio: 1920 / 1249" src="assets/img/bridge-ws.webp" width="1920" height="1249" alt="" loading="lazy" decoding="async"></div>
       </div>
     </div>
   </div>
 </section>
-
 <!-- ============================================================
-     WORKFLOW (Dark Section)
+     CTA 2 — plans (shared with the home page: edit in assets/sections.js)
      ============================================================ -->
-<!-- shared with the other page: edit in assets/sections.js -->
-<script src="assets/section.js?v=75b55412" data-section="workflow"></script>
-
-<!-- ============================================================
-     AI ASSISTANT
-     ============================================================ -->
-<!-- shared with the other page: edit in assets/sections.js -->
-<script src="assets/section.js?v=75b55412" data-section="ai"></script>
-
-<!-- ============================================================
-     INTEGRATIONS
-     ============================================================ -->
-<!-- shared with the other page: edit in assets/sections.js -->
-<script src="assets/section.js?v=75b55412" data-section="ecosystem"></script>
-
-<!-- ============================================================
-     ENTERPRISE READY
-     ============================================================ -->
-<section class="py-12 md:py-24" id="enterprise">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-    <div class="text-center mb-16 reveal">
-      <p class="font-label text-xs font-bold tracking-[0.2em] uppercase text-primary-container mb-3" data-i18n="ent_label">ENTERPRISE READY</p>
-      <h2 class="font-headline font-black text-2xl sm:text-3xl md:text-5xl tracking-tight text-on-surface mb-4" data-i18n="ent_title">팀 전체가 함께 설계하는 환경</h2>
-      <p class="font-body text-on-surface-variant text-lg max-w-2xl mx-auto" data-i18n="ent_desc">Server/Client 멀티유저 아키텍처 위에서 실시간 협업, 표준 라이브러리 공유, 기존 데이터 마이그레이션까지 지원합니다.</p>
-    </div>
-
-    <div class="grid lg:grid-cols-2 gap-4 md:gap-6">
-      <div class="reveal bg-white rounded-2xl p-6 md:p-8 ghost-border">
-        <div class="flex items-center gap-3 mb-5">
-          <span class="w-10 h-10 rounded-xl flex items-center justify-center text-xl" style="background:#E8F0FE">&#128101;</span>
-          <h3 class="font-headline font-bold text-lg text-on-surface" data-i18n="ent_sub_collab">Server / Client 멀티유저 협업</h3>
-        </div>
-        <ul class="space-y-3">
-          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
-            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="ent_c1">역할 &amp; 설정 &mdash; Project 단위의 권한 부여 및 강제</span>
-          </li>
-          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
-            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="ent_c2">실시간 Diagram lock/unlock, Offpage Wire, 연계 작업 시간 공유</span>
-          </li>
-          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
-            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="ent_c3">Shared Connector의 Pin Level Lock &mdash; 중복 사용 원천 방지</span>
-          </li>
-          <li class="flex items-start gap-3 font-body text-[15px] text-on-surface">
-            <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:20px">check</span>
-            <span data-i18n="ent_c4">Enterprise급 PostgreSQL + ASP.NET Core (Kestrel) &mdash; Windows/Linux, Docker 배포</span>
-          </li>
-        </ul>
-      </div>
-
-      <div class="grid gap-4 md:gap-6">
-        <div class="reveal reveal-delay-1 bg-white rounded-2xl p-6 md:p-8 ghost-border">
-          <div class="flex items-center gap-3 mb-4">
-            <span class="w-10 h-10 rounded-xl flex items-center justify-center text-xl" style="background:#CCFBF1">&#128221;</span>
-            <h3 class="font-headline font-bold text-lg text-on-surface" data-i18n="ent_sub_library">Library Symbol Editor</h3>
-          </div>
-          <p class="font-body text-on-surface-variant text-[15px] leading-relaxed" data-i18n="ent_sub_library_desc">표준화된 Library를 사용자별로 커스터마이즈하고, 필드별 속성을 지정하여 어드밴스드 모듈까지 지원합니다.</p>
-        </div>
-        <div class="reveal reveal-delay-2 bg-white rounded-2xl p-6 md:p-8 ghost-border">
-          <div class="flex items-center gap-3 mb-4">
-            <span class="w-10 h-10 rounded-xl flex items-center justify-center text-xl" style="background:#FFF3E0">&#128190;</span>
-            <h3 class="font-headline font-bold text-lg text-on-surface" data-i18n="ent_sub_migration">Data Migration</h3>
-          </div>
-          <p class="font-body text-on-surface-variant text-[15px] leading-relaxed" data-i18n="ent_sub_migration_desc">기존 설계 데이터를 그대로 가져옵니다. Excel/CSV, Harness Code, DB 등 다양한 마이그레이션을 지원합니다.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     MULTIUSER ENVIRONMENT (moved from the home page 2026-11-25; frame only, content to come)
-     ============================================================ -->
-<section class="py-12 md:py-24 bg-surface-container-low" id="multiuser" aria-labelledby="multiTitle">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-    <div class="ai-row">
-      <div class="reveal">
-        <header class="lg-head">
-          <p class="lg-kicker" translate="no">EXTENSIONS</p>
-          <h2 class="lg-name" id="multiTitle" translate="no">Multiuser Environment</h2>
-          <p class="lg-tagline" data-i18n="ent_title">팀 전체가 함께 설계하는 환경</p>
-          <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead" data-i18n="ent_desc">Server/Client 멀티유저 아키텍처 위에서 실시간 협업, 표준 라이브러리 공유, 기존 데이터 마이그레이션까지 지원합니다.</p>
-        </header>
-      </div>
-      <div class="ga-frame reveal reveal-delay-1"><div class="ga-bar" aria-hidden="true"><i></i><i></i><i></i><span translate="no">VegaFencer — Multiuser Environment</span></div><img src="assets/img/multiuser-ws.webp" width="1562" height="816" alt="VegaFencer Multiuser Environment screen" loading="lazy" decoding="async"></div>
-    </div>
-  </div>
-</section>
+<script src="assets/section.js?v=75b55412" data-section="plans"></script>
 
 <!-- ============================================================
      CTA
@@ -343,7 +391,7 @@
 
 <script src="assets/footer.js?v=e744ad20"></script>
 
-<script src="assets/i18n.js?v=d2c52246"></script>
+<script src="assets/i18n.js?v=976f9231"></script>
 <script src="assets/site.js?v=43ead7c7"></script>
 <script src="assets/engineering.js?v=e3dfa836"></script>
 </body>

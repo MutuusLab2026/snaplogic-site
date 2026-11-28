@@ -759,6 +759,12 @@ html[lang="ja"] .story-label span, html[lang="zh"] .story-label span { font-fami
 .lg-legend b + span { display: block; margin-top: 2px; font: 400 13.5px/1.55 Manrope, 'Noto Sans KR', sans-serif; color: #414754; }
 
 @media (prefers-reduced-motion: reduce) { .lg-area, .lg-legend button, .lg-dot { transition: none; } }
+/* Desktop (2026-11-28): the six areas listed to the right of the screen, one per row, centred on it */
+@media (min-width: 1024px) {
+  .lg-tour-row { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 40px; align-items: center; margin-top: 40px; }
+  .lg-tour-row .lg-tour { margin: 0; }
+  .lg-tour-row .lg-legend { grid-template-columns: 1fr; margin: 0; }
+}
 
 /* Spam trap: a field people never see; bots that fill every input fill it, and Formspree drops those sends. */
 input.hp-field, .contact-form input.hp-field { position: absolute !important; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none; }
@@ -995,10 +1001,10 @@ html[lang="zh"] .hero-sub, html[lang="ja"] .hero-sub { font-family: inherit; }
 
 /* Key features 01-03 on phones: checklist a step smaller (15 -> 14px), under the 15px lead (2026-11-27) */
 @media (max-width: 767px) {
-  :is(#integrator, #harness, #ai) ul li { font-size: 14px; }
-  :is(#integrator, #harness, #ai) ul li .material-symbols-outlined { font-size: 18.5px !important; margin-top: 1px; }   /* the tick scales with the text (20 x 14/15) */
-  :is(#integrator, #harness, #ai) .lg-lead { margin-bottom: 14px !important; }   /* lead -> list = tagline -> lead (23.5px as the eye sees it; was 33.5) */
-  #integrator .grid, #harness .grid, #ai .ai-row { row-gap: 28px; }   /* list -> screen window 32px as the eye sees it (was 36; 23.5 felt cramped) */
+  .mod-sec ul li { font-size: 14px; }
+  .mod-sec ul li .material-symbols-outlined { font-size: 18.5px !important; margin-top: 1px; }   /* the tick scales with the text (20 x 14/15) */
+  .mod-sec .lg-lead { margin-bottom: 14px !important; }   /* lead -> list = tagline -> lead (23.5px as the eye sees it; was 33.5) */
+  .mod-sec .grid, .mod-sec .ai-row { row-gap: 28px; }   /* list -> screen window 32px as the eye sees it (was 36; 23.5 felt cramped) */
 }
 
 /* AI Assistant on phones (2026-11-27): the lead drops "(Model Context Protocol)" (it took half the first line), and

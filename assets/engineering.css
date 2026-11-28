@@ -537,6 +537,12 @@ html.engineering-free-scroll { scroll-snap-type: none; }   /* set by engineering
 body[data-page="home"] #product, body[data-page="home"] #cta-ask, body[data-page="home"] #harness, body[data-page="home"] #plans { background: var(--eng-paper); }
 body[data-page="home"] #product > div > .grid > a { background: #fff; }
 body[data-page="home"] #integrator, body[data-page="home"] #ai, body[data-page="home"] #stats { background: #fff; }
+/* Product page (2026-11-28): the same two tones, in page order. Core Modules paper · User Interface white · Logic paper ·
+   Integrator white · Harness paper · DRC/BOM white · Workflow navy (counts as a paper turn) · Power Check white ·
+   Variant paper · Library white · CTA 1 paper · AI white · Multiuser paper · 3D CAD Bridge white · CTA 2 paper · CTA navy. */
+body[data-page="product"] :is(#product, #logic, #harness, #variant, #cta-ask, #multiuser, #plans) { background: var(--eng-paper); }
+body[data-page="product"] :is(#interface, #integrator, #drc, #power, #library, #ai, #bridge) { background: #fff; }
+body[data-page="product"] #product > div > .grid > a { background: #fff; }
 /* Home, wide desktop: everything below the hero grows with the screen by the same factor as the hero and header
    (--hero-s, 1x at 1440 x 790), so on a big monitor the sections keep the proportions designed at 1440 instead of
    sitting small in the middle. zoom (not transform) so the page length grows with it. */
@@ -877,7 +883,7 @@ html:not([lang="ko"]) .modules-head .lg-lead { text-wrap: balance; }
   /* Core Modules -> The Impact -> CTA 1 read as one paper band on phones, so the cards sit 56px apart; the note counts
      as part of The Impact's card: Core Modules' last box -> card = 28 + 28, note -> CTA 1's card = 56 */
   body[data-page="home"] #product { padding-bottom: 28px; }   /* home only: the product page has no band here */
-  #cta-ask { padding-top: 54px; }   /* + the note's 2px line space below its letters = 56 */
+  body[data-page="home"] #cta-ask { padding-top: 54px; }   /* + the note's 2px line space below its letters = 56 */
 }
 @media (min-width: 1101px) {
   .kf-sec { padding: 144px 0 152px; }
@@ -942,13 +948,13 @@ body[data-page="about"] .cta3 .radial-glow { -webkit-mask-image: linear-gradient
 /* Key features 01-03 on phones (2026-11-27): the two-sentence lead flows as one paragraph (its desktop line break left
    short orphan lines), and the sections keep the 57.5px phone rhythm (boundary -> kicker ink, last box -> boundary). */
 @media (max-width: 767px) {
-  #integrator .lg-lead br, #harness .lg-lead br { display: none; }
+  .mod-sec .lg-lead br { display: none; }
 }
 /* Section leads on phones (2026-11-27): a step under the tagline and the checklist so the hierarchy reads title ->
    tagline -> lead (15px grey) -> list (15px ink); shared by Explore, Core Modules and key features 01-03. */
 @media (max-width: 767px) {
   .lg-lead { font-size: 15px !important; line-height: 1.6 !important; color: #5b6e7f !important;
     max-width: 21.4em; }   /* ~321px: Integrator's first line ends at "실제 차량의" (305px) rather than "번들" (336px), same at 360 */
-  #integrator, #harness, #ai { padding-top: 56px; padding-bottom: 53px; }
+  .mod-sec { padding-top: 56px; padding-bottom: 53px; }
   #ai { padding-bottom: 57.5px; }   /* its chat window sits 4.5px lower in the box than the screens above */
 }

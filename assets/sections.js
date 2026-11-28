@@ -51,7 +51,7 @@
       </a>
 
       <p class="mod-gh" data-grp="2"><i></i><span data-i18n="mod_grp2">검증 · 관리</span></p>   <!-- group heading: phones only (engineering.css) -->
-      <a href="${here('product', '#main')}" data-mod="power" data-grp="2" class="group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
+      <a href="${here('product', '#power')}" data-mod="power" data-grp="2" class="group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
         <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5"></div>
         <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-primary-container transition-colors" translate="no" data-i18n="mod_power_title">Power Check</h3>
         <span class="mod-sub" data-i18n="mod_power_sub">전원·퓨즈·부하 용량 점검</span>
@@ -59,7 +59,7 @@
         <span class="mod-more" aria-hidden="true"><span data-i18n="gal_more">자세히 보기</span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
       </a>
 
-      <a href="${here('product', '#variant')}" data-mod="drc" data-grp="2" class="group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
+      <a href="${here('product', '#drc')}" data-mod="drc" data-grp="2" class="group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
         <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5"></div>
         <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-primary-container transition-colors" translate="no" data-i18n="mod_drc_title">DRC / BOM</h3>
         <span class="mod-sub" data-i18n="mod_drc_sub">24개 규칙 검증과 BOM 출력</span>
@@ -75,7 +75,7 @@
         <span class="mod-more" aria-hidden="true"><span data-i18n="gal_more">자세히 보기</span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
       </a>
 
-      <a href="${here('product', '#enterprise')}" data-mod="library" data-grp="2" class="group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
+      <a href="${here('product', '#library')}" data-mod="library" data-grp="2" class="group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
         <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5"></div>
         <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-primary-container transition-colors" translate="no" data-i18n="mod_library_title">Library / Symbol Editor</h3>
         <span class="mod-sub" data-i18n="mod_library_sub">표준 라이브러리 사용자화</span>
@@ -84,7 +84,7 @@
       </a>
 
       <p class="mod-gh" data-grp="3"><i></i><span data-i18n="mod_grp3">협업 · 연동</span></p>   <!-- group heading: phones only (engineering.css) -->
-      <a href="${here('product', '#enterprise')}" data-mod="multiuser" data-grp="3" class="group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
+      <a href="${here('product', '#multiuser')}" data-mod="multiuser" data-grp="3" class="group block bg-white rounded-[20px] p-5 sm:p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-xl">
         <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5"></div>
         <h3 class="font-headline font-bold text-xl text-on-surface mb-3 group-hover:text-primary-container transition-colors" translate="no" data-i18n="mod_multiuser_title">Multiuser Environment</h3>
         <span class="mod-sub" data-i18n="mod_multiuser_sub">서버 기반 동시 설계와 권한</span>
@@ -165,7 +165,7 @@
 </section>
 `,
   integrator: (o) => `
-<section class="py-12 md:py-24 bg-surface-container-low" id="integrator">
+<section class="mod-sec py-12 md:py-24" id="integrator">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
 
     <!-- Module header and checklist (left), the module's screen (right): same layout as Logic -->
@@ -208,7 +208,7 @@
 </section>
 `,
   harness: (o) => `
-<section class="py-12 md:py-24" id="harness">
+<section class="mod-sec py-12 md:py-24" id="harness">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
 
     <!-- Module header and checklist (left), the module's screen (right): same layout as Logic -->
@@ -251,7 +251,7 @@
 </section>
 `,
   ai: (o) => `
-<section class="py-12 md:py-24" id="ai">
+<section class="mod-sec py-12 md:py-24" id="ai">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
     <!-- Text (left) and one app window (right). The window is a little taller than the text (aiWindow sizes it);
          the switch in its title bar slides between the chat demo, the agent demo and a real screenshot. -->
@@ -417,6 +417,59 @@
         <h3 class="font-headline font-bold text-on-surface text-sm mb-1">Creo / SOLIDWORKS</h3>
         <p class="font-body text-on-surface-variant text-xs mb-3" data-i18n="int_cad_desc">3D CAD 브릿지</p>
         <span class="inline-block px-2.5 py-1 rounded-full text-[11px] font-label font-bold bg-error-container/40 text-error" data-i18n="int_coming">Coming soon</span>
+      </div>
+    </div>
+  </div>
+</section>
+`,
+  ask: () => `
+<!-- CTA 1 — pricing or product questions: a white card with a switch (home and product, 2026-11-28) -->
+<section class="hcta" id="cta-ask" aria-labelledby="ctaAskTitle">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+    <div class="hcta-band reveal">
+      <div class="hcta-text">
+        <button type="button" class="hcta-switch is-on" tabindex="-1" aria-hidden="true"></button>   <!-- decoration only: out of the tab order and hidden from screen readers; a mouse click still flips it -->
+        <div>
+        <h2 class="hcta-title" id="ctaAskTitle" data-i18n="hcta1_title">E/E 설계의 새로운 기준, VegaFencer와 함께 시작하세요.</h2>
+        <p class="hcta-lead" data-i18n="hcta1_lead">요금제 정보와 도입 상담을 통해, 현재 귀사의 설계&nbsp;환경에 적합한 VegaFencer 구성을 확인하십시오.</p>
+        </div>
+      </div>
+      <div class="hcta-actions">
+        <a class="hcta-btn hcta-btn1" href="${pageUrl('pricing')}"><span data-i18n="hcta1_pricing">요금제 보기</span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></a>
+        <a class="hcta-btn hcta-btn2" href="${pageUrl('contact')}"><span data-i18n="hcta1_contact">제품 문의</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+`,
+  plans: () => `
+<!-- CTA 2 — plans at a glance (home and product; plan contents are not decided yet, see pricing.html) -->
+<section class="hcta" id="plans" aria-labelledby="plansTitle">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+    <!-- Line and link on the left, the two plans as cards on the right (2026-11-25: section template on the left, without the kicker; the title level with the plan names). Plan contents are a first
+         guess until the plans are decided (see TODO) -->
+    <div class="pl-row">
+      <header class="lg-head pl-intro reveal">   <!-- section template without the kicker: name, tagline, lead and a link -->
+        <h2 class="lg-name pl-title" id="plansTitle" translate="no">VegaFencer<br><span>for Your Business</span></h2>
+        <p class="lg-tagline" data-i18n-html="hcta2_title">팀 규모에 맞는 최적의 요금제를<br class="pl-br"> 선택하세요.</p>
+        <p class="font-body text-on-surface-variant text-base leading-relaxed lg-lead" data-i18n="pl_help">플랜 선택을 위한 상담이 필요하신가요?</p>
+        <a class="hcta-link" href="${pageUrl('contact')}"><span data-i18n="hcta1_contact">제품 문의</span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></a>
+      </header>
+      <div class="pl-cards reveal reveal-delay-1">
+        <div class="pl-card">
+          <h3 class="pl-name" translate="no">Professional</h3>
+          <p class="pl-for" data-i18n="pl_pro_for">설계자 개인과 소규모 팀</p>
+          <p class="pl-inc" data-i18n="pl_inc">포함 기능</p>
+          <ul class="pl-list"><li><span class="material-symbols-outlined" aria-hidden="true">check</span><span data-i18n="pl_pro_1">설계 모듈 3종</span></li><li><span class="material-symbols-outlined" aria-hidden="true">check</span><span data-i18n="pl_pro_2">검증 · 관리 모듈</span></li><li><span class="material-symbols-outlined" aria-hidden="true">check</span><span data-i18n="pl_pro_3">AI Assistant</span></li></ul>
+          <a class="hcta-btn hcta-btn2" href="${pageUrl('contact')}"><span data-i18n="plan_price_ask">가격 문의</span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></a>
+        </div>
+        <div class="pl-card">
+          <h3 class="pl-name" translate="no">Enterprise</h3>
+          <p class="pl-for" data-i18n="pl_ent_for">조직 전체 · 서버 설치형</p>
+          <p class="pl-inc" data-i18n="pl_ent_inc">Professional 기능 전체 +</p>
+          <ul class="pl-list"><li><span class="material-symbols-outlined" aria-hidden="true">check</span><span data-i18n="pl_ent_1">Multiuser Environment</span></li><li><span class="material-symbols-outlined" aria-hidden="true">check</span><span data-i18n="pl_ent_2">권한 · 핀 단위 잠금</span></li><li><span class="material-symbols-outlined" aria-hidden="true">check</span><span data-i18n="pl_ent_3">사내 LLM · Data Migration</span></li></ul>
+          <a class="hcta-btn hcta-btn1" href="${pageUrl('contact')}"><span data-i18n="plan_price_ask">가격 문의</span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></a>
+        </div>
       </div>
     </div>
   </div>

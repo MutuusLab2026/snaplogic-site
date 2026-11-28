@@ -68,6 +68,7 @@ async def run(port, page, w, h, out, target, mobile, devtools):
                 break
         await asyncio.sleep(1.2)                   # fonts, first animation frames
         await js("document.querySelectorAll('.reveal').forEach(e => e.classList.add('visible'))")
+        await js("document.querySelectorAll('img[loading=lazy]').forEach(i => { i.loading = 'eager'; })")   # off-screen pictures too
         await asyncio.sleep(0.9)                   # let the fade-ins finish
 
         shot = {"format": "png", "captureBeyondViewport": True}
@@ -75,6 +76,9 @@ async def run(port, page, w, h, out, target, mobile, devtools):
             height = await js("document.documentElement.scrollHeight")
             shot["clip"] = {"x": 0, "y": 0, "width": w, "height": height, "scale": 1}
         elif target != "view":
+            # bring it on screen first, so its pictures are loaded and painted (lazy loading, async decoding)
+            await js(f"document.getElementById({json.dumps(target)})?.scrollIntoView({{block: 'center', behavior: 'instant'}})")
+            await asyncio.sleep(0.8)
             box = await js(f"""(() => {{ const e = document.getElementById({json.dumps(target)});
                 if (!e) return null; const r = e.getBoundingClientRect();
                 return [r.top + scrollY, r.height]; }})()""")
