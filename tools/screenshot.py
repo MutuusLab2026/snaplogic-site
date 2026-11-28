@@ -74,6 +74,8 @@ async def run(port, page, w, h, out, target, mobile, devtools):
         await js("document.querySelectorAll('img[loading=lazy]').forEach(i => { i.loading = 'eager'; })")   # off-screen pictures too
         await asyncio.sleep(0.9)                   # let the fade-ins finish
 
+        if os.environ.get("SHOT_EVAL"):           # SHOT_EVAL=file.js: print what that expression returns (measuring)
+            print(await js(open(os.environ["SHOT_EVAL"]).read()))
         shot = {"format": "png", "captureBeyondViewport": True}
         if target == "full":
             height = await js("document.documentElement.scrollHeight")
