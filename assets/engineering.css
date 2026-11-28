@@ -196,7 +196,7 @@ section[id] { scroll-margin-top: 100px; }
   .engineering-module-trace { top: 36px; }
 }
 
-#workflow { background: var(--eng-ink) !important; }
+#workflow { background: var(--hero-ink) !important; }   /* the hero's blue-gray (#0f1a24), as the last CTA, since 2026-11-28 (was --eng-ink #081e30) */
 /* Workflow: one 10s handoff cycle, played once (no loop, WCAG 2.2.2). A packet carries data along the rail and
    each stage lights, draws its glyph and emits its artifact as the packet arrives; afterwards every stage stays unlit
    (fill: both keeps the last keyframe). Base styles are the static "complete" state used for paused / reduced motion. */
