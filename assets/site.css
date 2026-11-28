@@ -1067,6 +1067,9 @@ html[lang="zh"] .hero-sub, html[lang="ja"] .hero-sub { font-family: inherit; }
 /* no photo to show, so no height tied to the window: the text plus the same air above and below on every screen (72px at
    scale 1, growing with the copy on wide screens) */
 @media (min-width: 768px) { .phero { height: auto; padding-top: calc(var(--nav-h) + 72px * var(--hero-s, 1)); padding-bottom: calc(72px * var(--hero-s, 1)); } }
+/* Core Modules right under the hero: its top air is the hero's bottom air (both 75px from the edge to the ink: 72px hero padding,
+   73px here + 2px inside the kicker's box). Home and the phone layout (48px both) keep their own. */
+@media (min-width: 768px) { body[data-page="product"] #product { padding-top: 73px; } }
 /* the same faint blueprint grid and blue glow as the last CTA (.cta3), fading out from the empty right side, so the hero
    is not a bare block of navy next to the text */
 .phero::before { content: ''; position: absolute; inset: 0; pointer-events: none;
@@ -1077,6 +1080,7 @@ html[lang="zh"] .hero-sub, html[lang="ja"] .hero-sub { font-family: inherit; }
 @media (min-width: 1101px) { body[data-page="product"] .phero { zoom: calc(1 / var(--hero-s, 1)); } }
 @media (max-width: 767px) {
   .phero .hero-copy { margin-top: 0; padding-top: 36px; }
+  .phero { padding-bottom: 54.5px; }   /* ink -> edge 57.5px, the phone section rhythm; Core Modules' 48px + its kicker box = 57.5px below the edge */
   .phero h1 { font-size: 30px; }
   .phero-br { display: none; }
   .phero-brm { display: inline; }
