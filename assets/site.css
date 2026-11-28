@@ -759,11 +759,14 @@ html[lang="ja"] .story-label span, html[lang="zh"] .story-label span { font-fami
 .lg-legend b + span { display: block; margin-top: 2px; font: 400 13.5px/1.55 Manrope, 'Noto Sans KR', sans-serif; color: #414754; }
 
 @media (prefers-reduced-motion: reduce) { .lg-area, .lg-legend button, .lg-dot { transition: none; } }
-/* Desktop (2026-11-28): the six areas listed to the right of the screen, one per row, centred on it */
-@media (min-width: 1024px) {
-  .lg-tour-row { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 40px; align-items: center; margin-top: 40px; }
-  .lg-tour-row .lg-tour { margin: 0; }
-  .lg-tour-row .lg-legend { grid-template-columns: 1fr; margin: 0; }
+/* Desktop (2026-11-28): the six areas listed to the right of the screen, one per row. The list takes exactly the
+   screen's height: first item level with its top edge, last with its bottom (one-line descriptions keep it shorter
+   than the screen). From 1101px only: below that the screen is too short for six rows, so the list stays under it. */
+@media (min-width: 1101px) {
+  .lg-tour-row { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 40px; align-items: stretch; margin-top: 40px; }
+  .lg-tour-row .lg-tour { margin: 0; align-self: start; }
+  .lg-tour-row .lg-legend { display: flex; flex-direction: column; justify-content: space-between; margin: 0; }
+  .lg-tour-row .lg-legend button { padding: 8px 12px; }
 }
 
 /* Spam trap: a field people never see; bots that fill every input fill it, and Formspree drops those sends. */

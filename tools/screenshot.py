@@ -67,6 +67,9 @@ async def run(port, page, w, h, out, target, mobile, devtools):
             if await js("document.readyState") == "complete":
                 break
         await asyncio.sleep(1.2)                   # fonts, first animation frames
+        if os.environ.get("SHOT_LANG"):            # SHOT_LANG=en|zh|ja: press that language button first
+            await js(f"document.querySelector('.lang-btn[data-lang={os.environ['SHOT_LANG']}]')?.click()")
+            await asyncio.sleep(0.8)
         await js("document.querySelectorAll('.reveal').forEach(e => e.classList.add('visible'))")
         await js("document.querySelectorAll('img[loading=lazy]').forEach(i => { i.loading = 'eager'; })")   # off-screen pictures too
         await asyncio.sleep(0.9)                   # let the fade-ins finish
