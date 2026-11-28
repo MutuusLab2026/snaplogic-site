@@ -606,16 +606,27 @@ body #cta :is(input, textarea, select):focus-visible { outline-color: #7be4ee; }
     max-height: 0; padding-top: 0; padding-bottom: 0; clip-path: inset(0 0 100% 0); opacity: 0; transition: none;
   }
 }
-/* Product card (2026-11-28): the top row comes with the card as before; the module groups below open from left to right
-   (a wipe, the dividing line included) just after the card has appeared. */
+/* Product card (2026-11-28): the top row comes with the card as before; the module groups below unfold downward like the
+   old sub-items did: each row is revealed from its top edge, one after another (--i = the row; the heading is row 0, the
+   three columns move together). Closing, and reduced motion: at once. */
 @media (min-width: 1024px) and (hover: hover) {
-  .nav-menu-cols { clip-path: inset(0 100% 0 0); transition: clip-path 0s .3s; }
-  .nav-item.has-menu:hover .nav-menu-cols, .nav-item.has-menu:focus-within .nav-menu-cols {
-    clip-path: inset(0 0 0 0); transition: clip-path .5s cubic-bezier(.3, .7, .3, 1) .14s;
+  #nav #navLinks .nav-menu .nav-menu-col > :is(a, p) {
+    clip-path: inset(0 0 100% 0); opacity: 0; transform: translateY(-4px);
+    transition: background-color .15s, color .15s, clip-path 0s .3s, opacity 0s .3s, transform 0s .3s;
   }
-  .nav-item.has-menu.nav-menu-closed .nav-menu-cols { clip-path: inset(0 100% 0 0); transition: none; }
+  #nav #navLinks .nav-item.has-menu:hover .nav-menu .nav-menu-col > :is(a, p),
+  #nav #navLinks .nav-item.has-menu:focus-within .nav-menu .nav-menu-col > :is(a, p) {
+    clip-path: inset(0 0 0 0); opacity: 1; transform: none;
+    transition: background-color .15s, color .15s, clip-path .26s cubic-bezier(.3, .7, .3, 1) calc(.12s + var(--i) * .06s),
+      opacity .2s ease calc(.14s + var(--i) * .06s), transform .26s cubic-bezier(.3, .7, .3, 1) calc(.12s + var(--i) * .06s);
+  }
+  #nav #navLinks .nav-item.has-menu.nav-menu-closed .nav-menu .nav-menu-col > :is(a, p) {
+    clip-path: inset(0 0 100% 0); opacity: 0; transform: translateY(-4px); transition: none;
+  }
 }
-@media (prefers-reduced-motion: reduce) { .nav-menu-cols { clip-path: none !important; } }
+@media (prefers-reduced-motion: reduce) {
+  #nav #navLinks .nav-menu .nav-menu-col > :is(a, p) { clip-path: none !important; opacity: 1 !important; transform: none !important; }
+}
 @media (prefers-reduced-motion: reduce) {
   .nav-menu-sub::before { transform: none !important; }
   #nav #navLinks .nav-menu a.nav-menu-sublink { clip-path: none !important; opacity: 1 !important; transform: none !important; }

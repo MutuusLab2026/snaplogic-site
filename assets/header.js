@@ -60,15 +60,16 @@ if (location.protocol === 'file:') {
   // The product tab's card: the page's own sections on top (Core Modules, User Interface, Workflow), the three module
   // groups side by side below (a dot in the Core Modules colours over each name).
   var productMenu = function () {
-    var one = function (it) {
-      return menuLink('product', [it.key, it.label, '#' + it.id], 'nav-menu-link');
+    var one = function (it, i) {
+      return menuLink('product', [it.key, it.label, '#' + it.id], 'nav-menu-link', i);
     };
     var cols = [1, 2, 3].map(function (g) {
-      return '<div class="nav-menu-col" data-grp="' + g + '"><p class="nav-menu-gh"><i></i><span data-i18n="' + groupKeys[g][0] + '">' + groupKeys[g][1] + '</span></p>' +
-        productNav.filter(function (it) { return it.grp === g; }).map(one).join('') + '</div>';
+      // --i = the row, so the three columns unfold row by row (CSS "Product card"): the heading is row 0
+      return '<div class="nav-menu-col" data-grp="' + g + '"><p class="nav-menu-gh" style="--i:0"><i></i><span data-i18n="' + groupKeys[g][0] + '">' + groupKeys[g][1] + '</span></p>' +
+        productNav.filter(function (it) { return it.grp === g; }).map(function (it, i) { return one(it, i + 1); }).join('') + '</div>';
     }).join('');
     return '<div class="nav-menu"><div class="nav-menu-card nav-menu-wide">' +
-      '<div class="nav-menu-row">' + productNav.filter(function (it) { return !it.grp; }).map(one).join('') + '</div>' +
+      '<div class="nav-menu-row">' + productNav.filter(function (it) { return !it.grp; }).map(function (it) { return one(it); }).join('') + '</div>' +
       '<div class="nav-menu-cols">' + cols + '</div></div></div>';
   };
   var menuLink = function (name, item, cls, i) {

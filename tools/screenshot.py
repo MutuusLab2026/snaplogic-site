@@ -74,9 +74,15 @@ async def run(port, page, w, h, out, target, mobile, devtools):
         await js("document.querySelectorAll('img[loading=lazy]').forEach(i => { i.loading = 'eager'; })")   # off-screen pictures too
         await asyncio.sleep(0.9)                   # let the fade-ins finish
 
+        if os.environ.get("SHOT_HOVER"):          # SHOT_HOVER=css-selector [SHOT_WAIT=ms]: put the mouse on it, wait, then capture
+            pt = await js(f"""(() => {{ const e = document.querySelector({json.dumps(os.environ['SHOT_HOVER'])}); if (!e) return null;
+                const r = e.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; }})()""")
+            if pt:
+                await cmd("Input.dispatchMouseEvent", {"type": "mouseMoved", "x": pt[0], "y": pt[1]})
+                await asyncio.sleep(int(os.environ.get("SHOT_WAIT", "1200")) / 1000)
         if os.environ.get("SHOT_EVAL"):           # SHOT_EVAL=file.js: print what that expression returns (measuring)
             print(await js(open(os.environ["SHOT_EVAL"]).read()))
-        shot = {"format": "png", "captureBeyondViewport": True}
+        shot = {"format": "png", "captureBeyondViewport": not os.environ.get("SHOT_HOVER")}   # a taller capture resets the mouse
         if target == "full":
             height = await js("document.documentElement.scrollHeight")
             shot["clip"] = {"x": 0, "y": 0, "width": w, "height": height, "scale": 1}
