@@ -295,14 +295,16 @@ const Controller = {
     });
   },
 
-  /* Key feature screens (Integrator, Harness): the screen becomes a button that opens it large in the lightbox, one
-     image with no previous / next. On portrait phones it opens at the screen's height and pans sideways (2026-11-27). */
+  /* Module screens (Logic … 3D CAD Bridge, also the key features on the home page): the screen becomes a button that
+     opens it large in the lightbox, one image with no previous / next. On portrait phones it opens at the screen's height
+     and pans sideways (2026-11-27). AI opens its "real screen" tab picture. A frame with no picture yet is skipped. */
   initShotZoom() {
-    const keys = { integrator: 'zoom_int', harness: 'zoom_hd' };
+    const keys = { logic: 'zoom_logic', integrator: 'zoom_int', harness: 'zoom_hd', drc: 'zoom_drc', power: 'zoom_power',
+      variant: 'zoom_variant', library: 'zoom_library', ai: 'zoom_ai', multiuser: 'zoom_multi', bridge: 'zoom_bridge' };
     const t = i18n[savedLang()] || i18n.ko;
     Object.keys(keys).forEach((id) => {
       const sec = document.getElementById(id);
-      const img = sec && sec.querySelector('img[src*="-ws."]');
+      const img = sec && sec.querySelector('.ga-frame img, .ai-pane-shot img');
       if (!img) return;
       const btn = document.createElement('button');
       btn.type = 'button';

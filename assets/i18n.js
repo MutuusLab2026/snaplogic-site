@@ -1110,7 +1110,7 @@ Object.assign(i18n.ko, {
   lg_r2_t: "기능 설계 표현",
   lg_r3_t: "설계 규칙과 전기적 제약",
   lg_r4_t: "단일 기준 데이터",
-  lg_a1_t: "리본 메뉴", lg_a1_d: "생성·편집·검사·설정 명령을 탭별로",
+  lg_a1_t: "리본 메뉴", lg_a1_d: "생성·편집·검사·설정 명령의 탭별 구성",
   lg_a2_t: "프로젝트 / 심볼 트리", lg_a2_d: "다이어그램과 라이브러리 심볼 관리",
   lg_a3_t: "오브젝트 / 공유 트리", lg_a3_d: "오브젝트 검색과 공유 오브젝트 관리",
   lg_a4_t: "에디터", lg_a4_d: "다이어그램 작성 및 연결 편집",
@@ -1139,7 +1139,7 @@ Object.assign(i18n.en, {
   lg_r2_t: "Represent functional design",
   lg_r3_t: "Design rules and electrical constraints",
   lg_r4_t: "Single source of truth",
-  lg_a1_t: "Ribbon menus", lg_a1_d: "All commands, grouped by tab",
+  lg_a1_t: "Ribbon menus", lg_a1_d: "Commands grouped by tab",
   lg_a2_t: "Project / symbol tree", lg_a2_d: "Diagrams and library symbols",
   lg_a3_t: "Object / shared tree", lg_a3_d: "Find objects and manage shared ones",
   lg_a4_t: "Editor", lg_a4_d: "Diagram drawing and connection editing",
@@ -1168,7 +1168,7 @@ Object.assign(i18n.zh, {
   lg_r2_t: "表达功能设计",
   lg_r3_t: "设计规则与电气约束",
   lg_r4_t: "唯一基准数据",
-  lg_a1_t: "功能区菜单", lg_a1_d: "按选项卡汇集各类命令",
+  lg_a1_t: "功能区菜单", lg_a1_d: "各类命令按选项卡分组",
   lg_a2_t: "项目 / 符号树", lg_a2_d: "管理图纸和库符号",
   lg_a3_t: "对象 / 共享树", lg_a3_d: "查找对象，管理共享对象",
   lg_a4_t: "编辑器", lg_a4_d: "图纸绘制与连接编辑",
@@ -1198,7 +1198,7 @@ Object.assign(i18n.ja, {
   lg_r2_t: "機能設計の表現",
   lg_r3_t: "設計ルールと電気的制約",
   lg_r4_t: "単一の基準データ",
-  lg_a1_t: "リボンメニュー", lg_a1_d: "各種コマンドをタブごとに",
+  lg_a1_t: "リボンメニュー", lg_a1_d: "各種コマンドのタブ別構成",
   lg_a2_t: "プロジェクト / シンボルツリー", lg_a2_d: "ダイアグラムとシンボルの管理",
   lg_a3_t: "オブジェクト / 共有ツリー", lg_a3_d: "オブジェクトの検索と共有",
   lg_a4_t: "エディター", lg_a4_d: "ダイアグラムの作成と接続の編集",
@@ -1526,4 +1526,46 @@ Object.assign(i18n.ja, {
   lb_r3: "サーバー上でのシンボル検索",
   lb_r4: "既存ライブラリへの部品追加移行",
   mu_lead: "Server/Client 環境で、複数のユーザーが一つのプロジェクトを同時に設計します。<br>編集中の図面と共有コネクタのピン情報は、リアルタイムでロック・共有されます。",
+});
+
+/* Module screens open large on click (site.js initShotZoom), 2026-11-28 */
+Object.assign(i18n.ko, {
+  zoom_logic: "Logic 화면 크게 보기",
+  zoom_power: "Power Check 화면 크게 보기",
+  zoom_variant: "Variant / Option Configuration 화면 크게 보기",
+  zoom_library: "Library / Symbol Editor 화면 크게 보기",
+  zoom_ai: "AI Assistant 화면 크게 보기",
+  zoom_multi: "Multiuser Environment 화면 크게 보기",
+  zoom_bridge: "3D CAD Bridge 화면 크게 보기",
+  zoom_drc: "DRC / BOM 화면 크게 보기",
+});
+Object.assign(i18n.en, {
+  zoom_logic: "View the Logic screen larger",
+  zoom_power: "View the Power Check screen larger",
+  zoom_variant: "View the Variant / Option Configuration screen larger",
+  zoom_library: "View the Library / Symbol Editor screen larger",
+  zoom_ai: "View the AI Assistant screen larger",
+  zoom_multi: "View the Multiuser Environment screen larger",
+  zoom_bridge: "View the 3D CAD Bridge screen larger",
+  zoom_drc: "View the DRC / BOM screen larger",
+});
+Object.assign(i18n.zh, {
+  zoom_logic: "放大查看 Logic 界面",
+  zoom_power: "放大查看 Power Check 界面",
+  zoom_variant: "放大查看 Variant / Option Configuration 界面",
+  zoom_library: "放大查看 Library / Symbol Editor 界面",
+  zoom_ai: "放大查看 AI Assistant 界面",
+  zoom_multi: "放大查看 Multiuser Environment 界面",
+  zoom_bridge: "放大查看 3D CAD Bridge 界面",
+  zoom_drc: "放大查看 DRC / BOM 界面",
+});
+Object.assign(i18n.ja, {
+  zoom_logic: "Logic\u2060の画面を拡大",
+  zoom_power: "Power Check\u2060の画面を拡大",
+  zoom_variant: "Variant / Option Configuration\u2060の画面を拡大",
+  zoom_library: "Library / Symbol Editor\u2060の画面を拡大",
+  zoom_ai: "AI Assistant\u2060の画面を拡大",
+  zoom_multi: "Multiuser Environment\u2060の画面を拡大",
+  zoom_bridge: "3D CAD Bridge\u2060の画面を拡大",
+  zoom_drc: "DRC / BOM\u2060の画面を拡大",
 });
