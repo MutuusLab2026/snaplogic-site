@@ -650,7 +650,7 @@ body #cta :is(input, textarea, select):focus-visible { outline-color: #7be4ee; }
    (or tabbing into it) opens the names on a white card. Wide screens only: narrower, the page content reaches the edge. */
 .sidenav { display: none; }
 @media (min-width: 1360px) and (min-height: 680px) {
-  .sidenav { display: block; position: fixed; left: 24px;   /* site.js initSideNav sets the real value: always 32px from the content */ top: 50%; transform: translateY(-50%); z-index: 40;
+  .sidenav { display: block; position: fixed; left: 36px;   /* fixed distance from the screen's left edge (draft 14, then 24); the page content never comes closer than ~70px at 1360px */ top: 50%; transform: translateY(-50%); z-index: 40;
     opacity: 0; visibility: hidden; transition: opacity .25s, visibility 0s .25s; }
   .sidenav.is-shown { opacity: 1; visibility: visible; transition: opacity .25s; }
   /* the dots sit on a block (always there; it grows into the name card), a wider gap where the group changes */
