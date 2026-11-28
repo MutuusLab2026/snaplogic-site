@@ -182,7 +182,7 @@
     for (var i = 0; i < 4; i++) { $('n' + i).setAttribute('x', cx + (i - 1.5) * gap); $('n' + i).setAttribute('y', ROW.ny); }
     placeCtl();
   }
-  /* The progress bar and its buttons sit at the picture's bottom, centred on the logos' axis (the middle of the column
+  /* The progress bar sits at the picture's bottom, centred on the logos' axis (the buttons hang to its right) (the middle of the column
      left of the text card on wide screens, the picture's middle on narrow ones). Offsets are layout px, so the page's
      zoom on wide screens is divided out. */
   var AXISX = 0;
@@ -190,7 +190,7 @@
     if (!ctl) return;
     var b = box.getBoundingClientRect(), st = ctl.parentNode.getBoundingClientRect(), z = b.width / box.offsetWidth || 1, art = box.parentNode;
     ctl.style.left = ((b.left - st.left + AXISX) / z) + 'px';
-    ctl.style.top = (art.offsetTop + art.offsetHeight - 45) + 'px';
+    ctl.style.top = (art.offsetTop + art.offsetHeight - 31.5) + 'px';   // the bar's middle 30px above the picture's bottom
   }
   layout();
 
@@ -274,7 +274,7 @@
   };
   ctl = document.createElement('div');
   ctl.className = 'story-ctl off';
-  ctl.innerHTML = '<div class="story-bar" aria-hidden="true"><i></i></div><button type="button" class="story-btn"></button><button type="button" class="story-btn"></button>';
+  ctl.innerHTML = '<div class="story-bar" aria-hidden="true"><i></i></div><div class="story-btns"><button type="button" class="story-btn"></button><button type="button" class="story-btn"></button></div>';
   (document.getElementById('story') || box.parentNode.parentNode).appendChild(ctl);
   bar = ctl.querySelector('.story-bar i'); bPause = ctl.querySelectorAll('.story-btn')[0]; bReplay = ctl.querySelectorAll('.story-btn')[1];
   function updateCtl() {

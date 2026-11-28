@@ -1058,10 +1058,11 @@ html[lang="zh"] .hero-sub, html[lang="ja"] .hero-sub { font-family: inherit; }
 .footer-contact .consent small { font-size: 12px; }
 
 /* ---- About page: progress bar under the Brand Story animation (story.js), with pause / play and replay buttons ---- */
-.story-ctl { position: absolute; z-index: 3; display: flex; align-items: center; gap: 12px; transform: translateX(-50%); transition: opacity .35s, visibility 0s; }
+.story-ctl { position: absolute; z-index: 3; width: 180px; transform: translateX(-50%); transition: opacity .35s, visibility 0s; }   /* only the bar is centred; the buttons hang to its right */
 .story-ctl.off { opacity: 0; visibility: hidden; transition: opacity .35s, visibility 0s .35s; }
-.story-bar { width: 180px; height: 3px; border-radius: 2px; background: rgba(255, 255, 255, .16); overflow: hidden; margin-right: 4px; }
+.story-bar { width: 100%; height: 3px; border-radius: 2px; background: rgba(255, 255, 255, .16); overflow: hidden; }
 .story-bar i { display: block; height: 100%; background: #7be4ee; transform-origin: left; transform: scaleX(0); }
+.story-btns { position: absolute; left: 100%; top: 50%; display: flex; gap: 8px; margin-left: 16px; transform: translateY(-50%); }
 .story-btn { display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; padding: 0; border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, .3); background: rgba(15, 26, 36, .6); color: #d5e5ef; cursor: pointer; }
 .story-btn:hover:not(:disabled) { border-color: #7be4ee; color: #7be4ee; }
